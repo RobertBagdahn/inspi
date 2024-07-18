@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+{% load main_extras %}
+{% block header %}
+{% include "search-filter-bar.html" %}
+{% endblock header %}
+{% block content %}
+{% include "./components/activity-button-bar.html" %}
+<main class="pt-3 grid gap-4 grid-cols-1 mx-auto">
+  
+  {% for activity in activities %}
+  <div class="max-w-lg mx-auto">
+    {% include "activity/activity-card.html" with activity=activity %}
+  </div>
+  {% endfor %}
+  <div class="justify-center max-w-lg mx-auto">
+    {% if page_object.has_previous %}
+    <a href="{% url 'activity-main'%}?{% updated_params %}&page=1">Anfang </a>
+    {% endif%}
+    
+    {% if page_object.has_previous %}
+    <button>
+      <a href="{% url 'activity-main' %}?{% updated_params %}&page={{ page_object.previous_page_number }}"
+        >Letze</a
+      >
+    </button>
+    {% endif%}
+
+    {% if page_object.has_next %}
+    <button>
+      <a href="{% url 'activity-main' %}?{% updated_params %}&page={{ page_object.next_page_number }}"
+        >Nächste</a
+      >
+    </button>
+    {% endif %}
+  </div>
+</main>
+{% endblock content %}
