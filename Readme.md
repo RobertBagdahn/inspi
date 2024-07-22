@@ -29,3 +29,10 @@ Windows:
 Run Server
 
 `poetry run python manage.py runserver`
+
+
+# env file
+in folder /inspiApp you need to put the .env file.
+Next to the file settings.py
+
+the file need to look like the example.env file in that folder

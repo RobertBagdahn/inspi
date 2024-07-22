@@ -60,7 +60,7 @@ def post_create(request):
             for category in categories:
                 post.categories.add(category)
 
-            return HttpResponseRedirect("/thanks/")
+            return HttpResponseRedirect("/blog/post_dashboard/")
 
     # if a GET (or any other method) we'll create a blank form
     else:
