@@ -101,7 +101,7 @@ class Activity(TimeStampMixin):
     created_by_email = models.CharField(max_length=60, blank=True)
     like_score = models.IntegerField(default=0)
     view_count = models.IntegerField(default=0)
-    front_image = PictureField(upload_to="front_images", blank=True, null=True)
+    front_image = PictureField(upload_to="static/front_images", blank=True, null=True)
 
     def _get_stufen_string(self):
         tags = self.tags.all()

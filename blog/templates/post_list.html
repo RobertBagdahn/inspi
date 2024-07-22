@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% load main_extras %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+
+<main class="max-w-3xl mx-auto px-4 py-8">
+  <article class="
+    prose
+    lg:prose-xl
+    ">
+    {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+        </div>
+    {% endfor %}
+    </article>
+</main>
+{% endblock content %}

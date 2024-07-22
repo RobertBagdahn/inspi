@@ -24,8 +24,10 @@ from .views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('activity/', include('activity.urls')),
+    path('general/', include('general.urls')),
     path('food/', include('food.urls')),
     path('blog/', include('blog.urls')),
     path('', index, name='index'),
+    path('accounts/', include('allauth.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

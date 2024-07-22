@@ -12,21 +12,29 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+from django.forms.renderers import TemplatesSetting
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+
+environ.Env.read_env()
+
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%a!5jv_mxo9l(9!&%67_uy-u-zr5#nwbabyi&cm1gt8!8u=vd&"
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 TAILWIND_APP_NAME = 'inspitheme'
 
@@ -51,12 +59,20 @@ INSTALLED_APPS = [
     "imagekit",
     "tailwind",
     "inspitheme",
+    'allauth',
+    'allauth.account',
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'crispy_tailwind',
+    'widget_tweaks',
 
     # modules
     "food",
     "activity.activity",
     "activity.event_of_week",
     "blog",
+    "general.footer",
+    "general.login",
 ]
 
 MIDDLEWARE = [
@@ -68,6 +84,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "allauth.account.middleware.AccountMiddleware", 
 ]
 
 ROOT_URLCONF = "inspiapp.urls"
@@ -89,6 +106,9 @@ TEMPLATES = [
             BASE_DIR / "activity/event_of_week/templates",
             BASE_DIR / "food/templates",
             BASE_DIR / "blog/templates",
+            BASE_DIR / "inspiapp/templates",
+            BASE_DIR / "general/footer/templates",
+            BASE_DIR / "general/login/templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -157,6 +177,18 @@ STATIC_ROOT = os.path.join(
 STATIC_URL = "static/"
 STATIC_DIRS = [os.path.join(BASE_DIR, "static")]  # Must be different from STATIC_ROOT
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "activity/activity/static",
+    BASE_DIR / "activity/event_of_week/static",
+    BASE_DIR / "food/static",
+    BASE_DIR / "blog/static",
+    BASE_DIR / "inspiapp/static",
+    BASE_DIR / "general/footer/static",
+    BASE_DIR / "general/login/static",
+    BASE_DIR / "front_images",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -173,7 +205,6 @@ STATICFILES_FINDERS = (
     "compressor.finders.CompressorFinder",
 )
 
-
 PICTURES = {
     "BREAKPOINTS": {
         "xs": 576,
@@ -186,7 +217,55 @@ PICTURES = {
     "CONTAINER_WIDTH": 1200,
     "FILE_TYPES": ["WEBP"],
     "PIXEL_DENSITIES": [1, 2],
-    "USE_PLACEHOLDERS": True,
+    "USE_PLACEHOLDERS": False,
     "QUEUE_NAME": "pictures",
     "PROCESSOR": "pictures.tasks.process_picture",
 }
+
+# https://docs.djangoproject.com/en/dev/topics/auth/customizing/#substituting-a-custom-user-model
+AUTH_USER_MODEL = "login.CustomUser"
+
+# django-allauth config
+# https://docs.djangoproject.com/en/dev/ref/settings/#site-id
+SITE_ID = 1
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
+LOGIN_REDIRECT_URL = "index"
+
+# https://django-allauth.readthedocs.io/en/latest/views.html#logout-account-logout
+ACCOUNT_LOGOUT_REDIRECT_URL = "index"
+
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_FORMS = {
+    'login': 'general.login.forms.MyCustomLoginForm',
+    'signup': 'general.login.forms.MySignupForm',
+}
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+
+EMAIL_BACKEND = env.str("EMAIL_BACKEND")
+EMAIL_HOST = env.str("EMAIL_HOST")
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = env.int("EMAIL_PORT")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
+DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL")
+EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL",)

@@ -19,7 +19,9 @@
 Mac, Linux:
 
 2) `poetry run python manage.py loaddata data/activity/master-data/*.json`
+2) `poetry run python manage.py loaddata data/activity/test-data/*.json`
 3) `poetry run python manage.py loaddata data/food/*.json`
+4) `poetry run python manage.py loaddata data/blog/*.json`
 
 Windows:
 
