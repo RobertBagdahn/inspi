@@ -1,0 +1,32 @@
+<div
+  class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+>
+  <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
+    {{ ingredient.name }}
+  </h5>
+  <div class="flex items-baseline text-gray-900 dark:text-white">
+    <span class="text-lg font-semibold">{{ ingredient.price_eur|default_if_none:"3,12" }}</span>
+    <span class="pl-2 text-lg font-semibold"> €</span>
+  </div>
+  <a
+  href="{% url 'ingredient-detail' ingredient.slug %}"
+  class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700"
+>
+  Zutat öffnen
+  <svg
+    class="w-2.5 h-2.5 ms-2 rtl:rotate-180"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 6 10"
+  >
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="m1 9 4-4-4-4"
+    />
+  </svg>
+</a>
+</div>

@@ -1,0 +1,26 @@
+{% if artists %}
+<ul>
+  {% for post in artists %}
+  <li class="pb-3 sm:pb-4 hover:bg-slate-200">
+    <a href="{% url 'post' post.slug %}" class="flex mx-3 my-2 items-center space-x-4 rtl:space-x-reverse hover:underline">
+      <div class="flex-1 min-w-0">
+        <p class="text-md font-medium text-gray-900 truncate dark:text-white">
+          {{ post.title }}
+        </p>
+        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+          {{ post.overview }}
+        </p>
+      </div>
+      <div class="inline-flex items-center gap-2 font-medium text-gray-900 hover:underline dark:text-white">
+      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+    </svg>
+  </div>
+    </a>
+  </li>
+  {% endfor %}
+  {{ artists|length }} Einträge gefunden.
+</ul>
+{% else %}
+  <p>Keine Treffer</p>
+{% endif %}

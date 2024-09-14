@@ -5,6 +5,7 @@
 ```poetry run python manage.py tailwind start```
 
 
+
 # Installation 
 
 `poetry install`

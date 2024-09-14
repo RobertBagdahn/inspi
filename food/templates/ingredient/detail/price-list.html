@@ -1,0 +1,66 @@
+<section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+      Preis
+    </h2>
+    <div class="flex items-center justify-between">
+      <div class="divide-y divide-gray-200 dark:divide-gray-700">
+        <div class="flex flex-wrap items-center gap-y-4 py-6">
+          <dl class="">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Name
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+              {{ lastest_package_price.package.name }}
+            </dd>
+          </dl>
+          <dl class="mx-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Portion
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+              {{ lastest_package_price.package.quantity }} x {{ lastest_package_price.package.portion.name }}
+            </dd>
+          </dl>
+
+          <dl class="mx-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Preis
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+            {{ lastest_package_price.price_eur }} €
+            </dd>
+          </dl>
+
+          <dl class="mx-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Wo?
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+            {{ lastest_package_price.retailer.name }}
+            </dd>
+          </dl>
+
+          <dl class="mx-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Datum
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+            {{ lastest_package_price.created_at }}
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,6 @@
 {% extends "_base.html" %}
 {% load main_extras %}
+{% load static %}
 {% block header %}
 {% endblock header %}
 {% block content %}
@@ -12,26 +13,61 @@
         >
           Pfadfinderwissen
         </h2>
+        <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_teacher.png" %}" alt="image description">
         <p class="font-light text-gray-500 sm:text-xl my-3">
           Wissenswerte Artikel für Pfadfinder und Gruppenführungen
         </p>
-        <a href="{% url 'post_list' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Mehr Artikel</a>
+        {% comment %} <a href="{% url 'post-list' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Mehr Artikel</a> {% endcomment %}
         {% if user.is_authenticated %}
-          <a href="{% url 'post_dashboard' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Meine Artikel</a>
+          <a href="{% url 'post-dashboard' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Meine Artikel</a>
         {% endif %}
       </div>
       <h2
-      class="mb-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
-    >
-      Neusten Artikel
-    </h2>
+        class="mb-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
+      >
+        Neusten Artikel
+      </h2>
       <div class="grid gap-8 lg:grid-cols-2">
         {% for obj in latest %}
 
         <article
           class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
         >
-        {% include 'post_box.html' with obj=obj %}
+        {% include 'post-box.html' with obj=obj %}
+          
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      <h2
+        class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
+      >
+        Beliebteste Artikel
+      </h2>
+      <div class="grid gap-8 lg:grid-cols-2">
+        {% for obj in latest %}
+
+        <article
+          class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
+        >
+        {% include 'post-box.html' with obj=obj %}
+          
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      <h2
+        class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
+      >
+        Zufällige Artikel
+      </h2>
+      <div class="grid gap-8 lg:grid-cols-2">
+        {% for obj in latest %}
+
+        <article
+          class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
+        >
+        {% include 'post-box.html' with obj=obj %}
           
           </div>
         </article>

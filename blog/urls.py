@@ -3,9 +3,12 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path("posts", views.mainView, name="blog-main"),
-    path('post/<slug>/', views.post, name = 'post'),
-    path('post_list/', views.post_list, name = 'post_list'),
-    path('post_create/', views.post_create, name = 'post_create'),
-    path('post_dashboard/', views.post_dashboard, name = 'post_dashboard'),
+    path("", views.mainView, name="blog-main"),
+    path("post/<slug>/", views.post, name="post"),
+    path("post-list/", views.post_list, name="post-list"),
+    path("post-create/", views.post_create, name="post-create"),
+    path("post-update/<slug>/", views.post_update, name="post-update"),
+    path("post-dashboard/", views.post_dashboard, name="post-dashboard"),
+    path("post-publish/<slug>/", views.post_publish, name="post-publish"),
+    path("comment/create/", views.comment_create, name="comment-create"),
 ]

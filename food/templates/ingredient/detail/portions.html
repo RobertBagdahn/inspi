@@ -1,0 +1,38 @@
+<section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+      Portionen
+    </h2>
+    <div class="flex items-center justify-between">
+      <div class="divide-y divide-gray-200 dark:divide-gray-700">
+
+        {% for portions in ingredient.portions.all %}
+        <div class="flex flex-wrap items-center gap-y-4 py-6">
+          <dl class="">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              {{ portions.name }}
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+            {{ portions.quantity }} {{ portions.measuring_unit }}
+            </dd>
+          </dl>
+
+          <dl class="ml-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+               Preis
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+              {{ portions.meta_info.price_eur }} €
+            </dd>
+          </dl>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -27504,55 +27504,65 @@
     "model": "food.mealevent",
     "pk": 1,
     "fields": {
+      "event_name": "Pfinglager 2023 - Ring Rhein Lippe",
+      "slug": "erstes-event",
       "created_at": "2022-12-11T21:15:49.604Z",
       "updated_at": "2022-12-11T21:15:49.604Z",
-      "event": null,
       "norm_portions": 8,
-      "activity_factor": null
+      "activity_factor": null,
+      "price_eur": 21.53
     }
   },
   {
     "model": "food.mealevent",
     "pk": 3,
     "fields": {
+      "event_name": "Sippenaktion 2022",
+      "slug": "zweites-event",
       "created_at": "2023-01-08T18:42:59.495Z",
       "updated_at": "2023-01-16T20:50:24.617Z",
-      "event": null,
       "norm_portions": 20,
-      "activity_factor": 2
+      "activity_factor": 2,
+      "price_eur": 41.91
     }
   },
   {
     "model": "food.mealevent",
     "pk": 5,
     "fields": {
+      "event_name": "Sippenwochenende 2022 - Sippe Eisbären",
+      "slug": "drittes-event",
       "created_at": "2023-01-08T18:56:47.166Z",
       "updated_at": "2023-01-09T20:15:54.861Z",
-      "event": null,
       "norm_portions": 7,
-      "activity_factor": 3
+      "activity_factor": 3,
+      "price_eur": 17.41
     }
   },
   {
     "model": "food.mealevent",
     "pk": 6,
     "fields": {
+      "event_name": "Roverhaik im Schwarzwald",
+      "slug": "viertes-event",
       "created_at": "2023-01-12T13:24:46.284Z",
       "updated_at": "2023-01-12T13:42:59.980Z",
       "norm_portions": 7,
       "activity_factor": 2,
-      "event": null
+      "price_eur": 16.11
     }
   },
   {
     "model": "food.mealevent",
     "pk": 7,
     "fields": {
+      "event_name": "Sippenführerschulung Ring Rhein Lippe 2021",
+      "slug": "funftes-event",
       "created_at": "2023-01-16T20:47:47.878Z",
       "updated_at": "2023-01-16T20:49:13.905Z",
-      "event": null,
       "norm_portions": 33,
-      "activity_factor": 2
+      "activity_factor": 2,
+      "price_eur": 51.03
     }
   },
   {
@@ -27740,7 +27750,9 @@
       "name": "Mittagessen",
       "meal_day": 1,
       "day_part_factor": 0.33,
-      "meal_type": "lunch_cold"
+      "meal_type": "lunch_cold",
+      "time_start": "13:00",
+      "time_end": "14:00"
     }
   },
   {
@@ -27752,7 +27764,9 @@
       "name": "Abendessen",
       "meal_day": 1,
       "day_part_factor": 0.33,
-      "meal_type": "lunch_warm"
+      "meal_type": "lunch_warm",
+      "time_start": "19:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27764,7 +27778,9 @@
       "name": "Abendessen",
       "meal_day": 8,
       "day_part_factor": 0.28,
-      "meal_type": "lunch_warm"
+      "meal_type": "lunch_warm",
+      "time_start": "19:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27776,7 +27792,9 @@
       "name": "Snacks am abend",
       "meal_day": 8,
       "day_part_factor": 0.05,
-      "meal_type": "snack"
+      "meal_type": "snack",
+      "time_start": "8:00",
+      "time_end": "9:00"
     }
   },
   {
@@ -27785,10 +27803,12 @@
     "fields": {
       "created_at": "2023-01-08T18:58:57.719Z",
       "updated_at": "2023-01-09T20:12:18.915Z",
-      "name": "",
+      "name": "Frühstück",
       "meal_day": 9,
       "day_part_factor": 0.25,
-      "meal_type": "breakfast"
+      "meal_type": "breakfast",
+      "time_start": "07:00",
+      "time_end": "08:00"
     }
   },
   {
@@ -27800,7 +27820,9 @@
       "name": "Mittagessen",
       "meal_day": 9,
       "day_part_factor": 0.2,
-      "meal_type": "lunch_cold"
+      "meal_type": "lunch_cold",
+      "time_start": "12:00",
+      "time_end": "13:00"
     }
   },
   {
@@ -27812,7 +27834,9 @@
       "name": "Abend",
       "meal_day": 9,
       "day_part_factor": 0.3,
-      "meal_type": "lunch_warm"
+      "meal_type": "lunch_warm",
+      "time_start": "19:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27824,7 +27848,9 @@
       "name": "Snacks während des Tages",
       "meal_day": 9,
       "day_part_factor": 0.2,
-      "meal_type": "snack"
+      "meal_type": "snack",
+      "time_start": "9:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27833,10 +27859,12 @@
     "fields": {
       "created_at": "2023-01-08T19:00:12.487Z",
       "updated_at": "2023-01-08T19:00:12.487Z",
-      "name": "",
+      "name": "Frühstück",
       "meal_day": 10,
       "day_part_factor": 0.33,
-      "meal_type": "breakfast"
+      "meal_type": "breakfast",
+      "time_start": "9:00",
+      "time_end": "10:00"
     }
   },
   {
@@ -27845,10 +27873,12 @@
     "fields": {
       "created_at": "2023-01-08T19:00:25.682Z",
       "updated_at": "2023-01-08T19:00:25.682Z",
-      "name": "",
+      "name": "Snack",
       "meal_day": 10,
       "day_part_factor": 0.17,
-      "meal_type": "snack"
+      "meal_type": "snack",
+      "time_start": "8:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27860,7 +27890,9 @@
       "name": "Abendessen Freitag",
       "meal_day": 11,
       "day_part_factor": 0.33,
-      "meal_type": "lunch_warm"
+      "meal_type": "lunch_warm",
+      "time_start": "19:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27872,7 +27904,9 @@
       "name": "Snack Samstag",
       "meal_day": 12,
       "day_part_factor": 0.1,
-      "meal_type": "snack"
+      "meal_type": "snack",
+      "time_start": "8:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27884,7 +27918,9 @@
       "name": "Samstagmorgen Frühstück",
       "meal_day": 12,
       "day_part_factor": 0.3,
-      "meal_type": "breakfast"
+      "meal_type": "breakfast",
+      "time_start": "8:00",
+      "time_end": "9:00"
     }
   },
   {
@@ -27896,7 +27932,9 @@
       "name": "Mittagessen Samstag",
       "meal_day": 12,
       "day_part_factor": 0.3,
-      "meal_type": "lunch_warm"
+      "meal_type": "lunch_warm",
+      "time_start": "13:00",
+      "time_end": "14:00"
     }
   },
   {
@@ -27908,7 +27946,9 @@
       "name": "Samstagabend Essen",
       "meal_day": 12,
       "day_part_factor": 0.3,
-      "meal_type": "lunch_warm"
+      "meal_type": "lunch_warm",
+      "time_start": "19:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27920,7 +27960,9 @@
       "name": "Abendessen",
       "meal_day": 3,
       "day_part_factor": 0.2,
-      "meal_type": "lunch_warm"
+      "meal_type": "lunch_warm",
+      "time_start": "19:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27932,7 +27974,9 @@
       "name": "Mitternachtsnack",
       "meal_day": 3,
       "day_part_factor": 0.1,
-      "meal_type": "snack"
+      "meal_type": "snack",
+      "time_start": "23:00",
+      "time_end": "23:45"
     }
   },
   {
@@ -27944,7 +27988,9 @@
       "name": "Abendessen",
       "meal_day": 13,
       "day_part_factor": 0.33,
-      "meal_type": "lunch_warm"
+      "meal_type": "lunch_warm",
+      "time_start": "19:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27956,7 +28002,9 @@
       "name": "Reserve",
       "meal_day": 3,
       "day_part_factor": 0.1,
-      "meal_type": "snack"
+      "meal_type": "snack",
+      "time_start": "8:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -27968,7 +28016,9 @@
       "name": "Frühstück",
       "meal_day": 4,
       "day_part_factor": 0.25,
-      "meal_type": "breakfast"
+      "meal_type": "breakfast",
+      "time_start": "9:00",
+      "time_end": "10:00"
     }
   },
   {
@@ -27980,7 +28030,9 @@
       "name": "Kaltes Mittagessen",
       "meal_day": 4,
       "day_part_factor": 0.33,
-      "meal_type": "lunch_cold"
+      "meal_type": "lunch_cold",
+      "time_start": "13:00",
+      "time_end": "14:00"
     }
   },
   {
@@ -27992,7 +28044,9 @@
       "name": "Warmes Abendessen",
       "meal_day": 4,
       "day_part_factor": 0.33,
-      "meal_type": "lunch_cold"
+      "meal_type": "lunch_cold",
+      "time_start": "19:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -28004,7 +28058,9 @@
       "name": "Tagessnacks",
       "meal_day": 4,
       "day_part_factor": 0.1,
-      "meal_type": "snack"
+      "meal_type": "snack",
+      "time_start": "8:00",
+      "time_end": "20:00"
     }
   },
   {
@@ -28016,7 +28072,9 @@
       "name": "Cafe-Snack",
       "meal_day": 4,
       "day_part_factor": 0.1,
-      "meal_type": "snack"
+      "meal_type": "snack",
+      "time_start": "14:00",
+      "time_end": "15:00"
     }
   },
   {

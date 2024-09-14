@@ -9,117 +9,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon/favicon.ico' %}" >
     <title>Heimabend Inspirator</title>
 
     {% tailwind_css %}
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <div class="flex flex-col h-screen justify-between">
-    <nav class="bg-blue-500 border-gray-200">
-      {% comment %} <img
-        src="https://inspirator.dpbm.de/img/inspi_thinking.b3d7e7a6.webp"
-        class="absolute top-0 left-0 h-16"
-        alt="thinking inspi"
-      />
-      <div
-        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2"
-      >
-        <a
-          href="{{ .Site.Params.homepage }}/"
-          class="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <span
-            class="self-center ml-14 text-2xl font-semibold whitespace-nowrap text-white"
-            >Inspi</span
-          >
-        </a>
-        <button
-          data-collapse-toggle="navbar-default"
-          type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-100 rounded-lg md:hidden hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-default"
-          aria-expanded="false"
-        >
-          <span class="sr-only">Open main menu</span>
-          <svg
-            class="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 1h15M1 7h15M1 13h15"
-            />
-          </svg>
-        </button>
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul
-            class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-blue-500 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-blue-500"
-          >
-            <li>
-              <a
-                href="{% url 'activity-main'%}"
-                class="block py-2 px-3 text-gray-900 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-                >Gruppenstunde</a
-              >
-            </li>
-            <li>
-              <a
-                href="{% url 'food-main'%}"
-                class="block py-2 px-3 text-gray-900 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-                >Rezepte</a
-              >
-            </li>
-            <li>
-              <a
-                href="{% url 'blog-main'%}"
-                class="block py-2 px-3 text-gray-900 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-                >Wissen</a
-              >
-            </li>
-          </ul>
-          {% if user.is_authenticated %}
-          <div class="mr-auto">
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Settings
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">{{ user.email }}</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Passwort ändern</a></li>
-                  <li><a class="dropdown-item" href="{% url 'account_logout' %}">Ausloggen</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          {% else %}
-          <div class="mr-auto">
-            <form class="form d-flex">
-              <a href="{% url 'account_login' %}" class="btn btn-outline-secondary">Login</a>
-              <a href="{% url 'account_signup' %}" class="btn btn-primary ms-2">Anmelden</a>
-            </form>
-          </div>
-          {% endif %}
-        </div>
-      </div> {% endcomment %}
-      {% include "main_header.html" %}
-    </nav>
+    <div class="flex flex-col h-screen">
+      <header class="bg-blue-500 border-gray-200">
+        {% include "main_header.html" %}
+      </header>
 
-    <div class="container mx-auto mt-4">
-      {% block content %} {% endblock content %}
+      <main class="flex-grow">
+        {% block content %}
+        {% endblock content %}
+      </main>
+
+      <footer>
+        {% include "footer.html" %}
+      <footer/>
     </div>
-    {% include "footer.html" %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script type="text/javascript" src="{% static 'javascript/main.js' %}"></script> 
   </body>
 </html>

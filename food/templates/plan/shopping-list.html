@@ -1,0 +1,16 @@
+{% extends "plan/_plan-base.html" %}
+
+{% block plancontent %}
+<div class="mx-2 my-2">
+  <h2 class="text-4xl font-extrabold dark:text-white">Einkaufsliste</h2>
+  <p class="my-4 text-lg text-gray-500">
+  Liste mit allen Zutaten sortiert nach Kategorien. 
+  </p>
+
+  <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+    {% for item in shopping_list %}
+      {% include "plan/shopping-list/list-item.html" with item=item %}
+    {% endfor %}
+  </ul>
+</div>
+{% endblock plancontent %}

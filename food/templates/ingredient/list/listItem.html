@@ -1,0 +1,40 @@
+<a
+  href="{% url 'ingredient-detail' item.slug %}"
+  class="w-full flex flex-col md:flex-row md:items-center relative p-3 md:space-x-6 hover:bg-gray-50 dark:hover:bg-gray-600 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-600"
+>
+
+<div class="flex flex-col md:justify-between">
+  <div class="grid grid-cols-2 md:grid-cols-6 w-full gap-2">
+    <div class="flex flex-col justify-between h-full col-span-3">
+      <h3
+        class="text-lg font-semibold text-gray-700 dark:text-white mb-2 md:mb-3"
+      >
+        {{ item.name }}
+      </h3>
+      <div>
+        <p class="text-sm font-semibold text-gray-900 dark:text-white">
+          {{ item.get_major_class_display }}
+        </p>
+      </div>
+    </div>
+    <div class="col-span-1">
+      <h6 class="text-sm font-normal text-gray-500 dark:text-gray-400">
+        Preis je Kg
+      </h6>
+      <p class="text-sm font-semibold text-gray-900 dark:text-white">1,29€</p>
+    </div>
+    <div class="col-span-1">
+      <h6 class="text-sm font-normal text-gray-500 dark:text-gray-400">
+        Preis je Portion
+      </h6>
+      <p class="text-sm font-semibold text-gray-900 dark:text-white">0,30€</p>
+    </div>
+    <div class="col-span-1">
+      <h6 class="text-sm font-normal text-gray-500 dark:text-gray-400">
+        Nutri Score
+      </h6>
+      <p class="text-sm font-semibold text-gray-900 dark:text-white">A</p>
+    </div>
+  </div>
+</div>
+</a>

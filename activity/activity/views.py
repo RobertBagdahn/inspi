@@ -27,10 +27,32 @@ def detail(request, activity_id):
     return render(request, "activity/detail.html", {"activity": activity})
 
 
-def overview(request):
-    query = request.GET.get('q', '')
-    page_num = request.GET.get('page', 1)
-    activities_raw = activity_models.Activity.objects.filter(title__icontains=query).order_by("-created_at")
+def main_view(request):
+    query = request.GET.get("q", "")
+    page_num = request.GET.get("page", 1)
+    activities_raw = activity_models.Activity.objects.filter(
+        title__icontains=query
+    ).order_by("-created_at")
+    categories = activity_models.Tag.objects.filter(category_id=9)
+
+    paginator = Paginator(activities_raw, per_page=10)
+    page_object = paginator.get_page(page_num)
+    page_object.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
+
+    context = {
+        "activities": page_object,
+        "page_object": page_object,
+        "categories": categories,
+    }
+    return render(request, "activity/main-view.html", context)
+
+
+def all_items(request):
+    query = request.GET.get("q", "")
+    page_num = request.GET.get("page", 1)
+    activities_raw = activity_models.Activity.objects.filter(
+        title__icontains=query
+    ).order_by("-created_at")
     categories = activity_models.Tag.objects.filter(category_id=9)
 
     paginator = Paginator(activities_raw, per_page=10)

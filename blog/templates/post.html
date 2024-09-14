@@ -16,7 +16,7 @@
         </div>
           <div>
             <a
-              href="#"
+              href="{% url 'login-profile' post.author.scout_display_name %}"
               rel="author"
               class="text-xl font-bold text-gray-900"
               > {{ post.author.scout_display_name }}</a
@@ -45,9 +45,9 @@
       
   </article>
 
-  {% include 'post/comment.html' with comments=post.comment_set.all %}
+  {% include 'post/comment.html' with comments=post.comment_set.all comment_form=comment_form %}
 
-  {% include 'post/related_posts.html' %}
+  {% include 'post/related-posts.html' with related_posts=related_posts%}
 
   {% endblock content %}
 </main>

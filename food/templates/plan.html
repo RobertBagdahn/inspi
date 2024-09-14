@@ -1,0 +1,73 @@
+{% extends "_base.html" %} {% load main_extras %} {% load static %} {% block header %} {% endblock header %} {% block content %}
+<section class="bg-white dark:bg-gray-900 antialiased">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto lg:px-6 sm:py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto space-y-4 text-center">
+      <h2
+        class="text-4xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white"
+      >
+        {{ plan.event_name}}
+      </h2>
+        <a href="{% url 'plan-editor' plan.slug %}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+      </a>
+      <p
+        class="text-xl font-medium leading-tight text-gray-500 dark:text-gray-400"
+      >
+      {{ plan.list_meal_days.all.first.date|date:"l, F d, Y" }}
+      bis
+      {{ plan.list_meal_days.all.last.date|date:"l, F d, Y" }}
+
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 mt-12 -mx-8 lg:mt-16 lg:grid-cols-{% if plan.list_meal_days.count > 2 %}3{% else %}1{% endif %} gap-y-12">
+      {% for meal_day in plan.list_meal_days.all %} 
+      <div class="px-8 space-y-12">
+        <h3
+          class="text-2xl font-bold text-center text-gray-900 dark:text-white"
+        >
+          {{ meal_day.date|date:"l" }}
+        </h3>
+        {% for meal in meal_day.list_meals %} 
+        <div class="space-y-4">
+          <span
+            class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-3 h-3 mr-1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            {{ meal.time_start }} - {{ meal.time_end }}
+          </span>
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white">
+            <a href="#" class="hover:underline">{{ meal.name }}</a>
+          </h4>
+          <div class="flex items-center gap-3">
+            <div>
+              <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                {% for item in meal.list_meal_items.all %}
+                {{ item.recipe.name }} {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -14,20 +14,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import index
+from .views import index, search, autocompleteModel
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('activity/', include('activity.urls')),
-    path('general/', include('general.urls')),
-    path('food/', include('food.urls')),
-    path('blog/', include('blog.urls')),
-    path('', index, name='index'),
-    path('accounts/', include('allauth.urls')),
+    path("admin/", admin.site.urls),
+    path("activity/", include("activity.urls")),
+    path("general/", include("general.urls")),
+    path("food/", include("food.urls")),
+    path("blog/", include("blog.urls")),
+    path("", index, name="index"),
+    path("accounts/", include("allauth.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
+    path("search", search, name="global-search"),
+    path("autocomplete", autocompleteModel, name="autocomplete"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

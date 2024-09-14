@@ -1,0 +1,198 @@
+{% extends "_base.html" %} {% load main_extras %} {% load pictures %} {% block content %}
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 mx-auto max-w-6xl lg:py-16">
+    <div class="grid gap-4 px-4 mb-4 sm:mb-5 sm:grid-cols-3 sm:gap-6 md:gap-12">
+      <!-- Column -->
+      <div class="sm:col-span-2">
+        <div class="flex items-center space-x-4">
+          <div class="h-32 w-32">
+          {% if user.profile_picture %}
+            {% picture user.profile_picture img_alt="" img_loading="lazy" picture_class="my-picture" %}
+          {% else %}
+            <img class="w-40 h-40" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/SMPTE_Color_Bars.svg/1200px-SMPTE_Color_Bars.svg.png" alt="image description">
+          {% endif %}
+          </div>
+          <div>
+            <h2
+              class="flex items-center mb-2 text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white"
+            >
+              {{ user.scout_display_name }}
+            </h2>
+            <span
+              class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 mb-4 sm:mb-5"
+            >
+              <svg
+                class="mr-1 w-3 h-3"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                <path
+                  fill-rule="evenodd"
+                  d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              {{ user.display_rank }}
+            </span>
+          </div>
+        </div>
+        <dl>
+          <dt
+            class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+          >
+            Über mich:
+          </dt>
+          <dd class="mb-4 font-light text-gray-500 sm:mb-5">
+            {{ user.about_me|default_if_none:"Noch keine Beschreibung" }}
+          </dd>
+          <dt
+            class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+          >
+            Stamm
+          </dt>
+          <dd
+            class="flex items-center mb-4 text-gray-900 sm:mb-5 dark:text-white"
+          >
+            <svg
+              class="w-4 h-4 mr-1.5 text-gray-400 dark:text-gray-500"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <span class="font-light text-gray-500 dark:text-gray-400"
+              >{{ user.stamm|default_if_none:"Noch keine Stamm ausgewählt" }}</span
+            >
+          </dd>
+          <dt
+            class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+          >
+            Pfadfinderbund
+          </dt>
+          <dd class="flex items-center text-gray-900 dark:text-white">
+            <svg
+              class="w-4 h-4 mr-1.5 text-gray-400 dark:text-gray-500"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+              <path
+                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"
+              ></path>
+            </svg>
+            <span class="font-light text-gray-500 dark:text-gray-400"
+              >{{ user.bund|default_if_none:"Noch keine Bund ausgewählt" }}</span
+            >
+          </dd>
+        </dl>
+      </div>
+      <!-- Column -->
+      <dl>
+        <dt
+          class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+        >
+          Email Adress
+        </dt>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+          {{ user.email }}
+        </dd>
+        <dt
+          class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+        >
+          Name
+        </dt>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+          {{ user.get_full_name }}
+        </dd>
+        <dt
+          class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+        >
+          Mitglied seit
+        </dt>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+          {{ user.date_joined|date:"d.m.Y" }}
+        </dd>
+        <dt
+          class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+        >
+          Letzter Login
+        </dt>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+          {{ user.last_login|date:"d.m.Y" }}
+        </dd>
+        <dt
+          class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+        >
+          Geschriebene Blogs
+        </dt>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+          {{ user.written_blogs.count }}
+        </dd>
+    </div>
+    <div class="flex items-center px-4 space-x-4">
+      <button
+        type="button"
+        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        <svg
+          aria-hidden="true"
+          class="mr-1 -ml-1 w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+          ></path>
+          <path
+            fill-rule="evenodd"
+            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        Edit
+      </button>
+      <button
+        type="button"
+        class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+      >
+        Public Preview
+      </button>
+      <button
+        type="button"
+        class="inline-flex items-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900"
+      >
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5 mr-1.5 -ml-1"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        Delete
+      </button>
+    </div>
+  </div>
+</section>
+{% endblock content %}

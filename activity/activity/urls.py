@@ -8,7 +8,8 @@ from activity.activity import views
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     # redirect to the overview/ page
-    path("overview", views.overview, name="activity-main"),
+    path("", views.main_view, name="activity-main"),
+    path("all-items", views.all_items, name="activity-all-items"),
     path("details/<int:activity_id>", views.detail, name="activity-detail"),
     path("list", views.list, name="activity-list"),
     path("faq", views.faq, name="footer-faq"),
