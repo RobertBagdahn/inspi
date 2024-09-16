@@ -27,6 +27,10 @@ Mac, Linux:
 Windows:
 
 2) `poetry run python manage.py add_fixtures data\activity\master-data\`
+3) `poetry run python manage.py add_fixtures data\activity\test-data\`
+4) `poetry run python manage.py add_fixtures data\food\`
+4) `poetry run python manage.py add_fixtures data\blog\`
+
 Run Server
 
 `poetry run python manage.py runserver`
@@ -37,3 +41,6 @@ in folder /inspiApp you need to put the .env file.
 Next to the file settings.py
 
 the file need to look like the example.env file in that folder
+
+Windows users have to put this line in settings.py:
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
