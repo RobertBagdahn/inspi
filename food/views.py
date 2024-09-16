@@ -149,6 +149,7 @@ def plan_shopping_cart(request, slug):
             "price": 1.91,
             "weight_show": "1 Kg",
             "pieces": 5,
+            "weight_g": 1000
         },
         {
             "ingredient_name": "Nudeln",
@@ -156,6 +157,8 @@ def plan_shopping_cart(request, slug):
             "recipe_name": "Tomatensoße mit Nudeln",
             "price": 0.99,
             "weight_show": "250 g",
+            "pieces": 1,
+            "weight_g": 250
         },
         {
             "ingredient_name": "Tomatenmark",
@@ -163,6 +166,7 @@ def plan_shopping_cart(request, slug):
             "recipe_name": "Tomatensoße mit Nudeln",
             "price": 1.99,
             "weight_show": "200 g",
+            "weight_g": 200
         },
         {
             "ingredient_name": "Brühe",
@@ -170,6 +174,7 @@ def plan_shopping_cart(request, slug):
             "recipe_name": "Tomatensoße mit Nudeln",
             "price": 2.49,
             "weight_show": "500 g",
+            "weight_g": 500
         },
         {
             "ingredient_name": "Salz",
@@ -177,6 +182,23 @@ def plan_shopping_cart(request, slug):
             "recipe_name": "Tomatensoße mit Nudeln",
             "price": 3.49,
             "weight_show": "500 g",
+            "weight_g": 500
+        },
+        {
+            "ingredient_name": "Tomaten",
+            "ingredient_class": "Gemüse",
+            "recipe_name": "Frühstück",
+            "price": 3.49,
+            "weight_show": "100 g",
+            "weight_g": 100
+        },
+        {
+            "ingredient_name": "Brot",
+            "ingredient_class": "Backwaren",
+            "recipe_name": "Frühstück",
+            "price": 2.49,
+            "weight_show": "1 Kg",
+            "weight_g": 1000,
         },
     ]
 
