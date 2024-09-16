@@ -119,5 +119,4 @@ class MealEventTemplateForm(forms.ModelForm):
             'animal_products',
             'meal_time_options',
             'child_frendly',
-            'created_by',
         ]

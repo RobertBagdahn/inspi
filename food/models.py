@@ -425,9 +425,6 @@ class MealEventTemplate(TimeStampMixin):
         choices=ChildFrendly.choices,
         default=ChildFrendly.CHILD_AND_ADULT,
     )
-    created_by = models.ForeignKey(
-        User, on_delete=models.PROTECT, null=True, blank=True
-    )
 
 
 class MealEvent(TimeStampMixin):
@@ -438,19 +435,12 @@ class MealEvent(TimeStampMixin):
     activity_factor = models.ForeignKey(
         PhysicalActivityLevel, on_delete=models.PROTECT, null=True, blank=True
     )
-    # ref MealEvent
-    meal_event_template = models.ForeignKey(
-        MealEventTemplate, on_delete=models.PROTECT, null=True, blank=True
-    )
     meal_event_ref = models.ForeignKey(
         "self", on_delete=models.PROTECT, null=True, blank=True
     )
     reserve_factor = models.FloatField(default=1.0)
     is_public = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
-    editors = models.ManyToManyField(
-        User, related_name="meal_event_created_by", blank=True
-    )
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
     )
