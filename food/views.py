@@ -1,17 +1,12 @@
-from django.db.models import Q, QuerySet
 from django_filters import CharFilter, NumberFilter
-from food.choices import Gender
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 from copy import deepcopy
-from itertools import groupby
-from datetime import date, timedelta
-import datetime
 
 from general.login.models import CustomUser as User
 
-from .forms import MealEventForm, SearchForm, IngredientFilterForm
+from .forms import MealEventForm, SearchForm, IngredientFilterForm, MealEventTemplateForm
 from .models import (
     MealEvent,
     Recipe,
@@ -23,7 +18,6 @@ from .models import (
 
 
 # create view with template main.html
-
 
 def mainView(request):
     famous_meal_events = MealEvent.objects.all()[0:3]
@@ -103,7 +97,29 @@ def plan_dashboard(request):
 
 
 def template_create(request):
-    return render(request, "template-create.html")
+    # use the MealEventTemplateForm to create a MealEventTemplate
+    # if request.method == "POST":
+    #     form = MealEventTemplateForm(request.POST)
+
+    #     if form.is_valid():
+    #         data = form.cleaned_data
+
+    #         data["slug"] = data["title"].replace(" ", "-").lower()
+
+    #         # remove categories from data
+    #         categories = data.pop("categories")
+
+    #         # create a new post
+    #         template = MealEventTemplate(**data)
+    #         template.author = User.objects.first()
+    #         template.save()
+    #         for category in categories:
+    #             template.categories.add(category)
+
+    #         return HttpResponseRedirect("/food/template-list/")
+
+        form = MealEventTemplateForm()
+        return render(request, "template-create.html", {"form": form})
 
 
 def meal_event_create(request):
@@ -129,15 +145,37 @@ def plan_shopping_cart(request, slug):
         {
             "ingredient_name": "Tomate",
             "ingredient_class": "Gemüse",
-            "recipe_name": "Tomatensoße",
+            "recipe_name": "Tomatensoße mit Nudeln",
             "price": 1.91,
-            "weight_show": "2 Kg",
+            "weight_show": "1 Kg",
+            "pieces": 5,
         },
         {
             "ingredient_name": "Nudeln",
-            "ingredient_class": "Gemüse",
-            "recipe_name": "Tomatensoße",
+            "ingredient_class": "Teigwaren",
+            "recipe_name": "Tomatensoße mit Nudeln",
             "price": 0.99,
+            "weight_show": "250 g",
+        },
+        {
+            "ingredient_name": "Tomatenmark",
+            "ingredient_class": "Gewürz",
+            "recipe_name": "Tomatensoße mit Nudeln",
+            "price": 1.99,
+            "weight_show": "200 g",
+        },
+        {
+            "ingredient_name": "Brühe",
+            "ingredient_class": "Soßen",
+            "recipe_name": "Tomatensoße mit Nudeln",
+            "price": 2.49,
+            "weight_show": "500 g",
+        },
+        {
+            "ingredient_name": "Salz",
+            "ingredient_class": "Gewürz",
+            "recipe_name": "Tomatensoße mit Nudeln",
+            "price": 3.49,
             "weight_show": "500 g",
         },
     ]
@@ -146,6 +184,7 @@ def plan_shopping_cart(request, slug):
         "plan": plan,
         "shopping_list": shopping_list,
         "module_name": "Einkaufsliste",
+        "total_price": sum([item["price"] for item in shopping_list]),
     }
     return render(request, "plan/shopping-list.html", context)
 

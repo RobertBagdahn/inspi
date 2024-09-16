@@ -19,7 +19,6 @@ from .models import (
     PhysicalActivityLevel,
     PollItem,
     MealEventTemplate,
-    TemplateOptions,
     MetaInfo,
 )
 
@@ -122,6 +121,5 @@ class MealAdmin(admin.ModelAdmin):
 admin.site.register(MealItem)
 admin.site.register(PollItem)
 admin.site.register(MealEventTemplate)
-admin.site.register(TemplateOptions)
 
 admin.site.register(MetaInfo)

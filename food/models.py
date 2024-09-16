@@ -395,18 +395,6 @@ class PhysicalActivityLevel(TimeStampMixin):
         return self.__str__()
 
 
-class TemplateOptions(TimeStampMixin):
-    name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    is_public = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-    def __repr__(self):
-        return self.__str__()
-
-
 class MealEventTemplate(TimeStampMixin):
     name = models.CharField(max_length=255, default="Unbekannt")
     description = models.CharField(max_length=255, blank=True, null=True)
@@ -427,9 +415,6 @@ class MealEventTemplate(TimeStampMixin):
         choices=AnimalProducts.choices,
         default=AnimalProducts.Vegetarian,
     )
-    meal_event_template_options = models.ManyToManyField(
-        TemplateOptions, related_name="meal_event_template_options", blank=True
-    )
     meal_time_options = models.CharField(
         max_length=10,
         choices=MealTimeOptions.choices,
@@ -439,6 +424,9 @@ class MealEventTemplate(TimeStampMixin):
         max_length=10,
         choices=ChildFrendly.choices,
         default=ChildFrendly.CHILD_AND_ADULT,
+    )
+    created_by = models.ForeignKey(
+        User, on_delete=models.PROTECT, null=True, blank=True
     )
 
 

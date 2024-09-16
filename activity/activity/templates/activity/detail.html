@@ -6,7 +6,9 @@
 
 <main class="">
   <div class="grid grid-cols-1 mx-auto max-w-lg" >
-    <div>{% include "components/breadcrumb.html" %}</div>
+    <div>
+      {% include "./components/breadcrumb.html" with activity=activity %}
+    </div>
     <div class="bg-blue-500 mt-2 py-3 px-4"> 
       <p class="text-xl text-white text-center">{{ activity.title }}</p>
       <p class="text-sm text-white text-center">{{ activity.stufen_string }}</p>
@@ -40,7 +42,6 @@
           {{ tag.name }}
         </span>
     {% endif %}
-
   {% endfor %}
 </div>
     <hr class="my-4 h-0.3 bg-blue-400" />

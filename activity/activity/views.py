@@ -23,7 +23,7 @@ def detail(request, activity_id):
     try:
         activity = activity_models.Activity.objects.get(pk=activity_id)
     except activity_models.Activity.DoesNotExist:
-        raise Http404("Question does not exist")
+        raise Http404("Activity does not exist")
     return render(request, "activity/detail.html", {"activity": activity})
 
 
