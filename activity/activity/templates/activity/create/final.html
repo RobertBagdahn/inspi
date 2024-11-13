@@ -26,20 +26,17 @@
         E-Mail-Adresse bei dir. <br />
         Wenn du Fragen an uns hast, nutze gerne das Kontaktformular. <br />
 
-      <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
+      <p class="mb-5 text-gray-900 sm:text-xl my-3">
         Du hast eine Bestätiungsemail erhalten.
       </p>
-      <h2>
-        <a href="{% url 'activity-detail' activity.id %}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-blue-900">
-          Deine Idee öffnen
-        </a>
-      </h2>
-      <h2>
-        Feedback
-      </h2>
-      <h2>
-        Zurück zu den Ideen
-      </h2>
+      <a href="{% url 'activity-detail' activity.id %}" class="text-black font-medium text-md px-5 py-3 text-center">
+        Deine Idee öffnen
+      </a>
+      <br />
+      <br />
+      <a href="{% url 'activity-main' %}" class="text-black">
+        Zurück zur Übersicht
+      </a>
     </div>
   </div>
 </section>

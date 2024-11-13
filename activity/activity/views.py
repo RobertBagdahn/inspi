@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect
 from django.forms.models import inlineformset_factory
 from formtools.wizard.views import SessionWizardView, CookieWizardView
 from django.db.models import Q
+from django.core.mail import send_mail
+from general.login.models import CustomUser
 
 from django.shortcuts import get_object_or_404
 from django.utils.formats import date_format
@@ -281,6 +283,54 @@ class ContactWizard(CookieWizardView):
                 activity.authors.add(self.request.user)
 
             activity.save()
+
+        if activity.created_by_email:
+            send_mail(
+                subject="Inspi: Deine Idee wurde erstellt",
+                message=f"""
+                    Hallo, 
+                    deine neue Idee wurde erstellt. Bitte überprüfe die Idee:
+                    Link: https://gruppenstunde.de/activity/detail/{activity.id}
+
+                    Beste Grüße
+                    Inspi
+                """,
+                recipient_list=[activity.created_by_email],
+            )
+
+        if self.request.user.is_authenticated:
+            send_mail(
+                subject="Inspi: Deine Idee wurde erstellt",
+                message=f"""
+                    Hallo, 
+                    deine neue Idee wurde erstellt. Bitte überprüfe die Idee:
+                    Link: https://gruppenstunde.de/activity/detail/{activity.id}
+
+                    Beste Grüße
+                    Inspi
+                """,
+                recipient_list=[self.request.user.email],
+            )
+
+        # red env EMAIL_HOST_USER
+
+        send_mail(
+            subject="Inspi: Eine neue Idee wurde erstellt",
+            message=f"""
+                Hallo, 
+                eine neue Idee wurde erstellt. Bitte überprüfe die Idee:
+                Link: https://gruppenstunde.de/activity/detail/{activity.id}
+
+                Beste Grüße
+                Inspi
+            """,
+            recipient_list=[
+                user.email
+                for user in CustomUser.objects.filter(Q(is_superuser=True) | Q(is_staff=True))
+            ],
+        )
+        
+
         return HttpResponseRedirect(f"/activity/create-final/{activity.id}")
 
 
