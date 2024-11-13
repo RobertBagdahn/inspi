@@ -16,16 +16,21 @@ from django.contrib import messages
 # import CustomUser from login
 from general.login.models import CustomUser as User
 
-from .forms import PostForm, SearchForm, CommentForm
+from .forms import PostForm, SearchForm, CommentForm, PostFormUpdate
 from .models import Comment as PostComment
+from .choices import StatusTypeWithAll
 
 
-def mainView(request):
-    categories = Category.objects.all()[0:3]
-    latest = Post.objects.order_by("-timestamp_created")[0:3]
+def mainView(request, slug: str = None):
+    categories = Category.objects.all()
+    latest = Post.objects.filter(status=StatusTypeWithAll.PUBLISHED).order_by("-timestamp_created")[0:4]
+    most_famous = Post.objects.filter(status=StatusTypeWithAll.PUBLISHED).order_by("-words")[0:4]
+    randoms = Post.objects.filter(status=StatusTypeWithAll.PUBLISHED).order_by("?")[0:4]
     context = {
         "object_list": latest,
         "latest": latest,
+        "most_famous": most_famous,
+        "randoms": randoms,
         "categories": categories,
     }
     return render(request, "blog-home.html", context)
@@ -33,6 +38,7 @@ def mainView(request):
 
 def post(request, slug):
     post = Post.objects.get(slug=slug)
+    post.update_views()
     comment_form = CommentForm()
     related_posts = Post.objects.all().order_by("?")[:3]
     context = {
@@ -56,13 +62,13 @@ def post_create(request):
         # create a form instance and populate it with data from the request:
         form = PostForm(request.POST)
 
+        print(form.is_valid())
+
         if form.is_valid():
 
             data = form.cleaned_data
-
             data["slug"] = data["title"].replace(" ", "-").lower()
 
-            # remove categories from data
             categories = data.pop("categories")
 
             # create a new post
@@ -89,34 +95,50 @@ def post_update(request, slug):
         return redirect("post-dashboard")
 
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostFormUpdate(request.POST, instance=post)
 
         if form.is_valid():
             data = form.cleaned_data
-            data["slug"] = data["title"].replace(" ", "-").lower()
 
             # remove categories from data
             categories = data.pop("categories")
 
-            post = Post(**data)
-            post.author = User.objects.first()
-            post.save()
+            form.save()
             for category in categories:
-                post.categories.add(category)
+                # add categories to post if they are not already there
+                if category not in post.categories.all():
+                    post.categories.add(category)
 
             return HttpResponseRedirect("/blog/post-dashboard/")
 
-        return render(request, "post-create.html", {"form": form})
+        else:
+            messages.error(
+                request,
+                f"Form is not valid. Please check the form {[field for field in form.errors]}",
+            )
+
+        return render(request, "post-update.html", {"form": form})
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = PostForm(instance=post)
-        return render(request, "post-create.html", {"form": form})
+        form = PostFormUpdate(instance=post)
+        return render(request, "post-update.html", {"form": form})
+
+
+def post_delete(request, slug):
+    post = Post.objects.get(slug=slug)
+    if not post.is_allowed_to_edit(request.user):
+        messages.error(request, "You are not allowed to delete this post")
+        return redirect("post-dashboard")
+    post.delete()
+    messages.success(request, "Post deleted")
+    return redirect("post-dashboard")
 
 
 def post_dashboard(request):
     posts = Post.objects.all()
-    form = SearchForm(request.GET, initial={"status": "all"})
+    form = SearchForm(request.GET or None, initial={"status": "all"})
+    categories = Category.objects.all()
 
     if form.is_valid():
         if form.cleaned_data["query"] and form.cleaned_data["query"] is not None:
@@ -128,6 +150,7 @@ def post_dashboard(request):
     context = {
         "posts": posts,
         "form": form,
+        "categories": categories,
     }
     return render(request, "post-dashboard.html", context)
 
@@ -141,6 +164,18 @@ def post_publish(request, slug):
     post.status = "published"
     post.save()
     messages.success(request, "Post published")
+    return redirect("post-dashboard")
+
+
+def post_archive(request, slug):
+    me = request.user
+    post = Post.objects.get(slug=slug)
+    if not post.is_allowed_to_edit(me):
+        messages.error(request, "You are not allowed to archive this post")
+        return redirect("post-dashboard")
+    post.status = "archived"
+    post.save()
+    messages.success(request, "Post archived")
     return redirect("post-dashboard")
 
 

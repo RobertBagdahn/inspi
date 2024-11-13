@@ -1,6 +1,7 @@
 import uuid
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
 from django.core.exceptions import ValidationError
 from django.core.validators import (
     MaxValueValidator,
@@ -16,7 +17,22 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from imagekit.models import ProcessedImageField
 
+from image_cropping import ImageRatioField, ImageCropField
+
+
 from activity.activity.choices import OptionType
+from .choices import (
+    OptionType,
+    ExecutionTimeChoices,
+    DifficultyChoices,
+    CostsRatingChoices,
+    PrepairationTimeChoices,
+    StatusChoices,
+    StatusChoicesAdmin,
+)
+
+from general.login.models import CustomUser
+User = get_user_model()
 
 
 class TimeStampMixin(models.Model):
@@ -74,15 +90,60 @@ class MaterialName(TimeStampMixin):
         return self.__str__()
 
 
-class Tag(TimeStampMixin):
+class Topic(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=100, blank=True)
-    color = ColorField(default="#FF0000")
-    icon = models.CharField(max_length=20, blank=True, null=True)
-    category = models.ForeignKey(
-        TagCategory, on_delete=models.PROTECT, blank=True, null=True
-    )
+    sorting = models.IntegerField(blank=False, unique=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.__str__()
+    
+class ActivityTypeChoice(TimeStampMixin):
+    id = models.AutoField(auto_created=True, primary_key=True)
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100, blank=True)
+    sorting = models.IntegerField(blank=False, unique=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.__str__()
+    
+class TimeChoice(TimeStampMixin):
+    id = models.AutoField(auto_created=True, primary_key=True)
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100, blank=True)
+    sorting = models.IntegerField(blank=False, unique=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.__str__()
+    
+
+class LocationChoice(TimeStampMixin):
+    id = models.AutoField(auto_created=True, primary_key=True)
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100, blank=True)
+    sorting = models.IntegerField(blank=False, unique=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.__str__()
+    
+
+class ScoutLevelChoice(TimeStampMixin):
+    id = models.AutoField(auto_created=True, primary_key=True)
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100, blank=True)
     sorting = models.IntegerField(blank=False, unique=True, null=True)
 
     def __str__(self):
@@ -92,64 +153,137 @@ class Tag(TimeStampMixin):
         return self.__str__()
 
 
+
 def nameFile(instance, filename):
     return "images/" + str(uuid.uuid1()) + ".jpeg"
-
 
 class Activity(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
     title = models.CharField(
-        max_length=45, validators=[MinLengthValidator(5), MaxLengthValidator(40)]
+        max_length=45, default="", validators=[MinLengthValidator(5), MaxLengthValidator(45)],
+
+    )
+    summary = models.CharField(
+        max_length=300, default="", validators=[MaxLengthValidator(300)]
     )
     description = RichTextField(
         max_length=8000, default="", validators=[MaxLengthValidator(8000)]
     )
-    summary = models.CharField(
-        max_length=100, default="", validators=[MaxLengthValidator(100)]
+
+    costs_rating = models.CharField(
+        choices=CostsRatingChoices.choices,
+        default=CostsRatingChoices.ZERO,
+        max_length=20,
     )
-    tags = models.ManyToManyField(Tag, default="")
-    costs_rating = models.SmallIntegerField(
-        default=1, validators=[MinValueValidator(0), MaxValueValidator(5)]
+    execution_time = models.CharField(
+        choices=ExecutionTimeChoices.choices,
+        default=ExecutionTimeChoices.LESS_THAN_30,
+        max_length=20,
     )
-    execution_time = models.SmallIntegerField(
-        default=1, validators=[MinValueValidator(0), MaxValueValidator(5)]
+    preparation_time = models.CharField(
+        choices=PrepairationTimeChoices.choices,
+        default=PrepairationTimeChoices.LESS_THAN_30,
+        max_length=20,
     )
-    preparation_time = models.SmallIntegerField(
-        default=1, validators=[MinValueValidator(0), MaxValueValidator(5)]
+    difficulty = models.CharField(
+        choices=DifficultyChoices.choices,
+        default=DifficultyChoices.EASY,
+        max_length=20,
     )
-    difficulty = models.SmallIntegerField(
-        default=1, validators=[MinValueValidator(0), MaxValueValidator(5)]
-    )
+
+    scout_levels = models.ManyToManyField(ScoutLevelChoice, default="")
+    activity_types = models.ManyToManyField(ActivityTypeChoice, default="")
+    locations = models.ManyToManyField(LocationChoice, default="")
+    times = models.ManyToManyField(TimeChoice, default="")
+
+    topics = models.ManyToManyField(Topic, default="")
+
+    created_by_name = models.CharField(max_length=60, blank=True)
     created_by_email = models.CharField(max_length=60, blank=True)
+    authors = models.ManyToManyField(CustomUser, blank=True)
+    status = models.CharField(
+        choices=StatusChoicesAdmin.choices,
+        default=StatusChoicesAdmin.DRAFT,
+        max_length=20
+    )
+
     like_score = models.IntegerField(default=0)
     view_count = models.IntegerField(default=0)
-    front_image = PictureField(
-        upload_to="static/front_images",
-        blank=True,
-        null=True,
-        width_field=200,
-        height_field=200,
-    )
+    image = models.ImageField(blank=True, upload_to='static/activity/uploaded_images')
+    cropping = ImageRatioField('image', '400x400')
 
     def _get_stufen_string(self):
-        tags = self.tags.all()
-        tags = tags.filter(category_id=3)
-        return " und ".join([tag.name for tag in tags])
+        _str = ""
+        if len(self.scout_levels.all()) == 3:
+            return "Für alle"
+
+        for stufe in self.scout_levels.all():
+            if stufe == self.scout_levels.all().last():
+                _str += stufe.name
+            else:
+                _str += stufe.name + " + "
+        return _str
 
     def _get_art_string(self):
-        tags = self.tags.all()
-        tags = tags.filter(category_id=4)
-        return " und ".join([tag.name for tag in tags])
+        _str = ""
+        for art in self.activity_types.all():
+            # when count 3 then 'all'
 
-    stufen_string = property(_get_stufen_string)
-    art_string = property(_get_art_string)
+            if art == self.activity_types.all().last():
+                _str += art.name
+            else:
+                _str += art.name + " + "
+        
+        return _str
+    
+    
+    def _get_location_string(self):
+
+        _str = ""
+        if len(self.locations.all()) == 3:
+            return "Überall"
+        
+        for location in self.locations.all():
+            if location == self.locations.all().last():
+                _str += location.name
+            else:
+                _str += location.name + ", "
+
+        return _str
+    
+    def _get_time_string(self):
+        _str = ""
+        if len(self.times.all()) == 3:
+            return "Immer"
+        
+        for time in self.times.all():
+            if time == self.times.all().last():
+                _str += time.name
+            else:
+                _str += time.name + ", "
+        return _str
+
+
+    scout_levels_string = property(_get_stufen_string)
+    activity_types_string = property(_get_art_string)
+    location_string = property(_get_location_string)
+    time_string = property(_get_time_string)
+
+    def is_allowed_to_edit(self, user):
+        # user in authors
+        return user.is_staff or user.is_superuser
+    
+    # An alternative to use to update the view count 
+    def update_views(self, *args, **kwargs):
+         self.view_count = self.view_count + 1
+         super(Activity, self).save(*args, **kwargs)
+
 
     def __str__(self):
-        return self.title
+        return f"{self.title} - {self.created_by_email}"
 
     def __repr__(self):
         return self.__str__()
-
 
 class MaterialItem(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
@@ -166,11 +300,10 @@ class MaterialItem(TimeStampMixin):
     )
 
     def __str__(self):
-        return self.material_name
+        return f"{self.quantity} x {self.material_name.name} {self.material_unit.name}"
 
     def __repr__(self):
         return self.__str__()
-
 
 class Like(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
@@ -226,7 +359,6 @@ class ActivityOfTheWeek(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     release_date = models.DateField(blank=True, null=True)
-    tags = models.ManyToManyField(Tag, default="")
     comment = models.CharField(max_length=2000, blank=True, null=True)
 
     def save(self, *args, **kwargs):
@@ -261,3 +393,32 @@ class Profile(models.Model):
         format="JPEG",
         options={"quality": 60},
     )
+
+class Comment(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="author_actvity" )
+    content = RichTextField(max_length=8000, default="")
+    date_posted = models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey(
+        "self", null=True, blank=True, on_delete=models.CASCADE, related_name="replies_actvity"
+    )
+
+    class Meta:
+        ordering = ["-date_posted"]
+
+    def __str__(self):
+        return str(self.author) + " comment " + str(self.content)
+
+    @property
+    def children(self):
+        return Comment.objects.filter(parent=self).reverse()
+
+    @property
+    def is_parent(self):
+        if self.parent is None:
+            return True
+        return False
+    
+    def is_allowed_to_edit(self, user):
+        # user in authors
+        return user.is_staff or user.is_superuser

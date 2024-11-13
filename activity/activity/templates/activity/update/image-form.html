@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+    <article class="prose lg:prose-xl">
+      <h1
+        class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl"
+      >
+      </h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button
+          type="submit"
+          class="mt-4 px-4 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+          <span class="text-sm font-semibold">Updaten</span>
+        </button>
+      </form>
+    </article>
+{% endblock content %}

@@ -1,37 +1,89 @@
 <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
   <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
     <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-      Portionen
+      Portions
     </h2>
+    <btn class="inline-flex items-centertext-sm font-bold text-black">
+      <a
+        href="{% url 'ingredient-portion-create' ingredient.slug %}"
+        class="inline-flex items-center px-2 py-2 text-md font-bold"
+      >
+        + Neue Zutat hinzufügen
+      </a>
+    </btn>
+
     <div class="flex items-center justify-between">
       <div class="divide-y divide-gray-200 dark:divide-gray-700">
-
-        {% for portions in ingredient.portions.all %}
+        {% for portion in ingredient.portions.all|dictsort:"rank" %}
         <div class="flex flex-wrap items-center gap-y-4 py-6">
           <dl class="">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
-              {{ portions.name }}
+              Rang
             </dt>
             <dd
               class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
             >
-            {{ portions.quantity }} {{ portions.measuring_unit }}
+              {{ portion.rank }}
+            </dd>
+          </dl>
+          <dl class="ml-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Name der Portion
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+              {{ portion.name }}
+            </dd>
+          </dl>
+          <dl class="ml-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Menge / Einheit
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+              {{ portion.quantity }} {{ portion.measuring_unit }}
             </dd>
           </dl>
 
           <dl class="ml-6">
             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
-               Preis
+              Gewicht
             </dt>
             <dd
               class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
             >
-              {{ portions.meta_info.price_eur }} €
+              {{ portion.meta_info.weight_g }} g
             </dd>
           </dl>
+
+          <dl class="ml-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Preis pro Portion
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+              {{ portion.meta_info.price_eur|floatformat:2 }} €
+            </dd>
+          </dl>
+          <dl class="ml-6">
+            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">
+              Preis pro Kg
+            </dt>
+            <dd
+              class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
+            >
+              {{ portion.meta_info.price_per_kg|floatformat:2 }} €
+            </dd>
+          </dl>
+          <a href="{% url 'ingredient-portion-update' ingredient.slug portion.pk %}"
+            class="inline-flex items-center px-2 py-2 text-md font-bold">
+            Edit
+          </a>
         </div>
         {% endfor %}
-
       </div>
     </div>
   </div>

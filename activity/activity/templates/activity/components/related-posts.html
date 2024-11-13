@@ -1,0 +1,75 @@
+{% load mathfilters %}
+{% load cropping %}
+{% load static %}
+
+  {% comment %} <div class="px-4 mx-auto max-w-screen-xl">
+    <h2 class="mb-8 text-xl font-semibold text-gray-900 dark:text-white">
+      Relevante Artikel
+    </h2>
+    <div class="grid gap-6 grid-cols-4">
+      {% for activity in related_activities %}
+      <div class="text-center text-gray-500 dark:text-gray-400">
+      <div>
+          {% if activity.image %}
+      </div>
+      <div>
+          <img
+            class="mb-4 rounded-lg"
+            src="{% cropped_thumbnail activity "cropping" %}"
+            alt="{{ activity.title }}"
+          />
+          {% else %}
+          <img class="w-12 h-12 mx-auto" src="{% static "images/inspi_flying.png" %}" alt="image description">
+          {% endif %}
+        </div>
+        <div>
+          <h2 class="mb-2 text-md font-semibold leading-tight text-gray-900 dark:text-white">
+            <a href="{{ activity.get_absolute_url }}">{{ activity.title }}</a>
+          </h2>
+          <p class="mb-4 text-gray-500 dark:text-gray-400">
+            {{ activity.summary|truncatechars:40 }} 
+          </p>
+        </div>
+        <div>
+          <a href="{{ activity.get_absolute_url }}" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
+            Lesen
+          </a>
+        </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div> {% endcomment %}
+  <section class="bg-gray-50">
+    <div class="py-2 px-4 mx-auto max-w-screen-xl sm:py-2 lg:px-3">
+        <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16">
+            <h2 class="mb-4 text-lg tracking-tight font-semibold text-gray-900">
+                Ähnliche Artikel
+          </h2>
+        </div>
+        <div class="space-y-8 grid grid-cols-2 gap-2 md:gap-8 xl:gap-8 md:space-y-0">
+          {% for activity in related_activities %}
+          <a href="{% url 'activity-detail' activity.id %}">
+            <div class="p-6 bg-white rounded shadow dark:bg-gray-800">
+              {% if activity.image %}
+                <img
+                  class="mb-4 rounded-lg"
+                  src="{% cropped_thumbnail activity "cropping" %}"
+                  alt="{{ activity.title }}"
+                />
+              {% else %}
+                  <img
+                    class="w-12 h-12 mx-auto"
+                    src="{% static "images/inspi_flying.png" %}"
+                    alt="image description"
+                  >
+              {% endif %}
+                <h3 class="mb-2 text-lg font-bold dark:text-white">{{ activity.title }}</h3>
+                <p class="font-light text-gray-500 dark:text-gray-400">
+                  {{ activity.summary|truncatechars:40 }}
+                </p>
+            </div>
+          </a>
+            {% endfor %}
+        </div>
+    </div>
+  </section>

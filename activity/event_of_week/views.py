@@ -31,9 +31,6 @@ def generate_pdf_file(request):
     buffer = BytesIO()
     p = canvas.Canvas(buffer, pagesize=(300, 300))
 
-    print('request')
-    print(request)
-
     # Create a PDF document
     activity = Activity.objects.first()
 

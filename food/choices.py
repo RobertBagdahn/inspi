@@ -22,16 +22,24 @@ class AnimalProducts(models.TextChoices):
     Meat = "M", _("Fleisch")
 
 
-class Intolerances(models.TextChoices):
+class IntoleranceChoices(models.TextChoices):
     Gluten = "GLUTEN", _("Gluten")
     Lactose = "LACTOSE", _("Laktose")
     Fructose = "FRUCTOSE", _("Fructose")
     Nuts = "NUTS", _("Nüsse")
     Soy = "SOY", _("Soja")
     Legumes = "LEGUMES", _("Hülsenfrüchte")
+    Alcohol = "ALCOHOL", _("Alkohol")
+    Histamine = "HISTAMINE", _("Histamin")
+    Egg = "EGG", _("Ei")
+    Fish = "FISH", _("Fisch")
+    Shellfish = "SHELLFISH", _("Meeresfrüchte")
+    Pork = "PORK", _("Schwein")
+    Beef = "BEEF", _("Rind")
+    Chicken = "CHICKEN", _("Huhn")
 
 
-class MealEventTemplateOptions(models.TextChoices):
+class MealEventTemplateOptionsChoices(models.TextChoices):
     FIRST_DINNER = "FD", _("Erstes Abendessen")
     LUNCHPACK = "LP", _("Lunchpaket")
     TSCHAI = "TS", _("Tschai")
@@ -52,3 +60,80 @@ class ChildFrendly(models.TextChoices):
     JUST_CHILD = "JC", _("Nur Kinder")
     CHILD_AND_ADULT = "CA", _("Kinder und Erwachsene")
     ADULT = "AD", _("Nur Erwachsene")
+
+
+
+class PhysicalViscosityChoices(models.TextChoices):
+    SOLID = "solid", "Essen"
+    BEVERAGE = "beverage", "Getränk"
+
+
+class FoodMajorClasses(models.TextChoices):
+    BACKED = "Baked Products", "Backwaren"
+    BEEF = "Beef Products", "Ringfleisch"
+    BEVERRAGES = "Beverages", "Getränk"
+    PASTA = "Cereal Grains and Pasta", "Nudeln und Getreide "
+    EGG = "Dairy and Egg Products", "Milch und Ei"
+    FATS = "Fats and Oils", "Fette und and Öl"
+    FISH = "Finfish and Shellfish Products", "Meeresfrücht und Fisch"
+    FRUIT = "Fruits and Fruit Juices", "Früchte"
+    LEGUNE = "Legumes and Legume Products", "Hülsenfrüchte"
+    NUTS = "Nut and Seed Products", "Nuß und Samen"
+    PORK = "Pork Products", "Schweinefleisch"
+    POULTRY = "Poultry Products", "Geflügel"
+    SAUSAGES = "Sausages and Luncheon Meats", "Wurst"
+    SOUPS = "Soups, Sauces, and Gravies", "Suppe oder Soße"
+    SPICES = "Spices and Herbs", "Gewürz"
+    SWEETS = "Sweets", "Süßigkeit"
+    VEGETABLES = "Vegetables and Vegetable Products", "Gemüse"
+    UNDEFINED = "undefined", "unbekannt"
+
+class Units(models.TextChoices):
+    VOLUME = "ml", "Millilitter"
+    MASS = "g", "Gramm"
+
+class BrandQualityChoises(models.TextChoices):
+    OWN = "own", "Eigenmarke"
+    BRAND = "brand", "Marke"
+    PREMIUM = "premium", "Premium"
+    
+class RetailerTypeChoise(models.TextChoices):
+    SUPERMARKET = "supermarket", "Supermarkt"
+    DISCOUNTER = "discounter", "Discounter"
+    ORGANIC = "organic", "Bioladen"
+    MARKET = "market", "Markt"
+    ONLINE = "online", "Online"
+    OTHER = "other", "Andere"
+
+
+class PhysicalActivityLevelChoise(models.TextChoices):
+    SCHULUNG = "S", "Schulung"
+    Hausfahrt = "H", "Hausfahrt"
+    Zeltlager = "Z", "Zeltlager"
+    Wanderung = "W", "Wanderung"
+
+
+class RecipeType(models.TextChoices):
+    BREAKFAST = "breakfast", "Frühstück"
+    WARN_LUNCH = "warm_meal", "Warme Malzeit"
+    COLD_LUNCH = "cold_meal", "Kalte Malzeit"
+    DESSERT = "dessert", "Nachtisch"
+    SIDE_DISH = "side_dish", "Beilage"
+    SNACK = "snack", "Snack"
+    DRINK = "drink", "Getränk"
+    INGREDIENT = "ingredient", "Zutat"
+
+
+class MealType(models.TextChoices):
+    DRINK = "drinks", "Getränk"
+    BREAKFAST = "breakfast", "Frühstück"
+    WARN_MEAL = "warm_meal", "Warme Malzeit"
+    COLD_MEAL = "cold_meal", "Kalte Malzeit"
+    SNACK = "snack", "Snack"
+
+
+class RecipeStatus(models.TextChoices):
+    SIMULATOR = "simulator", "Simulator"
+    VERIFIED = "verified", "Verified by Inspi"
+    USER_CONENT = "user_conent", "Benutzer erstellt"
+    USER_CONENT_PUBLIC = "user_public", "Benutzer Öffentlich"

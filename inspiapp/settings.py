@@ -11,17 +11,49 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import io
 import os
 import environ
+from urllib.parse import urlparse
+from easy_thumbnails.conf import Settings as thumbnail_settings
+from google.cloud import secretmanager
 
 from django.forms.renderers import TemplatesSetting
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-env = environ.Env()
+env = environ.Env(DEBUG=(bool, False))
+env_file = os.path.join(BASE_DIR, ".env")
 
-environ.Env.read_env()
+if os.path.isfile(env_file):
+    # Use a local secret file, if provided
+
+    env.read_env(env_file)
+# [START_EXCLUDE]
+elif os.getenv("TRAMPOLINE_CI", None):
+    # Create local settings if running with CI, for unit testing
+
+    placeholder = (
+        f"SECRET_KEY=a\n"
+        f"DATABASE_URL=sqlite://{os.path.join(BASE_DIR, 'db.sqlite3')}"
+    )
+    env.read_env(io.StringIO(placeholder))
+# [END_EXCLUDE]
+elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
+    # Pull secrets from Secret Manager
+    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
+
+    client = secretmanager.SecretManagerServiceClient()
+    settings_name = os.environ.get("SETTINGS_NAME", "django_settings")
+    name = f"projects/{project_id}/secrets/{settings_name}/versions/latest"
+    payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
+
+    env.read_env(io.StringIO(payload))
+else:
+    raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
+# [END gaestd_py_django_secret_config]
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,10 +61,24 @@ environ.Env.read_env()
 
 SECRET_KEY = env("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG")
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+# [START gaestd_py_django_csrf]
+# SECURITY WARNING: It's recommended that you use this when
+# running in production. The URL will be known once you first deploy
+# to App Engine. This code takes the URL and converts it to both these settings formats.
+APPENGINE_URL = env("APPENGINE_URL", default=None)
+if APPENGINE_URL:
+    # Ensure a scheme is present in the URL before it's processed.
+    if not urlparse(APPENGINE_URL).scheme:
+        APPENGINE_URL = f"https://{APPENGINE_URL}"
+
+    ALLOWED_HOSTS = [urlparse(APPENGINE_URL).netloc]
+    CSRF_TRUSTED_ORIGINS = [APPENGINE_URL]
+    SECURE_SSL_REDIRECT = True
+else:
+    ALLOWED_HOSTS = ["*"]
+# [END gaestd_py_django_csrf]
 
 TAILWIND_APP_NAME = "inspitheme"
 
@@ -62,6 +108,9 @@ INSTALLED_APPS = [
     "crispy_tailwind",
     "widget_tweaks",
     "mathfilters",
+    "formtools",
+    'easy_thumbnails',
+    'image_cropping',
     # modules
     "food",
     "activity.activity",
@@ -81,13 +130,11 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "inspiapp.middleware.middleware.HtmxMessageMiddleware",
 ]
 
 ROOT_URLCONF = "inspiapp.urls"
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
 
 import os
 
@@ -97,14 +144,13 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / "templates",
-            BASE_DIR / "activity/activity/templates",
-            BASE_DIR / "activity/event_of_week/templates",
-            BASE_DIR / "food/templates",
-            BASE_DIR / "blog/templates",
-            BASE_DIR / "inspiapp/templates",
-            BASE_DIR / "general/footer/templates",
-            BASE_DIR / "general/login/templates",
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'activity/activity/templates'),
+            os.path.join(BASE_DIR, 'activity/event_of_week/templates'),
+            os.path.join(BASE_DIR, 'food/templates'),
+            os.path.join(BASE_DIR, 'blog/templates'),
+            os.path.join(BASE_DIR, 'general/footer/templates'),
+            os.path.join(BASE_DIR, 'general/login/templates'),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -115,7 +161,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
             ],
         },
-        "DIRS": [BASE_DIR / "templates"],  # new
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],  # new
     },
 ]
 
@@ -125,14 +171,27 @@ WSGI_APPLICATION = "inspiapp.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+# Database
+# [START gaestd_py_django_database_config]
+# Use django-environ to parse the connection string
+DATABASES = {"default": env.db()}
+
+# If the flag as been set, configure to use proxy
+if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
+    DATABASES["default"]["HOST"] = "127.0.0.1"
+    DATABASES["default"]["PORT"] = 5432
+
+# [END gaestd_py_django_database_config]
+
+# Use a in-memory sqlite3 database when testing in CI systems
+# TODO(glasnt) CHECK IF THIS IS REQUIRED because we're setting a val above
+if env.bool("LOCAL", None):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -167,15 +226,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(
-    BASE_DIR, "staticfiles"
-)  # Used in production (static files found by collectstatic are copied here)
-STATIC_URL = "static/"
-STATIC_DIRS = [os.path.join(BASE_DIR, "static")]  # Must be different from STATIC_ROOT
+# STATIC_URL = 'static/'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+#     "/var/www/static/",
+# ]
+
+
+STATIC_ROOT = "static"
+STATIC_URL = "/static/"
+STATICFILES_DIRS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -183,7 +245,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-COMPRESS_ROOT = BASE_DIR / "static"
+COMPRESS_URL = os.path.join(BASE_DIR, 'static/')
 
 COMPRESS_ENABLED = True
 
@@ -192,6 +254,14 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     "compressor.finders.CompressorFinder",
 )
+
+
+THUMBNAIL_PROCESSORS = (
+    'image_cropping.thumbnail_processors.crop_corners',
+) + thumbnail_settings.THUMBNAIL_PROCESSORS
+
+IMAGE_CROPPING_BACKEND = 'image_cropping.backends.easy_thumbs.EasyThumbnailsBackend'
+IMAGE_CROPPING_BACKEND_PARAMS = {}
 
 PICTURES = {
     "BREAKPOINTS": {

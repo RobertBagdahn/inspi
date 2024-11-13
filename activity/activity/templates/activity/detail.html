@@ -1,107 +1,207 @@
 {% extends "_base.html" %}
 {% load main_extras %}
 {% load pictures %}
+{% load cropping %}
+{% load crispy_forms_tags %}
+{% block header %}
+{{ form.media }}
+{% endblock header %}
 {% load static %}
 {% block content %}
 
 <main class="">
-  <div class="grid grid-cols-1 mx-auto max-w-lg" >
+  <div class="grid grid-cols-1 mx-auto max-w-xl" >
     <div>
       {% include "./components/breadcrumb.html" with activity=activity %}
     </div>
+
     <div class="bg-blue-500 mt-2 py-3 px-4"> 
-      <p class="text-xl text-white text-center">{{ activity.title }}</p>
-      <p class="text-sm text-white text-center">{{ activity.stufen_string }}</p>
+      <p class="text-xl text-white text-center">
+        {% if can_edit %}
+        <span>
+          <i>
+            {{ activity.get_status_display }}:
+          </i>
+        </span>
+        {% endif %}
+          {{ activity.title| default_if_none:' Kein Titel' }} 
+        {% if can_edit %}
+          <a class="text-blue-200 text-sm mx-2 underline" href="{% url 'activity-update-header-text' activity.id %}" role="button">ändern</a>
+        {% endif %}
+      </p>
+      <p class="text-sm text-white text-center ">{{ activity.activity_types_string| default_if_none:'Keine Stufe' }}</p>
     </div>
     <section class="bg-gray-50">
-      <div class="">
-          {% if activity.front_image %}
-            {% picture activity.front_image img_alt="Spiderman" img_loading="lazy" picture_class="my-picture"%}
-          {% else %}
-          <img class="w-48 h-48 mx-auto"  src="{% static "images/inspi_flying.png" %}" alt="image description">
-          {% endif %}
-    </div>
+      <div>
+        {% if activity.image %}
+          <img class="w-full object-cover" src="{% cropped_thumbnail activity "cropping" %}" alt="image description">
+        {% else %}
+          <img class="w-48 h-48 mx-auto" src="{% static "images/inspi_flying.png" %}" alt="image description">
+        {% endif %}
 
-    <div class="flex items-center mx-3 mt-4">
-      <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-      </svg>
-      <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
-      <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-      <a href="#" class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">73 reviews</a>
-      <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-      <a href="#" class="text-sm font-sans text-gray-600 underline hover:no-underline dark:text-white">Schreibe eine Bewertung</a>
-  </div>
+        {% if can_edit %}
+          <a class="text-blue-900 text-sm mx-2 underline" href="{% url 'activity-update-image' activity.id %}" role="button">Bild ändern</a>
+        {% endif %}
+
+        {% if can_edit %}
+          <a class="text-blue-900 text-sm mx-2 underline" href="{% url 'activity-update-crop' activity.id %}" role="button">Ausschnitt ändern</a>
+        {% endif %}
+      </div>
+
+      <hr class="my-4 h-0.3 bg-blue-400" />
+
+      <div class="grid grid-rows-3 grid-flow-col gap-x-2 mx-3 auto-rows-fr text-center items-center align-middle place-items-center content-center">
+        <div class="text-center items-center align-middle content-center">
+       
+          <svg class="w-8 h-8 text-gray-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd"/>
+        </svg>
+        </div>
+        <h3 class="text-sm text-center">{{ activity.scout_levels_string }}</h3>
+        <p class="text-xs text-gray-500 text-center">Altersgruppe</p>
+        
+        <svg class="w-8 h-8 text-gray-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" clip-rule="evenodd"/>
+        </svg>  
+        <h3 class="text-sm text-center">{{ activity.location_string }} </h3>
+        <p class="text-xs text-gray-500 text-center break-words">Ort</p>
+        
+        <svg class="w-8 h-8 text-gray-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M5 9a7 7 0 1 1 8 6.93V21a1 1 0 1 1-2 0v-5.07A7.001 7.001 0 0 1 5 9Zm5.94-1.06A1.5 1.5 0 0 1 12 7.5a1 1 0 1 0 0-2A3.5 3.5 0 0 0 8.5 9a1 1 0 0 0 2 0c0-.398.158-.78.44-1.06Z" clip-rule="evenodd"/>
+        </svg>
+        <h3 class="text-sm text-center">{{ activity.time_string }}</h3>
+        <p class="text-xs text-gray-500 text-center break-words">Zeitraum</p>
+        
+        {% comment %} <svg class="w-8 h-8 text-red-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z"/>
+        </svg>
+        <h3 class="text-sm text-center">{{ activity.like_score }}</h3>
+        <p class="text-xs text-gray-500 text-center break-words">Likes</p> {% endcomment %}
+        
+        <svg class="w-8 h-8 text-gray-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
+        </svg>        
+        <h3 class="text-sm text-center">{{ activity.view_count }}</h3>
+        <p class="text-xs text-gray-500 text-center break-words">Views</p>
+        
+      </div>
+      {% if can_edit %}
+        <a class="text-blue-900 text-sm underline mx-2" href="{% url 'activity-update-choices' activity.id %}" role="button">ändern</a>
+      {% endif %}
+
+      <hr class="my-4 h-0.3 bg-blue-400" />
   
-    <hr class="my-4 h-0.3 bg-blue-400" />
-    <div class="flex flex-wrap">
-    {% for tag in activity.tags.all %}
-      {% if tag.category.is_activity_overview  %}
-        <span class="shrink-0 text-black text-sm font-sans px-3 py-1 mx-2 my-2 rounded-full"
-          style="background-color:{{ tag.color }}!important;opacity: 0.8">
-          {{ tag.name }}
-        </span>
-    {% endif %}
-  {% endfor %}
-</div>
-    <hr class="my-4 h-0.3 bg-blue-400" />
-    <div class="grid grid-rows-3 grid-flow-col gap-x-2 mx-3 auto-rows-fr text-center items-center align-middle place-items-center content-center">
-      <div class="text-center items-center align-middle content-center">
-      <svg class="w-8 h-8 text-green-400 items-center text-center" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M11 21V2.352A3.451 3.451 0 0 0 9.5 2a3.5 3.5 0 0 0-3.261 2.238A3.5 3.5 0 0 0 4.04 8.015a3.518 3.518 0 0 0-.766 1.128c-.042.1-.064.209-.1.313a3.34 3.34 0 0 0-.106.344 3.463 3.463 0 0 0 .02 1.468A4.017 4.017 0 0 0 2.3 12.5l-.015.036a3.861 3.861 0 0 0-.216.779A3.968 3.968 0 0 0 2 14c.003.24.027.48.072.716a4 4 0 0 0 .235.832c.006.014.015.027.021.041a3.85 3.85 0 0 0 .417.727c.105.146.219.285.342.415.072.076.148.146.225.216.1.091.205.179.315.26.11.081.2.14.308.2.02.013.039.028.059.04v.053a3.506 3.506 0 0 0 3.03 3.469 3.426 3.426 0 0 0 4.154.577A.972.972 0 0 1 11 21Zm10.934-7.68a3.956 3.956 0 0 0-.215-.779l-.017-.038a4.016 4.016 0 0 0-.79-1.235 3.417 3.417 0 0 0 .017-1.468 3.387 3.387 0 0 0-.1-.333c-.034-.108-.057-.22-.1-.324a3.517 3.517 0 0 0-.766-1.128 3.5 3.5 0 0 0-2.202-3.777A3.5 3.5 0 0 0 14.5 2a3.451 3.451 0 0 0-1.5.352V21a.972.972 0 0 1-.184.546 3.426 3.426 0 0 0 4.154-.577A3.506 3.506 0 0 0 20 17.5v-.049c.02-.012.039-.027.059-.04.106-.064.208-.13.308-.2s.214-.169.315-.26c.077-.07.153-.14.225-.216a4.007 4.007 0 0 0 .459-.588c.115-.176.215-.361.3-.554.006-.014.015-.027.021-.041.087-.213.156-.434.205-.659.013-.057.024-.115.035-.173.046-.237.07-.478.073-.72a3.948 3.948 0 0 0-.066-.68Z"/>
-      </svg>
-    </div>
+      <div class="bg-gray-50 px-5">
+        <p><i><b>{{ activity.summary | safe }}</i></b></p>
+      </div>
+      {% if can_edit %}
+        <a class="text-blue-900 text-sm underline mx-2" href="{% url 'activity-update-header-text' activity.id %}" role="button">ändern</a>
+      {% endif %}
+      <hr class="my-4 h-0.3 bg-blue-400" />
+
+
+      <div class="flex flex-wrap px-3">
+        {% if activity.topics.all %}
+          {% for tag in activity.topics.all %}
+          <a href="{% url 'activity-main-topic' tag.id %}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-semibold my-1 me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ tag.name }}</a>
+          {% endfor %}
+        {% else %}
+          <p class="mx-3"> Noch keine Themen definiert </p>
+        {% endif %}
+        {% if can_edit %}
+        <a class="text-blue-900 text-sm underline mx-2" href="{% url 'activity-update-topic' activity.id %}" role="button">ändern</a>
+      {% endif %}
+      </div>
+    
+      <hr class="my-4 h-0.3 bg-blue-400" />
+
+
+      <div class="grid grid-rows-3 grid-flow-col gap-x-2 mx-3 auto-rows-fr text-center items-center align-middle place-items-center content-center">
+        <div class="text-center items-center align-middle content-center">
+          <svg class="w-8 h-8 text-gray-700 items-center text-center" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M11 21V2.352A3.451 3.451 0 0 0 9.5 2a3.5 3.5 0 0 0-3.261 2.238A3.5 3.5 0 0 0 4.04 8.015a3.518 3.518 0 0 0-.766 1.128c-.042.1-.064.209-.1.313a3.34 3.34 0 0 0-.106.344 3.463 3.463 0 0 0 .02 1.468A4.017 4.017 0 0 0 2.3 12.5l-.015.036a3.861 3.861 0 0 0-.216.779A3.968 3.968 0 0 0 2 14c.003.24.027.48.072.716a4 4 0 0 0 .235.832c.006.014.015.027.021.041a3.85 3.85 0 0 0 .417.727c.105.146.219.285.342.415.072.076.148.146.225.216.1.091.205.179.315.26.11.081.2.14.308.2.02.013.039.028.059.04v.053a3.506 3.506 0 0 0 3.03 3.469 3.426 3.426 0 0 0 4.154.577A.972.972 0 0 1 11 21Zm10.934-7.68a3.956 3.956 0 0 0-.215-.779l-.017-.038a4.016 4.016 0 0 0-.79-1.235 3.417 3.417 0 0 0 .017-1.468 3.387 3.387 0 0 0-.1-.333c-.034-.108-.057-.22-.1-.324a3.517 3.517 0 0 0-.766-1.128 3.5 3.5 0 0 0-2.202-3.777A3.5 3.5 0 0 0 14.5 2a3.451 3.451 0 0 0-1.5.352V21a.972.972 0 0 1-.184.546 3.426 3.426 0 0 0 4.154-.577A3.506 3.506 0 0 0 20 17.5v-.049c.02-.012.039-.027.059-.04.106-.064.208-.13.308-.2s.214-.169.315-.26c.077-.07.153-.14.225-.216a4.007 4.007 0 0 0 .459-.588c.115-.176.215-.361.3-.554.006-.014.015-.027.021-.041.087-.213.156-.434.205-.659.013-.057.024-.115.035-.173.046-.237.07-.478.073-.72a3.948 3.948 0 0 0-.066-.68Z"/>
+          </svg>
+        </div>
             
-          <h3 class="text-sm font-bold text-center">Sehr einfach</h3>
+        <h3 class="text-sm font-bold text-center">{{ activity.get_difficulty_display }}</h3>
           <p class="text-xs text-gray-500 text-center">Schwierig&shy;keit</p>
-          <svg class="w-8 h-8 text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-8 h-8 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
             <path fill-rule="evenodd" d="M10 5a2 2 0 0 0-2 2v3h2.4A7.48 7.48 0 0 0 8 15.5a7.48 7.48 0 0 0 2.4 5.5H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1V7a4 4 0 1 1 8 0v1.15a7.446 7.446 0 0 0-1.943.685A.999.999 0 0 1 12 8.5V7a2 2 0 0 0-2-2Z" clip-rule="evenodd"/>
             <path fill-rule="evenodd" d="M10 15.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Zm6.5-1.5a1 1 0 1 0-2 0v1.5a1 1 0 0 0 .293.707l1 1a1 1 0 0 0 1.414-1.414l-.707-.707V14Z" clip-rule="evenodd"/>
           </svg>
-        <h3 class="text-sm font-bold text-center">30 min </h3>
+        <h3 class="text-sm font-bold text-center">{{ activity.get_execution_time_display }} </h3>
         <p class="text-xs text-gray-500 text-center break-words">Duchführungs&shy;zeit</p>
-            <svg class="w-8 h-8 text-yellow-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 10h9.231M6 14h9.231M18 5.086A5.95 5.95 0 0 0 14.615 4c-3.738 0-6.769 3.582-6.769 8s3.031 8 6.769 8A5.94 5.94 0 0 0 18 18.916"/>
+          <svg class="w-8 h-8 text-gray-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 10h9.231M6 14h9.231M18 5.086A5.95 5.95 0 0 0 14.615 4c-3.738 0-6.769 3.582-6.769 8s3.031 8 6.769 8A5.94 5.94 0 0 0 18 18.916"/>
+          </svg>
+        <h3 class="text-sm font-bold text-center">{{ activity.get_costs_rating_display }}</h3>
+        <p class="text-xs text-gray-500 text-center break-words">Kosten pro Person</p>
+        <svg class="w-8 h-8 text-gray-700 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
         </svg>
-      <h3 class="text-sm font-bold text-center">0.00 €</h3>
-      <p class="text-xs text-gray-500 text-center break-words">Kosten pro Person</p>
-      <svg class="w-8 h-8 text-red-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-        <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
-      </svg>
-    <h3 class="text-sm font-bold text-center">keine</h3>
-    <p class="text-xs text-gray-500 text-center break-words">Vorbereitungs&shy;zeit</p>
-    </div>
-    <hr class="my-4 h-0.3 bg-blue-400" />
-    <div class="bg-gray-50 px-5">
-      <p>{{ activity.description | safe }}</p>
-    </div>
-
-  <hr class="my-3 h-0.3 bg-blue-400" />
-  <div class="max-w-screen h-auto">
-  {% if activity.material_list.all  %}
-    <p class="mx-3 my-2 underline"> Materialliste (für 6 Personen) </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mx-3">
-    
-    {% for item in activity.material_list.all %}
-      <div>
-        - {{ item.quantity }} {{ item.material_unit.name }} {{ item.material_name.name }} 
+        <h3 class="text-sm font-bold text-center">{{ activity.get_preparation_time_display }}</h3>
+        <p class="text-xs text-gray-500 text-center break-words">Vorbereitungs&shy;zeit</p>
+        
       </div>
-    {% endfor %}
-  {% else  %}
-    <p class="mx-3"> Kein Material nötig </p>
-  {% endif %}
-  </div>
-</div>
+      {% if can_edit %}
+        <a class="text-blue-900 text-sm underline mx-2" href="{% url 'activity-update-rating' activity.id %}" role="button">Rankings ändern</a>
+      {% endif %}
+      <hr class="my-4 h-0.3 bg-blue-400" />
 
-  <hr class="my-3 h-0.3 bg-blue-400" />
-  <div>
-  <div class="w-full mx-auto max-w-screen-xl px-2 pb-2 content-end justify-end">
-    <span class="text-sm text-gray-500 content-end justify-end">
-      von {{ activity.created_by }} vom {{ activity.created_at }}
-  </span>
+      <div class="bg-gray-50 px-5">
+        <p>{{ activity.description | safe }}</p>
+      </div>
+      {% if can_edit %}
+        <a class="text-blue-900 text-sm underline mx-2" href="{% url 'activity-update-main-text' activity.id %}" role="button">ändern</a>
+      {% endif %}
+      <hr class="my-3 h-0.3 bg-blue-400" />
+
+      <div class="max-w-screen h-auto">
+        {% if activity.material_list.all  %}
+          <p class="mx-3 my-2 underline"> Materialliste (für 6 Personen) </p>
+          <div class="grid grid-cols-1 gap-3 mx-3">
+      
+          {% for item in activity.material_list.all %}
+            <div>
+              - {{ item.quantity }} {{ item.material_unit.name }} {{ item.material_name.name }} 
+            </div>
+          {% endfor %}
+        {% else  %}
+          <p class="mx-3"> Kein Material nötig </p>
+        {% endif %}
+        {% if can_edit %}
+        <a class="text-blue-900 text-sm underline mx-2" href="{% url 'activity-update-material' activity.id %}" role="button">Material ändern</a>
+      {% endif %}
+      </div>
+
+      <hr class="my-3 h-0.3 bg-blue-400" />
+    
+        {% if activity.authors.all.count %}
+          <p class="mx-3 my-2 underline"> Autoren </p>
+          <div class="grid grid-cols-1 gap-3 mx-3">
+          {% for author in activity.authors.all %}
+            <div>
+                - <a href="{% url 'login-profile' author.scout_display_name %}" class="text-blue-900 underline">{{ author.scout_display_name }}</a>
+            </div>
+            <p class="mx-3">am {{ activity.created_at|date:"d.m.Y" }} </p>
+          {% endfor %}
+        {% else  %}
+          <p class="mx-3"> von {{ activity.created_by_name }} am {{ activity.created_at|date:"d.m.Y" }} </p>
+        {% endif %}
+
+        {% if can_edit %}
+        <a
+          class="text-blue-900 text-sm underline mx-2"
+          href="{% url 'activity-update-creator' activity.id %}"
+          role="button">Autor/Status ändern
+        </a>
+      {% endif %}
+      <hr class="my-4 h-0.3 bg-blue-400" />
+      {% include 'activity/components/comment.html' with comments=activity.comment_set.all comment_form=comment_form %}
+
+      <hr class="my-4 h-0.3 bg-blue-400" />
+      {% include 'activity/components/related-posts.html' with related_activities=related_activities%}
+    </section>
   </div>
-  </div>
-</div>
-</section>
 </main>
 {% endblock content %}

@@ -1,0 +1,52 @@
+[
+    {
+        "pk": 31,
+        "model": "activity.ActivityTypeChoice",
+        "fields": {
+            "id": 31,
+            "name": "Spiel",
+            "description": "Alles zum Thema Spielen",
+            "sorting": "1"
+        }
+    },
+    {
+        "pk": 53,
+        "model": "activity.ActivityTypeChoice",
+        "fields": {
+            "id": 53,
+            "name": "Lernen",
+            "description": "",
+            "sorting": "2"
+        }
+    },
+    {
+        "pk": 38,
+        "model": "activity.ActivityTypeChoice",
+        "fields": {
+            "id": 38,
+            "name": "Forschen",
+            "description": "",
+            "sorting": "3"
+        }
+    },
+    {
+        "pk": 41,
+        "model": "activity.ActivityTypeChoice",
+        "fields": {
+            "id": 41,
+            "name": "Kreatives",
+            "description": "",
+            "sorting": "4"
+        }
+    },
+    {
+        "pk": 75,
+        "model": "activity.ActivityTypeChoice",
+        "fields": {
+            "id": 75,
+            "name": "Rezept",
+            "description": "",
+            "sorting": "99"
+        }
+    }
+]

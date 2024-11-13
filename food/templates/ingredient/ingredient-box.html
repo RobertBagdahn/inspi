@@ -1,32 +1,21 @@
 <div
-  class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+  class="w-full max-w-sm p-4 bg-whiterounded-lg "
 >
-  <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
-    {{ ingredient.name }}
-  </h5>
-  <div class="flex items-baseline text-gray-900 dark:text-white">
-    <span class="text-lg font-semibold">{{ ingredient.price_eur|default_if_none:"3,12" }}</span>
-    <span class="pl-2 text-lg font-semibold"> €</span>
-  </div>
   <a
   href="{% url 'ingredient-detail' ingredient.slug %}"
-  class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700"
->
-  Zutat öffnen
-  <svg
-    class="w-2.5 h-2.5 ms-2 rtl:rotate-180"
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 6 10"
   >
-    <path
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="m1 9 4-4-4-4"
-    />
-  </svg>
-</a>
+    <h5 class="text-xl font-medium text-blue-700">
+      {{ ingredient.name }}
+    </h5>
+  </a>
+  <div class="flex items-baseline text-gray-900 dark:text-white mb-2">
+    <span class="text-md font-light">{{ ingredient.get_major_class_display }}</span>
+  </div>
+  <div class="flex items-baseline text-gray-900 dark:text-white">
+    <span class="text-md font-medium">Preis pro Kg: {{ ingredient.meta_info.price_per_kg|floatformat:2 }}</span>
+    <span class="pl-1 text-md font-medium"> €</span>
+  </div>
+  <div class="flex items-baseline text-gray-900 dark:text-white">
+    <span class="text-md font-medium">Nutri: A</span>
+  </div>
 </div>

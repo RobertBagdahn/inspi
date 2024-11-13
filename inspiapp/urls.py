@@ -20,6 +20,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 from .views import index, search, autocompleteModel
 
 urlpatterns = [
@@ -33,4 +34,4 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path("search", search, name="global-search"),
     path("autocomplete", autocompleteModel, name="autocomplete"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

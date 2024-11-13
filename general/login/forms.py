@@ -16,14 +16,26 @@ class CustomUserCreationForm(UserCreationForm):
         )
 
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(forms.ModelForm):
 
+    # username displays the username of the user
+    username = forms.CharField(
+        max_length=50,
+        label="Username (Nicht änderbar)",
+        disabled=True,
+        required=False,
+
+    )
+    
     class Meta:
         model = CustomUser
         fields = (
-            "email",
             "username",
+            "email",
             "scout_display_name",
+            "stamm",
+            "bund",
+            "about_me",
         )
 
 

@@ -1,0 +1,141 @@
+<!-- drawer component -->
+<div
+  id="drawer-update-{{ forloop.counter }}"
+  class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+  tabindex="-1"
+  aria-labelledby="drawer-label"
+>
+  <h5
+    id="drawer-label"
+    class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"
+  >
+    <svg
+      class="w-4 h-4 me-2.5"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+      /></svg
+    >{{ recipe_item.recipe.name }}
+  </h5>
+  <form method="POST" action="{% url 'recipe-item-update' recipe.slug %}">
+    {% csrf_token %}
+    <input type="hidden" id="loop_count-{{ forloop.counter }}" name="forloop_counter" value="{{ forloop.counter }}">
+    <input type="hidden" name="recipe_item_id" value="{{ recipe_item.id }}">
+    <input type="hidden" name="ingredient" id="ingredient-{{ forloop.counter }}" value="{{ recipe_item.portion.ingredient.slug }}">
+    <div class="mb-4">
+      <label for="portion_update" class="block mb-2 text-sm font-medium text-gray-700"
+        >Portion</label
+      >
+      <select
+        name="portion_update"
+        id="portion_update-{{ forloop.counter }}"
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        required
+      ></select>
+    </div>
+    <div class="mb-4">
+      <label for="quantity" class="block mb-2 text-sm font-medium text-gray-700"
+        >Quantity</label
+      >
+      <input
+        type="number"
+        name="quantity"
+        id="quantity"
+        value="{{ recipe_item.quantity|floatformat }}"
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        required
+      />
+    </div>
+    <button
+      type="submit"
+      class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+    >
+      Ändern
+    </button>
+    <button
+      type="button"
+      class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none focus:bg-red-600"
+      onclick="deleteRecipeItem()"
+    >
+      Delete
+    </button>
+  </form>
+</div>
+
+<script>
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+  }
+  $(document).ready(function() {
+    var i = {{ forloop.counter }}
+    var ingredient = document.getElementById(`ingredient-${i}`).value;
+    var portionInput = document.getElementById(`portion_update-${i}`);
+  
+    if (ingredient === '') {
+      portionInput.disabled = true;
+    } else {
+      const csrftoken = getCookie('csrftoken');
+      $.ajax({
+        method: "POST",
+        url: "/food/portions-by-ingredient",
+        dataType: 'json',
+        headers: {'X-CsrfToken': csrftoken},
+        data: {
+          ingredient: ingredient,
+        },
+        success: function(data, status) {
+          portionInput.innerHTML = '';
+          portionInput.disabled = false;
+          data.portions.forEach(function(portion) {
+            var option = document.createElement('option');
+            option.value = portion.id;
+            option.text = `${portion.display_name}`;
+            portionInput.add(option);
+          });
+        },
+        error: function(response) {
+          console.log("ERROR:");
+        }
+      });
+    }
+});
+
+function deleteRecipeItem() {
+  var recipeItemID = document.querySelector('input[name="recipe_item_id"]').value;
+  const csrftoken = getCookie('csrftoken');
+  $.ajax({
+    method: "POST",
+    url: "/food/recipe-item-delete/",
+    data: {
+      recipe_item_id: recipeItemID,
+    },
+    headers: {'X-CsrfToken': csrftoken},
+    data: {
+      recipe_item_id: recipeItemID,
+    },
+    success: function(data, status) {
+      location.reload();
+    },
+    error: function(response) {
+      console.log("ERROR:");
+    }
+  });
+}
+</script>
+

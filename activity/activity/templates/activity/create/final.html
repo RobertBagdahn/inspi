@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block head %}
+{{ wizard.form.media }}
+{% endblock head %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+      <h2
+        class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+      >
+        Vielen Dank für deine Heimabend-Idee! <br />
+      </h2>
+        <br />
+        <img src="{% static 'images/inspi_danke.png' %}" alt="Danke" class="mx-auto mb-4 w-1/2 h-auto">
+
+        Wir freuen uns über deinen Beitrag zum Inspirator. <br />
+        Das Team wird sich deiner Idee zeitnah widmen und sie veröffentlichen.
+        <br />
+        Bei Rückfragen dazu melden wir uns über die von dir angegebene
+        E-Mail-Adresse bei dir. <br />
+        Wenn du Fragen an uns hast, nutze gerne das Kontaktformular. <br />
+
+      <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
+        Du hast eine Bestätiungsemail erhalten.
+      </p>
+      <h2>
+        <a href="{% url 'activity-detail' activity.id %}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-blue-900">
+          Deine Idee öffnen
+        </a>
+      </h2>
+      <h2>
+        Feedback
+      </h2>
+      <h2>
+        Zurück zu den Ideen
+      </h2>
+    </div>
+  </div>
+</section>
+{% endblock content %}

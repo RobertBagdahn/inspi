@@ -1,0 +1,52 @@
+[
+    {
+        "pk": 76,
+        "model": "activity.LocationChoice",
+        "fields": {
+            "id": 76,
+            "name": "Garten",
+            "description": "",
+            "sorting": "4"
+        }
+    },
+    {
+        "pk": 46,
+        "model": "activity.LocationChoice",
+        "fields": {
+            "id": 46,
+            "name": "Drinnen",
+            "description": "",
+            "sorting": "1"
+        }
+    },
+    {
+        "pk": 47,
+        "model": "activity.LocationChoice",
+        "fields": {
+            "id": 47,
+            "name": "Draußen",
+            "description": "",
+            "sorting": "2"
+        }
+    },
+    {
+        "pk": 59,
+        "model": "activity.LocationChoice",
+        "fields": {
+            "id": 59,
+            "name": "Wald",
+            "description": "",
+            "sorting": "3"
+        }
+    },
+    {
+        "pk": 63,
+        "model": "activity.LocationChoice",
+        "fields": {
+            "id": 63,
+            "name": "Ausflug",
+            "description": "",
+            "sorting": "5"
+        }
+    }
+]

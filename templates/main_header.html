@@ -8,15 +8,12 @@
       <a href="{{ .Site.Params.homepage }}/" class="flex items-center">
         <img src="{% static "images/inspi_thinking.png" %}" class="absolute
         top-0 left-0 h-16" alt="thinking inspi" />
-        <span
-          class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-          >Inspi</span
-        >
       </a>
       <div class="flex items-center lg:order-2">
         <button
           data-modal-target="search-modal"
           data-modal-toggle="search-modal"
+          id="search-button-acticate"
           type="button"
           class="inline-flex items-center text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded text-sm px-2.5 py-2.5 focus:outline-none"
         >
@@ -58,7 +55,7 @@
           <div class="py-3 px-4">
             <span
               class="block text-sm font-light text-gray-500 truncate dark:text-gray-400"
-              >Hallo {{ user }}</span
+              >Hallo {{ user.scout_display_name }}</span
             >
           </div>
           <ul
@@ -67,18 +64,17 @@
           >
             <li>
               <a
-                href="{% url 'login-profile' request.user.scout_display_name %}"
+                href="{% url 'login-profile' user.username %}"
                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                >Meine Profil</a
+                >Mein Profil</a
               >
             </li>
-            <li>
+            {% comment %} <li>
               <a
-                {% comment %} href="{% url 'settings' %}" {% endcomment %}
                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                 >Meine Einstellungen</a
               >
-            </li>
+            </li> {% endcomment %}
           </ul>
           {% comment %} <ul
             class="py-1 font-light text-gray-500 dark:text-gray-400"
@@ -205,21 +201,49 @@
           <li>
             <a
               href="{% url 'activity-main'%}"
-              class="block py-2 px-3 text-gray-900 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+              class="
+                {% if "activity" in request.path %}
+                text-blue-700
+                {% else %}
+                text-gray-900
+                {% endif %}
+                block py-2 px-3 text-black rounded
+                hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                md:hover:text-blue-700 md:p-0
+              "
               >Gruppenstunde</a
             >
           </li>
+          {% if user.is_authenticated %}
           <li>
             <a
               href="{% url 'food-main'%}"
-              class="block py-2 px-3 text-gray-900 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-              >Rezepte</a
-            >
+              class="
+                {% if "/food/" in request.path %}
+                text-blue-700
+                {% else %}
+                text-gray-900
+                {% endif %}
+                block py-2 px-3 text-black rounded
+                hover:bg-gray-100 md:hover:bg-transparent md:border-0
+                md:hover:text-blue-700 md:p-0
+              "
+              >Rezepte</a>
           </li>
+          {% endif %}
           <li>
             <a
               href="{% url 'blog-main'%}"
-              class="block py-2 px-3 text-gray-900 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+              class="
+                {% if "/blog/" in request.path %}
+                text-blue-700
+                {% else %}
+                text-gray-900
+                {% endif %}
+                block py-2 px-3 text-black rounded
+                hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                md:hover:text-blue-700 md:p-0
+              "
               >Wissen</a
             >
           </li>
@@ -229,3 +253,15 @@
     {% include "components/search-modal.html" %}
   </nav>
 </header>
+
+
+<script>
+  const searchButton = document.getElementById("search-button-acticate");
+  const searchModal = document.getElementById("search-modal");
+
+  searchButton.addEventListener("click", () => {
+    setTimeout(() => {
+      searchModal.querySelector("input").focus();
+    }, 100);
+  });
+</script>

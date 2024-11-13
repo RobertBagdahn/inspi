@@ -5,15 +5,31 @@ from django.db.models import Sum
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from food.service.nutri_lib import Nutri
 from food.service.recipe_logic import RecipeModule
 from food.service.hint import HintModule
 from food.service.price_logic import PriceModule
 
-from .choices import SuitLevel, WarmMeal, AnimalProducts, MealTimeOptions, ChildFrendly
+from .choices import (
+    SuitLevel,
+    WarmMeal,
+    AnimalProducts,
+    MealTimeOptions,
+    ChildFrendly,
+    PhysicalViscosityChoices,
+    FoodMajorClasses,
+    Units,
+    BrandQualityChoises,
+    RetailerTypeChoise,
+    PhysicalActivityLevelChoise,
+    MealType,
+    RecipeType,
+    RecipeStatus,
+)
 
-User = get_user_model()
+from general.login.models import CustomUser
 
 
 class TimeStampMixin(models.Model):
@@ -24,32 +40,7 @@ class TimeStampMixin(models.Model):
         abstract = True
 
 
-class FoodMajorClasses(models.TextChoices):
-    BACKED = "Baked Products", "Backwaren"
-    BEEF = "Beef Products", "Ringfleisch"
-    BEVERRAGES = "Beverages", "Getränk"
-    PASTA = "Cereal Grains and Pasta", "Nudeln und Getreide "
-    EGG = "Dairy and Egg Products", "Milch und Ei"
-    FATS = "Fats and Oils", "Fette und and Öl"
-    FISH = "Finfish and Shellfish Products", "Meeresfrücht und Fisch"
-    FRUIT = "Fruits and Fruit Juices", "Früchte"
-    LEGUNE = "Legumes and Legume Products", "Hülsenfrüchte"
-    NUTS = "Nut and Seed Products", "Nuß und Samen"
-    PORK = "Pork Products", "Schweinefleisch"
-    POULTRY = "Poultry Products", "Geflügel"
-    SAUSAGES = "Sausages and Luncheon Meats", "Wurst"
-    SOUPS = "Soups, Sauces, and Gravies", "Suppe oder Soße"
-    SPICES = "Spices and Herbs", "Gewürz"
-    SWEETS = "Sweets", "Süßigkeit"
-    VEGETABLES = "Vegetables and Vegetable Products", "Gemüse"
-    UNDEFINED = "undefined", "unbekannt"
-
-
 class MeasuringUnit(TimeStampMixin):
-    class Units(models.TextChoices):
-        VOLUME = "ml", "Millilitter"
-        MASS = "g", "Gramm"
-
     name = models.CharField(max_length=255, blank=True)
     description = models.CharField(max_length=255, blank=True)
     quantity = models.FloatField()
@@ -60,31 +51,16 @@ class MeasuringUnit(TimeStampMixin):
     )
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.description}"
 
     def __repr__(self):
         return self.__str__()
 
 
-class TagCategory(TimeStampMixin):
+class Intolerance(TimeStampMixin):
     name = models.CharField(max_length=255, blank=True)
     description = models.CharField(max_length=255, blank=True)
-    is_ingredient = models.BooleanField(default=True)
-    is_recipe = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.name
-
-    def __repr__(self):
-        return self.__str__()
-
-
-class Tag(TimeStampMixin):
-    name = models.CharField(max_length=255, blank=True)
-    description = models.CharField(max_length=255, blank=True)
-    tag_category = models.ForeignKey(TagCategory, on_delete=models.PROTECT, null=True)
-    is_ingredient = models.BooleanField(default=True)
-    is_recipe = models.BooleanField(default=True)
+    rank = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name
@@ -118,24 +94,26 @@ class MetaInfo(TimeStampMixin):
     nutri_points = models.FloatField(blank=True, null=True)
     nutri_class = models.FloatField(null=True, blank=True)
 
-    price_eur = models.FloatField(default=0.00, blank=True, null=True)
     price_per_kg = models.FloatField(default=0.00, blank=True, null=True)
+    price_eur = models.FloatField(default=0.00, blank=True, null=True)
 
     weight_g = models.FloatField(default=0, blank=True, null=True)
     volume_ml = models.FloatField(default=0, blank=True, null=True)
 
+    @property
+    def weight_display(self):
+        if self.weight_g > 1000:
+            return f"{round(self.weight_g/1000,1)} kg"
+        return f"{round(self.weight_g, 0)} g"
+
     def __str__(self):
-        return self.weight_g
+        return "MetaInfo"
 
     def __repr__(self):
         return self.__str__()
 
 
 class Ingredient(TimeStampMixin):
-    class PhysicalViscosityChoices(models.TextChoices):
-        SOLID = "solid", "Essen"
-        BEVERAGE = "beverage", "Getränk"
-
     name = models.CharField(max_length=40)
     slug = models.SlugField(max_length=40, unique=True, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
@@ -148,7 +126,6 @@ class Ingredient(TimeStampMixin):
     ingredient_ref = models.ForeignKey(
         "self", on_delete=models.PROTECT, null=True, blank=True
     )
-    tags = models.ManyToManyField(Tag, related_name="IngredientTags", blank=True)
 
     fdc_id = models.IntegerField(null=True, blank=True)
     nan_art_id_rewe = models.IntegerField(null=True, blank=True)
@@ -161,6 +138,28 @@ class Ingredient(TimeStampMixin):
     )
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
+    )
+    animal_product = models.CharField(
+        max_length=10,
+        choices=AnimalProducts.choices,
+        default=AnimalProducts.Vegetarian,
+    )
+    intolerances = models.ManyToManyField(Intolerance, blank=True)
+    animal_products = models.CharField(
+        max_length=10,
+        choices=AnimalProducts.choices,
+        default=AnimalProducts.Vegetarian,
+    )
+    child_frendly_score = models.IntegerField(
+        default=1,
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    scout_frendly_score = models.IntegerField(
+        default=1,
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    created_by = models.ForeignKey(
+        CustomUser, on_delete=models.PROTECT, null=True, blank=True
     )
 
     def __str__(self):
@@ -185,10 +184,16 @@ class Portion(TimeStampMixin):
     )
 
     def __str__(self):
-        return f"{self.name} / {self.quantity} {self.measuring_unit}"
+        return f"{self.name} / {self.quantity} {self.measuring_unit} / {self.ingredient.name}"
 
     def __repr__(self):
         return self.__str__()
+
+    @property
+    def price_eur(self):
+        if self.meta_info.weight_g and self.meta_info.price_per_kg:
+            return self.meta_info.weight_g * self.meta_info.price_per_kg * 1000
+        return 0.00
 
     class Meta:
         ordering = ("name",)
@@ -244,43 +249,21 @@ class Hint(TimeStampMixin):
         return self.__str__()
 
 
-class RecipeType(models.TextChoices):
-    BREAKFAST = "breakfast", "Frühstück"
-    LUNCH = "lunch", "Hauptessen"
-    DESSERT = "dessert", "Nachtisch"
-    SIDE_DISH = "side_dish", "Beilage"
-    SNACK = "snack", "Snack"
-    DRINK = "drink", "Getränk"
-    INGREDIENT = "ingredient", "Zutat"
-
-
-class MealType(models.TextChoices):
-    BREAKFAST = "breakfast", "Frühstück"
-    MEAL = "meal", "Malzeit"
-    SNACK = "snack", "Snack"
-
-
-class RecipeStatus(models.TextChoices):
-    SIMULATOR = "simulator", "Simulator"
-    VERIFIED = "verified", "Verified by Inspi"
-    USER_CONENT = "user_conent", "Benutzer erstellt"
-    USER_CONENT_PUBLIC = "user_public", "Benutzer Öffentlich"
 
 
 class Recipe(TimeStampMixin):
     name = models.CharField(max_length=255, null=True, blank=True)
     slug = models.SlugField(max_length=255, unique=True, null=True, blank=True)
     description = models.CharField(max_length=255, null=True, blank=True)
-    tags = models.ManyToManyField(Tag, related_name="RecipeTags", blank=True)
-    meal_type = models.CharField(
-        max_length=11, choices=RecipeType.choices, default=RecipeType.LUNCH
+    recipe_type = models.CharField(
+        max_length=11, choices=RecipeType.choices, default=RecipeType.WARN_LUNCH
     )
     status = models.CharField(
         max_length=11, choices=RecipeStatus.choices, default=RecipeStatus.SIMULATOR
     )
     hints = models.ManyToManyField(Hint, blank=True)
     managed_by = models.ManyToManyField(
-        User, related_name="recipe_created_by", blank=True
+        CustomUser, related_name="recipe_created_by", blank=True
     )
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
@@ -317,79 +300,50 @@ class RecipeItem(TimeStampMixin):
         return self.__str__()
 
 
-class Retailer(TimeStampMixin):
-    name = models.CharField(max_length=255, blank=True)
-    description = models.CharField(max_length=255, blank=True)
-
-    def __str__(self):
-        return self.name
-
-    def __repr__(self):
-        return self.__str__()
-
-
-class Package(TimeStampMixin):
-    class BrandQualityChoises(models.TextChoices):
-        OWN = "own", "Eigenmarke"
-        BRAND = "brand", "Marke"
-        PREMIUM = "premium", "Premium"
-
+class Price(TimeStampMixin):
+    price_eur = models.FloatField()
     name = models.CharField(max_length=255, blank=True)
     portion = models.ForeignKey(
-        Portion, on_delete=models.PROTECT, null=True, related_name="packages"
+        Portion, on_delete=models.PROTECT, null=True, blank=True
+    )
+    quantity = models.FloatField(default=0)
+    retailer = models.CharField(
+        max_length=255,
+        choices=RetailerTypeChoise.choices,
+        default=RetailerTypeChoise.SUPERMARKET,
     )
     quality = models.CharField(
         max_length=10,
         choices=BrandQualityChoises.choices,
         default=BrandQualityChoises.BRAND,
     )
-    quantity = models.FloatField(default=0)
 
-    # def save(self, *args, **kwargs):
-    #     self.weight_package_g = self.quantity * int(self.portion.weight_g)
-    #     super(Package, self).save(*args, **kwargs)
+    @property
+    def price_per_kg(self):
+        return round(
+            (self.price_eur)
+            / (self.portion.meta_info.weight_g * float(self.quantity) / 1000),
+            2,
+        )
 
-    def __str__(self):
-        return f"{self.name}"
-
-    def __repr__(self):
-        return self.__str__()
-
-    class Meta:
-        ordering = ("name",)
-
-
-class PackagePrice(TimeStampMixin):
-    price_eur = models.FloatField()
-    retailer = models.ForeignKey(Retailer, on_delete=models.PROTECT, blank=True)
-    package = models.ForeignKey(
-        Package, on_delete=models.PROTECT, null=True, related_name="package_prices"
-    )
-
-    # readonly
-    price_per_kg = models.FloatField(default=1)
-
-    # def save(self, *args, **kwargs):
-    #     self.price_per_kg = round(
-    #         self.price_eur / (self.package.weight_package_g / 1000), 2
-    #     )
-    #     self.created_at = datetime.datetime.now()
-    #     super(PackagePrice, self).save(*args, **kwargs)
+    @property
+    def weight_g(self):
+        return self.portion.meta_info.weight_g * self.quantity
 
     def __str__(self):
-        return f"{self.package} - {self.price_eur} € - {self.retailer}"
+        return f"{self.price_eur} € - {self.retailer}"
 
     def __repr__(self):
         return self.__str__()
 
 
-class PhysicalActivityLevel(TimeStampMixin):
-    name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    value = models.FloatField()
+class TemplateOption(TimeStampMixin):
+    name = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=255, blank=True)
+    rank = models.IntegerField(default=1)
 
     def __str__(self):
-        return f"{self.name} - {self.value}"
+        return self.name
 
     def __repr__(self):
         return self.__str__()
@@ -425,18 +379,28 @@ class MealEventTemplate(TimeStampMixin):
         choices=ChildFrendly.choices,
         default=ChildFrendly.CHILD_AND_ADULT,
     )
+    intolerances = models.ManyToManyField(Intolerance, blank=True)
+    template_options = models.ManyToManyField(TemplateOption, blank=True)
+    created_by = models.ForeignKey(
+        CustomUser, on_delete=models.PROTECT, null=True, blank=True
+    )
 
 
 class MealEvent(TimeStampMixin):
-    event_name = models.CharField(max_length=255, default="Unbekannt")
-    slug = models.SlugField(max_length=255, unique=True, default="unbekannt")
+    event_name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=False, null=True, blank=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     norm_portions = models.IntegerField()
-    activity_factor = models.ForeignKey(
-        PhysicalActivityLevel, on_delete=models.PROTECT, null=True, blank=True
+    activity_factor = models.CharField(
+        max_length=10,
+        choices=PhysicalActivityLevelChoise.choices,
+        default=PhysicalActivityLevelChoise.Zeltlager,
     )
     meal_event_ref = models.ForeignKey(
         "self", on_delete=models.PROTECT, null=True, blank=True
+    )
+    meal_event_template = models.ForeignKey(
+        MealEventTemplate, on_delete=models.PROTECT, null=True, blank=True
     )
     reserve_factor = models.FloatField(default=1.0)
     is_public = models.BooleanField(default=False)
@@ -452,7 +416,7 @@ class MealEvent(TimeStampMixin):
         return self.__str__()
 
     def list_meal_days(self):
-        return MealDay.objects.filter(meal_event=self).order_by("date")
+        return MealDay.objects.filter(meal_event=self)
 
     def list_meals(self):
         # filter all meals with with connected meal_days in meal_event=self
@@ -461,7 +425,6 @@ class MealEvent(TimeStampMixin):
 
 class MealDay(TimeStampMixin):
     meal_event = models.ForeignKey(MealEvent, on_delete=models.CASCADE, null=True)
-    date = models.DateField(null=True)
     max_day_part_factor = models.FloatField(default=1)
     is_public = models.BooleanField(default=False)
     meta_info = models.ForeignKey(
@@ -469,7 +432,7 @@ class MealDay(TimeStampMixin):
     )
 
     def __str__(self):
-        return f"{self.meal_event} {self.date}"
+        return f"{self.meal_event}"
 
     def __repr__(self):
         return self.__str__()
@@ -483,9 +446,8 @@ class Meal(TimeStampMixin):
     meal_day = models.ForeignKey(MealDay, on_delete=models.CASCADE, null=True)
     day_part_factor = models.FloatField(default=0.33)
     meal_type = models.CharField(
-        max_length=10, choices=MealType.choices, default=MealType.MEAL
+        max_length=10, choices=MealType.choices, default=MealType.WARN_MEAL
     )
-    is_meal_hot = models.BooleanField(default=False)
     time_start = models.TimeField(null=True, blank=True)
     time_end = models.TimeField(null=True, blank=True)
     is_public = models.BooleanField(default=False)
@@ -495,7 +457,7 @@ class Meal(TimeStampMixin):
     )
 
     def __str__(self):
-        return f"{self.name} - {self.meal_day.date} - {self.meal_day.meal_event.event_name}"
+        return f"{self.name} - {self.meal_day.meal_event.event_name}"
 
     def __repr__(self):
         return self.__str__()
@@ -511,24 +473,6 @@ class MealItem(TimeStampMixin):
 
     def __str__(self):
         return f"{self.recipe.name} - {self.meal.name}"
-
-    def __repr__(self):
-        return self.__str__()
-
-
-class PollItem(TimeStampMixin):
-    item_1 = models.ForeignKey(
-        Package, on_delete=models.PROTECT, related_name="package_item_1"
-    )
-    item_2 = models.ForeignKey(
-        Package, on_delete=models.PROTECT, related_name="package_item_2"
-    )
-    winner = models.ForeignKey(
-        Package, on_delete=models.PROTECT, related_name="package_winner", null=True
-    )
-
-    def __str__(self):
-        return f"{self.winner}"
 
     def __repr__(self):
         return self.__str__()

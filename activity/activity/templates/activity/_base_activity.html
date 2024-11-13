@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<nav class="bg-white dark:bg-gray-800 antialiased">
+    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-1">
+      <div class="flex items-center justify-between">
+  
+        <div class="flex items-center space-x-8 mx-auto">
+  
+          <ul class="flex items-center justify-start gap-6 md:gap-8 py-3">
+            <li class="shrink-0">
+              <a href="{% url 'activity-main' %}" title="" class="flex text-sm font-medium text-gray-800 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                Alle
+              </a>
+            </li>
+            <li class="shrink-0">
+              <a href="{% url 'activity-main-scout-level' '50' %}" title="" class="flex text-sm font-medium text-gray-800 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                Wölflinge
+              </a>
+            </li>
+            <li class="shrink-0">
+              <a href="{% url 'activity-main-scout-level' '51' %}" title="" class="text-sm font-medium text-gray-800 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                Pfadfinder
+              </a>
+            </li>
+            <li class="shrink-0">
+              <a href="{% url 'activity-main-scout-level' '52' %}" title="" class="text-sm font-medium text-gray-800 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                Rover
+              </a>
+            </li>
+          </ul>
+        </div>
+    </div>
+</nav>
+
+{% block detailcontent %}
+{% endblock detailcontent %}
+
+{% endblock content %}

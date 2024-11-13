@@ -1,0 +1,71 @@
+{% extends "recipe/detail/_base.html" %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% block detailcontent %}
+
+  <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{{ recipe.name }} </h2>
+        <div class="relative mt-6 overflow-x-auto border-b border-gray-200 dark:border-gray-800 sm:mt-8">
+          <table class="w-full text-left text-base text-gray-900 dark:text-white md:table-fixed">
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+              {% if recipe.recipe_items.count %}
+                {% for recipe_item in recipe.recipe_items.all %}
+                  {% include "./recipe_item.html" with recipe_item=recipe_item i=forloop.counter %}
+                {% endfor %}
+              {% else %}
+                <tr>
+                  <td class="py-4 pr-4">Bisher noch keine Zutat vorhanden</td>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+        <div class="flex justify-between mt-2">
+          <div class="grow">
+          </div>
+          <button
+            type="button"
+            data-drawer-target="drawer-scale"
+            data-drawer-show="drawer-scale"
+            aria-controls="drawer-scale"
+            class="ml-2 mb-2 block rounded-lg p-2 text-white bg-yellow-300 hover:bg-yellow-400 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+            <span class="sr-only"> Skalieren </span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9 14.25 6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+            </svg>                    
+          </button>
+          <button
+            type="button"
+            data-drawer-target="drawer-add"
+            data-drawer-show="drawer-add"
+            aria-controls="drawer-add"
+            class="ml-2 mb-2 block rounded-lg p-2 text-white bg-green-500 hover:bg-green-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+            <span class="sr-only"> Neue Zutat </span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>            
+          </button>
+        </div>
+        <div class="my-3">
+        {% include "./summary.html" with recipe=recipe %}
+        </div>
+        {% include './drawer_create.html' with recipe=recipe ingredients=ingredients %}
+        <a
+          href="{% url 'recipe-update' recipe.slug %}"
+          type="button"
+          class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 my-4 rounded">
+          Rezept Speichern
+        </a>
+        <a
+          href="{% url 'recipe-clone' recipe.slug %}"
+          type="button"
+          class="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 my-4 rounded">
+          Rezept Simulieren
+      </a>
+      </div>
+    </div>
+  </section>
+
+{% endblock detailcontent %}

@@ -16,10 +16,7 @@
       <p
         class="text-xl font-medium leading-tight text-gray-500 dark:text-gray-400"
       >
-      {{ plan.list_meal_days.all.first.date|date:"l, F d, Y" }}
-      bis
-      {{ plan.list_meal_days.all.last.date|date:"l, F d, Y" }}
-
+      {{ plan.list_meal_days.all.count }} Tage
       </p>
     </div>
 
@@ -29,7 +26,6 @@
         <h3
           class="text-2xl font-bold text-center text-gray-900 dark:text-white"
         >
-          {{ meal_day.date|date:"l" }}
         </h3>
         {% for meal in meal_day.list_meals %} 
         <div class="space-y-4">
@@ -49,16 +45,23 @@
                 clip-rule="evenodd"
               />
             </svg>
-            {{ meal.time_start }} - {{ meal.time_end }}
+            {% if meal.time_start and meal.time_end %}
+              {{ meal.time_start }} - {{ meal.time_end }}
+            {% else %}
+              Ganztag
+            {% endif %}
+            
           </span>
           <h4 class="text-xl font-bold text-gray-900 dark:text-white">
-            <a href="#" class="hover:underline">{{ meal.name }}</a>
+            <a href="{% url 'plan-meal-detail' plan.slug meal.id %}" class="hover:underline">
+              {{ meal.name }}
+            </a>
           </h4>
           <div class="flex items-center gap-3">
             <div>
               <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                 {% for item in meal.list_meal_items.all %}
-                {{ item.recipe.name }} {% if not forloop.last %}, {% endif %}
+                  {{ item.recipe.name }} {% if not forloop.last %}, {% endif %}
                 {% endfor %}
               </p>
             </div>

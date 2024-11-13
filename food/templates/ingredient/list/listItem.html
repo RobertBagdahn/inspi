@@ -21,19 +21,17 @@
       <h6 class="text-sm font-normal text-gray-500 dark:text-gray-400">
         Preis je Kg
       </h6>
-      <p class="text-sm font-semibold text-gray-900 dark:text-white">1,29€</p>
-    </div>
-    <div class="col-span-1">
-      <h6 class="text-sm font-normal text-gray-500 dark:text-gray-400">
-        Preis je Portion
-      </h6>
-      <p class="text-sm font-semibold text-gray-900 dark:text-white">0,30€</p>
+      <p class="text-sm font-semibold text-gray-900 dark:text-white">
+        {{ item.meta_info.price_per_kg|floatformat:2 }} €
+      </p>
     </div>
     <div class="col-span-1">
       <h6 class="text-sm font-normal text-gray-500 dark:text-gray-400">
         Nutri Score
       </h6>
-      <p class="text-sm font-semibold text-gray-900 dark:text-white">A</p>
+      <p class="text-sm font-semibold text-gray-900 dark:text-white">
+        {{ item.meta_info.nutri_score }}
+      </p>
     </div>
   </div>
 </div>

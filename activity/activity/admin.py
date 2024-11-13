@@ -2,11 +2,29 @@ from django.contrib import admin
 
 from imagekit.admin import AdminThumbnail
 from .models import Profile
+from image_cropping import ImageCroppingMixin
 
-from .models import Tag, TagCategory, Activity, MaterialItem, ExperimentItem, Experiment, MaterialName, MaterialUnit
+from .models import (
+    Topic,
+    TagCategory,
+    Activity,
+    MaterialItem,
+    ExperimentItem,
+    Experiment,
+    MaterialName,
+    MaterialUnit,
+    ScoutLevelChoice,
+    ActivityTypeChoice,
+    LocationChoice,
+    TimeChoice
+
+)
+
+class MyModelAdmin(ImageCroppingMixin, admin.ModelAdmin):
+    pass
 
 @admin.register(Activity)
-class ActivityAdmin(admin.ModelAdmin):
+class ActivityAdmin(MyModelAdmin, admin.ModelAdmin):
     list_display = (
         "title",
         "summary",
@@ -14,8 +32,11 @@ class ActivityAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
-    list_filter = ('is_public',)
-    search_fields = ('title', 'description', )
+    list_filter = ("is_public",)
+    search_fields = (
+        "title",
+        "description",
+    )
     date_hierarchy = "created_at"
 
 admin.site.register(TagCategory)
@@ -27,22 +48,30 @@ admin.site.register(MaterialItem)
 admin.site.register(MaterialUnit)
 admin.site.register(MaterialName)
 
-@admin.register(Tag)
+
+@admin.register(Topic)
 class TagAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "description",
-        "color",
         "sorting",
         "is_public",
     )
-    list_filter = ('category', 'is_public',)
-    search_fields = ('name', 'description', )
+    list_filter = ("is_public",)
+    search_fields = (
+        "name",
+        "description",
+    )
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'admin_thumbnail')
-    admin_thumbnail = AdminThumbnail(image_field='avatar_thumbnail')
+    list_display = ("__str__", "admin_thumbnail")
+    admin_thumbnail = AdminThumbnail(image_field="avatar_thumbnail")
 
 
 admin.site.register(Profile, ProfileAdmin)
+
+admin.site.register(ScoutLevelChoice)
+admin.site.register(ActivityTypeChoice)
+admin.site.register(LocationChoice)
+admin.site.register(TimeChoice)

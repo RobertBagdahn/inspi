@@ -41,6 +41,7 @@
         class="mb-4 mt-8 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
       >
         Beliebteste Rezepte
+        <a href="{% url 'recipe-list' %}" class="text-md font-normal text-blue-600"> Alle Rezepte</a>
       </h2>
       <div class="grid gap-8 lg:grid-cols-3">
         {% for recipe in famous_recipes %}
