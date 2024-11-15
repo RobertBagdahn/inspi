@@ -2,6 +2,10 @@
 {% load main_extras %}
 {% load cropping %}
 {% load static %}
+{% block header %}
+{{ form.media }}
+{% endblock header %}
+{% block content %}
 
 <div class="rounded-lg bg-white p-0 h-full max-h-full">
   <a href="{% url 'activity-detail' activity.id %}">
@@ -65,3 +69,4 @@
     </div>
   </div>
 </div>
+{% endblock content %}

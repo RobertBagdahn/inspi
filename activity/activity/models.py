@@ -278,6 +278,11 @@ class Activity(TimeStampMixin):
          self.view_count = self.view_count + 1
          super(Activity, self).save(*args, **kwargs)
 
+    
+    # add get_absolute_url
+    def get_absolute_url(self):
+        return f"/activity/details/{self.id}"
+
 
     def __str__(self):
         return f"{self.title} - {self.created_by_email}"
