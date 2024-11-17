@@ -2,6 +2,7 @@ from django_filters import CharFilter, NumberFilter
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from copy import deepcopy
 
@@ -42,7 +43,7 @@ from .models import (
 
 # create view with template main.html
 
-
+@login_required
 def mainView(request):
     famous_meal_events = MealEvent.objects.all()[0:3]
     famous_recipes = Recipe.objects.order_by("id")[0:3] # add .filter(status="verified")
@@ -55,7 +56,7 @@ def mainView(request):
     }
     return render(request, "main.html", context)
 
-
+@login_required
 def plan(request, slug):
     plan = MealEvent.objects.get(slug=slug)
     context = {
@@ -63,7 +64,7 @@ def plan(request, slug):
     }
     return render(request, "plan.html", context)
 
-
+@login_required
 def plan_editor(request, slug):
     plan = MealEvent.objects.get(slug=slug)
     context = {
@@ -72,7 +73,7 @@ def plan_editor(request, slug):
     }
     return render(request, "plan-editor.html", context)
 
-
+@login_required
 def plan_overview(request):
     plans = MealEvent.objects.all()
     context = {
@@ -80,7 +81,7 @@ def plan_overview(request):
     }
     return render(request, "plan-overview.html", context)
 
-
+@login_required
 def plan_create(request):
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
@@ -111,7 +112,7 @@ def plan_create(request):
         form = MealEventForm()
         return render(request, "plan-create.html", {"form": form})
 
-
+@login_required
 def plan_dashboard(request):
     plans = MealEvent.objects.all()
     context = {
@@ -119,7 +120,7 @@ def plan_dashboard(request):
     }
     return render(request, "plan-dashboard.html", context)
 
-
+@login_required
 def template_create(request):
     if request.method == "POST":
         form = MealEventTemplateFormCreate(request.POST)
@@ -259,6 +260,7 @@ def template_create(request):
     )
     return render(request, "template/create.html", {"form": form})
 
+@login_required
 def template_update(request, id):
     instance = get_object_or_404(MealEventTemplate, id=id)
     meal_event = MealEvent.objects.get(meal_event_template=instance)
@@ -276,7 +278,7 @@ def template_update(request, id):
     }
     return render(request, "template/update.html", context)
 
-
+@login_required
 def meal_event_create(request):
     templates = MealEventTemplate.objects.all()
     context = {
@@ -284,7 +286,7 @@ def meal_event_create(request):
     }
     return render(request, "meal-event-create.html", context)
 
-
+@login_required
 def meal_event_clone(request):
     mealEvents = MealEvent.objects.all()
     context = {
@@ -292,7 +294,7 @@ def meal_event_clone(request):
     }
     return render(request, "meal-event-clone.html", context)
 
-
+@login_required
 def plan_shopping_cart(request, slug):
     plan = MealEvent.objects.get(slug=slug)
 
@@ -365,14 +367,14 @@ def plan_shopping_cart(request, slug):
     }
     return render(request, "plan/shopping-list.html", context)
 
-
+@login_required
 def plan_participants(request, slug):
     plan = MealEvent.objects.get(slug=slug)
 
     context = {"plan": plan, "module_name": "Teilnehmer"}
     return render(request, "plan/participants.html", context)
 
-
+@login_required
 def ingredient_create(request):
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
@@ -427,6 +429,7 @@ def ingredient_create(request):
     form = IngredientForm()
     return render(request, "ingredient/create.html", {"form": form})
 
+@login_required
 def ingredient_update(request, slug):
     instance = get_object_or_404(Ingredient, slug=slug)
     if request.method == "POST":
@@ -443,7 +446,7 @@ def ingredient_update(request, slug):
     }
     return render(request, "ingredient/update.html", context)
 
-
+@login_required
 def ingredient_detail(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
 
@@ -466,7 +469,7 @@ def ingredient_detail(request, slug):
     }
     return render(request, "ingredient/detail/main.html", context)
 
-
+@login_required
 def ingredient_list(request):
     ingredients = Ingredient.objects.all()
     search_form = SearchForm(request.GET)
@@ -498,6 +501,7 @@ def ingredient_list(request):
     }
     return render(request, "ingredient/list/main.html", context)
 
+@login_required
 def recipe_list(request):
     recipes = Recipe.objects.all()
     search_form = SearchForm(request.GET)
@@ -516,6 +520,7 @@ def recipe_list(request):
     }
     return render(request, "recipe/list/main.html", context)
 
+@login_required
 def recipe_create(request):
     meta_info = MetaInfo.objects.create()
     data = {
@@ -530,6 +535,7 @@ def recipe_create(request):
 
     return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/")
 
+@login_required
 def recipe_update(request, slug):
     instance = get_object_or_404(Recipe, slug=slug)
     if request.method == "POST":
@@ -546,6 +552,7 @@ def recipe_update(request, slug):
     }
     return render(request, "recipe/update.html", context)
 
+@login_required
 def recipe_clone(request, slug):
     recipe_old = Recipe.objects.get(slug=slug)
 
@@ -570,6 +577,7 @@ def recipe_clone(request, slug):
 
     return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/overview")
 
+@login_required
 def recipe_list(request):
     recipes = Recipe.objects.all()
     search_form = SearchForm(request.GET)
@@ -588,7 +596,7 @@ def recipe_list(request):
     }
     return render(request, "recipe/list/main.html", context)
 
-
+@login_required
 def recipe_detail_overview(request, slug):
     recipe = Recipe.objects.get(slug=slug)
 
@@ -600,6 +608,7 @@ def recipe_detail_overview(request, slug):
     return render(request, "recipe/detail/overview/main.html", context)
 
 
+@login_required
 def recipe_detail_analyse(request, slug):
     recipe = Recipe.objects.get(slug=slug)
 
@@ -610,6 +619,7 @@ def recipe_detail_analyse(request, slug):
     }
     return render(request, "recipe/detail/analyse/main.html", context)
 
+@login_required
 def recipe_detail_shopping(request, slug):
     recipe = Recipe.objects.get(slug=slug)
 
@@ -620,6 +630,7 @@ def recipe_detail_shopping(request, slug):
     }
     return render(request, "recipe/detail/shopping/main.html", context)
 
+@login_required
 def recipe_detail_comment(request, slug):
     recipe = Recipe.objects.get(slug=slug)
 
@@ -631,7 +642,7 @@ def recipe_detail_comment(request, slug):
     return render(request, "recipe/detail/comment/main.html", context)
 
 
-
+@login_required
 def recipes(request):
     recipes = Recipe.objects.filter(status="verified")
     context = {
@@ -639,6 +650,7 @@ def recipes(request):
     }
     return render(request, "recipe/main.html", context)
 
+@login_required
 def recipe_item_create(request, slug):
     if request.method == "POST":
         form = RecipeItemFormCreate(
@@ -664,6 +676,7 @@ def recipe_item_create(request, slug):
 
             return HttpResponseRedirect(f"/food/recipe/{recipe_item.recipe.slug}/overview")
 
+@login_required
 def recipe_item_update(request, slug):
     if request.method == "POST":
         form = RecipeItemFormUpdate(
@@ -684,6 +697,7 @@ def recipe_item_update(request, slug):
 
             return HttpResponseRedirect(f"/food/recipe/{recipe_item.recipe.slug}/overview")
 
+@login_required
 def recipe_item_delete(request):
     if request.method == "POST":
         recipe_item_id = request.POST.get("recipe_item_id")
@@ -693,7 +707,7 @@ def recipe_item_delete(request):
 
         return HttpResponseRedirect(f"/food/recipe/{recipe_slug}/")
 
-
+@login_required
 def ingredient_portion_create(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
     if request.method == "POST":
@@ -724,6 +738,7 @@ def ingredient_portion_create(request, slug):
     }
     return render(request, "ingredient/portion/create.html", context)
 
+@login_required
 def ingredient_portion_update(request, slug, pk):
     ingredient = Ingredient.objects.get(slug=slug)
     portion = Portion.objects.get(pk=pk)
@@ -741,7 +756,7 @@ def ingredient_portion_update(request, slug, pk):
     }
     return render(request, "ingredient/portion/update.html", context)
 
-
+@login_required
 def ingredient_price_create(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
     if request.method == "POST":
@@ -763,6 +778,7 @@ def ingredient_price_create(request, slug):
     }
     return render(request, "ingredient/price/create.html", context)
 
+@login_required
 def update_price_in_portions(ingredient, price_per_kg):
 
     MetaInfo.objects.filter(
@@ -779,6 +795,7 @@ def update_price_in_portions(ingredient, price_per_kg):
 
     return True
 
+@login_required
 def ingredient_price_update(request, slug, pk):
     ingredient = Ingredient.objects.get(slug=slug)
     price = Price.objects.get(pk=pk)
@@ -799,8 +816,7 @@ def ingredient_price_update(request, slug, pk):
     }
     return render(request, "ingredient/price/update.html", context)
 
-
-
+@login_required
 def get_portions_by_ingredient(request):
 
     if request.method == "POST":
@@ -822,6 +838,7 @@ def get_portions_by_ingredient(request):
 
             return JsonResponse(data)
         
+@login_required
 def meal_detail(request, slug, id):
     plan = MealEvent.objects.get(slug=slug)
     meal = Meal.objects.get(id=id)
