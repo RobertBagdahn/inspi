@@ -104,19 +104,18 @@
      y="807.02494"
      id="tspan575"><tspan
        style="fill:#000000"
-       id="tspan573">{% for word in title %} 
-</tspan></tspan><tspan
-     x="-924.08942"
-     y="813.27494"
-     id="tspan579"><tspan
-       style="fill:#000000"
-       id="tspan577">{{ word }}
-</tspan></tspan><tspan
-     x="-924.08942"
-     y="819.52494"
-     id="tspan583"><tspan
-   style="fill:#000000"
-   id="tspan581">{% endfor %}</tspan><tspan
+       id="tspan573">
+       {% for word in title %}
+       <tspan
+         x="-924.08942"
+         style="fill:#000000"
+         dy="1.4em"
+         id="tspan444"
+       >
+         {{ word }}
+       </tspan>
+     {% endfor %}
+    </tspan><tspan
    y="819.52494"
    id="tspan585">  </tspan></tspan></text>
         <path

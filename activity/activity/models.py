@@ -11,7 +11,6 @@ from django.core.validators import (
     MaxLengthValidator,
 )
 from django.db import models
-from django.utils.text import slugify 
 from pictures.models import PictureField
 from colorfield.fields import ColorField
 from ckeditor.fields import RichTextField
