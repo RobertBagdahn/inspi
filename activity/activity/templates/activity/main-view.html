@@ -48,32 +48,34 @@
       </h2>
         <div class="hidden md:block">
           {% for topic in topics %}
-            <a href="{% url 'activity-main-topic' topic.id %}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm my-1 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ topic.name }}</a>
+            <a href="{% url 'activity-main-category' 'topic' topic.id %}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm my-1 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ topic.name }}</a>
           {% endfor %}
         </div>
       </div>
       {% endif %}
       <h2
-        class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
-      >
-        Neusten Artikel
-      </h2>
-      <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
-        {% for activity in newest_activities %}
-          <article
-            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
-          >
-          {% include "activity/activity-card.html" with activity=activity %}
-        </article>
-          {% empty %}
-            <p>Keine Ideen gefunden</p>
-        {% endfor %}
-      </div>
+      class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
+    >
+      Inspirationende Ideen
+      <a href="{% url 'activity-main-category' 'random' 1 %}" class="text-md font-normal text-blue-600">mehr</a>
+    </h2>
+    <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
+      {% for activity in random_activities %}
+        <article
+          class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
+        >
+        {% include "activity/activity-card.html" with activity=activity %}
+      </article>
+        {% empty %}
+          <p>Keine Ideen gefunden</p>
+      {% endfor %}
+    </div>
 
       <h2
         class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
       >
-        Beliebteste Artikel
+        Ideen im Trend
+        <a href="{% url 'activity-main-category' 'trend' 1 %}" class="text-md font-normal text-blue-600">mehr</a>
       </h2>
       <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
         {% for activity in famous_activities %}
@@ -87,22 +89,24 @@
 
         {% endfor %}
       </div>
-      <h2
-        class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
-      >
-        Zufällige Artikel
-      </h2>
-      <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
-        {% for activity in random_activities %}
-          <article
-            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
-          >
-          {% include "activity/activity-card.html" with activity=activity %}
-        </article>
-          {% empty %}
-            <p>Keine Ideen gefunden</p>
-        {% endfor %}
-      </div>
+    <h2
+      class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
+    >
+      Neusten Ideen
+      <a href="{% url 'activity-main-category' 'newest' 1 %}" class="text-md font-normal text-blue-600">mehr</a>
+    </h2>
+    <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
+      {% for activity in newest_activities %}
+        <article
+          class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
+        >
+        {% include "activity/activity-card.html" with activity=activity %}
+      </article>
+        {% empty %}
+          <p>Keine Ideen gefunden</p>
+      {% endfor %}
+    </div>
+
   </section>
 </main>
 {% endblock detailcontent %}

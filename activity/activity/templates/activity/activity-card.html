@@ -32,7 +32,7 @@
     <div class="flex flex-wrap my-1">
       {% if activity.topics.all %}
         {% for tag in activity.topics.all %}
-        <a href="{% url 'activity-main-topic' tag.id %}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-sans my-1 me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ tag.name }}</a>
+        <a href="{% url 'activity-main-category' 'topic' tag.id %}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-sans my-1 me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ tag.name }}</a>
         {% endfor %}
       {% endif %}
     </div>

@@ -48,8 +48,9 @@ FORMS_SHORT_LOGGEDIN = [
 urlpatterns = [
     # redirect to the overview/ page
     path("", views.main_view, name="activity-main"),
-    path("activity-main/<int:topic_id>", views.main_view, name="activity-main-topic"),
-    path("activity-scout-level/<int:scout_level_id>", views.main_view, name="activity-main-scout-level"),
+    path("activity-main/<int:topic_id>", views.main_category_view, name="activity-main-topic"),
+    path("activity-category-main/<str:category_name>/<int:category_id>", views.main_category_view, name="activity-main-category"),
+    path('activity-load-more/<str:category_name>/<int:category_id>', views.list_load_activities_view, name='activity-load-more'),
 
     path("all-items", views.all_items, name="activity-all-items"),
     path("details/<int:activity_id>", views.detail, name="activity-detail"),

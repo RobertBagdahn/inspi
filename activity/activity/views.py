@@ -10,6 +10,9 @@ from formtools.wizard.views import SessionWizardView, CookieWizardView
 from django.db.models import Q
 from django.core.mail import send_mail
 from general.login.models import CustomUser
+from django.http import JsonResponse
+from django.shortcuts import render
+
 
 from django.shortcuts import get_object_or_404
 from django.utils.formats import date_format
@@ -127,7 +130,7 @@ def main_view(request, topic_id=None, scout_level_id=None):
 
     newest_activities = activities_raw.order_by("-created_at")[:4]
     famous_activities = activities_raw.order_by("-view_count")[:4]
-    random_activities = activities_raw.order_by("?")[:4]
+    random_activities = activities_raw.order_by("?")[:8]
 
     context = {
         "newest_activities": newest_activities,
@@ -140,6 +143,75 @@ def main_view(request, topic_id=None, scout_level_id=None):
     }
     return render(request, "activity/main-view.html", context)
 
+
+def _load_activities(request, category_name, category_id):
+    if category_name == 'topic':
+        activities_raw = activity_models.Activity.objects.filter(
+            topics__id=category_id
+        ).order_by("?")
+        selected_category = activity_models.Topic.objects.get(id=category_id)
+        selected_category_str = selected_category.name
+
+    if category_name == 'scout-level':
+        activities_raw = activity_models.Activity.objects.filter(
+            scout_levels__id=category_id
+        ).order_by("?")
+        selected_category = activity_models.ScoutLevelChoice.objects.get(id=category_id)
+        selected_category_str = selected_category.name
+
+    if category_name == 'activity-type':
+        activities_raw = activity_models.Activity.objects.filter(
+            activity_types__id=category_id
+        ).order_by("?")
+        selected_category = activity_models.ActivityType.objects.get(id=category_id)
+        selected_category_str = selected_category.name
+
+    if category_name == 'random':
+        activities_raw = activity_models.Activity.objects.all().order_by("?")
+        selected_category_str = 'Inspirierend'
+
+    if category_name == 'newest':
+        activities_raw = activity_models.Activity.objects.all().order_by("-created_at")
+        selected_category_str = 'Neueste'
+
+    if category_name == 'trend':
+        activities_raw = activity_models.Activity.objects.all().order_by("-view_count")
+        selected_category_str = 'Trend'
+    
+    activities_raw = activities_raw.filter(
+        status=activity_choices.StatusSearchChoices.PUBLISHED
+    )
+
+    paginator = Paginator(activities_raw, per_page=24)
+    page_num = request.GET.get("page", 1)
+    page_object = paginator.get_page(page_num)
+    page_object.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
+
+    return page_object, selected_category_str
+
+
+def main_category_view(request, category_name, category_id):
+    page_object, selected_category_str = _load_activities(request, category_name, category_id)
+    context = {
+        "activities": page_object,
+        "selected_category": selected_category_str,
+        "category_name": category_name,
+        "category_id": category_id,
+    }
+    return render(request, "activity/main-category.html", context)
+
+
+def list_load_activities_view(request, category_name, category_id):
+    print(category_name, category_id)
+    page_object, selected_category_str = _load_activities(request, category_name, category_id)
+
+    context = {
+        "activities": page_object,
+        "selected_category": selected_category_str,
+        "category_name": category_name,
+        "category_id": category_id,
+    }
+    return render(request, "activity/partials/all-activities.html", context)
 
 def all_items(request):
     query = request.GET.get("q", "")
