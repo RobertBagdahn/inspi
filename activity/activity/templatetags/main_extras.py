@@ -9,3 +9,8 @@ def updated_params(context, **kwargs):
     for k, v in kwargs.items():
         dict_[k] = v
     return dict_.urlencode()
+
+
+@register.filter
+def approved(comments):
+    return comments.filter(is_approved=True)

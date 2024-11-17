@@ -62,8 +62,6 @@ def post_create(request):
         # create a form instance and populate it with data from the request:
         form = PostForm(request.POST)
 
-        print(form.is_valid())
-
         if form.is_valid():
 
             data = form.cleaned_data

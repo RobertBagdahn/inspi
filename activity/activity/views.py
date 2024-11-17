@@ -32,6 +32,7 @@ from .forms import (
     StatusSearchFrom,
     CommentForm,
     SearchForm,
+    EventOfWeekForm
 )
 
 from django.http import Http404
@@ -224,6 +225,7 @@ class ContactWizard(CookieWizardView):
                 description=form_dict["main-text"].cleaned_data["description"],
                 title=form_dict["header-text"].cleaned_data["title"],
                 summary=form_dict["header-text"].cleaned_data["summary"],
+                summary_long=form_dict["header-text"].cleaned_data["summary_long"],
                 costs_rating=form_dict["rating"].cleaned_data["costs_rating"],
                 difficulty=form_dict["rating"].cleaned_data["difficulty"],
                 execution_time=form_dict["rating"].cleaned_data["execution_time"],
@@ -668,6 +670,93 @@ def comment_create(request):
         }
     )
 
+link_list = [
+    {
+        "link": "activity-admin-overview",
+        "title": "Übersicht",
+    },
+    {
+        "link": "activity-admin-event-of-week",
+        "title": "Idee der Woche",
+    },
+    {
+        "link": "activity-admin-like",
+        "title": "Likes",
+    },
+    {
+        "link": "activity-admin-topic",
+        "title": "Themen",
+    },
+    {
+        "link": "activity-list",
+        "title": "Liste",
+    },
+    {
+        "link": "activity-admin-data",
+        "title": "Nutzerdaten",
+    },
+    {
+        "link": "activity-admin-comment",
+        "title": "Kommentare",
+    }
+]
 
-def admin_main(request):
-    return render(request, "activity/admin/main.html")
+
+
+def admin_overview(request):
+    context = {
+        "link_list": link_list
+    }
+    return render(request, "activity/admin/overview/main.html", context)
+
+
+def admin_event_of_week(request):
+    context = {
+        "id": 'event-of-week',
+        "link_list": link_list,
+        "form": StatusSearchFrom(request.GET or None),
+        "items": activity_models.ActivityOfTheWeek.objects.all(),
+        "create_link": "event-of-week/create",
+    }
+    return render(request, "activity/admin/activity-of-week/main.html", context)
+
+def admin_topic(request):
+    context = {
+        "link_list": link_list
+    }
+    return render(request, "activity/admin/topic/main.html", context)
+
+def admin_comment(request):
+    context = {
+        "id": 'comment',
+        "link_list": link_list,
+        "items": activity_models.Comment.objects.all(),
+    }
+    return render(request, "activity/admin/comment/main.html", context)
+
+def admin_data(request):
+    context = {
+        "link_list": link_list
+    }
+    return render(request, "activity/admin/data/main.html", context)
+
+
+def admin_like(request):
+    context = {
+        "link_list": link_list
+    }
+    return render(request, "activity/admin/like/main.html", context)
+
+
+def event_of_week_create(request):
+    if request.method == "POST":
+        form = EventOfWeekForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("activity-admin-event-of-week")
+    else:
+        form = EventOfWeekForm()
+    context = {
+        "form": form
+    }
+    return render(request, "activity/admin/components/list/create.html", context)

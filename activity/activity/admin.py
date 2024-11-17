@@ -16,7 +16,8 @@ from .models import (
     ScoutLevelChoice,
     ActivityTypeChoice,
     LocationChoice,
-    TimeChoice
+    TimeChoice,
+    Comment,
 
 )
 
@@ -28,6 +29,7 @@ class ActivityAdmin(MyModelAdmin, admin.ModelAdmin):
     list_display = (
         "title",
         "summary",
+        "summary_long",
         "is_public",
         "created_at",
         "updated_at",
@@ -75,3 +77,4 @@ admin.site.register(ScoutLevelChoice)
 admin.site.register(ActivityTypeChoice)
 admin.site.register(LocationChoice)
 admin.site.register(TimeChoice)
+admin.site.register(Comment)

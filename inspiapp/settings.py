@@ -73,7 +73,7 @@ if APPENGINE_URL:
     if not urlparse(APPENGINE_URL).scheme:
         APPENGINE_URL = f"https://{APPENGINE_URL}"
 
-    ALLOWED_HOSTS = [urlparse(APPENGINE_URL).netloc]
+    ALLOWED_HOSTS = [urlparse(APPENGINE_URL).netloc, APPENGINE_URL, f'www.{APPENGINE_URL}']
     CSRF_TRUSTED_ORIGINS = [APPENGINE_URL]
     SECURE_SSL_REDIRECT = True
 else:
@@ -113,6 +113,7 @@ INSTALLED_APPS = [
     'image_cropping',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    "tracking",
     # modules
     "food",
     "activity.activity",
@@ -133,6 +134,8 @@ MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     "inspiapp.middleware.middleware.HtmxMessageMiddleware",
+    'tracking.middleware.VisitorTrackingMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
 ROOT_URLCONF = "inspiapp.urls"
@@ -178,22 +181,23 @@ WSGI_APPLICATION = "inspiapp.wsgi.application"
 # Use django-environ to parse the connection string
 DATABASES = {"default": env.db()}
 
-# # If the flag as been set, configure to use proxy
-# if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
-#     DATABASES["default"]["HOST"] = "127.0.0.1"
-#     DATABASES["default"]["PORT"] = 5432
+if not env.bool("LOCAL"):
+    if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
+        DATABASES["default"]["HOST"] = "127.0.0.1"
+        DATABASES["default"]["PORT"] = 5432
 
 # [END gaestd_py_django_database_config]
 
 # Use a in-memory sqlite3 database when testing in CI systems
 # TODO(glasnt) CHECK IF THIS IS REQUIRED because we're setting a val above
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+if env.bool("LOCAL"):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -330,3 +334,12 @@ DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL")
 EMAIL_USE_SSL = env.bool(
     "EMAIL_USE_SSL",
 )
+
+
+# Tracking
+TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
+TRACK_PAGEVIEWS = True
+TRACK_ANONYMOUS_USERS = True
+TRACK_REFERER = True
+TRACK_QUERY_STRING = True
+TRACK_IGNORE_URLS = [r'/admin/*', r'/__reload__/*', r'/favicon.ico', r'/robots.txt']

@@ -1,4 +1,5 @@
 import uuid
+from random import randint
 
 from django.contrib.auth import get_user_model
 
@@ -10,6 +11,7 @@ from django.core.validators import (
     MaxLengthValidator,
 )
 from django.db import models
+from django.utils.text import slugify 
 from pictures.models import PictureField
 from colorfield.fields import ColorField
 from ckeditor.fields import RichTextField
@@ -20,15 +22,14 @@ from imagekit.models import ProcessedImageField
 from image_cropping import ImageRatioField, ImageCropField
 
 
-from activity.activity.choices import OptionType
 from .choices import (
-    OptionType,
     ExecutionTimeChoices,
     DifficultyChoices,
     CostsRatingChoices,
     PrepairationTimeChoices,
     StatusChoices,
     StatusChoicesAdmin,
+    EmotionType,
 )
 
 from general.login.models import CustomUser
@@ -101,7 +102,8 @@ class Topic(TimeStampMixin):
 
     def __repr__(self):
         return self.__str__()
-    
+
+
 class ActivityTypeChoice(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
     name = models.CharField(max_length=30)
@@ -113,7 +115,8 @@ class ActivityTypeChoice(TimeStampMixin):
 
     def __repr__(self):
         return self.__str__()
-    
+
+
 class TimeChoice(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
     name = models.CharField(max_length=30)
@@ -125,7 +128,7 @@ class TimeChoice(TimeStampMixin):
 
     def __repr__(self):
         return self.__str__()
-    
+
 
 class LocationChoice(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
@@ -138,7 +141,7 @@ class LocationChoice(TimeStampMixin):
 
     def __repr__(self):
         return self.__str__()
-    
+
 
 class ScoutLevelChoice(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
@@ -153,18 +156,25 @@ class ScoutLevelChoice(TimeStampMixin):
         return self.__str__()
 
 
-
 def nameFile(instance, filename):
     return "images/" + str(uuid.uuid1()) + ".jpeg"
+
 
 class Activity(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
     title = models.CharField(
-        max_length=45, default="", validators=[MinLengthValidator(5), MaxLengthValidator(45)],
-
+        max_length=45,
+        default="",
+        validators=[MinLengthValidator(5), MaxLengthValidator(45)],
     )
     summary = models.CharField(
         max_length=300, default="", validators=[MaxLengthValidator(300)]
+    )
+    summary_long = models.CharField(
+        max_length=1000,
+        default="",
+        validators=[MaxLengthValidator(1000)],
+        blank=True,
     )
     description = RichTextField(
         max_length=8000, default="", validators=[MaxLengthValidator(8000)]
@@ -204,13 +214,13 @@ class Activity(TimeStampMixin):
     status = models.CharField(
         choices=StatusChoicesAdmin.choices,
         default=StatusChoicesAdmin.DRAFT,
-        max_length=20
+        max_length=20,
     )
 
     like_score = models.IntegerField(default=0)
     view_count = models.IntegerField(default=0)
-    image = models.ImageField(blank=True, upload_to='static/activity/uploaded_images')
-    cropping = ImageRatioField('image', '400x400')
+    image = models.ImageField(blank=True, upload_to="static/activity/uploaded_images")
+    cropping = ImageRatioField("image", "400x400")
 
     def _get_stufen_string(self):
         _str = ""
@@ -233,16 +243,15 @@ class Activity(TimeStampMixin):
                 _str += art.name
             else:
                 _str += art.name + " + "
-        
+
         return _str
-    
-    
+
     def _get_location_string(self):
 
         _str = ""
         if len(self.locations.all()) == 3:
             return "Überall"
-        
+
         for location in self.locations.all():
             if location == self.locations.all().last():
                 _str += location.name
@@ -250,19 +259,18 @@ class Activity(TimeStampMixin):
                 _str += location.name + ", "
 
         return _str
-    
+
     def _get_time_string(self):
         _str = ""
         if len(self.times.all()) == 3:
             return "Immer"
-        
+
         for time in self.times.all():
             if time == self.times.all().last():
                 _str += time.name
             else:
                 _str += time.name + ", "
         return _str
-
 
     scout_levels_string = property(_get_stufen_string)
     activity_types_string = property(_get_art_string)
@@ -272,23 +280,22 @@ class Activity(TimeStampMixin):
     def is_allowed_to_edit(self, user):
         # user in authors
         return user.is_staff or user.is_superuser
-    
-    # An alternative to use to update the view count 
-    def update_views(self, *args, **kwargs):
-         self.view_count = self.view_count + 1
-         super(Activity, self).save(*args, **kwargs)
 
-    
+    # An alternative to use to update the view count
+    def update_views(self, *args, **kwargs):
+        self.view_count = self.view_count + 1
+        super(Activity, self).save(*args, **kwargs)
+
     # add get_absolute_url
     def get_absolute_url(self):
         return f"/activity/details/{self.id}"
-
 
     def __str__(self):
         return f"{self.title} - {self.created_by_email}"
 
     def __repr__(self):
         return self.__str__()
+
 
 class MaterialItem(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)
@@ -310,13 +317,17 @@ class MaterialItem(TimeStampMixin):
     def __repr__(self):
         return self.__str__()
 
-class Like(TimeStampMixin):
+
+class Emotion(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
-    opinion_type_id = models.IntegerField(
-        choices=OptionType.choices, default=OptionType.LIKE
+    emotion = models.CharField(
+        choices=EmotionType.choices, default=EmotionType.HAPPY, max_length=20
     )
-    like_created = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_by = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="like_activity", null=True, blank=True
+    )
 
 
 class Experiment(TimeStampMixin):
@@ -375,12 +386,6 @@ class ActivityOfTheWeek(TimeStampMixin):
             raise ValidationError(
                 "An dem Montag existier bereits ein Heimabend der Woche."
             )
-        if (
-            ActivityOfTheWeek.objects.exclude(pk=self.pk)
-            .filter(activity_id=self.activity_id)
-            .exists()
-        ):
-            raise ValidationError("Dieser Heimabend wurde bereits ausgewählt.")
 
         super(ActivityOfTheWeek, self).save(*args, **kwargs)
 
@@ -399,20 +404,28 @@ class Profile(models.Model):
         options={"quality": 60},
     )
 
+
 class Comment(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
-    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="author_actvity" )
+    author = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="author_actvity"
+    )
     content = RichTextField(max_length=8000, default="")
     date_posted = models.DateTimeField(auto_now_add=True)
     parent = models.ForeignKey(
-        "self", null=True, blank=True, on_delete=models.CASCADE, related_name="replies_actvity"
+        "self",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="replies_actvity",
     )
+    is_approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-date_posted"]
 
     def __str__(self):
-        return str(self.author) + " comment " + str(self.content)
+        return str(self.author) + ": " + str(self.content) + " - " + str(self.activity) + " - " + str(self.is_approved)
 
     @property
     def children(self):
@@ -423,7 +436,7 @@ class Comment(models.Model):
         if self.parent is None:
             return True
         return False
-    
+
     def is_allowed_to_edit(self, user):
         # user in authors
         return user.is_staff or user.is_superuser

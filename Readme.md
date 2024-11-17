@@ -37,3 +37,16 @@ in folder /inspiApp you need to put the .env file.
 Next to the file settings.py
 
 the file need to look like the example.env file in that folder
+
+
+# login gcp database
+`export USE_CLOUD_SQL_AUTH_PROXY=true`
+`./cloud-sql-proxy inspi-441320:europe-west3:inspi-prod`
+
+# deploy
+`gcloud app deploy`
+
+
+
+# requirment.txt
+`poetry export --without-hashes --format=requirements.txt > requirements.txt`

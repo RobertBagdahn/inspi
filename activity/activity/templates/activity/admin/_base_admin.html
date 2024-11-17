@@ -1,0 +1,62 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="antialiased bg-gray-50 dark:bg-gray-900">
+  <header>
+    <nav class="lg:hidden bg-gray-50 shadow-sm dark:bg-gray-800 p-3">
+      <select
+        id="navigation"
+        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        onchange="location = this.value;"
+      >
+        {% for link in link_list %}
+          <option
+            value="{% url link.link %}"
+            {% if link.link == request.resolver_match.url_name %}
+              selected
+            {% endif %}
+          >
+            {{ link.title }}
+          </option>
+        {% endfor %}
+      </select>
+    </nav>
+  </header>
+
+  <div
+    class="items-center justify-center bg-gray-50 dark:bg-gray-900 py-5 hidden lg:flex"
+  >
+    <nav
+      id="toggleMobileMenu"
+      class="bg-gray-50 border-b border-gray-200 dark:bg-gray-900 block mx-auto dark:border-gray-800"
+    >
+    <div class="flex items-center">
+      <ul
+        class="flex flex-col mt-0 w-full text-sm font-medium lg:flex-row"
+      >
+      {% for link in link_list %}
+        <li
+          class=f"""
+            block border-b dark:border-gray-700 lg:inline lg:border-b-0
+          """
+        >
+            <a
+            href="{% url link.link %}"
+            class="block py-3 px-4 text-gray-500 dark:text-gray-400 hover:text-primary-600 hover:border-b-2 hover:border-primary-600 {% if link.link == request.resolver_match.url_name %}text-primary-600 border-b-2 border-blue-600{% endif %}"
+            >
+            {{ link.title }}
+            </a>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+    </nav>
+  </div>
+
+  <main class="dark:bg-gray-900 flex-1 p-4 space-y-4">
+    {% block detailcontent %}
+{% endblock detailcontent %}
+  </main>
+</div>
+</section>
+{% endblock content %}
+

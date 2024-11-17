@@ -12,7 +12,7 @@ from .choices import (
     CostsRatingChoices,
     PrepairationTimeChoices,
     StatusChoices,
-    StatusSearchChoices
+    StatusSearchChoices,
 )
 from .models import (
     MaterialUnit,
@@ -23,6 +23,7 @@ from .models import (
     ActivityTypeChoice,
     LocationChoice,
     TimeChoice,
+    ActivityOfTheWeek,
 )
 
 from general.login.models import CustomUser
@@ -147,6 +148,12 @@ class HeaderTextForm(forms.ModelForm):
         required=True,
         help_text="Die Zusammenfassung wird auf der Startseite angezeigt",
     )
+    summary_long = forms.CharField(
+        label="Zusammenfassung lang",
+        widget=forms.Textarea(attrs={"class": "tailwind-textarea"}),
+        required=True,
+        help_text="Die lange Zusammenfassung wird auf der Detailseite angezeigt",
+    )
 
     class Meta:
         model = Activity
@@ -197,9 +204,7 @@ class TopicForm(forms.ModelForm):
         queryset=Topic.objects.all(),
         required=True,
         label="Themen",
-        widget=forms.CheckboxSelectMultiple(
-            attrs={"class": "tailwind-checkbox"}
-        ),
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "tailwind-checkbox"}),
         help_text="",
     )
 
@@ -216,36 +221,28 @@ class ChoicesForm(forms.ModelForm):
         required=True,
         # max 3 choices
         label="Für welche Altersgruppe ist die Idee geeignet?",
-        widget=forms.CheckboxSelectMultiple(
-            attrs={"class": "tailwind-checkbox"}
-        ),
-        help_text=""
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "tailwind-checkbox"}),
+        help_text="",
     )
     activity_types = forms.ModelMultipleChoiceField(
         queryset=ActivityTypeChoice.objects.all(),
         required=True,
         label="Welche Art von Aktivität ist es?",
-        widget=forms.CheckboxSelectMultiple(
-            attrs={"class": "tailwind-checkbox"}
-        ),
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "tailwind-checkbox"}),
         help_text="",
     )
     locations = forms.ModelMultipleChoiceField(
         queryset=LocationChoice.objects.all(),
         required=True,
         label="Wo kann die Idee umgesetzt werden?",
-        widget=forms.CheckboxSelectMultiple(
-            attrs={"class": "tailwind-checkbox"}
-        ),
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "tailwind-checkbox"}),
         help_text="",
     )
     times = forms.ModelMultipleChoiceField(
         queryset=TimeChoice.objects.all(),
         required=True,
         label="Wann kann die Idee umgesetzt werden?",
-        widget=forms.CheckboxSelectMultiple(
-            attrs={"class": "tailwind-checkbox"}
-        ),
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "tailwind-checkbox"}),
         help_text="",
     )
 
@@ -272,7 +269,6 @@ class ImageForm(forms.ModelForm):
         fields = [
             "image",
             "cropping",
-
         ]
 
 
@@ -297,8 +293,9 @@ class UnkownForm(forms.Form):
         help_text="Wähle den Status deiner Idee.",
     )
 
+
 class CreatorForm(forms.ModelForm):
-    status= forms.ChoiceField(
+    status = forms.ChoiceField(
         choices=StatusChoices.choices,
         widget=forms.RadioSelect(attrs={"class": "form-control"}),
         required=True,
@@ -319,6 +316,7 @@ class CreatorForm(forms.ModelForm):
             "authors",
         ]
 
+
 class StatusSearchFrom(forms.Form):
     query = forms.CharField(
         label="Suche",
@@ -337,7 +335,6 @@ class StatusSearchFrom(forms.Form):
         label="Status",
         required=False,
     )
-    
 
 
 class MaterialItemForm(forms.Form):
@@ -386,3 +383,28 @@ class MaterialItemModelForm(forms.ModelForm):
 
 class MaterialForm(forms.Form):
     pass
+
+
+class EventOfWeekForm(forms.ModelForm):
+    activity = forms.ModelChoiceField(
+        queryset=Activity.objects.all(), required=True, label="Aktivität"
+    )
+    release_date = forms.DateField(
+        widget=forms.DateInput(attrs={"class": "form-control", "type": "date"}),
+        required=True,
+        label="Veröffentlichungsdatum",
+    )
+    comment = forms.CharField(
+        widget=forms.Textarea(attrs={"class": "form-control"}),
+        required=False,
+        label="Kommentar",
+        max_length=2000,
+    )
+
+    class Meta:
+        model = ActivityOfTheWeek
+        fields = [
+            "activity",
+            "release_date",
+            "comment",
+        ]

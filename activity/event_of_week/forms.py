@@ -6,7 +6,7 @@ class ImageDownloadForm(forms.Form):
 
 	document_type = forms.ChoiceField(
 		label='Dokumenttyp',
-		choices=[('insta', 'Instagram'), ('a4', 'A4-Seite')],
+		choices=[('insta', 'Instagram')],
 		widget=forms.RadioSelect(attrs={"class": "tailwind-radio"}),
 		required=True,
 		help_text='Wählen Sie den Dokumenttyp aus.',

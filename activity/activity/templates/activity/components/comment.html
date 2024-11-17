@@ -1,7 +1,9 @@
+{% load main_extras %}
+
 <section class="not-format">
   <div class="flex justify-between items-center mb-6">
     <h2 class="text-md lg:text-xl font-semibold text-gray-900 dark:text-white mx-2">
-      Kommentare ({{ activity.comment_set.all.count }})
+      Kommentare ({{ activity.comment_set.all|approved|length }})
     </h2>
   </div>
   {% if user.is_authenticated %}

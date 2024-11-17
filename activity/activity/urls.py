@@ -85,7 +85,15 @@ urlpatterns = [
     path('htmx/material-item/<pk>/delete/', delete_material_item, name="delete-material-item"),
     path('htmx/create-material-item-form/<int:activity_id>', create_material_item_form, name='create-material-item-form'),
 
-    path('admin/main', views.admin_main, name="activity-admin-main"),
+    path('admin/overview', views.admin_overview, name="activity-admin-overview"),
+    path('admin/like', views.admin_like, name="activity-admin-like"),
+    path('admin/event-of-week', views.admin_event_of_week, name="activity-admin-event-of-week"),
+    path('admin/topic', views.admin_topic, name="activity-admin-topic"),
+    path('admin/comment', views.admin_comment, name="activity-admin-comment"),
+    path('admin/data', views.admin_data, name="activity-admin-data"),
+
+    # event-of-week-create
+    path('admin/event-of-week/create', views.event_of_week_create, name="activity-event-of-week-create"),
 ]
 
 if get_settings().USE_PLACEHOLDERS:

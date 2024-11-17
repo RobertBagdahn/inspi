@@ -1,0 +1,28 @@
+{% extends "activity/admin/_base_admin.html" %}
+{% load main_extras %}
+{% load static %}
+{% block header %}
+{{ form.media }}
+{% endblock header %}
+{% block detailcontent %}
+<main class="">
+  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-16">
+    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+      <div class="sm:flex sm:items-center sm:justify-between sm:gap-4">
+        <p class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Themen</p>
+      </div>
+      <div class="mb-4 mt-6 grid grid-cols-1 gap-4 text-center sm:mt-8 sm:grid-cols-2 lg:mb-0 lg:grid-cols-4 xl:gap-8">
+      {% for link in link_list %}
+
+        <a href="{% url link.link %}" class="grid place-content-center space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <svg class="mx-auto h-14 w-14 text-gray-400 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.213 9.787a3.391 3.391 0 0 0-4.795 0l-3.425 3.426a3.39 3.39 0 0 0 4.795 4.794l.321-.304m-.321-4.49a3.39 3.39 0 0 0 4.795 0l3.424-3.426a3.39 3.39 0 0 0-4.794-4.795l-1.028.961"/>
+              </svg>
+          <p class="text-lg font-semibold text-gray-900 dark:text-white"> {{ link.title }}</p>
+        </a>
+      {% endfor %}
+    </div>
+    </div>
+  </section>
+</main>
+{% endblock detailcontent %}

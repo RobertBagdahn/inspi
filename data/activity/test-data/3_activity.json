@@ -14,6 +14,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/25ea7404-c6f3-11eb-8e36-6f635ccaecea.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53,
                 38
@@ -54,6 +55,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/d9666f80-c5ef-11eb-a416-2d9ce5e8242b.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -92,6 +94,7 @@
             "difficulty": 0,
             "image": "static/activity/uploaded_images/ea3dd270-c5f3-11eb-aa29-51bf1c1703d4.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -131,6 +134,7 @@
             "costs_rating": 0,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -173,6 +177,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/d4f6b7d8-c6eb-11eb-856d-25160bf7230e.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -210,6 +215,7 @@
             "costs_rating": 1,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -251,6 +257,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/b1ed608d-c5f2-11eb-905f-35d68022e9db.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -289,6 +296,7 @@
             "costs_rating": 0,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53,
                 38
@@ -336,6 +344,7 @@
             "image": "static/activity/uploaded_images/85e84499-5b67-11ec-b360-35e9b414ae71.jpeg",
             
             "created_by_name": "Mats",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -377,6 +386,7 @@
             "image": "static/activity/uploaded_images/1fb43757-a2e2-11ec-9d6e-fd2c410cd756.jpeg",
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -423,6 +433,7 @@
             "image": "static/activity/uploaded_images/4580626b-a2e2-11ec-bbec-f3c9f4ff7c51.jpeg",
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53,
                 31
@@ -462,6 +473,7 @@
             "difficulty": 1,
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -501,6 +513,7 @@
             "image": "static/activity/uploaded_images/bbca9328-c6ef-11eb-baea-f5f93b3852cc.jpeg",
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -542,6 +555,7 @@
             "image": "static/activity/uploaded_images/602c21e2-a2e1-11ec-818d-07f36aa52757.jpeg",
             
             "created_by_name": "JoMic",
+            "status": "2",
             "activity_types": [
                 41,
                 53,
@@ -584,6 +598,7 @@
             "image": "static/activity/uploaded_images/ed1ae56d-a2e0-11ec-b8e6-fd2c410cd756.jpeg",
             
             "created_by_name": "Meuterei 2021",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -625,6 +640,7 @@
             "difficulty": 1,
             
             "created_by_name": "Alina",
+            "status": "2",
             "activity_types": [
                 38,
                 41
@@ -669,6 +685,7 @@
             "difficulty": 1,
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53,
                 41
@@ -708,6 +725,7 @@
             "image": "static/activity/uploaded_images/ec0d1192-a2c0-11ec-832e-75ad106f2baa.jpeg",
             
             "created_by_name": "Meuterei 2021",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -750,6 +768,7 @@
             "image": "static/activity/uploaded_images/88e5d693-c6f2-11eb-a60f-274352acd60b.jpeg",
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -789,6 +808,7 @@
             "difficulty": 1,
             
             "created_by_name": "Daniel",
+            "status": "2",
             "activity_types": [
                 31,
                 53
@@ -828,6 +848,7 @@
             "image": "static/activity/uploaded_images/24ad5f64-c6ed-11eb-906f-4b0cd3c681bb.jpeg",
             
             "created_by_name": "Dorothea",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -873,6 +894,7 @@
             "difficulty": 0,
             
             "created_by_name": "Nadine",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -916,6 +938,7 @@
             "image": "static/activity/uploaded_images/0fd783b4-a2c0-11ec-aaee-75ad106f2baa.jpeg",
             
             "created_by_name": "Meuterei 2021",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -956,6 +979,7 @@
             "difficulty": 1,
             
             "created_by_name": "sophie",
+            "status": "2",
             "activity_types": [
                 31,
                 41,
@@ -1009,6 +1033,7 @@
             "image": "static/activity/uploaded_images/cd2d0a49-c573-11eb-b8f4-f3c42963fdd8.jpeg",
             
             "created_by_name": "Dorothea",
+            "status": "2",
             "activity_types": [
                 38
             ],
@@ -1047,6 +1072,7 @@
             "difficulty": 1,
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31,
                 53
@@ -1085,6 +1111,7 @@
             "image": "static/activity/uploaded_images/a4e46dc5-a2c0-11ec-8293-832d901c4eca.jpeg",
             
             "created_by_name": "Meuterei 2021",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -1123,6 +1150,7 @@
             "image": "static/activity/uploaded_images/6f955095-3cd8-11ec-9f72-b16a49ef8762.jpeg",
             
             "created_by_name": "Celine",
+            "status": "2",
             "activity_types": [
                 38,
                 41
@@ -1168,6 +1196,7 @@
             "image": "static/activity/uploaded_images/517b5c9f-c5f3-11eb-9c58-51bf1c1703d4.jpeg",
             
             "created_by_name": "Resi",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -1206,6 +1235,7 @@
             "difficulty": 3,
             
             "created_by_name": "Daniel",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -1244,6 +1274,7 @@
             "image": "static/activity/uploaded_images/f22532f8-c6ee-11eb-a690-556afa6c0d61.jpeg",
             
             "created_by_name": "Resi",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -1284,6 +1315,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/02db00b0-c2ec-11ec-b2a0-55538a1aba25.jpeg",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 75
@@ -1323,6 +1355,7 @@
             "image": "static/activity/uploaded_images/3790a8aa-a2c1-11ec-a6e0-832d901c4eca.jpeg",
             
             "created_by_name": "Meuterei 2021",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -1361,6 +1394,7 @@
             "difficulty": 4,
             "image": "static/activity/uploaded_images/2625c46c-8fd1-11ee-9999-4a9a4ba1c5bd.jpeg",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -1403,6 +1437,7 @@
             "difficulty": 1,
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 31,
                 53
@@ -1444,6 +1479,7 @@
             "image": "static/activity/uploaded_images/8c2ae0c8-c5f0-11eb-819b-1f1b1039e7af.jpeg",
             
             "created_by_name": "Dorothea",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -1483,6 +1519,7 @@
             "image": "static/activity/uploaded_images/b6843e66-c572-11eb-8fd1-69666e2ef507.jpeg",
             
             "created_by_name": "Dorothea",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -1524,6 +1561,7 @@
             "image": "static/activity/uploaded_images/4d14e7af-c70a-11eb-a107-23b84d35ca7b.jpeg",
             
             "created_by_name": "Jan",
+            "status": "2",
             "activity_types": [
                 31,
                 41
@@ -1566,6 +1604,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/ca112168-c2ee-11ec-9c30-55538a1aba25.jpeg",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -1604,6 +1643,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/9857f933-c2f1-11ec-a709-43927872b036.jpeg",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 31
@@ -1643,6 +1683,7 @@
             "costs_rating": 0,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -1682,6 +1723,7 @@
             "difficulty": 1,
             
             "created_by_name": "Caroline",
+            "status": "2",
             "activity_types": [
                 31,
                 53
@@ -1726,6 +1768,7 @@
             "image": "static/activity/uploaded_images/bc40d10a-c709-11eb-813d-23b84d35ca7b.jpeg",
             
             "created_by_name": "Daniel",
+            "status": "2",
             "activity_types": [
                 53,
                 41
@@ -1766,6 +1809,7 @@
             "costs_rating": 1,
             "difficulty": 0,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -1806,6 +1850,7 @@
             "image": "static/activity/uploaded_images/eaabf7bf-c570-11eb-ac7d-996a9ec9292b.jpeg",
             
             "created_by_name": "Hagi",
+            "status": "2",
             "activity_types": [
                 38,
                 41
@@ -1845,6 +1890,7 @@
             "image": "static/activity/uploaded_images/5f249b31-c764-11eb-b199-ab455256919b.jpeg",
             
             "created_by_name": "Caroline",
+            "status": "2",
             "activity_types": [
                 75
             ],
@@ -1884,6 +1930,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/7dca7f6b-c6f0-11eb-96fb-4b0cd3c681bb.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 41,
                 31
@@ -1924,6 +1971,7 @@
             "difficulty": 1,
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -1967,6 +2015,7 @@
             "image": "static/activity/uploaded_images/57d7cf92-c583-11eb-85fb-6f005ca1bce5.jpeg",
             
             "created_by_name": "Janny",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -2006,6 +2055,7 @@
             "image": "static/activity/uploaded_images/0d251eb3-c5ef-11eb-9328-2d9ce5e8242b.jpeg",
             
             "created_by_name": "Daniel",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -2044,6 +2094,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/1c0dbf2a-c6f0-11eb-9d67-3310dae43ae3.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31,
                 53
@@ -2085,6 +2136,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/e952f45b-c707-11eb-b6a4-298464a91c7f.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 75
@@ -2126,6 +2178,7 @@
             "costs_rating": 1,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -2169,6 +2222,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/baed04cd-08f0-11ec-a7b4-fb72870f1c5f.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31,
                 41
@@ -2213,6 +2267,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/828da5d6-c5f3-11eb-a5db-4fbb61014e3b.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -2256,6 +2311,7 @@
             "image": "static/activity/uploaded_images/8f844927-c5f1-11eb-9178-7f48615bc681.jpeg",
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -2301,6 +2357,7 @@
             "image": "static/activity/uploaded_images/f1bc79f5-3ccb-11ec-aaf6-2b3615eaa989.jpeg",
             
             "created_by_name": "Kathrin",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -2340,6 +2397,7 @@
             "costs_rating": 0,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 41
@@ -2386,6 +2444,7 @@
             "difficulty": 1,
             
             "created_by_name": "Caroline",
+            "status": "2",
             "activity_types": [
                 75
             ],
@@ -2424,6 +2483,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/fb8d28f2-c586-11eb-a022-6f005ca1bce5.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -2465,6 +2525,7 @@
             "image": "static/activity/uploaded_images/f7d41915-c5f2-11eb-a0cd-4fbb61014e3b.jpeg",
             
             "created_by_name": "Sheldon",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -2503,6 +2564,7 @@
             "difficulty": 1,
             
             "created_by_name": "Nadine",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -2544,6 +2606,7 @@
             "image": "static/activity/uploaded_images/ae044632-c6ee-11eb-9016-4b0cd3c681bb.jpeg",
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -2582,6 +2645,7 @@
             "costs_rating": 1,
             "difficulty": 2,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -2623,6 +2687,7 @@
             "difficulty": 2,
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53,
                 38
@@ -2664,6 +2729,7 @@
             "image": "static/activity/uploaded_images/74116519-c586-11eb-96f4-d57fbc503660.jpeg",
             
             "created_by_name": "Daniel (AL)",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -2702,6 +2768,7 @@
             "costs_rating": 1,
             "difficulty": 2,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -2744,6 +2811,7 @@
             "image": "static/activity/uploaded_images/32dd4bd7-c6f6-11eb-befd-5fc9e3ca6f06.jpeg",
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 53,
                 31
@@ -2787,6 +2855,7 @@
             "difficulty": 1,
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 31,
                 38
@@ -2831,6 +2900,7 @@
             "image": "static/activity/uploaded_images/b220e6cf-c765-11eb-a79b-b92078aee6a4.jpeg",
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -2871,6 +2941,7 @@
             "image": "static/activity/uploaded_images/477f03d6-c6f5-11eb-b3d8-ad8b69aebc2c.jpeg",
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 31,
                 38
@@ -2910,6 +2981,7 @@
             "costs_rating": 1,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -2950,6 +3022,7 @@
             "difficulty": 1,
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 53,
                 31
@@ -2987,6 +3060,7 @@
             "costs_rating": 1,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53,
                 38
@@ -3033,6 +3107,7 @@
             "difficulty": 1,
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 38
             ],
@@ -3076,6 +3151,7 @@
             "image": "static/activity/uploaded_images/6ab475c0-4a12-11ec-bae2-0b81a2eb6e3f.jpeg",
             
             "created_by_name": "Mats",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -3120,6 +3196,7 @@
             "difficulty": 1,
             
             "created_by_name": "sophie",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -3162,6 +3239,7 @@
             "image": "static/activity/uploaded_images/f1c3a7b6-c6f0-11eb-af25-3310dae43ae3.jpeg",
             
             "created_by_name": "Madita",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -3205,6 +3283,7 @@
             "difficulty": 1,
             
             "created_by_name": "sophie",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -3250,6 +3329,7 @@
             "difficulty": 0,
             
             "created_by_name": "Janny",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -3290,6 +3370,7 @@
             "difficulty": 1,
             
             "created_by_name": "Janny",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -3332,6 +3413,7 @@
             "difficulty": 0,
             
             "created_by_name": "Janny",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -3378,6 +3460,7 @@
             "image": "static/activity/uploaded_images/eaf85fe0-c6f6-11eb-a3a6-6bb7d44cf662.jpeg",
             
             "created_by_name": "Nadine",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -3416,6 +3499,7 @@
             "image": "static/activity/uploaded_images/2bbda72b-c5f1-11eb-9924-2d9ce5e8242b.jpeg",
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -3460,6 +3544,7 @@
             "image": "static/activity/uploaded_images/34d59eb3-c5f5-11eb-817b-ab9ab1b6abba.jpeg",
             
             "created_by_name": "Madita",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -3501,6 +3586,7 @@
             "image": "static/activity/uploaded_images/20e8f223-cf6e-11eb-a4d2-a77abd4f551c.jpeg",
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -3543,6 +3629,7 @@
             "image": "static/activity/uploaded_images/a5aac3ae-c6f7-11eb-8b61-895a4e7fe5be.jpeg",
             
             "created_by_name": "Nadine",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -3583,6 +3670,7 @@
             "image": "static/activity/uploaded_images/4d74d828-c6f7-11eb-ab75-ad8b69aebc2c.jpeg",
             
             "created_by_name": "Nadine",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -3624,6 +3712,7 @@
             "image": "static/activity/uploaded_images/7b32a123-c6f8-11eb-a9a9-895a4e7fe5be.jpeg",
             
             "created_by_name": "Nadine",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -3665,6 +3754,7 @@
             "image": "static/activity/uploaded_images/7615323a-c5f7-11eb-a312-378031228bab.jpeg",
             
             "created_by_name": "Dorothea",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -3706,6 +3796,7 @@
             "difficulty": 2,
             
             "created_by_name": "Hannah",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -3746,6 +3837,7 @@
             "image": "static/activity/uploaded_images/45d5157b-e265-11eb-bb2c-df5743e809dd.jpeg",
             
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -3785,6 +3877,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/bb62d7c9-0a8d-11ec-9363-975e3e950f40.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 41,
                 31
@@ -3827,6 +3920,7 @@
             "difficulty": 1,
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -3865,6 +3959,7 @@
             "difficulty": 2,
             
             "created_by_name": "Daniel",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -3905,6 +4000,7 @@
             "image": "static/activity/uploaded_images/eb1d7b0b-3cd3-11ec-af3c-7fd584869ee8.jpeg",
             
             "created_by_name": "Mats",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -3947,6 +4043,7 @@
             "difficulty": 3,
             "image": "static/activity/uploaded_images/b37a77bd-0a8f-11ec-aec3-230a0972c3d8.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31,
                 53
@@ -3989,6 +4086,7 @@
             "difficulty": 0,
             
             "created_by_name": "Janny",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -4029,6 +4127,7 @@
             "image": "static/activity/uploaded_images/54cd2f70-4a0e-11ec-b88b-71589827f6eb.jpeg",
             
             "created_by_name": "Jan",
+            "status": "2",
             "activity_types": [
                 38,
                 41,
@@ -4076,6 +4175,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/d6626a9b-c60b-11eb-85bd-5dd679278a14.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -4120,6 +4220,7 @@
             "image": "static/activity/uploaded_images/8c0a359b-e266-11eb-b918-9fe5fe9de9f0.jpeg",
             
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -4161,6 +4262,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/e85d117f-0a90-11ec-9cd0-a33b43295c2a.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -4204,6 +4306,7 @@
             "image": "static/activity/uploaded_images/dee62a9b-3cd5-11ec-9298-8377f5d8668f.jpeg",
             
             "created_by_name": "Mats",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -4247,6 +4350,7 @@
             "image": "static/activity/uploaded_images/b3a71b5e-c60d-11eb-8891-3f75e6551646.jpeg",
             
             "created_by_name": "Hagi",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -4285,6 +4389,7 @@
             "image": "static/activity/uploaded_images/17749f98-e267-11eb-86d8-97de22bf9962.jpeg",
             
             "created_by_name": "Sheldon",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -4326,6 +4431,7 @@
             "image": "static/activity/uploaded_images/4cdd5fd9-3cd7-11ec-844a-8377f5d8668f.jpeg",
             
             "created_by_name": "Mats",
+            "status": "2",
             "activity_types": [
                 53,
                 41,
@@ -4376,6 +4482,7 @@
             "image": "static/activity/uploaded_images/c826f212-e267-11eb-9ee9-9fe5fe9de9f0.jpeg",
             
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -4417,6 +4524,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/2a86f22e-c610-11eb-ae2a-97e34e5cf441.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -4460,6 +4568,7 @@
             "image": "static/activity/uploaded_images/d6d3d24f-c578-11eb-a96c-eb7d7c255281.jpeg",
             
             "created_by_name": "Kai",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -4504,6 +4613,7 @@
             "difficulty": 1,
             
             "created_by_name": "sophie",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -4547,6 +4657,7 @@
             "image": "static/activity/uploaded_images/6e09d8c6-c6ed-11eb-82d3-556336c4450f.jpeg",
             
             "created_by_name": "Sheldon, Jan",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -4586,6 +4697,7 @@
             "image": "static/activity/uploaded_images/cc72447a-c5f4-11eb-8c58-7f48615bc681.jpeg",
             
             "created_by_name": "Hagi",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -4627,6 +4739,7 @@
             "image": "static/activity/uploaded_images/0c03d03a-c764-11eb-bc54-f754965e105e.jpeg",
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -4668,6 +4781,7 @@
             "difficulty": 1,
             
             "created_by_name": "Resi",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -4707,6 +4821,7 @@
             "image": "static/activity/uploaded_images/ddb6d6eb-e3b8-11eb-b8f3-af1bf84f3dbc.jpeg",
             
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -4749,6 +4864,7 @@
             "image": "static/activity/uploaded_images/1fd759ee-4a14-11ec-9755-8b269dd8deee.jpeg",
             
             "created_by_name": "Mats",
+            "status": "2",
             "activity_types": [
                 31,
                 41
@@ -4791,6 +4907,7 @@
             "image": "static/activity/uploaded_images/b58f93fe-c574-11eb-b6b3-49cdc02f937f.jpeg",
             
             "created_by_name": "Dorothea",
+            "status": "2",
             "activity_types": [
                 31,
                 41,
@@ -4834,6 +4951,7 @@
             "image": "static/activity/uploaded_images/e772222e-4a12-11ec-9160-0d561f4e1dec.jpeg",
             
             "created_by_name": "Mats",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -4872,6 +4990,7 @@
             "image": "static/activity/uploaded_images/852db602-e269-11eb-80f4-df5743e809dd.jpeg",
             
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 75
             ],
@@ -4913,6 +5032,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/9c620e82-c6f3-11eb-9bf8-f5f93b3852cc.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -4955,6 +5075,7 @@
             "image": "static/activity/uploaded_images/f7d31a11-e265-11eb-a4bb-97de22bf9962.jpeg",
             
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -4998,6 +5119,7 @@
             "image": "static/activity/uploaded_images/b8a00d80-e3b9-11eb-a2b2-af1bf84f3dbc.jpeg",
             
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -5038,6 +5160,7 @@
             "image": "static/activity/uploaded_images/05552dca-c6f9-11eb-8853-2bb31b1bde1b.jpeg",
             
             "created_by_name": "Nadine",
+            "status": "2",
             "activity_types": [
                 53,
                 38
@@ -5078,6 +5201,7 @@
             "difficulty": 1,
             
             "created_by_name": "Linus",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -5118,6 +5242,7 @@
             "difficulty": 0,
             "image": "static/activity/uploaded_images/c3899e2b-c7c2-11eb-b36a-355dc6ed5640.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -5159,6 +5284,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/c07b05c0-ab04-11ed-aac1-369b6e1c0fdb.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 38,
                 31
@@ -5199,6 +5325,7 @@
             "image": "static/activity/uploaded_images/c5576b2f-c49c-11eb-8768-e14fc1ce41db.jpeg",
             
             "created_by_name": "sophie",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -5242,6 +5369,7 @@
             "image": "static/activity/uploaded_images/602177ce-c708-11eb-affd-5b6a4e07adaa.jpeg",
             
             "created_by_name": "Lukas",
+            "status": "2",
             "activity_types": [
                 38,
                 75
@@ -5284,6 +5412,7 @@
             "difficulty": 1,
             
             "created_by_name": "Janny",
+            "status": "2",
             "activity_types": [
                 31,
                 41
@@ -5324,6 +5453,7 @@
             "image": "static/activity/uploaded_images/8d0848e5-c56e-11eb-b522-9797a9718b40.jpeg",
             
             "created_by_name": "JoDa",
+            "status": "2",
             "activity_types": [
                 41,
                 75
@@ -5370,6 +5500,7 @@
             "difficulty": 2,
             
             "created_by_name": "Caroline",
+            "status": "2",
             "activity_types": [
                 38,
                 41
@@ -5408,6 +5539,7 @@
             "image": "static/activity/uploaded_images/8ab1c781-c79c-11eb-8280-7fabe3c09439.jpeg",
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 31
@@ -5452,6 +5584,7 @@
             "difficulty": 1,
             "created_by_email": "Inspi",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -5495,6 +5628,7 @@
             "costs_rating": 0,
             "difficulty": 1,
             "created_by_name": "Leyan",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -5538,6 +5672,7 @@
             "image": "static/activity/uploaded_images/36dc0704-c572-11eb-aeb5-7371962755c3.jpeg",
             
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -5582,6 +5717,7 @@
             "costs_rating": 2,
             "difficulty": 1,
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 41,
                 75
@@ -5626,6 +5762,7 @@
             "image": "static/activity/uploaded_images/a093ffb2-c571-11eb-9cba-65e9426a14d8.jpeg",
             
             "created_by_name": "Linus",
+            "status": "2",
             "activity_types": [
                 38
             ],
@@ -5666,6 +5803,7 @@
             "difficulty": 1,
             
             "created_by_name": "Janny",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -5703,6 +5841,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/19f0bfa1-a2bf-11ec-9144-759eb716bcbf.jpeg",
             "created_by_name": "Robert Baden-Powell",
+            "status": "2",
             "activity_types": [
                 38,
                 53
@@ -5746,6 +5885,7 @@
             "difficulty": 1,
             
             "created_by_name": "Janny",
+            "status": "2",
             "activity_types": [
                 53,
                 31,
@@ -5792,6 +5932,7 @@
             "image": "static/activity/uploaded_images/1e815f2b-a2e1-11ec-858f-9d81a029f102.jpeg",
             
             "created_by_name": "Meuterei 2021",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -5831,6 +5972,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/f7e15d86-8fd1-11ee-b671-222e677059e3.jpeg",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 38,
                 41
@@ -5874,6 +6016,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/f04e5a56-a62a-11ed-a14b-927c9837702f.jpeg",
             "created_by_name": "Joris",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -5914,6 +6057,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/f42ad1bc-8fd2-11ee-99ec-7af8bb4fbc96.jpeg",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -5952,6 +6096,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/bd27ec46-a62a-11ed-a5a3-a2fc6a8f9be2.jpeg",
             "created_by_name": "jasmin",
+            "status": "2",
             "activity_types": [
                 41,
                 75
@@ -5993,6 +6138,7 @@
             "difficulty": 0,
             "image": "static/activity/uploaded_images/cb2194f6-ab06-11ed-9f7f-f6d2d6012fa3.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 53,
                 31
@@ -6034,6 +6180,7 @@
             "difficulty": 0,
             "image": "static/activity/uploaded_images/d35c5d94-ab07-11ed-aa55-cebf0ce75a60.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -6074,6 +6221,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/f89fc7f6-8fd3-11ee-99ec-7af8bb4fbc96.jpeg",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -6111,6 +6259,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/17955e2e-ad5c-11ed-8257-0e753dddab11.jpeg",
             "created_by_name": "Robert",
+            "status": "2",
             "activity_types": [
                 75,
                 31
@@ -6150,6 +6299,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/0531b056-8d54-11ee-ac08-766b83f25c38.jpeg",
             "created_by_name": "MeuFü Handwerkliches",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -6191,6 +6341,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/a3932982-8fd4-11ee-95b5-92a28eaaaab2.jpeg",
             "created_by_name": "Inspi",
+            "status": "2",
             "activity_types": [
                 41,
                 31
@@ -6229,6 +6380,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/c69bdfa0-8c91-11ee-8f07-8a8cf87886cd.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 38,
                 41
@@ -6270,6 +6422,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/2ecd6034-e0f4-11ed-aa38-3a639eaad37c.jpeg",
             "created_by_name": "schibo",
+            "status": "2",
             "activity_types": [
                 31
             ],
@@ -6308,6 +6461,7 @@
             "difficulty": 3,
             "image": "static/activity/uploaded_images/7ab1059e-8d53-11ee-a1e9-1a73e76efccf.jpeg",
             "created_by_name": "Ajes",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -6349,6 +6503,7 @@
             "difficulty": 3,
             "image": "static/activity/uploaded_images/0cae3472-8c95-11ee-8cae-2612159b35ad.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 41,
                 53
@@ -6389,6 +6544,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/197858f0-8c99-11ee-b7e3-e20096ef8607.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 41,
                 31
@@ -6428,6 +6584,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/8ecf0ec4-8d56-11ee-bd9b-82e803b8b56c.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -6466,6 +6623,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/d1aa7208-8c9b-11ee-b7e3-e20096ef8607.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -6505,6 +6663,7 @@
             "difficulty": 1,
             "image": "static/activity/uploaded_images/565d23fc-8c9b-11ee-b7e3-e20096ef8607.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -6542,6 +6701,7 @@
             "difficulty": 0,
             "image": "static/activity/uploaded_images/57363fea-8d57-11ee-a605-8298311c208d.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 53,
                 31
@@ -6585,6 +6745,7 @@
             "difficulty": 0,
             "image": "static/activity/uploaded_images/75190292-8eae-11ee-a8af-faa04098b960.jpeg",
             "created_by_name": "Lina",
+            "status": "2",
             "activity_types": [
                 53
             ],
@@ -6622,6 +6783,7 @@
             "difficulty": 3,
             "image": "static/activity/uploaded_images/5ea2bbaa-8c94-11ee-8cae-2612159b35ad.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -6660,6 +6822,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/cf33532a-8c99-11ee-9642-f230ba3a8bfd.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 53,
                 31
@@ -6699,6 +6862,7 @@
             "difficulty": 0,
             "image": "static/activity/uploaded_images/c9813908-8eae-11ee-a8af-faa04098b960.jpeg",
             "created_by_name": "Lina",
+            "status": "2",
             "activity_types": [
                 53,
                 31
@@ -6738,6 +6902,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/c8ef6e92-8d55-11ee-bd9b-82e803b8b56c.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 41
             ],
@@ -6777,6 +6942,7 @@
             "difficulty": 2,
             "image": "static/activity/uploaded_images/41cfc222-8c97-11ee-991a-7a4402ef6354.jpeg",
             "created_by_name": "Inja",
+            "status": "2",
             "activity_types": [
                 41,
                 53

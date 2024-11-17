@@ -197,7 +197,7 @@
         </a>
       {% endif %}
       <hr class="my-4 h-0.3 bg-blue-400" />
-      {% include 'activity/components/comment.html' with comments=activity.comment_set.all comment_form=comment_form %}
+      {% include 'activity/components/comment.html' with comments=activity.comment_set.filter|approved comment_form=comment_form %}
 
       <hr class="my-4 h-0.3 bg-blue-400" />
       {% include 'activity/components/related-posts.html' with related_activities=related_activities%}

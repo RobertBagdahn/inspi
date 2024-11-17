@@ -2,39 +2,43 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class OptionType(models.IntegerChoices):
-    LIKE = 1, _('Like'),
-    DISLIKE = -1, _('Dislike')
+class EmotionType(models.TextChoices):
+    HAPPY = 'happy', _('Glücklich')
+    IN_LOVE = 'in_love', _('Verliebt')
+    SAD = 'sad', _('Traurig')
+    DISAPPOINTED = 'disappointed', _('Enttäuscht')
+    BORED = 'bored', _('Gelangweilt')
+    EXCITED = 'excited', _('Aufgeregt')
 
 
 class ExecutionTimeChoices(models.TextChoices):
-    LESS_THAN_30 = '1', _('<30 min')
-    THIRTY = '2', _('30 min')
-    SIXTY = '3', _('60 min')
-    NINETY = '4', _('90 min')
-    MORE = '5', _('mehr als 90 min')
+    LESS_THAN_30 = '0', _('<30 min')
+    THIRTY = '1', _('30 min')
+    SIXTY = '2', _('60 min')
+    NINETY = '3', _('90 min')
+    MORE = '4', _('mehr als 90 min')
 
 
 class DifficultyChoices(models.TextChoices):
-    EASY = '1', _('Einfach')
-    MEDIUM = '2', _('Mittel')
-    HARD = '3', _('Schwer')
+    EASY = '0', _('Einfach')
+    MEDIUM = '1', _('Mittel')
+    HARD = '2', _('Schwer')
     
 
 class CostsRatingChoices(models.TextChoices):
-    ZERO = '1', '0 €'
-    ZERO_FIFTY = '2', '0,50 €'
-    ONE = '3', '1,00 €'
-    TWO = '4', '2,00 €'
-    MORE = '5', 'mehr als 2,00 €'
+    ZERO = '0', '0 €'
+    ZERO_FIFTY = '1', '0,50 €'
+    ONE = '2', '1,00 €'
+    TWO = '3', '2,00 €'
+    MORE = '4', 'mehr als 2,00 €'
 
 
 class PrepairationTimeChoices(models.TextChoices):
-    LESS_THAN_30 = '1', _('keine')
-    THIRTY = '2', _('5 min')
-    SIXTY = '3', _('30 min')
-    NINETY = '4', _('60 min')
-    MORE = '5', _('mehr als 60 min')
+    LESS_THAN_30 = '0', _('keine')
+    THIRTY = '1', _('5 min')
+    SIXTY = '2', _('30 min')
+    NINETY = '3', _('60 min')
+    MORE = '4', _('mehr als 60 min')
 
 class StatusChoicesAdmin(models.TextChoices):
     DRAFT = '1', _('Entwurf')

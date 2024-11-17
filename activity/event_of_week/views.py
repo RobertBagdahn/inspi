@@ -1,18 +1,16 @@
 # test/views.py
 from django.http import FileResponse
-from reportlab.pdfgen import canvas
 from activity.activity.models import Activity
 from django.shortcuts import redirect, render
 from .forms import ImageDownloadForm
 from django.template.loader import get_template
 
 from cairosvg import svg2png
+import io
 
 
 def generate_png_from_svg(request, activity_id, color, page):
     activity = Activity.objects.get(id=activity_id)
-
-    print("generate_png_from_svg", activity_id, color, page)
 
     template_path = f"svg/heimabend_der_woche_{page}.svg"
 
@@ -60,20 +58,31 @@ def generate_png_from_svg(request, activity_id, color, page):
     if temp_str:
         current_title.append(temp_str)
 
-    print("current_title", current_title)
+    mat_list = {}
+
+    materials = activity.material_list.all()
+    if not materials:
+        mat_list['mat_1'] = "Keine Materialien"
+    for i, material in enumerate(materials):
+        mat_list[f"mat_{i+1}"] = material.material_name.name
+
 
     context = {
         "activity": activity,
         "title": current_title,
         "words_20_chars": words_20_chars,
         "color": color,
+        **mat_list,
     }
     template = get_template(template_path)
     svg_code = template.render(context)
 
-    svg2png(bytestring=svg_code, write_to="output.png")
+    png_filelike = io.BytesIO()
 
-    return FileResponse(open("output.png", "rb"))
+    svg2png(bytestring=svg_code, write_to=png_filelike)
+    png_filelike.seek(0)
+
+    return FileResponse(png_filelike, as_attachment=True, filename=f"heimabend_der_woche_{page}.png")
 
 
 def download_form(request, activity_id):
