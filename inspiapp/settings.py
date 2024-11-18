@@ -338,8 +338,6 @@ EMAIL_USE_SSL = env.bool(
 
 # Tracking
 TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
-TRACK_PAGEVIEWS = True
+TRACK_PAGEVIEWS = False
 TRACK_ANONYMOUS_USERS = True
-TRACK_REFERER = True
-TRACK_QUERY_STRING = True
-TRACK_IGNORE_URLS = [r'/admin/*', r'/__reload__/*', r'/favicon.ico', r'/robots.txt']
+TRACK_IGNORE_URLS = ['admin', '__reload__', 'tracking', 'sitemap.xml', 'robots.txt', 'favicon.ico', 'static', 'media']

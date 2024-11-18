@@ -10,9 +10,8 @@
         top-0 left-0 h-16" alt="thinking inspi" />
       </a>
       <div class="flex items-center lg:order-2">
-        <button
-          data-modal-target="search-modal"
-          data-modal-toggle="search-modal"
+        <a
+          href="{% url 'activity-search' %}"
           id="search-button-acticate"
           type="button"
           class="inline-flex items-center text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded text-sm px-2.5 py-2.5 focus:outline-none"
@@ -29,8 +28,8 @@
               clip-rule="evenodd"
             ></path>
           </svg>
-        </button>
-        {% if user.is_authenticated %}
+        </a>
+        {% if user.is_authenticated and user.is_superuser %}
         <button
           type="button"
           class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -238,6 +237,7 @@
               >Rezepte</a>
           </li>
           {% endif %}
+          {% if user.is_authenticated and user.is_superuser %}
           <li>
             <a
               href="{% url 'blog-main'%}"
@@ -254,21 +254,10 @@
               >Wissen</a
             >
           </li>
+          {% endif %}
         </ul>
       </div>
     </div>
     {% include "components/search-modal.html" %}
   </nav>
 </header>
-
-
-<script>
-  const searchButton = document.getElementById("search-button-acticate");
-  const searchModal = document.getElementById("search-modal");
-
-  searchButton.addEventListener("click", () => {
-    setTimeout(() => {
-      searchModal.querySelector("input").focus();
-    }, 100);
-  });
-</script>

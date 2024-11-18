@@ -57,3 +57,11 @@ class StatusSearchChoices(models.TextChoices):
     PUBLISHED = '2', _('Veröffentlicht')
     ARCHIVED = '3', _('Achiviert (Unveröffentlicht)')
     REVIEW = '4', _('Review Angefordert')
+
+
+class SortChoices(models.TextChoices):
+    NEWEST = '0', _('Neueste')
+    OLDEST = '1', _('Älteste')
+    MOST_LIKED = '2', _('Meist gelikte')
+    MOST_COMMENTED = '3', _('Meist kommentierte')
+    RANDOM = '4', _('Zufällig')

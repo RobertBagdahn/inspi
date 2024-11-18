@@ -51,6 +51,7 @@ urlpatterns = [
     path("activity-main/<int:topic_id>", views.main_category_view, name="activity-main-topic"),
     path("activity-category-main/<str:category_name>/<int:category_id>", views.main_category_view, name="activity-main-category"),
     path('activity-load-more/<str:category_name>/<int:category_id>', views.list_load_activities_view, name='activity-load-more'),
+    path('search', views.search, name='activity-search'),
 
     path("all-items", views.all_items, name="activity-all-items"),
     path("details/<int:activity_id>", views.detail, name="activity-detail"),

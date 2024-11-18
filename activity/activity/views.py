@@ -35,7 +35,8 @@ from .forms import (
     StatusSearchFrom,
     CommentForm,
     SearchForm,
-    EventOfWeekForm
+    EventOfWeekForm,
+    SearchDetailForm,
 )
 
 from django.http import Http404
@@ -118,10 +119,12 @@ def main_view(request, topic_id=None, scout_level_id=None):
 
     if scout_level_id:
         activities_raw = activities_raw.filter(scout_levels__id=scout_level_id)
-        selected_scout_level = activity_models.ScoutLevelChoice.objects.get(id=scout_level_id)
+        selected_scout_level = activity_models.ScoutLevelChoice.objects.get(
+            id=scout_level_id
+        )
     else:
         selected_scout_level = None
-    
+
     topics = activity_models.Topic.objects.all()
 
     activities_raw = activities_raw.filter(
@@ -139,45 +142,44 @@ def main_view(request, topic_id=None, scout_level_id=None):
         "topics": topics,
         "selected_topic": selected_topic,
         "selected_scout_level": selected_scout_level,
-
     }
     return render(request, "activity/main-view.html", context)
 
 
 def _load_activities(request, category_name, category_id):
-    if category_name == 'topic':
+    if category_name == "topic":
         activities_raw = activity_models.Activity.objects.filter(
             topics__id=category_id
         ).order_by("?")
         selected_category = activity_models.Topic.objects.get(id=category_id)
         selected_category_str = selected_category.name
 
-    if category_name == 'scout-level':
+    if category_name == "scout-level":
         activities_raw = activity_models.Activity.objects.filter(
             scout_levels__id=category_id
         ).order_by("?")
         selected_category = activity_models.ScoutLevelChoice.objects.get(id=category_id)
         selected_category_str = selected_category.name
 
-    if category_name == 'activity-type':
+    if category_name == "activity-type":
         activities_raw = activity_models.Activity.objects.filter(
             activity_types__id=category_id
         ).order_by("?")
         selected_category = activity_models.ActivityType.objects.get(id=category_id)
         selected_category_str = selected_category.name
 
-    if category_name == 'random':
+    if category_name == "random":
         activities_raw = activity_models.Activity.objects.all().order_by("?")
-        selected_category_str = 'Inspirierend'
+        selected_category_str = "Inspirierend"
 
-    if category_name == 'newest':
+    if category_name == "newest":
         activities_raw = activity_models.Activity.objects.all().order_by("-created_at")
-        selected_category_str = 'Neueste'
+        selected_category_str = "Neueste"
 
-    if category_name == 'trend':
+    if category_name == "trend":
         activities_raw = activity_models.Activity.objects.all().order_by("-view_count")
-        selected_category_str = 'Trend'
-    
+        selected_category_str = "Trend"
+
     activities_raw = activities_raw.filter(
         status=activity_choices.StatusSearchChoices.PUBLISHED
     )
@@ -191,7 +193,9 @@ def _load_activities(request, category_name, category_id):
 
 
 def main_category_view(request, category_name, category_id):
-    page_object, selected_category_str = _load_activities(request, category_name, category_id)
+    page_object, selected_category_str = _load_activities(
+        request, category_name, category_id
+    )
     context = {
         "activities": page_object,
         "selected_category": selected_category_str,
@@ -201,9 +205,106 @@ def main_category_view(request, category_name, category_id):
     return render(request, "activity/main-category.html", context)
 
 
+def search(request):
+    q = request.GET.get("query", "")
+
+    # clean q
+    q = q.strip()
+    q = q.replace("  ", " ")
+
+    sort = request.GET.get("sort", "0")
+    scout_levels = request.GET.getlist("scout_levels")
+    activity_types = request.GET.getlist("activity_types")
+    locations = request.GET.getlist("locations")
+    times = request.GET.getlist("times")
+    topics = request.GET.getlist("topics")
+    costs_rating = request.GET.get("costs_rating")
+    difficulty = request.GET.get("difficulty")
+    execution_time = request.GET.get("execution_time")
+    preparation_time = request.GET.get("preparation_time")
+    status = request.GET.get("status", "0")
+
+    items = activity_models.Activity.objects.all()
+
+    if sort == "0":
+        items = items.order_by("-created_at")
+    elif sort == "1":
+        items = items.order_by("created_at")
+    elif sort == "2":
+        # likes
+        items = items.order_by("-created_at")
+    elif sort == "3":
+        # comments
+        items = items.order_by("-created_at")
+    elif sort == "4":
+        items = items.order_by("?")
+
+
+    print("q", q)
+    print('type', type(q))
+    if q != "":
+        items = items.filter(
+            Q(title__icontains=q)
+            | Q(authors__scout_display_name__icontains=q)
+            | Q(topics__name__icontains=q)
+            | Q(summary__icontains=q)
+            | Q(description__icontains=q)
+            | Q(material_list__material_name__name__icontains=q)
+        )
+    
+    if scout_levels:
+        items = items.filter(scout_levels__id__in=scout_levels)
+
+    if activity_types:
+        items = items.filter(activity_types__id__in=activity_types)
+
+    if locations:
+        items = items.filter(locations__id__in=locations)
+
+    if times:
+        items = items.filter(times__id__in=times)
+
+    if topics:
+        items = items.filter(topics__id__in=topics)
+
+    if costs_rating:
+        items = items.filter(costs_rating=costs_rating)
+
+    if difficulty:
+        items = items.filter(difficulty=difficulty)
+
+    if execution_time:
+        items = items.filter(execution_time=execution_time)
+
+    if preparation_time:
+        items = items.filter(preparation_time=preparation_time)
+
+    if status != "0":
+        items = items.filter(status=str(status))
+
+    items = items.distinct()
+
+    page_num = request.GET.get("page", 1)
+    paginator = Paginator(items, per_page=12)
+    page_object = paginator.get_page(page_num)
+    page_object.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
+    form = SearchDetailForm(request.GET or None, initial={
+        "sort": "0",
+        "status": "0",
+    })
+
+    context = {
+        "activities": page_object,
+        "form": form,
+    }
+    return render(request, "activity/search/main.html", context)
+
+
 def list_load_activities_view(request, category_name, category_id):
     print(category_name, category_id)
-    page_object, selected_category_str = _load_activities(request, category_name, category_id)
+    page_object, selected_category_str = _load_activities(
+        request, category_name, category_id
+    )
 
     context = {
         "activities": page_object,
@@ -212,6 +313,7 @@ def list_load_activities_view(request, category_name, category_id):
         "category_id": category_id,
     }
     return render(request, "activity/partials/all-activities.html", context)
+
 
 def all_items(request):
     query = request.GET.get("q", "")
@@ -400,10 +502,11 @@ class ContactWizard(CookieWizardView):
             """,
             recipient_list=[
                 user.email
-                for user in CustomUser.objects.filter(Q(is_superuser=True) | Q(is_staff=True))
+                for user in CustomUser.objects.filter(
+                    Q(is_superuser=True) | Q(is_staff=True)
+                )
             ],
         )
-        
 
         return HttpResponseRedirect(f"/activity/create-final/{activity.id}")
 
@@ -742,6 +845,7 @@ def comment_create(request):
         }
     )
 
+
 link_list = [
     {
         "link": "activity-admin-overview",
@@ -770,53 +874,49 @@ link_list = [
     {
         "link": "activity-admin-comment",
         "title": "Kommentare",
-    }
+    },
 ]
 
 
-
 def admin_overview(request):
-    context = {
-        "link_list": link_list
-    }
+    context = {"link_list": link_list}
     return render(request, "activity/admin/overview/main.html", context)
 
 
 def admin_event_of_week(request):
     context = {
-        "id": 'event-of-week',
+        "id": "event-of-week",
         "link_list": link_list,
         "form": StatusSearchFrom(request.GET or None),
-        "items": activity_models.ActivityOfTheWeek.objects.all(),
+        "items": activity_models.ActivityOfTheWeek.objects.all().order_by(
+            "-release_date"
+        ),
         "create_link": "event-of-week/create",
     }
     return render(request, "activity/admin/activity-of-week/main.html", context)
 
+
 def admin_topic(request):
-    context = {
-        "link_list": link_list
-    }
+    context = {"link_list": link_list}
     return render(request, "activity/admin/topic/main.html", context)
+
 
 def admin_comment(request):
     context = {
-        "id": 'comment',
+        "id": "comment",
         "link_list": link_list,
         "items": activity_models.Comment.objects.all(),
     }
     return render(request, "activity/admin/comment/main.html", context)
 
+
 def admin_data(request):
-    context = {
-        "link_list": link_list
-    }
+    context = {"link_list": link_list}
     return render(request, "activity/admin/data/main.html", context)
 
 
 def admin_like(request):
-    context = {
-        "link_list": link_list
-    }
+    context = {"link_list": link_list}
     return render(request, "activity/admin/like/main.html", context)
 
 
@@ -828,7 +928,5 @@ def event_of_week_create(request):
             return redirect("activity-admin-event-of-week")
     else:
         form = EventOfWeekForm()
-    context = {
-        "form": form
-    }
+    context = {"form": form}
     return render(request, "activity/admin/components/list/create.html", context)

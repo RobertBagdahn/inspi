@@ -106,6 +106,101 @@ class SearchForm(forms.Form):
         required=True,
     )
 
+class SearchDetailForm(forms.Form):
+    query = forms.CharField(
+        label="Suche",
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Suche nach ...",
+                "onkeypress": "if(event.keyCode == 13) { return true; }",
+            }
+        ),
+    )
+    
+    sort = forms.ChoiceField(
+        choices=activity_choices.SortChoices,
+        widget=forms.RadioSelect(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
+        required=False,
+    )
+
+    scout_levels = forms.ModelMultipleChoiceField(
+        queryset=ScoutLevelChoice.objects.all(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple(attrs={
+            "class": "form-control", "onchange": "submit();"
+        }),
+        label="Altersgruppen",
+    )
+    activity_types = forms.ModelMultipleChoiceField(
+        queryset=ActivityTypeChoice.objects.all(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple(attrs={
+            "class": "form-control", "onchange": "submit();"
+        }),
+        label="Aktivitätstypen",
+    )
+    locations = forms.ModelMultipleChoiceField(
+        queryset=LocationChoice.objects.all(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple(attrs={
+            "class": "form-control", "onchange": "submit();"
+        }),
+        label="Orte",
+    )
+    times = forms.ModelMultipleChoiceField(
+        queryset=TimeChoice.objects.all(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple(attrs={
+            "class": "form-control", "onchange": "submit();"
+        }),
+        label="Zeiten",
+    )
+    topics = forms.ModelMultipleChoiceField(
+        queryset=Topic.objects.all(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple(attrs={
+            "class": "form-control", "onchange": "submit();"
+        }),
+        label="Themen",
+    )
+    costs_rating = forms.ChoiceField(
+        choices=CostsRatingChoices.choices,
+        widget=forms.RadioSelect(attrs={"class": "form-control", "onchange": "submit();"}),
+        label="Kosten",
+        required=False,
+    )
+    execution_time = forms.ChoiceField(
+        choices=ExecutionTimeChoices.choices,
+        widget=forms.RadioSelect(attrs={"class": "form-control", "onchange": "submit();"}),
+        label="Dauer",
+        required=False,
+    )
+    preparation_time = forms.ChoiceField(
+        choices=PrepairationTimeChoices.choices,
+        widget=forms.RadioSelect(attrs={"class": "form-control", "onchange": "submit();"}),
+        label="Vorbereitungszeit",
+        required=False,
+    )
+    difficulty = forms.ChoiceField(
+        choices=DifficultyChoices.choices,
+        widget=forms.RadioSelect(attrs={"class": "form-control", "onchange": "submit();"}),
+        label="Schwierigkeit",
+        required=False,
+    )
+    status = forms.ChoiceField(
+        choices=StatusSearchChoices.choices,
+        widget=forms.RadioSelect(attrs={
+            "class": "form-control", "onchange": "submit();"
+        }),
+        label="Status",
+        required=False,
+    )
+
 
 class CommentForm(forms.Form):
     content = forms.CharField(label="Content", widget=forms.Textarea)
