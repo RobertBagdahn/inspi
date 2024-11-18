@@ -142,6 +142,7 @@ def main_view(request, topic_id=None, scout_level_id=None):
         "topics": topics,
         "selected_topic": selected_topic,
         "selected_scout_level": selected_scout_level,
+        "count": activity_models.Activity.objects.count(),
     }
     return render(request, "activity/main-view.html", context)
 
