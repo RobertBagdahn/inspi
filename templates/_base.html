@@ -32,12 +32,8 @@
 
     {% tailwind_css %}
 
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/htmx.org@1.5.0"
-      integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI"
-      crossorigin="anonymous">
-    </script>
+    <script src="{% static 'js/jquery3.7.1.js' %}"></script>
+    <script src="{% static 'js/htmx.min.js' %}"></script>
   </head>
 
   <body>
@@ -58,7 +54,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script type="text/javascript" src="{% static 'javascript/main.js' %}"></script> 
-    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
     <script src="{% static 'toasts.js' %}"></script>
     <script>
       document.body.addEventListener('htmx:configRequest', (event) => {
