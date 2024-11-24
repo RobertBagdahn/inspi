@@ -18,6 +18,7 @@ from .models import (
     LocationChoice,
     TimeChoice,
     Comment,
+    Emotion,
 
 )
 
@@ -49,6 +50,7 @@ admin.site.register(ExperimentItem)
 admin.site.register(MaterialItem)
 admin.site.register(MaterialUnit)
 admin.site.register(MaterialName)
+admin.site.register(Emotion)
 
 
 @admin.register(Topic)

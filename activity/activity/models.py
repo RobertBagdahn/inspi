@@ -325,8 +325,14 @@ class Emotion(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     created_by = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, related_name="like_activity", null=True, blank=True
+        CustomUser, on_delete=models.CASCADE, related_name="emotion_activity", null=True, blank=True
     )
+
+    def __str__(self):
+        return f"{self.activity.title} {self.emotion}" + " - " + str(self.created_by)
+    
+    def __repr__(self):
+        return self.__str__()
 
 
 class Experiment(TimeStampMixin):

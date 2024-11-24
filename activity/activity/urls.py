@@ -96,6 +96,16 @@ urlpatterns = [
 
     # event-of-week-create
     path('admin/event-of-week/create', views.event_of_week_create, name="activity-event-of-week-create"),
+    path('admin/event-of-week/update/<int:id>', views.event_of_week_update, name="activity-event-of-week-update"),
+
+    # comment
+    path('admin/comment/update/<int:id>', views.comment_update, name="activity-comment-update"),
+
+    # emotions
+    path('activity/add-emotion', views.add_emotion, name="activity-admin-emotion"),
+    path('admin/emotion/update/<int:id>', views.emotion_update, name="activity-emotion-update"),
+
+
 ]
 
 if get_settings().USE_PLACEHOLDERS:

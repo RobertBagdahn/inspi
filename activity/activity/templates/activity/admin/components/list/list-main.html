@@ -59,6 +59,7 @@
               </div>
             </form>
           </div>
+          {% if create_link %}
           <div
             class="w-full md:w-auto flex flex-col md:flex-row mb-3 md:mb-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
           >
@@ -68,6 +69,7 @@
                 Neuer Eintrag
             </a>
           </div>
+          {% endif %}
         </div>
       </div>
       <div class="overflow-x-auto">
@@ -79,7 +81,7 @@
           >
           {% if items %}
             {% for item in items %}
-              {% include "./table-row.html" with item=item %}
+              {% include "./table-row.html" with item=item create_link=create_link %}
             {% endfor %}
           {% else %}
             {% include "./empty-row.html" %}

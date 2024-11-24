@@ -3,13 +3,10 @@ from django.utils.translation import gettext_lazy as _
 
 
 class EmotionType(models.TextChoices):
-    HAPPY = 'happy', _('Glücklich')
     IN_LOVE = 'in_love', _('Verliebt')
-    SAD = 'sad', _('Traurig')
+    HAPPY = 'good', _('Gut')
     DISAPPOINTED = 'disappointed', _('Enttäuscht')
-    BORED = 'bored', _('Gelangweilt')
-    EXCITED = 'excited', _('Aufgeregt')
-
+    COMPEX = 'complex', _('zu komplex')
 
 class ExecutionTimeChoices(models.TextChoices):
     LESS_THAN_30 = '0', _('<30 min')
@@ -60,8 +57,8 @@ class StatusSearchChoices(models.TextChoices):
 
 
 class SortChoices(models.TextChoices):
-    NEWEST = '0', _('Neueste')
+    RANDOM = '0', _('Zufällig')
     OLDEST = '1', _('Älteste')
     MOST_LIKED = '2', _('Meist gelikte')
     MOST_COMMENTED = '3', _('Meist kommentierte')
-    RANDOM = '4', _('Zufällig')
+    NEWEST = '4', _('Neueste')

@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from general.login.models import CustomUser
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.utils import timezone
 
 
 from django.shortcuts import get_object_or_404
@@ -37,6 +38,8 @@ from .forms import (
     SearchForm,
     EventOfWeekForm,
     SearchDetailForm,
+    CommentAdminForm,
+    EmotionAdminForm,
 )
 
 from django.http import Http404
@@ -93,6 +96,7 @@ def detail(request, activity_id):
 
     except activity_models.Activity.DoesNotExist:
         raise Http404("Activity does not exist")
+    
     return render(
         request,
         "activity/detail.html",
@@ -865,10 +869,6 @@ link_list = [
         "title": "Themen",
     },
     {
-        "link": "activity-list",
-        "title": "Liste",
-    },
-    {
         "link": "activity-admin-data",
         "title": "Nutzerdaten",
     },
@@ -893,6 +893,7 @@ def admin_event_of_week(request):
             "-release_date"
         ),
         "create_link": "event-of-week/create",
+        "update_link": "event-of-week/update",
     }
     return render(request, "activity/admin/activity-of-week/main.html", context)
 
@@ -907,6 +908,7 @@ def admin_comment(request):
         "id": "comment",
         "link_list": link_list,
         "items": activity_models.Comment.objects.all(),
+        "update_link": "comment/update",
     }
     return render(request, "activity/admin/comment/main.html", context)
 
@@ -917,8 +919,13 @@ def admin_data(request):
 
 
 def admin_like(request):
-    context = {"link_list": link_list}
-    return render(request, "activity/admin/like/main.html", context)
+    context = {
+        "id": "comment",
+        "link_list": link_list,
+        "items": activity_models.Emotion.objects.all(),
+        "update_link": "emotion/update",
+    }
+    return render(request, "activity/admin/comment/main.html", context)
 
 
 def event_of_week_create(request):
@@ -931,3 +938,68 @@ def event_of_week_create(request):
         form = EventOfWeekForm()
     context = {"form": form}
     return render(request, "activity/admin/components/list/create.html", context)
+
+
+def event_of_week_update(request, id):
+    item = activity_models.ActivityOfTheWeek.objects.get(id=id)
+
+    if request.method == "POST":
+        form = EventOfWeekForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect("activity-admin-event-of-week")
+    else:
+        form = EventOfWeekForm(instance=item)
+    context = {"form": form}
+    return render(request, "activity/admin/components/list/update.html", context)
+
+
+def comment_update(request, id):
+    item = activity_models.Comment.objects.get(id=id)
+
+    if request.method == "POST":
+        form = CommentAdminForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect("activity-admin-comment")
+    else:
+        form = CommentAdminForm(instance=item)
+    context = {"form": form}
+    return render(request, "activity/admin/components/list/update.html", context)
+
+def emotion_update(request, id):
+    item = activity_models.Emotion.objects.get(id=id)
+
+    if request.method == "POST":
+        form = EmotionAdminForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect("activity-admin-like")
+    else:
+        form = EmotionAdminForm(instance=item)
+    context = {"form": form}
+    return render(request, "activity/admin/components/list/update.html", context)
+
+def add_emotion(request):
+    activity_id = request.POST.get("activity_id")
+    emotion = request.POST.get("emotion")
+
+    activity = get_object_or_404(Activity, id=activity_id)
+
+    if request.user.is_authenticated:
+        activity_models.Emotion.objects.create(
+            activity=activity,
+            emotion=emotion,
+            created_by=request.user,
+            created_at=timezone.now(),
+        )
+
+        return JsonResponse('Danke!', safe=False)
+    else:
+        activity_models.Emotion.objects.create(
+            activity=activity,
+            emotion=emotion,
+            created_at=timezone.now(),
+        )
+        # render html
+        return JsonResponse('Danke!', safe=False)

@@ -13,6 +13,7 @@ from .choices import (
     PrepairationTimeChoices,
     StatusChoices,
     StatusSearchChoices,
+    EmotionType,
 )
 from .models import (
     MaterialUnit,
@@ -24,6 +25,8 @@ from .models import (
     LocationChoice,
     TimeChoice,
     ActivityOfTheWeek,
+    Comment,
+    Emotion,
 )
 
 from general.login.models import CustomUser
@@ -106,6 +109,7 @@ class SearchForm(forms.Form):
         required=True,
     )
 
+
 class SearchDetailForm(forms.Form):
     query = forms.CharField(
         label="Suche",
@@ -119,7 +123,7 @@ class SearchDetailForm(forms.Form):
             }
         ),
     )
-    
+
     sort = forms.ChoiceField(
         choices=activity_choices.SortChoices,
         widget=forms.RadioSelect(
@@ -131,72 +135,80 @@ class SearchDetailForm(forms.Form):
     scout_levels = forms.ModelMultipleChoiceField(
         queryset=ScoutLevelChoice.objects.all(),
         required=False,
-        widget=forms.CheckboxSelectMultiple(attrs={
-            "class": "form-control", "onchange": "submit();"
-        }),
+        widget=forms.CheckboxSelectMultiple(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Altersgruppen",
     )
     activity_types = forms.ModelMultipleChoiceField(
         queryset=ActivityTypeChoice.objects.all(),
         required=False,
-        widget=forms.CheckboxSelectMultiple(attrs={
-            "class": "form-control", "onchange": "submit();"
-        }),
+        widget=forms.CheckboxSelectMultiple(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Aktivitätstypen",
     )
     locations = forms.ModelMultipleChoiceField(
         queryset=LocationChoice.objects.all(),
         required=False,
-        widget=forms.CheckboxSelectMultiple(attrs={
-            "class": "form-control", "onchange": "submit();"
-        }),
+        widget=forms.CheckboxSelectMultiple(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Orte",
     )
     times = forms.ModelMultipleChoiceField(
         queryset=TimeChoice.objects.all(),
         required=False,
-        widget=forms.CheckboxSelectMultiple(attrs={
-            "class": "form-control", "onchange": "submit();"
-        }),
+        widget=forms.CheckboxSelectMultiple(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Zeiten",
     )
     topics = forms.ModelMultipleChoiceField(
         queryset=Topic.objects.all(),
         required=False,
-        widget=forms.CheckboxSelectMultiple(attrs={
-            "class": "form-control", "onchange": "submit();"
-        }),
+        widget=forms.CheckboxSelectMultiple(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Themen",
     )
     costs_rating = forms.ChoiceField(
         choices=CostsRatingChoices.choices,
-        widget=forms.RadioSelect(attrs={"class": "form-control", "onchange": "submit();"}),
+        widget=forms.RadioSelect(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Kosten",
         required=False,
     )
     execution_time = forms.ChoiceField(
         choices=ExecutionTimeChoices.choices,
-        widget=forms.RadioSelect(attrs={"class": "form-control", "onchange": "submit();"}),
+        widget=forms.RadioSelect(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Dauer",
         required=False,
     )
     preparation_time = forms.ChoiceField(
         choices=PrepairationTimeChoices.choices,
-        widget=forms.RadioSelect(attrs={"class": "form-control", "onchange": "submit();"}),
+        widget=forms.RadioSelect(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Vorbereitungszeit",
         required=False,
     )
     difficulty = forms.ChoiceField(
         choices=DifficultyChoices.choices,
-        widget=forms.RadioSelect(attrs={"class": "form-control", "onchange": "submit();"}),
+        widget=forms.RadioSelect(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Schwierigkeit",
         required=False,
     )
     status = forms.ChoiceField(
         choices=StatusSearchChoices.choices,
-        widget=forms.RadioSelect(attrs={
-            "class": "form-control", "onchange": "submit();"
-        }),
+        widget=forms.RadioSelect(
+            attrs={"class": "form-control", "onchange": "submit();"}
+        ),
         label="Status",
         required=False,
     )
@@ -206,6 +218,49 @@ class CommentForm(forms.Form):
     content = forms.CharField(label="Content", widget=forms.Textarea)
     post = forms.IntegerField(widget=forms.HiddenInput())
     author = forms.IntegerField(widget=forms.HiddenInput())
+
+
+class CommentAdminForm(forms.ModelForm):
+    content = forms.CharField(
+        label="Text",
+        widget=CKEditorWidget(attrs={"class": "col-span-2"}),
+    )
+    # read only post
+    is_approved = forms.BooleanField(label="Freigegeben", required=False)
+
+    class Meta:
+        model = Comment
+        fields = [
+            "content",
+            "is_approved",
+        ]
+
+class EmotionAdminForm(forms.ModelForm):
+    activity = forms.ModelChoiceField(
+        queryset=Activity.objects.all(),
+        required=True,
+        label="Aktivität",
+    )
+    emotion = forms.ChoiceField(
+        choices=activity_choices.EmotionType,
+        widget=forms.RadioSelect,
+        required=True,
+        label="Emotion",
+    )
+    created_by = forms.ModelChoiceField(
+        queryset=CustomUser.objects.all(),
+        required=True,
+        label="Erstellt von",
+    )
+
+
+    class Meta:
+        model = Emotion
+        fields = [
+            "activity",
+            "emotion",
+            "created_by",
+        ]
 
 
 class IntroForm(forms.Form):
@@ -485,7 +540,9 @@ class EventOfWeekForm(forms.ModelForm):
         queryset=Activity.objects.all(), required=True, label="Aktivität"
     )
     release_date = forms.DateField(
-        widget=forms.DateInput(attrs={"class": "form-control", "type": "date"}),
+        widget=forms.DateInput(
+            format="%Y-%m-%d", attrs={"class": "form-control", "type": "date"}
+        ),
         required=True,
         label="Veröffentlichungsdatum",
     )

@@ -1,5 +1,5 @@
-{% extends "_base.html" %}
-{% block content %}
+{% extends "activity/_base_activity.html" %}
+{% block detailcontent %}
 <div class="antialiased bg-gray-50 dark:bg-gray-900">
   <header>
     <nav class="lg:hidden bg-gray-50 shadow-sm dark:bg-gray-800 p-3">
@@ -53,10 +53,10 @@
   </div>
 
   <main class="dark:bg-gray-900 flex-1 p-4 space-y-4">
-    {% block detailcontent %}
-{% endblock detailcontent %}
+    {% block insidecontent %}
+{% endblock insidecontent %}
   </main>
 </div>
 </section>
-{% endblock content %}
+{% endblock detailcontent %}
 

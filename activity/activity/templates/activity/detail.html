@@ -34,7 +34,8 @@
     <section class="bg-gray-50">
       <div>
         {% if activity.image %}
-          <img class="w-full object-cover" src="{% cropped_thumbnail activity "cropping" %}" alt="image description">
+          {% comment %} <img class="w-full object-cover" src="{% cropped_thumbnail activity "cropping" %}" alt="image description"> {% endcomment %}
+          <img class="w-full object-cover" src="{{ activity.image.url }}" alt="image description">
         {% else %}
           <img class="w-48 h-48 mx-auto" src="{% static "images/inspi_flying.webp" %}" alt="image description">
         {% endif %}
@@ -154,6 +155,62 @@
       {% if can_edit %}
         <a class="text-blue-900 text-sm underline mx-2" href="{% url 'activity-update-main-text' activity.id %}" role="button">ändern</a>
       {% endif %}
+      <hr class="my-3 h-0.3 bg-blue-400" />
+
+      <div id="emotion-container" class="flex justify-center space-x-8 my-4">
+        <button
+          hx-post="{% url 'activity-admin-emotion' %}"
+          hx-target="#emotion-container"
+          hx-vals='{
+              "activity_id": "{{ activity.id }}",
+              "emotion": "in_love"
+          }'>
+          <svg class="w-10 h-10 text-red-500 hover:text-red-800 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
+          </svg>
+          <div id="content1" class="text-center text-sm text-gray-500 mx-auto">Verliebt</div>
+
+        </button>
+        <button
+          hx-post="{% url 'activity-admin-emotion' %}"
+          hx-target="#emotion-container"
+          hx-vals='{
+              "activity_id": "{{ activity.id }}",
+              "emotion": "good"
+          }'>
+          <svg class="w-10 h-10 text-green-500 hover:text-green-800 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.99 9H15M8.99 9H9m12 3a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM7 13c0 1 .507 2.397 1.494 3.216a5.5 5.5 0 0 0 7.022 0C16.503 15.397 17 14 17 13c0 0-1.99 1-4.995 1S7 13 7 13Z"/>
+          </svg>
+          <div id="content2" class="text-center text-sm text-gray-500">Gut</div>
+        </button>
+        <button
+          hx-post="{% url 'activity-admin-emotion' %}"
+          hx-target="#emotion-container"
+          hx-vals='{
+              "activity_id": "{{ activity.id }}",
+              "emotion": "disappointed"
+          }'>
+          <svg class="w-10 h-10 text-gray-500 hover:text-gray-800 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13c-.889.086-1.416.543-2.156 1.057a22.322 22.322 0 0 0-3.958 5.084 1.6 1.6 0 0 1-.582.628 1.549 1.549 0 0 1-1.466.087 1.587 1.587 0 0 1-.537-.406 1.666 1.666 0 0 1-.384-1.279l1.389-4.114M17 13h3V6.5A1.5 1.5 0 0 0 18.5 5v0A1.5 1.5 0 0 0 17 6.5V13Zm-6.5 1H5.585c-.286 0-.372-.014-.626-.15a1.797 1.797 0 0 1-.637-.572 1.873 1.873 0 0 1-.215-1.673l2.098-6.4C6.462 4.48 6.632 4 7.88 4c2.302 0 4.79.943 6.67 1.475"/>
+          </svg>
+          <div id="content3" class="text-center text-sm text-gray-500">Enttäuscht</div>
+        </button>
+        <button
+          class="text-center"
+          hx-post="{% url 'activity-admin-emotion' %}"
+          hx-target="#emotion-container"
+          hx-vals='{
+              "activity_id": "{{ activity.id }}",
+              "emotion": "complex"
+          }'>
+          <svg class="w-10 h-10 text-orange-500 hover:text-orange-800 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 17a2 2 0 0 1 2 2h-4a2 2 0 0 1 2-2Z"/>
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.815 9H16.5a2 2 0 1 0-1.03-3.707A1.87 1.87 0 0 0 15.5 5 1.992 1.992 0 0 0 12 3.69 1.992 1.992 0 0 0 8.5 5c.002.098.012.196.03.293A2 2 0 1 0 7.5 9h3.388m2.927-.985v3.604M10.228 9v2.574M15 16h.01M9 16h.01m11.962-4.426a1.805 1.805 0 0 1-1.74 1.326 1.893 1.893 0 0 1-1.811-1.326 1.9 1.9 0 0 1-3.621 0 1.8 1.8 0 0 1-1.749 1.326 1.98 1.98 0 0 1-1.87-1.326A1.763 1.763 0 0 1 8.46 12.9a2.035 2.035 0 0 1-1.905-1.326A1.9 1.9 0 0 1 4.74 12.9 1.805 1.805 0 0 1 3 11.574V12a9 9 0 0 0 18 0l-.028-.426Z"/>
+          </svg>
+          <div id="content4" class="text-center text-sm text-gray-500">zu komplex</div>
+        </button>
+      </div>
+
       <hr class="my-3 h-0.3 bg-blue-400" />
 
       <div class="max-w-screen h-auto">

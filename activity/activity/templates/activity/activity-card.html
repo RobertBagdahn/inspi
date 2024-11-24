@@ -10,13 +10,14 @@
 <div class="rounded-lg bg-white p-0 h-full max-h-full">
   <a href="{% url 'activity-detail' activity.id %}">
     {% if activity.image %}
-      <img class="w-full object-cover" src="{% cropped_thumbnail activity "cropping" %}" alt="image description">
+      {% comment %} <img class="w-full object-cover" src="{% cropped_thumbnail activity "cropping" %}" alt="image description"> {% endcomment %}
+      <img class="w-full object-cover" src="{{ activity.image.url }}" alt="image description">
     {% else %}
     <img class="w-full mx-auto" src="{% static "images/placeholder.webp" %}" alt="image description">
     {% endif %}
   </a>
 
-  <div class="pt-6">
+  <div class="pt-6 px-1">
     <div class="flex flex-wrap my-1">
       <div
         class="me-2 rounded bg-gray-200 my-1 px-1 py-0.5 text-xs font-medium text-blue-900 border border-blue-900 inline-flex items-center justify-center"

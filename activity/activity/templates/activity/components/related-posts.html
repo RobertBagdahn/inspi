@@ -51,11 +51,12 @@
           <a href="{% url 'activity-detail' activity.id %}">
             <div class="p-6 bg-white rounded shadow dark:bg-gray-800">
               {% if activity.image %}
-                <img
+                {% comment %} <img
                   class="mb-4 rounded-lg"
                   src="{% cropped_thumbnail activity "cropping" %}"
                   alt="{{ activity.title }}"
-                />
+                /> {% endcomment %}
+                <img class="w-full object-cover" src="{{ activity.image.url }}" alt="{{ activity.title }}">
               {% else %}
                   <img
                     class="w-12 h-12 mx-auto"
