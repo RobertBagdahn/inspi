@@ -59,6 +59,6 @@ class StatusSearchChoices(models.TextChoices):
 class SortChoices(models.TextChoices):
     RANDOM = '0', _('Zufällig')
     OLDEST = '1', _('Älteste')
-    MOST_LIKED = '2', _('Meist gelikte')
-    MOST_COMMENTED = '3', _('Meist kommentierte')
+    MOST_LIKED = '2', _('Favoriten')
+    MOST_COMMENTED = '3', _('Am meisten kommentiert')
     NEWEST = '4', _('Neueste')

@@ -41,13 +41,13 @@
   </div> {% endcomment %}
   <section class="bg-gray-50">
     <div class="py-2 px-4 mx-auto max-w-screen-xl sm:py-2 lg:px-3">
-        <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16">
-            <h2 class="mb-4 text-lg tracking-tight font-semibold text-gray-900">
-                Ähnliche Artikel
-          </h2>
-        </div>
-        <div class="space-y-8 grid grid-cols-2 gap-2 md:gap-8 xl:gap-8 md:space-y-0">
-          {% for activity in related_activities %}
+      <div class="mx-auto max-w-screen-md text-center mb-4 lg:mb-6">
+        <h2 class="mb-4 text-lg tracking-tight font-semibold text-gray-900">
+          Ähnliche Ideen
+        </h2>
+      </div>
+      <div class="space-y-8 grid grid-cols-2 gap-2 md:gap-8 xl:gap-8 md:space-y-0">
+        {% for activity in related_activities %}
           <a href="{% url 'activity-detail' activity.id %}">
             <div class="p-6 bg-white rounded shadow dark:bg-gray-800">
               {% if activity.image %}
@@ -59,8 +59,8 @@
                 <img class="w-full object-cover" src="{{ activity.image.url }}" alt="{{ activity.title }}">
               {% else %}
                   <img
-                    class="w-12 h-12 mx-auto"
-                    src="{% static "images/inspi_flying.webp" %}"
+                    class="w-auto mx-auto"
+                    src="{% static "images/placeholder.webp" %}"
                     alt="image description"
                   >
               {% endif %}

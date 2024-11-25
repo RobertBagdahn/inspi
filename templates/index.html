@@ -42,7 +42,7 @@
       <p
         class="mb-2 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48"
       >
-        Ein guter Anlaufpunkt für jeden der eine neue Idee braucht.
+        Ein guter Anlaufpunkt für jede*n der*die eine neue Idee braucht.
       </p>
     
       
@@ -79,10 +79,10 @@
                 <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_food.webp" %}" alt="image description">
               </span>
               <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">
-                Essenspläne und Rezepte
+                Rezepte und Essenspläne
               </h3>
               <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
-                Finde hier Essenspläne und Rezepte für deine Gruppenstunde.
+                Finde hier Rezepte und Essenspläne für deine Gruppenstunde.
               </p>
               {% if user.is_authenticated and user.is_staff %}
               <a href="{% url 'food-main'%}" title=""
@@ -109,7 +109,7 @@
                 Wissensbeiträge
               </h3>
               <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
-                Finde hier Wissensbeiträge zu verschiedenen Themen.
+                Finde hier kleine Beiträge für deine Gruppenstunde, die sich vertieft mit unterschiedlichen Themen auseinandersetzen
               </p>
               {% if user.is_authenticated and user.is_staff %}
                 <a href="{% url 'blog-main'%}" title=""

@@ -58,9 +58,11 @@
                   Suche
                 </button>
               </div>
-              <div class="mx-4 pb-3 flex flex-wrap">
+                {% if user.is_staff %}
+                <div class="mx-4 pb-3 flex flex-wrap">
                 {% include "activity/dashboard/fast-filter.html" with form=form %}
-              </div>
+                </div>
+                {% endif %}
             </form>
           </div>
           <div

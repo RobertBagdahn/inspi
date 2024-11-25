@@ -88,6 +88,7 @@ def list(request):
         "activities": activities,
         "form": form,
         "tags": tags,
+        "user": user,
     }
     return render(request, "activity/dashboard/main.html", context)
 
