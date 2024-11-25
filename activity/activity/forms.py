@@ -560,3 +560,29 @@ class EventOfWeekForm(forms.ModelForm):
             "release_date",
             "comment",
         ]
+
+
+class TopicAdminForm(forms.ModelForm):
+    name = forms.CharField(
+        label="Name",
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+        required=True,
+    )
+    description = forms.CharField(
+        label="Beschreibung",
+        widget=forms.Textarea(attrs={"class": "form-control"}),
+        required=False,
+    )
+    sorting = forms.IntegerField(
+        label="Sortierung",
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+        required=True,
+    )
+
+    class Meta:
+        model = Topic
+        fields = [
+            "name",
+            "description",
+            "sorting",
+        ]

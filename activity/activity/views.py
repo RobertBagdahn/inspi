@@ -13,12 +13,16 @@ from general.login.models import CustomUser
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils import timezone
+from django.db.models import Count
+from django.db.models.functions import TruncDay
 
 
 from django.shortcuts import get_object_or_404
 from django.utils.formats import date_format
 
 from django.contrib import messages
+
+from tracking.models import Visitor
 
 from activity.activity import models as activity_models
 from activity.activity import choices as activity_choices
@@ -40,6 +44,7 @@ from .forms import (
     SearchDetailForm,
     CommentAdminForm,
     EmotionAdminForm,
+    TopicAdminForm,
 )
 
 from django.http import Http404
@@ -96,7 +101,7 @@ def detail(request, activity_id):
 
     except activity_models.Activity.DoesNotExist:
         raise Http404("Activity does not exist")
-    
+
     return render(
         request,
         "activity/detail.html",
@@ -244,9 +249,8 @@ def search(request):
     elif sort == "4":
         items = items.order_by("?")
 
-
     print("q", q)
-    print('type', type(q))
+    print("type", type(q))
     if q != "":
         items = items.filter(
             Q(title__icontains=q)
@@ -256,7 +260,7 @@ def search(request):
             | Q(description__icontains=q)
             | Q(material_list__material_name__name__icontains=q)
         )
-    
+
     if scout_levels:
         items = items.filter(scout_levels__id__in=scout_levels)
 
@@ -293,10 +297,13 @@ def search(request):
     paginator = Paginator(items, per_page=12)
     page_object = paginator.get_page(page_num)
     page_object.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
-    form = SearchDetailForm(request.GET or None, initial={
-        "sort": "0",
-        "status": "0",
-    })
+    form = SearchDetailForm(
+        request.GET or None,
+        initial={
+            "sort": "0",
+            "status": "0",
+        },
+    )
 
     context = {
         "activities": page_object,
@@ -869,7 +876,7 @@ link_list = [
         "title": "Themen",
     },
     {
-        "link": "activity-admin-data",
+        "link": "activity-admin-user-behavior",
         "title": "Nutzerdaten",
     },
     {
@@ -899,8 +906,14 @@ def admin_event_of_week(request):
 
 
 def admin_topic(request):
-    context = {"link_list": link_list}
-    return render(request, "activity/admin/topic/main.html", context)
+    context = {
+        "id": "topic",
+        "link_list": link_list,
+        "items": activity_models.Topic.objects.all().order_by("sorting"),
+        "update_link": "topic/update",
+        "create_link": "topic/create",
+    }
+    return render(request, "activity/admin/comment/main.html", context)
 
 
 def admin_comment(request):
@@ -914,8 +927,52 @@ def admin_comment(request):
 
 
 def admin_data(request):
-    context = {"link_list": link_list}
-    return render(request, "activity/admin/data/main.html", context)
+    visitors = Visitor.objects.filter(
+        Q(start_time__gte=timezone.now() - timezone.timedelta(days=14))
+        and Q(time_on_site__gte=1)
+    )
+
+    visitors_per_day = (
+        visitors.annotate(day=TruncDay("start_time"))
+        .values("day")
+        .annotate(total=Count("session_key"))
+        .order_by("day")
+    )
+
+    visitors_per_day = {
+        visitor["day"].strftime("%Y-%m-%d"): visitor["total"]
+        for visitor in visitors_per_day
+    }
+
+    visitors_last_7_days = (
+        visitors.filter(
+            start_time__gte=timezone.now() - timezone.timedelta(days=7)
+        ).count(),
+    )
+
+    vistor_trend = (
+        round(
+            (
+                4 * visitors_last_7_days[0]
+            )
+            / (
+                visitors.filter(
+                    Q(start_time__gte=timezone.now() - timezone.timedelta(days=28))
+                    and Q(start_time__lt=timezone.now() - timezone.timedelta(days=7))
+                ).count() + 1
+            ),
+            1,
+        ),
+    )
+
+    context = {
+        "link_list": link_list,
+        "visitors_per_day": visitors_per_day,
+        "visitors_last_7_days": visitors_last_7_days[0],
+        "vistor_trend": vistor_trend[0],
+    }
+
+    return render(request, "activity/admin/user-behavior/main.html", context)
 
 
 def admin_like(request):
@@ -967,6 +1024,7 @@ def comment_update(request, id):
     context = {"form": form}
     return render(request, "activity/admin/components/list/update.html", context)
 
+
 def emotion_update(request, id):
     item = activity_models.Emotion.objects.get(id=id)
 
@@ -979,6 +1037,7 @@ def emotion_update(request, id):
         form = EmotionAdminForm(instance=item)
     context = {"form": form}
     return render(request, "activity/admin/components/list/update.html", context)
+
 
 def add_emotion(request):
     activity_id = request.POST.get("activity_id")
@@ -994,7 +1053,7 @@ def add_emotion(request):
             created_at=timezone.now(),
         )
 
-        return JsonResponse('Danke!', safe=False)
+        return JsonResponse("Danke!", safe=False)
     else:
         activity_models.Emotion.objects.create(
             activity=activity,
@@ -1002,4 +1061,30 @@ def add_emotion(request):
             created_at=timezone.now(),
         )
         # render html
-        return JsonResponse('Danke!', safe=False)
+        return JsonResponse("Danke!", safe=False)
+    
+
+def topic_create(request):
+    if request.method == "POST":
+        form = TopicAdminForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("activity-admin-topic")
+    else:
+        form = TopicAdminForm()
+    context = {"form": form}
+    return render(request, "activity/admin/components/list/create.html", context)
+
+
+def topic_update(request, id):
+    item = activity_models.Topic.objects.get(id=id)
+
+    if request.method == "POST":
+        form = TopicAdminForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect("activity-admin-topic")
+    else:
+        form = TopicAdminForm(instance=item)
+    context = {"form": form}
+    return render(request, "activity/admin/components/list/update.html", context)

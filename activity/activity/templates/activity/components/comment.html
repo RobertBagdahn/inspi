@@ -6,7 +6,6 @@
       Kommentare ({{ activity.comment_set.all|approved|length }})
     </h2>
   </div>
-  {% if user.is_authenticated %}
     <form class="mb-6" action="{% url 'activity-create-comment' %}" id="comment-form" method="POST">
       {% csrf_token %}
       <input type="hidden" name="activity_id" id="activity-id" value="{{ activity.id }}" />
@@ -24,9 +23,6 @@
         Kommentieren
       </button>
     </form>
-  {% else %}
-    <p class="mx-3"> <a href="{% url 'account_login' %}">Anmelden</a> um Kommentare zu schreiben </p>
-  {% endif %}
 
   {% for comment in comments %} 
   {% if comment.is_parent %}

@@ -92,7 +92,7 @@ urlpatterns = [
     path('admin/event-of-week', views.admin_event_of_week, name="activity-admin-event-of-week"),
     path('admin/topic', views.admin_topic, name="activity-admin-topic"),
     path('admin/comment', views.admin_comment, name="activity-admin-comment"),
-    path('admin/data', views.admin_data, name="activity-admin-data"),
+    path('admin/user-behavior', views.admin_data, name="activity-admin-user-behavior"),
 
     # event-of-week-create
     path('admin/event-of-week/create', views.event_of_week_create, name="activity-event-of-week-create"),
@@ -104,6 +104,10 @@ urlpatterns = [
     # emotions
     path('activity/add-emotion', views.add_emotion, name="activity-admin-emotion"),
     path('admin/emotion/update/<int:id>', views.emotion_update, name="activity-emotion-update"),
+
+    # topic
+    path('admin/topic/update/<int:id>', views.topic_update, name="activity-topic-update"),
+    path('admin/topic/create', views.topic_create, name="activity-topic-create"),
 
 
 ]

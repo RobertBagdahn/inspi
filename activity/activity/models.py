@@ -97,7 +97,7 @@ class Topic(TimeStampMixin):
     sorting = models.IntegerField(blank=False, unique=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.description}"
 
     def __repr__(self):
         return self.__str__()

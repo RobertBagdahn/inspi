@@ -41,6 +41,7 @@
 
     <script src="{% static 'js/jquery3.7.1.js' %}"></script>
     <script src="{% static 'js/htmx.min.js' %}"></script>
+    <script src="{% static 'js/apexcharts.min.js' %}"></script>
   </head>
 
   <body>
@@ -59,13 +60,12 @@
         {% include "footer.html" %}
       <footer/>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script type="text/javascript" src="{% static 'javascript/main.js' %}"></script> 
-    <script src="{% static 'toasts.js' %}"></script>
+    <script src="{% static 'js/flowbite.min.js' %}"></script>
     <script>
       document.body.addEventListener('htmx:configRequest', (event) => {
       event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
       })
   </script>
+  <script src="{% static 'js/apex-charts-custom-code.js' %}"></script>
   </body>
 </html>
