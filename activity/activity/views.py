@@ -1,4 +1,5 @@
 import json
+from pydantic import Field, BaseModel
 from django.shortcuts import render
 
 
@@ -15,6 +16,8 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.db.models import Count
 from django.db.models.functions import TruncDay
+
+from activity.activity.service.admin.ai_suggestion import get_ai_suggestion
 
 
 from django.shortcuts import get_object_or_404
@@ -45,6 +48,7 @@ from .forms import (
     CommentAdminForm,
     EmotionAdminForm,
     TopicAdminForm,
+    AiForm,
 )
 
 from django.http import Http404
@@ -250,8 +254,6 @@ def search(request):
     elif sort == "4":
         items = items.order_by("?")
 
-    print("q", q)
-    print("type", type(q))
     if q != "":
         items = items.filter(
             Q(title__icontains=q)
@@ -314,7 +316,6 @@ def search(request):
 
 
 def list_load_activities_view(request, category_name, category_id):
-    print(category_name, category_id)
     page_object, selected_category_str = _load_activities(
         request, category_name, category_id
     )
@@ -538,6 +539,7 @@ from django.http.response import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import MaterialItemForm, MaterialItemModelForm
 from .models import MaterialName, MaterialItem, Activity, MaterialUnit
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 def create_material_item(request, activity_id):
@@ -884,6 +886,10 @@ link_list = [
         "link": "activity-admin-comment",
         "title": "Kommentare",
     },
+    {
+        "link": "activity-ai-overview",
+        "title": "AI Improvements",
+    },
 ]
 
 
@@ -953,14 +959,13 @@ def admin_data(request):
 
     vistor_trend = (
         round(
-            (
-                4 * visitors_last_7_days[0]
-            )
+            (4 * visitors_last_7_days[0])
             / (
                 visitors.filter(
                     Q(start_time__gte=timezone.now() - timezone.timedelta(days=28))
                     and Q(start_time__lt=timezone.now() - timezone.timedelta(days=7))
-                ).count() + 1
+                ).count()
+                + 1
             ),
             1,
         ),
@@ -1039,7 +1044,6 @@ def emotion_update(request, id):
     context = {"form": form}
     return render(request, "activity/admin/components/list/update.html", context)
 
-
 def add_emotion(request):
     activity_id = request.POST.get("activity_id")
     emotion = request.POST.get("emotion")
@@ -1063,8 +1067,8 @@ def add_emotion(request):
         )
         # render html
         return JsonResponse("Danke!", safe=False)
-    
 
+@staff_member_required
 def topic_create(request):
     if request.method == "POST":
         form = TopicAdminForm(request.POST)
@@ -1076,16 +1080,98 @@ def topic_create(request):
     context = {"form": form}
     return render(request, "activity/admin/components/list/create.html", context)
 
-
+@staff_member_required
 def topic_update(request, id):
     item = activity_models.Topic.objects.get(id=id)
 
     if request.method == "POST":
         form = TopicAdminForm(request.POST, instance=item)
         if form.is_valid():
-            form.save()
             return redirect("activity-admin-topic")
     else:
         form = TopicAdminForm(instance=item)
     context = {"form": form}
     return render(request, "activity/admin/components/list/update.html", context)
+
+
+@staff_member_required
+def admin_ai(request):
+    if request.method == "POST":
+        form = AiForm(request.POST)
+        if form.is_valid():
+            activity = form.cleaned_data["activity"]
+            promtType = form.cleaned_data["promtType"]
+            model = form.cleaned_data["model"]
+
+            activity_id = activity.id
+
+            activity = activity_models.Activity.objects.get(id=activity_id)
+
+            text_old = ""
+            text_type = 'text'
+
+            if promtType == "description":
+                promt = f"""
+                    Verbessere und verschönere den folgenden Text, in deutscher Sprache.
+                    Der Output muss HTML Code sein.
+                    Der HTML Code soll für Jugendliche sein: Der Text soll für Jugendliche
+                    sein: Inhalt: {activity.description} der Titel ist {activity.title} und die
+                    Zusammenfassung ist {activity.summary} und viele Absätze enthalten, html Listen <ul> und aufzählungen.
+                    dazu soll der Text ansprechend formatiert sein z.B. mit <b> <k> etc.
+                    Es dürfen auch weitere Beispiele oder Varainaten hinzu gefügt werden.
+                    Aber die Schriftgröße soll nicht verändert werden, dazu soll keine Farbe drinnen sein.
+                """
+                text_old = activity.description
+                text_type = 'html'
+                class OutputModel(BaseModel):
+                    text: str = Field(min_length=100, max_length=10000)
+            elif promtType == "summary":
+                promt = f"""
+                    Fasse den folgenden Text, in deutscher Sprache,
+                    in 100 Zeichen als werbenden Aussagesatz zusammen.
+                    Der Text soll für Jugendliche sein: Inhalt: {activity.description} der Titel ist {activity.title} und die Zusammenfassung ist {activity.summary}
+                """
+                text_old = activity.summary
+                class OutputModel(BaseModel):
+                    text: str = Field(min_length=80, max_length=120)
+            elif promtType == "summary_long":
+                promt = f"""
+                    Fasse den folgenden Text, in deutscher Sprache,
+                    in 1000 Zeichen als interante Text zusammen.
+                    Der Text soll für Jugendliche sein: Inhalt: {activity.description} der Titel ist {activity.title} und die Zusammenfassung ist {activity.summary}
+                """
+                text_old = activity.summary_long
+                class OutputModel(BaseModel):
+                    text: str = Field(min_length=800, max_length=1200)
+            elif promtType == "title":
+                promt = f"""
+                    Fasse den folgenden Text, in deutscher Sprache,
+                    in maximal 20 Zeichen als aussagekräftigen Titel zusammen.
+                    Der Text soll für Jugendliche sein: Inhalt: {activity.description} der Titel ist {activity.title} und die Zusammenfassung ist {activity.summary}
+                """
+                text_old = activity.title
+                class OutputModel(BaseModel):
+                    text: str = Field(min_length=10, max_length=20)
+            else:
+                "werfe einen Fehler"
+
+            context = {
+                "text_suggestion": get_ai_suggestion(prompt=promt, model=model, OutputModel=OutputModel),
+                "text_old": text_old,
+                "promtType" : promtType,
+                "text_type": text_type,
+                "title": activity.title,
+                "activity_id": activity.id,
+            }
+
+            return render(request, "activity/admin/ai/suggestion.html", context)
+    form = AiForm(
+        initial={
+            "model": "models/gemini-1.5-flash-latest"
+        }
+    )
+    context = {
+        "form": form,
+        "link_list": link_list,
+    }
+    return render(request, "activity/admin/ai/main.html", context)

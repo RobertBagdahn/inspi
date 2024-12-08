@@ -586,3 +586,24 @@ class TopicAdminForm(forms.ModelForm):
             "description",
             "sorting",
         ]
+
+class AiForm(forms.Form):
+    activity = forms.ModelChoiceField(
+        queryset=Activity.objects.all(),
+        required=True,
+        label="Aktivität",
+    )
+    promtType = forms.ChoiceField(
+        choices=activity_choices.AiPromptChoices,
+        widget=forms.RadioSelect(
+            attrs={"class": "tailwind-radio"}
+        ),
+        required=True,
+    )
+    model = forms.ChoiceField(
+        choices=activity_choices.AiModelChoices,
+        widget=forms.RadioSelect(
+            attrs={"class": "tailwind-radio"}
+        ),
+        required=True,
+    )

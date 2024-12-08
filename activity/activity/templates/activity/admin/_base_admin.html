@@ -1,4 +1,6 @@
 {% extends "activity/_base_activity.html" %}
+{% load static %}
+
 {% block detailcontent %}
 <div class="antialiased bg-gray-50 dark:bg-gray-900">
   <header>
@@ -54,9 +56,12 @@
 
   <main class="dark:bg-gray-900 flex-1 p-4 space-y-4">
     {% block insidecontent %}
-{% endblock insidecontent %}
+    {% endblock insidecontent %}
   </main>
 </div>
 </section>
+<script src="{% static 'js/apexcharts.min.js' %}"></script>
+<script src="{% static 'js/apex-charts-custom-code.js' %}"></script>
 {% endblock detailcontent %}
+
 

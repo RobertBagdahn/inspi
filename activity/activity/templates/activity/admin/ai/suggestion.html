@@ -1,0 +1,75 @@
+{% extends 'activity/admin/_base_admin.html' %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block header %}
+  {{ form.media }}
+{% endblock %}
+{% block insidecontent %}
+  <main class="">
+    <section class="bg-white dark:bg-gray-900">
+      <div class="py-8 mx-auto max-w-6xl lg:py-16">
+        <div class="grid gap-4 px-4 mb-4 sm:mb-5 sm:grid-cols-3 sm:gap-6 md:gap-12">
+          <!-- Column -->
+          <div class="sm:col-span-2">
+            <h2 class="flex items-center mb-4 text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white sm:mb-5">KI Verbesserung</h2>
+            <dl>
+              <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Titel des Heimabends</dt>
+              <dd>
+                <a href="{% url "activity-detail" activity_id  %}" target="_blank" class="text-blue-600 hover:underline">{{ title }}</a>
+              </dd>
+            </dl>
+
+            <dl>
+              <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Orginal-Text</dt>
+              <dd>
+                {% if text_type == 'html' %}
+                  {{ text_old|safe }}
+                {% else %}
+                  {{ text_old }}
+                {% endif %}
+              </dd>
+            </dl>
+            <hr class="my-4 border-t border-gray-200 dark:border-gray-600">
+            <dl>
+              <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Details:</dt>
+              <dd>
+                {% if text_type == 'html' %}
+                  {{ text_suggestion|safe }}
+                {% else %}
+                  {{ text_suggestion }}
+                {% endif %}
+              </dd>
+            </dl>
+          </div>
+          <!-- Column -->
+          <dl class="p-4 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+            <dt class="mb-2 leading-none text-gray-500 dark:text-gray-400">
+              Feld
+            </dt>
+            <dd class="flex mb-4 -space-x-4 sm:mb-5">
+              {{ promtType }}
+            </dd>
+            <dt class="mb-2 leading-none text-gray-500 dark:text-gray-400">
+              Vorschlag Länge
+            </dt>
+            <dd class="flex mb-4 -space-x-4 sm:mb-5">
+              {{ text_suggestion|length }} Zeichen
+            </dd>
+          </dl>
+        </div>
+        <div class="flex items-center px-4 space-x-4">
+          <button type="button" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <svg aria-hidden="true" class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
+              <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path>
+            </svg>übernehmen
+          </button>
+            <a href="javascript:location.reload()" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+            Neuer Vorschlag
+            </a>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

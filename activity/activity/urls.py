@@ -109,6 +109,9 @@ urlpatterns = [
     path('admin/topic/update/<int:id>', views.topic_update, name="activity-topic-update"),
     path('admin/topic/create', views.topic_create, name="activity-topic-create"),
 
+    # ai
+    path('admin/ai', views.admin_ai, name="activity-ai-overview"),
+    path('admin/ai-suggestion', views.admin_ai, name="activity-ai-suggestion"),
 
 ]
 

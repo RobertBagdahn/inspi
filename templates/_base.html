@@ -41,7 +41,6 @@
 
     <script src="{% static 'js/jquery3.7.1.js' %}"></script>
     <script src="{% static 'js/htmx.min.js' %}"></script>
-    <script src="{% static 'js/apexcharts.min.js' %}"></script>
   </head>
 
   <body>
@@ -66,6 +65,5 @@
       event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
       })
   </script>
-  <script src="{% static 'js/apex-charts-custom-code.js' %}"></script>
   </body>
 </html>

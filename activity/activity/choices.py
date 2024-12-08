@@ -62,3 +62,13 @@ class SortChoices(models.TextChoices):
     MOST_LIKED = '2', _('Favoriten')
     MOST_COMMENTED = '3', _('Am meisten kommentiert')
     NEWEST = '4', _('Neueste')
+
+class AiPromptChoices(models.TextChoices):
+    title = 'title', _('Titel')
+    description = 'description', _('Beschreibung')
+    summary = 'summary', _('Zusammenfassung')
+    summary_long = 'summary_long', _('Zusammenfassung lang')
+
+class AiModelChoices(models.TextChoices):
+    GEMINI_PRO = 'models/gemini-1.5-pro-latest', _('Gemini 1.5 Pro')
+    GEMINI_FLASH = 'models/gemini-1.5-flash-latest', _('Gemini 1.5 Flash')
