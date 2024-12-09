@@ -17,7 +17,7 @@
 # [START gaestd_py_django_app_yaml]
 runtime: python312
 env: standard
-entrypoint: gunicorn -b :$PORT -w 4 inspiapp.wsgi
+entrypoint: gunicorn -b :$PORT -w 4 --timeout 200 inspiapp.wsgi
 
 env_variables:
   # This setting is used in settings.py to configure your ALLOWED_HOSTS

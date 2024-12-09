@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from copy import deepcopy
 
@@ -46,8 +47,10 @@ from .models import (
 @login_required
 def mainView(request):
     famous_meal_events = MealEvent.objects.all()[0:3]
-    famous_recipes = Recipe.objects.order_by("id")[0:3] # add .filter(status="verified")
-    famous_ingredients = Ingredient.objects.all()[0:3]
+    famous_recipes = Recipe.objects.filter(~Q(status="simulator"))[0:3]
+    famous_ingredients = Ingredient.objects.all()[0:8]
+
+    print(famous_recipes)
 
     context = {
         "famous_meal_events": famous_meal_events,
@@ -298,72 +301,53 @@ def meal_event_clone(request):
 def plan_shopping_cart(request, slug):
     plan = MealEvent.objects.get(slug=slug)
 
+    shopping_list = []
+
+    for meal in plan.list_meals():
+        for meal_item in meal.list_meal_items():
+            for recipe_item in meal_item.recipe.recipe_items.all():
+                shopping_list.append(
+                    {
+                        "ingredient": recipe_item.portion.ingredient.name,
+                        "major_class": recipe_item.portion.ingredient.major_class,
+                        "recipe_name": recipe_item.recipe.name,
+                        "quantity": recipe_item.quantity * meal_item.factor,
+                        "weight_g": recipe_item.meta_info.weight_g,
+                        "price": recipe_item.portion.meta_info.price_per_kg
+                        * (recipe_item.portion.meta_info.weight_g / 1000)
+                        * recipe_item.quantity
+                        * meal_item.factor,
+                    }
+                )
+    
+    # sum up the shopping list by ingredient
     shopping_list = [
         {
-            "ingredient_name": "Tomate",
-            "ingredient_class": "Gemüse",
-            "recipe_name": "Tomatensoße mit Nudeln",
-            "price": 1.91,
-            "weight_show": "1 Kg",
-            "pieces": 5,
-            "weight_g": 1000,
-        },
-        {
-            "ingredient_name": "Nudeln",
-            "ingredient_class": "Teigwaren",
-            "recipe_name": "Tomatensoße mit Nudeln",
-            "price": 0.99,
-            "weight_show": "250 g",
-            "pieces": 1,
-            "weight_g": 250,
-        },
-        {
-            "ingredient_name": "Tomatenmark",
-            "ingredient_class": "Gewürz",
-            "recipe_name": "Tomatensoße mit Nudeln",
-            "price": 1.99,
-            "weight_show": "200 g",
-            "weight_g": 200,
-        },
-        {
-            "ingredient_name": "Brühe",
-            "ingredient_class": "Soßen",
-            "recipe_name": "Tomatensoße mit Nudeln",
-            "price": 2.49,
-            "weight_show": "500 g",
-            "weight_g": 500,
-        },
-        {
-            "ingredient_name": "Salz",
-            "ingredient_class": "Gewürz",
-            "recipe_name": "Tomatensoße mit Nudeln",
-            "price": 3.49,
-            "weight_show": "500 g",
-            "weight_g": 500,
-        },
-        {
-            "ingredient_name": "Tomaten",
-            "ingredient_class": "Gemüse",
-            "recipe_name": "Frühstück",
-            "price": 3.49,
-            "weight_show": "100 g",
-            "weight_g": 100,
-        },
-        {
-            "ingredient_name": "Brot",
-            "ingredient_class": "Backwaren",
-            "recipe_name": "Frühstück",
-            "price": 2.49,
-            "weight_show": "1 Kg",
-            "weight_g": 1000,
-        },
+            "ingredient": item["ingredient"],
+            "quantity": sum([i["quantity"] for i in shopping_list if i["ingredient"] == item["ingredient"]]),
+            "major_class": item["major_class"],
+            "recipe_name": ", ".join(set([i["recipe_name"] for i in shopping_list if i["ingredient"] == item["ingredient"]])),
+            "weight_g": item["weight_g"],
+            "price": sum([i["price"] for i in shopping_list if i["ingredient"] == item["ingredient"]]),
+        }
+        for item in shopping_list
     ]
+
+    # deduplicate the shopping list
+    shopping_list = [
+        dict(t) for t in {tuple(d.items()) for d in shopping_list}
+    ]
+
+    # sort by major_class
+    shopping_list = sorted(shopping_list, key=lambda x: x["major_class"])
+
 
     context = {
         "plan": plan,
         "shopping_list": shopping_list,
         "module_name": "Einkaufsliste",
         "total_price": sum([item["price"] for item in shopping_list]),
+        "total_weight": sum([item["quantity"] * item["weight_g"] for item in shopping_list]) * 0.001 * 0.001,
     }
     return render(request, "plan/shopping-list.html", context)
 
@@ -503,7 +487,7 @@ def ingredient_list(request):
 
 @login_required
 def recipe_list(request):
-    recipes = Recipe.objects.all()
+    recipes = Recipe.objects.filter(~Q(status='simulator'))
     search_form = SearchForm(request.GET)
 
     if search_form.is_valid():
@@ -533,7 +517,7 @@ def recipe_create(request):
     recipe = Recipe(**data)
     recipe.save()
 
-    return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/")
+    return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/overview")
 
 @login_required
 def recipe_update(request, slug):
@@ -579,7 +563,7 @@ def recipe_clone(request, slug):
 
 @login_required
 def recipe_list(request):
-    recipes = Recipe.objects.all()
+    recipes = Recipe.objects.filter(~Q(status='simulator'))
     search_form = SearchForm(request.GET)
 
     if search_form.is_valid():

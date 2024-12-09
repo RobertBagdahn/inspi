@@ -2,16 +2,19 @@
   <div class="flex items-center space-x-4 rtl:space-x-reverse">
     <div class="flex-1 min-w-0">
       <p class="text-sm font-medium text-gray-900 truncate">
-        {{ item.ingredient_name }} {{ item.weight_show}}
+        {{ item.ingredient }} {{ item.weight_show}} ({{ item.major_class }})
       </p>
       <p class="text-sm text-gray-500 truncate dark:text-gray-400">
         {{ item.recipe_name }}
+      </p>
+      <p class="text-sm text-gray-600 truncate">
+        {{ item.weight_g }} g
       </p>
     </div>
     <div
       class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
     >
-      {{ item.price }} €
+      {{ item.price|floatformat:2 }} €
     </div>
   </div>
 </li>

@@ -250,42 +250,42 @@ class IngredientForm(forms.Form):
         widget=forms.RadioSelect(attrs={"class": "tailwind-radio"}),
     )
     energy_kj = forms.FloatField(
-        label="Energy (kJ je 100g)",
+        label="Energie (kJ je 100g)",
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
     protein_g = forms.FloatField(
-        label="Eisweiß (g je 100g)",
+        label="Eiweiß (g je 100g)",
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
     fat_g = forms.FloatField(
-        label="Fat (g je 100g)",
+        label="Fett (g je 100g)",
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
     fat_sat_g = forms.FloatField(
-        label="Saturated Fat (g je 100g)",
+        label="Gesättigte Fettsäuren (g je 100g)",
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
     sugar_g = forms.FloatField(
-        label="Sugar (g je 100g)",
+        label="Zucker (g je 100g)",
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
     salt_g = forms.FloatField(
-        label="Salt (g je 100g)",
+        label="Salz (g je 100g)",
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
     fruit_factor = forms.FloatField(
-        label="Fruit Factor (in %)",
+        label="Fruchtanteil (in %)",
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
     carbohydrate_g = forms.FloatField(
-        label="Carbohydrate (g je 100g)",
+        label="Kohlenhydrate (g je 100g)",
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )

@@ -59,7 +59,7 @@
         Beliebteste Zutaten
         <a href="{% url 'ingredient-list' %}" class="text-md font-normal text-blue-600"> Alle Zutaten</a>
       </h2>
-      <div class="grid gap-8 lg:grid-cols-3">
+      <div class="grid gap-8 lg:grid-cols-4">
         {% for ingredient in famous_ingredients %}
           <article
             class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
