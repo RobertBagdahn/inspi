@@ -1,0 +1,29 @@
+{% if activities %}
+  <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
+    {% for activity in activities %}
+    <article
+        class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
+      >
+      {% include "activity/activity-card.html" with activity=activity %}
+    </article>
+    {% endfor %}
+  </div>
+{% else %}
+<div class="centralize-div">
+  <h3 class="ui header center aligned">Keine Ergebnisse!</h3>
+</div>
+{% endif %}
+
+<div class="centralize-div py-5" id="load-more">
+  {% if activities.has_next %}
+  <div class="ui divider"></div>
+  <button
+    class="btn btn-primary"
+    hx-get={% url "activity-load-more"  category_name category_id %}
+    hx-vals='{"page": "{{ activities.next_page_number }}"}'
+    hx-target="#load-more"
+    hx-swap="outerHTML">
+    Mehr laden
+  </button>
+  {% endif %}
+</div>

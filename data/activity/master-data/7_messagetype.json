@@ -1,0 +1,86 @@
+[
+    {
+        "pk": 1,
+        "model": "footer.messagetype",
+        "fields": {
+            "id": 1,
+            "sorting": "1",
+            "name": "Heimabend Idee",
+            "description": "",
+            "created_at": "2021-07-07T14:00:00Z",
+            "updated_at": "2021-07-07T14:00:00Z"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "footer.messagetype",
+        "fields": {
+            "id": 2,
+            "sorting": "2",
+            "name": "Verbesserungsvorschlag",
+            "description": "",
+            "created_at": "2021-07-07T14:00:00Z",
+            "updated_at": "2021-07-07T14:00:00Z"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "footer.messagetype",
+        "fields": {
+            "id": 3,
+            "sorting": "3",
+            "name": "Fehlermeldung",
+            "description": "",
+            "created_at": "2021-07-07T14:00:00Z",
+            "updated_at": "2021-07-07T14:00:00Z"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "footer.messagetype",
+        "fields": {
+            "id": 4,
+            "sorting": "4",
+            "name": "Ich möchte mitmachen",
+            "description": "",
+            "created_at": "2021-07-07T14:00:00Z",
+            "updated_at": "2021-07-07T14:00:00Z"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "footer.messagetype",
+        "fields": {
+            "id": 5,
+            "sorting": "5",
+            "name": "Kontakt",
+            "description": "",
+            "created_at": "2021-07-07T14:00:00Z",
+            "updated_at": "2021-07-07T14:00:00Z"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "footer.messagetype",
+        "fields": {
+            "id": 7,
+            "sorting": "7",
+            "name": "Rechtsschreibfehler",
+            "description": "",
+            "created_at": "2021-07-07T14:00:00Z",
+            "updated_at": "2021-07-07T14:00:00Z"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "footer.messagetype",
+        "fields": {
+            "id": 8,
+            "sorting": "8",
+            "name": "Sonstiges",
+            "description": "",
+            "created_at": "2021-07-07T14:00:00Z",
+            "updated_at": "2021-07-07T14:00:00Z"
+        }
+    }
+]

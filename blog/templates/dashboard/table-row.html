@@ -10,13 +10,13 @@
   <td class="px-4 py-2 whitespace-nowrap">
     <span
       class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
-      >{{ post.status }}</span
+      >{{ post.get_status_display }}</span
     >
   </td>
   <td class="px-4 py-2 whitespace-nowrap">
     <div class="flex -space-x-4 w-28">
       <span class="text-sm font-medium text-gray-900 dark:text-white"
-        >{{ post.author }}</span
+        >{{ post.author.scout_display_name }}</span
       >
     </div>
   </td>
@@ -41,7 +41,7 @@
           d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
         />
       </svg>
-      Website
+      Artikel öffnen
     </a>
   </td>
   <td
@@ -93,7 +93,7 @@
       </ul>
       <div class="py-1">
         <a
-          href="#"
+            href="{% url 'post-archive' post.slug %}"
           class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
           >Archivieren</a
         >

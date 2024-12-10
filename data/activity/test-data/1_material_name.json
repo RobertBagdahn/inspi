@@ -1,0 +1,6602 @@
+[
+    {
+        "pk": 2,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 2,
+            "name": "Mehl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 3,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 3,
+            "name": "Wasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 4,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 4,
+            "name": "Backpulver",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 5,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 5,
+            "name": "Alufolie",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 6,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 6,
+            "name": "Hordentopf",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 7,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 7,
+            "name": "Steine",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 8,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 8,
+            "name": "Stöcke",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 9,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 9,
+            "name": "Brennholz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 10,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 10,
+            "name": "Streichhölzer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 11,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 11,
+            "name": "Kritische Fragen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 12,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 12,
+            "name": "Seile",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 13,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 13,
+            "name": "Dreickstücher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 14,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 14,
+            "name": "Poncho",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 15,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 15,
+            "name": "Stöcke",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 16,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 16,
+            "name": "Isomatte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 17,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 17,
+            "name": "Gepackte Rucksäcke",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 18,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 18,
+            "name": "Waage",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 19,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 19,
+            "name": "Holzbrettchen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 20,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 20,
+            "name": "Lötkolben",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 21,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 21,
+            "name": "Messer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 22,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 22,
+            "name": "Schnitzwerkzeuge",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 23,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 23,
+            "name": "leere A6-Hefte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 24,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 24,
+            "name": "Baumerkennungs Buch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 25,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 25,
+            "name": "Wildpflanzenbuch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 26,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 26,
+            "name": "Wildpflanzen-App",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 27,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 27,
+            "name": "Plastikbehälter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 28,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 28,
+            "name": "Messer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 29,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 29,
+            "name": "Nadel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 30,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 30,
+            "name": "Magnet",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 31,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 31,
+            "name": "Schale mit Wasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 32,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 32,
+            "name": "Kompass",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 33,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 33,
+            "name": "Erste Hilfe Rucksack/Tasche",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 34,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 34,
+            "name": "Stock",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 35,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 35,
+            "name": "Kompass",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 36,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 36,
+            "name": "Bücher zum Thema",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 37,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 37,
+            "name": "Gewürze",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 38,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 38,
+            "name": "Küchenkiste",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 39,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 39,
+            "name": "Gewürzstreuer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 40,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 40,
+            "name": "Lupe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 41,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 41,
+            "name": "Feuersteine",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 42,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 42,
+            "name": "Tampon",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 43,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 43,
+            "name": "Zunder",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 44,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 44,
+            "name": "trockene Rinde",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 45,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 45,
+            "name": "Zitrone",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 46,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 46,
+            "name": "Steichhölzer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 47,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 47,
+            "name": "Holzbearbeitungswerkzeige",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 48,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 48,
+            "name": "Teures Mineralwasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 49,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 49,
+            "name": "mittleres Mineralwasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 50,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 50,
+            "name": "günstiges Mineralwasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 51,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 51,
+            "name": "Wasser ohne Kohlensäure",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 52,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 52,
+            "name": "Quellwasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 53,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 53,
+            "name": "Wasser aus einer Plastikflasc",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 54,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 54,
+            "name": "Küchensieb oder Kescher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 55,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 55,
+            "name": "Material über andere Pfadfind",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 56,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 56,
+            "name": "Kohte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 57,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 57,
+            "name": "Karten legende",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 58,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 58,
+            "name": "Wanderkarten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 59,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 59,
+            "name": "Lineal",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 60,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 60,
+            "name": "Stifte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 61,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 61,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 62,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 62,
+            "name": "Kohtenplanen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 63,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 63,
+            "name": "Alte Küchenteller in den ver",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 64,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 64,
+            "name": "eine Holzplatte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 65,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 65,
+            "name": "eine Heißklebepistole",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 66,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 66,
+            "name": "Schreibsachen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 67,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 67,
+            "name": "eine Säge",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 68,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 68,
+            "name": "1/2 Kokosnuss pro Person",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 69,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 69,
+            "name": "Schleipapier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 70,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 70,
+            "name": "eine Handsäge",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 71,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 71,
+            "name": "einen Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 72,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 72,
+            "name": "ein Messer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 73,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 73,
+            "name": "eine Schüssel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 74,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 74,
+            "name": "ggf. Speiseöl und Farbe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 75,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 75,
+            "name": "Eine Morsetabelle",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 76,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 76,
+            "name": "Stift und Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 77,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 77,
+            "name": "eventuell die Pfadi-storys",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 78,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 78,
+            "name": "kein Material notwendig",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 79,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 79,
+            "name": "Smartphone",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 80,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 80,
+            "name": "Trickfilmapp",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 81,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 81,
+            "name": "Requisiten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 82,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 82,
+            "name": "Schuhkarton (Milchkarton)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 83,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 83,
+            "name": "Plastiktüte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 84,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 84,
+            "name": "Tacker",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 85,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 85,
+            "name": "Blumenerde",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 86,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 86,
+            "name": "Pflanzensamen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 87,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 87,
+            "name": "Setzlinge",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 88,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 88,
+            "name": "Glas",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 89,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 89,
+            "name": "Schnappsglas",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 90,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 90,
+            "name": "Zahnstocher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 91,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 91,
+            "name": "Leitungswasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 92,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 92,
+            "name": "Salz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 93,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 93,
+            "name": "Spülmittel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 94,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 94,
+            "name": "eisgekühlter Spiritus",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 95,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 95,
+            "name": "evtl. Tinte oder Lebensmittel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 96,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 96,
+            "name": "Pappe oder Karton",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 97,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 97,
+            "name": "Klebeband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 98,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 98,
+            "name": "Stöcke",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 99,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 99,
+            "name": "Bettlaken oder Ähnliches",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 100,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 100,
+            "name": "Befestigungsmaterial",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 101,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 101,
+            "name": "Dia-Projektor oder Ähnliches",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 102,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 102,
+            "name": "Alte Pappe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 103,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 103,
+            "name": "Bunte Stifte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 104,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 104,
+            "name": "Waldläuferzeichen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 105,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 105,
+            "name": "Hammer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 106,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 106,
+            "name": "Holzsäge",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 107,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 107,
+            "name": "Schnur",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 108,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 108,
+            "name": "Holzbohrer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 109,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 109,
+            "name": "leere Dose",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 110,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 110,
+            "name": "alte Zeitung",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 111,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 111,
+            "name": "Luftballon",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 112,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 112,
+            "name": "Kleister oder Bastelkleber",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 113,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 113,
+            "name": "Pinsel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 114,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 114,
+            "name": "Tesafilm",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 115,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 115,
+            "name": "ausgespülter Milch- oder Saft",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 116,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 116,
+            "name": "Bastelschere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 117,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 117,
+            "name": "Nagelschere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 118,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 118,
+            "name": "Tacker",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 119,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 119,
+            "name": "Alte Socken",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 120,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 120,
+            "name": "Ballon",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 121,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 121,
+            "name": "Reis oder Sand",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 122,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 122,
+            "name": "Schnur",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 123,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 123,
+            "name": "Schere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 124,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 124,
+            "name": "Stoffreste",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 125,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 125,
+            "name": "Bienenwachs z.B. Kerzenreste",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 126,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 126,
+            "name": "Backpapier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 127,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 127,
+            "name": "2 Luftballons pro Ball",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 128,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 128,
+            "name": "Trichter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 129,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 129,
+            "name": "Gries oder feiner Sand",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 130,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 130,
+            "name": "Schere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 131,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 131,
+            "name": "Gemüsereste nach Belieben",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 132,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 132,
+            "name": "Salz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 133,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 133,
+            "name": "Messer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 134,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 134,
+            "name": "Ofen mit Backblech",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 135,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 135,
+            "name": "Smartphone",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 136,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 136,
+            "name": "Fotoapparat",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 137,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 137,
+            "name": "Mülltüten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 138,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 138,
+            "name": "Handschuhe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 139,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 139,
+            "name": "falls vorhanden: Müllzange",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 140,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 140,
+            "name": "Gitarre",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 141,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 141,
+            "name": "Computer/ Endgerät",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 142,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 142,
+            "name": "Kartoffeln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 143,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 143,
+            "name": "Drähte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 144,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 144,
+            "name": "Zinkschrauben",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 145,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 145,
+            "name": "Cent-Münzen / dicker Kupferdr",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 146,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 146,
+            "name": "LEDs",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 147,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 147,
+            "name": "optional: Gegenstände/Flüssig",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 148,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 148,
+            "name": "alte Dose",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 149,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 149,
+            "name": "Handbohrer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 150,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 150,
+            "name": "evtl. Klebestreifen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 151,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 151,
+            "name": "evtl. Vorlage oder Zeichnung",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 152,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 152,
+            "name": "eine andere Pfadfindergruppe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 153,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 153,
+            "name": "Die Zutaten für euer exquisit",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 154,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 154,
+            "name": "Buntstifte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 155,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 155,
+            "name": "Blätter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 156,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 156,
+            "name": "ggf. einen Foto-Apperat",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 157,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 157,
+            "name": "mind. einen Computer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 158,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 158,
+            "name": "die ausgedruckte Entschärfung",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 159,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 159,
+            "name": "Telefone oder Handys um mitei",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 160,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 160,
+            "name": "Vereinbarte Gegenstände",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 161,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 161,
+            "name": "Computer/ Endgerät mit Intern",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 162,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 162,
+            "name": "Handy",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 163,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 163,
+            "name": "ggf. Liederbücher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 164,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 164,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 165,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 165,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 166,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 166,
+            "name": "ggf. Crepeband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 167,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 167,
+            "name": "evtl. Kreide und Tafel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 168,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 168,
+            "name": "evtl. Zettel mit Orten in der",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 169,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 169,
+            "name": "evtl. Wasserkanister/ -flasch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 170,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 170,
+            "name": "evtl. Messbecher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 171,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 171,
+            "name": "lautstarker Kleinkram",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 172,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 172,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 173,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 173,
+            "name": "Notizblock",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 174,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 174,
+            "name": "evtl. Schreib-/Malutensilien",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 175,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 175,
+            "name": "Zeitungspapier oder Folie",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 176,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 176,
+            "name": "alte Klamotten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 177,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 177,
+            "name": "Pinsel; Schwämme; Zahnbürsten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 178,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 178,
+            "name": "Farben aller Art am besten A",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 179,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 179,
+            "name": "Leinwand; Tapete oder Plakate",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 180,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 180,
+            "name": "weißes Blatt",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 181,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 181,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 182,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 182,
+            "name": "z.B. 250 DIN A4 Blätter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 183,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 183,
+            "name": "Bastelkleber am besten einer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 184,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 184,
+            "name": "der beim Trocknen durchsichti",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 185,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 185,
+            "name": "Stoffreste für den Einband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 186,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 186,
+            "name": "Wachsfaden",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 187,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 187,
+            "name": "Nadeln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 188,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 188,
+            "name": "feste Pappe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 189,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 189,
+            "name": "Pinsel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 190,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 190,
+            "name": "Lineal",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 191,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 191,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 192,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 192,
+            "name": "Sachen zum Verzieren",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 193,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 193,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 194,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 194,
+            "name": "Stifte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 195,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 195,
+            "name": "was euch sonst so einfällt",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 196,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 196,
+            "name": "Material für eure gewünschte ",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 197,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 197,
+            "name": "Naturmaterialien",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 198,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 198,
+            "name": "Pappe/Holz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 199,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 199,
+            "name": "Scharniere/Stoff",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 200,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 200,
+            "name": "Leim",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 201,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 201,
+            "name": "Murmeln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 202,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 202,
+            "name": "Kram (Pappe; Holzreste; etc.)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 203,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 203,
+            "name": "Computer/ Endgerät mit Intern",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 204,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 204,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 205,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 205,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 206,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 206,
+            "name": "Computer/ Endgerät",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 207,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 207,
+            "name": "alter Stoff",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 208,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 208,
+            "name": "Kordel oder Schleifband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 209,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 209,
+            "name": "Nadel und Faden oder Nähmasc",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 210,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 210,
+            "name": "Büroklammer oder Sicherheitsn",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 211,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 211,
+            "name": "Edding",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 212,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 212,
+            "name": "Steine oder Haselnussrute",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 213,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 213,
+            "name": "Farbe zum Färben der Spielste",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 214,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 214,
+            "name": "alte Stoffreste z.B. altes B",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 215,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 215,
+            "name": "Nadel und Faden oder Nähmasch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 216,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 216,
+            "name": "Sachen zum Linoldruck oder St",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 217,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 217,
+            "name": "2 Zwiebel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 218,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 218,
+            "name": "5 Knoblauchzehen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 219,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 219,
+            "name": "4 EL Tomatenmark",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 220,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 220,
+            "name": "5l Gemüsebrühe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 221,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 221,
+            "name": "2 Dose Tomaten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 222,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 222,
+            "name": "250 rote Linsen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 223,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 223,
+            "name": "2 große Möhren",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 224,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 224,
+            "name": "Salz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 225,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 225,
+            "name": "Pfeffer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 226,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 226,
+            "name": "z.B. Majoran Oregano",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 227,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 227,
+            "name": "optional Balsamico Essig",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 228,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 228,
+            "name": "Computer/ Endgerät",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 229,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 229,
+            "name": "Zettel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 230,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 230,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 231,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 231,
+            "name": "Thermometer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 232,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 232,
+            "name": "Barometer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 233,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 233,
+            "name": "Wolkenbuch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 234,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 234,
+            "name": "Wetterberichte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 235,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 235,
+            "name": "Wetter-App",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 236,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 236,
+            "name": "1 Wasserflasche",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 237,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 237,
+            "name": "ein Glas voll Wasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 238,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 238,
+            "name": "Schere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 239,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 239,
+            "name": "ggf. einen Nagel mit Kerze",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 240,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 240,
+            "name": "ggf. Sekundenkleber",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 241,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 241,
+            "name": "Styroporkugeln oder Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 242,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 242,
+            "name": "Karton",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 243,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 243,
+            "name": "Schere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 244,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 244,
+            "name": "Farben",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 245,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 245,
+            "name": "Pinsel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 246,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 246,
+            "name": "Verschiedene Planzen oder Erd",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 247,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 247,
+            "name": "Mixer oder Pürierstab",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 248,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 248,
+            "name": "Speisestärke",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 249,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 249,
+            "name": "Spaydosen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 250,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 250,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 251,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 251,
+            "name": "Schere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 252,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 252,
+            "name": "Leinwände",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 253,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 253,
+            "name": "Laptop/ Endgerät mit Internet",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 254,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 254,
+            "name": "Bilderrahmen mit Glas",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 255,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 255,
+            "name": "Folienstift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 256,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 256,
+            "name": "saugfähiges Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 257,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 257,
+            "name": "Nagel und Hammer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 258,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 258,
+            "name": "Glasplatte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 259,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 259,
+            "name": "Ein verschließbares Glas Inh",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 260,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 260,
+            "name": "Sandkastenförmchen Inhalt: c",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 261,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 261,
+            "name": "Feines Sieb",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 262,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 262,
+            "name": "Rührschüssel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 263,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 263,
+            "name": "Handmixer/ besser Pürierstab",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 264,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 264,
+            "name": "Backpapier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 265,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 265,
+            "name": "Messer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 266,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 266,
+            "name": "Löffel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 267,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 267,
+            "name": "Teigschaber zum Auskratzen d",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 268,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 268,
+            "name": "2 Päckchen H-Sahne/frische Sa",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 269,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 269,
+            "name": "1x TK-Früchte (bspw. 500g Wal",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 270,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 270,
+            "name": "Nähgarn",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 271,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 271,
+            "name": "Stoff",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 272,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 272,
+            "name": "Nähmaschine",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 273,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 273,
+            "name": "Bügeleisen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 274,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 274,
+            "name": "Schere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 275,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 275,
+            "name": "Draht (Blumendraht)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 276,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 276,
+            "name": "Hosengummi/Kordel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 277,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 277,
+            "name": "Stecknadeln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 278,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 278,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 279,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 279,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 280,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 280,
+            "name": "Kleber",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 281,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 281,
+            "name": "Rotkohl (unbearbeitet)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 282,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 282,
+            "name": "Topf",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 283,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 283,
+            "name": "Sieb",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 284,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 284,
+            "name": "Wasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 285,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 285,
+            "name": "ein paar Gläser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 286,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 286,
+            "name": "Essig",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 287,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 287,
+            "name": "Zitronensaft",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 288,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 288,
+            "name": "Seife",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 289,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 289,
+            "name": "Natron",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 290,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 290,
+            "name": "Backpulver",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 291,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 291,
+            "name": "Waschmittel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 292,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 292,
+            "name": "Cola",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 293,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 293,
+            "name": "andere Haushaltschemikalien",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 294,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 294,
+            "name": "Einen Schatz?",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 295,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 295,
+            "name": "500g Mehl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 296,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 296,
+            "name": "1Tl Backpulver",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 297,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 297,
+            "name": "200g Zucker",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 298,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 298,
+            "name": "1 Prise Salz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 299,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 299,
+            "name": "5 Tropfen Rum-Aroma",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 300,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 300,
+            "name": "2 Eier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 301,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 301,
+            "name": "250g Butter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 302,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 302,
+            "name": "2 Eigelb",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 303,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 303,
+            "name": "Teller",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 304,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 304,
+            "name": "Löffel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 305,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 305,
+            "name": "Puderzucker",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 306,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 306,
+            "name": "Wasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 307,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 307,
+            "name": "Keksdeko",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 308,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 308,
+            "name": "Rechteckhölzer aus dem Baumar",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 309,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 309,
+            "name": "15 m leichte Schnüre",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 310,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 310,
+            "name": "Blauer Sack",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 311,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 311,
+            "name": "Schere",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 312,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 312,
+            "name": "Computer/ Endgerät",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 313,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 313,
+            "name": "Stift & Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 314,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 314,
+            "name": "Zahnstocher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 315,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 315,
+            "name": "Äste",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 316,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 316,
+            "name": "Stangen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 317,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 317,
+            "name": "Zeltstangen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 318,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 318,
+            "name": "Baumstämme",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 319,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 319,
+            "name": "Material für Parcour",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 320,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 320,
+            "name": "Improvisierte Mini-Golfbälle",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 321,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 321,
+            "name": "Fahrradschläuche",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 322,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 322,
+            "name": "Flickzeug",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 323,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 323,
+            "name": "Stift und Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 324,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 324,
+            "name": "Karte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 325,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 325,
+            "name": "Kompass",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 326,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 326,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 327,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 327,
+            "name": "Ein Schatz!",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 328,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 328,
+            "name": "Seile",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 329,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 329,
+            "name": "Säge",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 330,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 330,
+            "name": "Bohrer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 331,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 331,
+            "name": "Holzleim",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 332,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 332,
+            "name": "Farbe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 333,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 333,
+            "name": "Zollstock",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 334,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 334,
+            "name": "Bleistift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 335,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 335,
+            "name": "Äpfel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 336,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 336,
+            "name": "Startgegenstände",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 337,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 337,
+            "name": "Rucksack",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 338,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 338,
+            "name": "Hajkgepäck",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 339,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 339,
+            "name": "Holzplatte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 340,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 340,
+            "name": "Lötkolben",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 341,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 341,
+            "name": "Ideen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 342,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 342,
+            "name": "Computer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 343,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 343,
+            "name": "Aufnahmegerät (Handy oder Lap",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 344,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 344,
+            "name": "passende Software",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 345,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 345,
+            "name": "eventuell Hintergrundgeräusch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 346,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 346,
+            "name": "Eine Geschichte eurer Wahl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 347,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 347,
+            "name": "Soja Granulat",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 348,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 348,
+            "name": "Gemüßebrühe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 349,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 349,
+            "name": "Pfanne oder Kocher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 350,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 350,
+            "name": "Knotenbuch oder Internet",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 351,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 351,
+            "name": "Lakritz-Schnecken",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 352,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 352,
+            "name": "Bunte Schnüre (Süßigkeiten)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 353,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 353,
+            "name": "Polstermaterial",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 354,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 354,
+            "name": "Eier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 355,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 355,
+            "name": "Naturmaterialien",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 356,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 356,
+            "name": "Reinigungszeug",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 357,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 357,
+            "name": "Bücher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 358,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 358,
+            "name": "Sternenkarte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 359,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 359,
+            "name": "Liedtexte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 360,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 360,
+            "name": "Liederbücher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 361,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 361,
+            "name": "Musikinstrumente",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 362,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 362,
+            "name": "Backofen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 363,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 363,
+            "name": "Haferflocken",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 364,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 364,
+            "name": "Baen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 365,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 365,
+            "name": "Was-euch-sonst-so-einfällt",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 366,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 366,
+            "name": "Kothenbahnen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 367,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 367,
+            "name": "Seile",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 368,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 368,
+            "name": "Heringe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 369,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 369,
+            "name": "Stöcke",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 370,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 370,
+            "name": "Hammer/Beil",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 371,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 371,
+            "name": "Holz (selbst gesucht)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 372,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 372,
+            "name": "Schnur",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 373,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 373,
+            "name": "Taschenmesser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 374,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 374,
+            "name": "Feuerzeug",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 375,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 375,
+            "name": "Kohtenstoff",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 376,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 376,
+            "name": "Jeans",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 377,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 377,
+            "name": "Löscheimer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 378,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 378,
+            "name": "Feuerlöscher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 379,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 379,
+            "name": "Alter Schlafsack",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 380,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 380,
+            "name": "Alte Kerzen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 381,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 381,
+            "name": "Docht",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 382,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 382,
+            "name": "Schnur",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 383,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 383,
+            "name": "Plastikbecher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 384,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 384,
+            "name": "Luftballons",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 385,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 385,
+            "name": "50g Kakaobutter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 386,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 386,
+            "name": "40g Kokosöl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 387,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 387,
+            "name": "1 EL (ca. 10g) pflegendes Öl ",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 388,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 388,
+            "name": "Mandelöl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 389,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 389,
+            "name": "Traubenkernöl)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 390,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 390,
+            "name": "Wenige Tropfen ätherisches Öl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 391,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 391,
+            "name": "Ecco Verde",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 392,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 392,
+            "name": "Avocadostore)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 393,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 393,
+            "name": "Ein kleines Schraubglas für ",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 394,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 394,
+            "name": "Wandersocken",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 395,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 395,
+            "name": "Improvisierte Schläger",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 396,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 396,
+            "name": "Material für den Papour",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 397,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 397,
+            "name": "Wanderkarte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 398,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 398,
+            "name": "Gedruckte Karten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 399,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 399,
+            "name": "Smartphone",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 400,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 400,
+            "name": "Tablet",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 401,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 401,
+            "name": "Durchgefärbte Stabkerzen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 402,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 402,
+            "name": "Heißes Wasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 403,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 403,
+            "name": "Kaltes Wasser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 404,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 404,
+            "name": "Zwei Schüsseln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 405,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 405,
+            "name": "Ein Glas/Nudelholz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 406,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 406,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 407,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 407,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 408,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 408,
+            "name": "Digitaler Zugang",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 409,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 409,
+            "name": "Stoppuhr",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 410,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 410,
+            "name": "Smartphone",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 411,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 411,
+            "name": "Engerät und Internetzugang",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 412,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 412,
+            "name": "Briefpapier oder Postkarte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 413,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 413,
+            "name": "Stifte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 414,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 414,
+            "name": "Briefmarke",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 415,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 415,
+            "name": "Kamera/Smartphone",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 416,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 416,
+            "name": "Papier und Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 417,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 417,
+            "name": "ein Schatz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 418,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 418,
+            "name": "Internetzugang auf einem Endg",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 419,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 419,
+            "name": "Salz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 420,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 420,
+            "name": "Schüssel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 421,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 421,
+            "name": "Löffel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 422,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 422,
+            "name": "Kakao",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 423,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 423,
+            "name": "Kokosfett",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 424,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 424,
+            "name": "Datteln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 425,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 425,
+            "name": "Nüsse",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 426,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 426,
+            "name": "Fertigkakao",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 427,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 427,
+            "name": "Schüssel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 428,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 428,
+            "name": "Pürierstab oder Mixer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 429,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 429,
+            "name": "Sieb",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 430,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 430,
+            "name": "Auffangschale",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 431,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 431,
+            "name": "leere Marmeladengläser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 432,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 432,
+            "name": "Liste mit unterschiedlichen Z",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 433,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 433,
+            "name": "Blatt Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 434,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 434,
+            "name": "Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 435,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 435,
+            "name": "Ausgedruckten Pfadfinderregel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 436,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 436,
+            "name": "Behälter für die Creme",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 437,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 437,
+            "name": "Getrocknete Tomaten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 438,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 438,
+            "name": "Olivenöl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 439,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 439,
+            "name": "Basilikum",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 440,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 440,
+            "name": "gehackte Mandeln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 441,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 441,
+            "name": "Pfeffer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 442,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 442,
+            "name": "Salz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 443,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 443,
+            "name": "Etwas zum Pürieren",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 444,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 444,
+            "name": "Endgerät mit Internetzugang",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 445,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 445,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 446,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 446,
+            "name": "Zahnstocher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 447,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 447,
+            "name": "schwarze Pappe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 448,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 448,
+            "name": "Salz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 449,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 449,
+            "name": "Mehl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 450,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 450,
+            "name": "Fahrränder",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 451,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 451,
+            "name": "Fahrtenmesser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 452,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 452,
+            "name": "Schnitzholz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 453,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 453,
+            "name": "Beil",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 454,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 454,
+            "name": "Schälmesser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 455,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 455,
+            "name": "Transparenzpapier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 456,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 456,
+            "name": "Fineliner",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 457,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 457,
+            "name": "Schnur",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 458,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 458,
+            "name": "Lineal",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 459,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 459,
+            "name": "Gedruckte Vorlagen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 460,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 460,
+            "name": "Kein Plastik!",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 461,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 461,
+            "name": "Kamera",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 462,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 462,
+            "name": "Taschenlampe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 463,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 463,
+            "name": "Karte der Region",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 464,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 464,
+            "name": "Kompass",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 465,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 465,
+            "name": "Planzeiger",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 466,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 466,
+            "name": "GPS-Gerät",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 467,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 467,
+            "name": "Zettel und Stift",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 468,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 468,
+            "name": "Internet",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 469,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 469,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 470,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 470,
+            "name": "Stifte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 471,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 471,
+            "name": "Glasflasche oder anderes Gefä",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 472,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 472,
+            "name": "Kleber",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 473,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 473,
+            "name": "Sand",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 474,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 474,
+            "name": "Wachs zum Versiegeln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 475,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 475,
+            "name": "Internet",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 476,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 476,
+            "name": "Holz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 477,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 477,
+            "name": "Stifte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 478,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 478,
+            "name": "Papier",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 479,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 479,
+            "name": "Bingo-Karten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 480,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 480,
+            "name": "Behälter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 481,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 481,
+            "name": "Belohnung",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 482,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 482,
+            "name": "Schraubverschlüsse",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 483,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 483,
+            "name": "Stoffbeutel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 484,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 484,
+            "name": "Edding",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 485,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 485,
+            "name": "Acrylfarbe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 486,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 486,
+            "name": "Lupe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 487,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 487,
+            "name": "Marmeladenglas",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 488,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 488,
+            "name": "Becherlupe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 489,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 489,
+            "name": "Pappteller",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 490,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 490,
+            "name": "Bestimmungsbuch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 491,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 491,
+            "name": "Liste mit Zitaten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 492,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 492,
+            "name": "Gemüsereste",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 493,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 493,
+            "name": "Backblech",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 494,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 494,
+            "name": "Pfadfindersymbole",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 495,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 495,
+            "name": "Karten Legende",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 496,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 496,
+            "name": "Papierfliegeranleitungen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 497,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 497,
+            "name": "Reste",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 498,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 498,
+            "name": "Kakaobutter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 499,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 499,
+            "name": "Kokosöl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 500,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 500,
+            "name": "pflegendes Öl ",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 501,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 501,
+            "name": "Traubenkernöl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 502,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 502,
+            "name": "kleines Schraubglas",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 503,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 503,
+            "name": "Zwiebel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 504,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 504,
+            "name": "Knoblauchzehen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 505,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 505,
+            "name": "Tomatenmark",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 506,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 506,
+            "name": "Gemüsebrühe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 507,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 507,
+            "name": "Dose Tomaten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 508,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 508,
+            "name": "rote Linsen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 509,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 509,
+            "name": "große Möhren",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 510,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 510,
+            "name": "Seil",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 511,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 511,
+            "name": "Stoffe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 512,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 512,
+            "name": "Füllwatte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 513,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 513,
+            "name": "Nähnadel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 514,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 514,
+            "name": "Zucker",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 515,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 515,
+            "name": "Prise Salz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 516,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 516,
+            "name": "Tropfen Rum-Aroma",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 517,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 517,
+            "name": "Butter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 518,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 518,
+            "name": "Eigelb",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 519,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 519,
+            "name": "Schnipels mit Anweisungen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 520,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 520,
+            "name": "Altglas",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 521,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 521,
+            "name": "Knicklichter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 522,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 522,
+            "name": "Chemikalienhandschuhe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 523,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 523,
+            "name": "Netz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 524,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 524,
+            "name": "Leuchtfarbe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 525,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 525,
+            "name": "natürliche Materialien",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 526,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 526,
+            "name": "Pappe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 527,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 527,
+            "name": "Wasserfarbe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 528,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 528,
+            "name": "Maßband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 529,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 529,
+            "name": "Lappen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 530,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 530,
+            "name": "Zutaten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 531,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 531,
+            "name": "Tasche/ Päckchen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 532,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 532,
+            "name": "AB-Gegenstände (vgl. Liste)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 533,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 533,
+            "name": "Gegenstände fürs Päckchen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 534,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 534,
+            "name": "Päckchen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 535,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 535,
+            "name": "Behältnis",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 536,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 536,
+            "name": "Altpapier (bspw. Zeitungen)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 537,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 537,
+            "name": "Stabmixer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 538,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 538,
+            "name": "Schöpfrahmen oder Ersatz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 539,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 539,
+            "name": "Nudelholz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 540,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 540,
+            "name": "ggf. Kamera",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 541,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 541,
+            "name": "Inhalt",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 542,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 542,
+            "name": "Tasche",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 543,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 543,
+            "name": "Rezept",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 544,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 544,
+            "name": "Zutaten eurer Wahl",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 545,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 545,
+            "name": "Liederbuch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 546,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 546,
+            "name": "Pfadfinder Gegenstand",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 547,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 547,
+            "name": "Tuch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 548,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 548,
+            "name": "pfadfinderische Gegenstände",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 549,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 549,
+            "name": "Korken",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 550,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 550,
+            "name": "Schrauben",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 551,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 551,
+            "name": "Aufhänger",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 552,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 552,
+            "name": "Pflanze",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 553,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 553,
+            "name": "Ast",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 554,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 554,
+            "name": "Stricknadel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 555,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 555,
+            "name": "Teelichter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 556,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 556,
+            "name": "Dosenöffner",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 557,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 557,
+            "name": "Cutter",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 558,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 558,
+            "name": "Zirker",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 559,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 559,
+            "name": "Forstnerbohrer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 560,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 560,
+            "name": "Nagel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 561,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 561,
+            "name": "Bohrmaschine",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 562,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 562,
+            "name": "Stichsäge",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 563,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 563,
+            "name": "Restzutaten",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 564,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 564,
+            "name": "Pokerkoffer",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 565,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 565,
+            "name": "Roulette",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 566,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 566,
+            "name": "Währung",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 567,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 567,
+            "name": "Gewinn",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 568,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 568,
+            "name": "Gesellschaftsspiel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 569,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 569,
+            "name": "Fragenzettel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 570,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 570,
+            "name": "Aufgabenliste",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 571,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 571,
+            "name": "Augenbinde",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 572,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 572,
+            "name": "Pfadi-stories ",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 573,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 573,
+            "name": "Milchkarton",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 574,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 574,
+            "name": "ausgedruckte Anleitung",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 575,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 575,
+            "name": "Telefon",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 576,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 576,
+            "name": "evtl. Wasserkanister/ -flasche",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 577,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 577,
+            "name": "ggf. Kreide",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 578,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 578,
+            "name": "Haikgepäck",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 579,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 579,
+            "name": "Stühle",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 580,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 580,
+            "name": "Platz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 581,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 581,
+            "name": "Stuhlkrei",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 582,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 582,
+            "name": "Tisch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 583,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 583,
+            "name": "versteckbarer Gegenstand",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 584,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 584,
+            "name": "Decke",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 585,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 585,
+            "name": "Stuhlkreis",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 586,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 586,
+            "name": "Becher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 587,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 587,
+            "name": "Apfeltee",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 588,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 588,
+            "name": "Apfel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 589,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 589,
+            "name": "Zimtstrangen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 590,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 590,
+            "name": "gemahlene Nelken",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 591,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 591,
+            "name": "Apfelsaft",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 592,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 592,
+            "name": "Gummiband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 593,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 593,
+            "name": "Weiße Acrylfarbe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 594,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 594,
+            "name": "Totenkopf Vorlage",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 595,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 595,
+            "name": "Locher",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 596,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 596,
+            "name": "Packetband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 597,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 597,
+            "name": "Zimtstangen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 598,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 598,
+            "name": "Paketband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 599,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 599,
+            "name": "Rosinen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 600,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 600,
+            "name": "Schokolade",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 601,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 601,
+            "name": "Marzipan",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 602,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 602,
+            "name": "Geschirrhandtuch",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 603,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 603,
+            "name": "Gabel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 604,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 604,
+            "name": "Große Kartoffeln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 605,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 605,
+            "name": "Vorlage Tierspuren",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 606,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 606,
+            "name": "Stempelkissen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 607,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 607,
+            "name": "Fesselmaterial",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 608,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 608,
+            "name": "Handschuh",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 609,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 609,
+            "name": "Etwas von d. gesucht. Person",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 610,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 610,
+            "name": "Schmuggelgegenstände",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 611,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 611,
+            "name": "Pizzateig",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 612,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 612,
+            "name": "Belag",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 613,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 613,
+            "name": "Wachs",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 614,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 614,
+            "name": "5 x 5 cm Mosaiksteine",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 615,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 615,
+            "name": "Keramikkleber",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 616,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 616,
+            "name": "20 x 25cm Pressspahnplatte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 617,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 617,
+            "name": "Metall- oder Holzhering",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 618,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 618,
+            "name": "Ton oder Matsche",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 619,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 619,
+            "name": "Fön",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 620,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 620,
+            "name": "Alte Töpfe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 621,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 621,
+            "name": "T-Shirt",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 622,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 622,
+            "name": "Pflanzen zum Färben",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 623,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 623,
+            "name": "Fliesen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 624,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 624,
+            "name": "Untergrundplatte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 625,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 625,
+            "name": "Holzlatten (Rahmen)",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 626,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 626,
+            "name": "(Stich-)Säge",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 627,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 627,
+            "name": "Fliesenkleber",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 628,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 628,
+            "name": "Basteluntergrund",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 629,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 629,
+            "name": "Leinwand/Leinwände",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 630,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 630,
+            "name": "Teppichmesser",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 631,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 631,
+            "name": "Lichterkette",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 632,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 632,
+            "name": "Farben: schwarz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 633,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 633,
+            "name": "Farben: blau",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 634,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 634,
+            "name": "Farben: gelb",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 635,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 635,
+            "name": "Farben: weiß",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 636,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 636,
+            "name": "Fotodrucker",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 637,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 637,
+            "name": "Bunte Pappe",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 638,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 638,
+            "name": "Farbige Stifte",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 639,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 639,
+            "name": "Wolle",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 640,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 640,
+            "name": "Kreppband",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 641,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 641,
+            "name": "Filmdosen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 642,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 642,
+            "name": "Füllmaterial",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 643,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 643,
+            "name": "Holzstämme",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 644,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 644,
+            "name": "Astgabeln",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 645,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 645,
+            "name": "Perlen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 646,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 646,
+            "name": "(heiß)Kleber",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 647,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 647,
+            "name": "Kulleraugen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 648,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 648,
+            "name": "Eisstile",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 649,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 649,
+            "name": "Nähmaschiene",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 650,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 650,
+            "name": "Schnur/Sisal",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 651,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 651,
+            "name": "Dekomaterial",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 652,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 652,
+            "name": "Müllzangen",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 653,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 653,
+            "name": "Müllbeutel",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 654,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 654,
+            "name": "Fliesenklebstoff",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 655,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 655,
+            "name": "Farbe: schwarz",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 656,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 656,
+            "name": "Farbe: blau",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 657,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 657,
+            "name": "Farbe: gelb",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 658,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 658,
+            "name": "Farbe: weiß",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 659,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 659,
+            "name": "(Heiß-)Kleber",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 660,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 660,
+            "name": "Eisstiele",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    },
+    {
+        "pk": 661,
+        "model": "activity.MaterialName",
+        "fields": {
+            "id": 661,
+            "name": "Namenschilder",
+            "description": "",
+            "unit_detaults_id": 1
+        }
+    }
+]

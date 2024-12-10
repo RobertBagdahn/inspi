@@ -1,18 +1,13 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from pictures.models import PictureField
+from image_cropping import ImageRatioField
 
 
 class CustomUser(AbstractUser):
     scout_display_name = models.CharField(max_length=50, default="", unique=True)
-    profile_picture = models.ImageField(blank=True, null=True)
-    profile_picture = PictureField(
-        upload_to="static/profile_images",
-        blank=True,
-        null=True,
-        width_field=200,
-        height_field=200,
-    )
+    profile_picture = models.ImageField(blank=True, upload_to='static/profile/uploaded_images', null=True)
+    profile_cropping = ImageRatioField('profile_picture', '400x400')
     about_me = models.TextField(blank=True, null=True, max_length=500)
     stamm = models.CharField(blank=True, null=True, max_length=50)
     bund = models.CharField(blank=True, null=True, max_length=50)
@@ -31,9 +26,12 @@ class CustomUser(AbstractUser):
         if self.is_superuser:
             return "Admin"
         elif self.is_staff:
-            return "Moderator"
+            return "Team"
         else:
-            return "User"
+            return "Normaler User"
 
     def written_blogs(self):
         return self.post_set.all()
+    
+    def written_activities(self):
+        return self.activity_set.all()

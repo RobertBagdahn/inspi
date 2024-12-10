@@ -53,7 +53,9 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
-        require('flowbite/plugin')
+        require('flowbite/plugin')({
+            charts: true,
+        }),
     ],
     darkMode: 'false',
 }

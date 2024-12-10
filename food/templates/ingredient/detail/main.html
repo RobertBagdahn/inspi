@@ -1,9 +1,10 @@
-{% extends "ingredient/_base.html" %} {% block detailcontent %}
+{% extends "ingredient/_base.html" %}
+{% block detailcontent %}
 <section class="bg-white dark:bg-gray-900">
   <div class="py-8 mx-auto max-w-6xl lg:py-16">
     <div class="grid gap-4 px-4 mb-4 sm:mb-5 sm:grid-cols-3 sm:gap-6 md:gap-12">
       <!-- Column -->
-      <div class="sm:col-span-2">
+      <div class="col-span-2">
         <div class="flex items-center space-x-4">
           <div>
             <h2
@@ -18,6 +19,14 @@
             </span>
           </div>
         </div>
+        <btn class="inline-flex items-centertext-sm font-bold text-black">
+          <a
+            href="{% url 'ingredient-update' ingredient.slug %}"
+            class="inline-flex items-center px-2 py-2 text-md font-bold"
+          >
+            Editieren
+          </a>
+        </btn>
         <dl>
           <dt
             class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
@@ -25,7 +34,37 @@
             Beschreibung
           </dt>
           <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
-            -
+            {{ ingredient.description }}
+          </dd>
+        </dl>
+        <dl>
+          <dt
+            class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+          >
+            Preis je Kg
+          </dt>
+          <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+            {{ ingredient.meta_info.price_per_kg|floatformat:2 }} €
+          </dd>
+        </dl>
+        <dl>
+          <dt
+            class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+          >
+            Erstellt von
+          </dt>
+          <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+            {{ ingredient.created_by }}
+          </dd>
+        </dl>
+        <dl>
+          <dt
+            class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"
+          >
+            Erstellt von
+          </dt>
+          <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+            {{ ingredient.created_by }}
           </dd>
         </dl>
       </div>

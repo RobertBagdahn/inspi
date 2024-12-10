@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from activity.activity.models import ActivityOfTheWeek
+
+
+admin.site.register(ActivityOfTheWeek)

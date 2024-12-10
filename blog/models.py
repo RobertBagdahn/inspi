@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from ckeditor.fields import RichTextField
 
-User = get_user_model()
+from general.login.models import CustomUser
+
 
 from .choices import StatusType
 
@@ -19,20 +20,21 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     overview = models.TextField(max_length=200)
     timestamp_created = models.DateTimeField(auto_now_add=True)
     timestamp_published = models.DateTimeField(
         auto_now_add=False, auto_now=False, null=True, blank=True
     )
-    content = RichTextField(max_length=8000, default="")
+    content = RichTextField(max_length=20000, default="")
     words = models.IntegerField(default=0)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     thumbnail = models.ImageField(null=True, blank=True)
     categories = models.ManyToManyField(Category)
     status = models.CharField(
         max_length=10, choices=StatusType.choices, default=StatusType.DRAFT
     )
+    view_count = models.IntegerField(default=0)
 
     # add get_absolute_url
     def get_absolute_url(self):
@@ -48,6 +50,10 @@ class Post(models.Model):
         self.words = len(self.content.split())
         super().save(*args, **kwargs)
 
+    def update_views(self, *args, **kwargs):
+         self.view_count = self.view_count + 1
+         super(Post, self).save(*args, **kwargs)
+
     def as_dict(self):
         return {
             "id": self.id,
@@ -60,7 +66,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     content = RichTextField(max_length=8000, default="")
     date_posted = models.DateTimeField(auto_now_add=True)
     parent = models.ForeignKey(

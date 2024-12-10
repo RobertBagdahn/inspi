@@ -16,10 +16,7 @@
       <p
         class="text-xl font-medium leading-tight text-gray-500 dark:text-gray-400"
       >
-      {{ plan.list_meal_days.all.first.date|date:"l, F d, Y" }}
-      bis
-      {{ plan.list_meal_days.all.last.date|date:"l, F d, Y" }}
-
+      {{ plan.list_meal_days.all.count }} Tage
       </p>
     </div>
 
@@ -29,8 +26,17 @@
         <h3
           class="text-2xl font-bold text-center text-gray-900 dark:text-white"
         >
-          {{ meal_day.date|date:"l" }}
+          {{ meal_day.date|date:"l, d.m.Y" }}
         </h3>
+
+        <div class="flex justify-center space-x-4">
+            <a href="{% url 'meal-day-update' meal_day.id %}" class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-1.5L6.75 17.25a2.121 2.121 0 0 1-.878.878l-3.536 1.768a.75.75 0 0 1-.964-.964l1.768-3.536a2.121 2.121 0 0 1 .878-.878l9.982-9.982a2.121 2.121 0 0 1 3 3z" />
+            </svg>
+            </a>
+        </div>
+        
         {% for meal in meal_day.list_meals %} 
         <div class="space-y-4">
           <span
@@ -49,22 +55,36 @@
                 clip-rule="evenodd"
               />
             </svg>
-            {{ meal.time_start }} - {{ meal.time_end }}
+            {% if meal.time_start and meal.time_end %}
+              {{ meal.time_start }} - {{ meal.time_end }}
+            {% else %}
+              Ganztag
+            {% endif %}
+            
           </span>
           <h4 class="text-xl font-bold text-gray-900 dark:text-white">
-            <a href="#" class="hover:underline">{{ meal.name }}</a>
+            <a href="{% url 'meal-detail-overview' plan.slug meal.id %}" class="hover:underline">
+              {{ meal.name }}
+            </a>
           </h4>
           <div class="flex items-center gap-3">
             <div>
               <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                 {% for item in meal.list_meal_items.all %}
-                {{ item.recipe.name }} {% if not forloop.last %}, {% endif %}
+                  {{ item.recipe.name }} {% if not forloop.last %}, {% endif %}
                 {% endfor %}
               </p>
             </div>
           </div>
         </div>
         {% endfor %}
+        <div class="flex justify-center space-x-4">
+            <a href="{% url 'meal-create' %}" class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            </a>
+        </div>
       </div>
       {% endfor %}
     </div>

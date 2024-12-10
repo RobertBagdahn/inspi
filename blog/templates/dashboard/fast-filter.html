@@ -1,19 +1,5 @@
-
-  <div
-    class="hidden md:flex items-center text-sm font-medium text-gray-900 dark:text-white mr-4 mt-3"
-  >
-  Status
-  </div>
-  <div class="flex flex-wrap">
-    {% for key in form.status %}
-    {{ key }}
-    {% endfor %}
-  </div>
-  <input
-    type="search"
-    id="default-search"
-    value="{{ form.query.value | default_if_none:'' }}"
-    class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    placeholder="Suche..."
-    name="{{ form.query.name }}"
-/>
+{% load main_extras %}
+{% load crispy_forms_tags %}
+<div>
+    {{ form.status }}
+</div>

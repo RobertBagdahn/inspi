@@ -1,0 +1,302 @@
+[
+    {
+        "pk": 9,
+        "model": "activity.topic",
+        "fields": {
+            "id": 9,
+            "name": "1. Hilfe",
+            "description": "",
+            "sorting": 10
+        }
+    },
+    {
+        "pk": 2,
+        "model": "activity.topic",
+        "fields": {
+            "id": 2,
+            "name": "Backen",
+            "description": "",
+            "sorting": 20
+        }
+    },
+    {
+        "pk": 34,
+        "model": "activity.topic",
+        "fields": {
+            "id": 34,
+            "name": "Basteln",
+            "description": "",
+            "sorting": 30
+        }
+    },
+    {
+        "pk": 24,
+        "model": "activity.topic",
+        "fields": {
+            "id": 24,
+            "name": "Baum",
+            "description": "",
+            "sorting": 40
+        }
+    },
+    {
+        "pk": 40,
+        "model": "activity.topic",
+        "fields": {
+            "id": 40,
+            "name": "Bewegung",
+            "description": "",
+            "sorting": 50
+        }
+    },
+    {
+        "pk": 10,
+        "model": "activity.topic",
+        "fields": {
+            "id": 10,
+            "name": "Feuer machen",
+            "description": "",
+            "sorting": 60
+        }
+    },
+    {
+        "pk": 35,
+        "model": "activity.topic",
+        "fields": {
+            "id": 35,
+            "name": "Geschichten",
+            "description": "",
+            "sorting": 70
+        }
+    },
+    {
+        "pk": 23,
+        "model": "activity.topic",
+        "fields": {
+            "id": 23,
+            "name": "Haik",
+            "description": "",
+            "sorting": 80
+        }
+    },
+    {
+        "pk": 30,
+        "model": "activity.topic",
+        "fields": {
+            "id": 30,
+            "name": "Handwerkliches",
+            "description": "Alles was mit den Händen und Werkzeug herstellt wird.",
+            "sorting": 90
+        }
+    },
+    {
+        "pk": 12,
+        "model": "activity.topic",
+        "fields": {
+            "id": 12,
+            "name": "Karte Kompass",
+            "description": "",
+            "sorting": 100
+        }
+    },
+    {
+        "pk": 13,
+        "model": "activity.topic",
+        "fields": {
+            "id": 13,
+            "name": "Kim-Spiel",
+            "description": "",
+            "sorting": 110
+        }
+    },
+    {
+        "pk": 16,
+        "model": "activity.topic",
+        "fields": {
+            "id": 16,
+            "name": "Knoten",
+            "description": "",
+            "sorting": 120
+        }
+    },
+    {
+        "pk": 17,
+        "model": "activity.topic",
+        "fields": {
+            "id": 17,
+            "name": "Küche",
+            "description": "",
+            "sorting": 130
+        }
+    },
+    {
+        "pk": 20,
+        "model": "activity.topic",
+        "fields": {
+            "id": 20,
+            "name": "Musisches",
+            "description": "",
+            "sorting": 140
+        }
+    },
+    {
+        "pk": 32,
+        "model": "activity.topic",
+        "fields": {
+            "id": 32,
+            "name": "Nachhaltigkeit",
+            "description": "",
+            "sorting": 150
+        }
+    },
+    {
+        "pk": 7,
+        "model": "activity.topic",
+        "fields": {
+            "id": 7,
+            "name": "Pfa. Geschichte",
+            "description": "",
+            "sorting": 160
+        }
+    },
+    {
+        "pk": 37,
+        "model": "activity.topic",
+        "fields": {
+            "id": 37,
+            "name": "Pflanzen",
+            "description": "",
+            "sorting": 170
+        }
+    },
+    {
+        "pk": 1,
+        "model": "activity.topic",
+        "fields": {
+            "id": 1,
+            "name": "Schnitzen",
+            "description": "",
+            "sorting": 180
+        }
+    },
+    {
+        "pk": 19,
+        "model": "activity.topic",
+        "fields": {
+            "id": 19,
+            "name": "Schwarzzelte",
+            "description": "",
+            "sorting": 190
+        }
+    },
+    {
+        "pk": 29,
+        "model": "activity.topic",
+        "fields": {
+            "id": 29,
+            "name": "Sternenkunde",
+            "description": "Alles was mit Planeten und Sternen zu tun hat.",
+            "sorting": 200
+        }
+    },
+    {
+        "pk": 15,
+        "model": "activity.topic",
+        "fields": {
+            "id": 15,
+            "name": "Symbolik",
+            "description": "",
+            "sorting": 210
+        }
+    },
+    {
+        "pk": 8,
+        "model": "activity.topic",
+        "fields": {
+            "id": 8,
+            "name": "Unser Bund",
+            "description": "",
+            "sorting": 220
+        }
+    },
+    {
+        "pk": 4,
+        "model": "activity.topic",
+        "fields": {
+            "id": 4,
+            "name": "Unsere Erde",
+            "description": "",
+            "sorting": 230
+        }
+    },
+    {
+        "pk": 36,
+        "model": "activity.topic",
+        "fields": {
+            "id": 36,
+            "name": "Unsere Sippe",
+            "description": "",
+            "sorting": 240
+        }
+    },
+    {
+        "pk": 11,
+        "model": "activity.topic",
+        "fields": {
+            "id": 11,
+            "name": "Versprechen",
+            "description": "",
+            "sorting": 250
+        }
+    },
+    {
+        "pk": 33,
+        "model": "activity.topic",
+        "fields": {
+            "id": 33,
+            "name": "Wasser",
+            "description": "",
+            "sorting": 260
+        }
+    },
+    {
+        "pk": 64,
+        "model": "activity.topic",
+        "fields": {
+            "id": 64,
+            "name": "Gesellschaftliches",
+            "description": "",
+            "sorting": 270
+        }
+    },
+    {
+        "pk": 66,
+        "model": "activity.topic",
+        "fields": {
+            "id": 66,
+            "name": "Tier",
+            "description": "",
+            "sorting": 280
+        }
+    },
+    {
+        "pk": 91,
+        "model": "activity.topic",
+        "fields": {
+            "id": 91,
+            "name": "Prävention",
+            "description": "Heimand der die Prävention der Kinder und Jugendliche erhöhen soll.",
+            "sorting": 290
+        }
+    },
+    {
+        "pk": 84,
+        "model": "activity.topic",
+        "fields": {
+            "id": 84,
+            "name": "Detektiv",
+            "description": "Hat etwas mit Detektiven zu tun",
+            "sorting": 9999
+        }
+    }
+]

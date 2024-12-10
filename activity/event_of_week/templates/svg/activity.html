@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <style>
+      @page {
+        size: 10cm 10cm;
+        margin: 0;
+        background-color: orange;
+      }
+      * {
+        box-sizing: border-box;
+        background-color: orange;
+      }
+      html {
+        height: auto;
+        background-color: orange;
+        margin: 0;
+      }
+      body {
+        height: auto;
+      }
+      #content1,
+      #content2,
+      #content3 {
+      }
+      .content {
+        background: white;
+        padding: 15px;
+        border-radius: 3px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div id="content1" class="text-center">
+        <h1>{{ activity.title }}</h1>
+        <img
+          src="https://gruppenstunde.de/static/images/inspi_thinking.webp"
+          height="100px"
+          width="100px"
+          alt="image description"
+        />
+      </div>
+    </div>
+    <pdf:nextpage />
+
+    <div id="content2" style="margin-top: 10px">
+      <div class="content">
+        This is a big white rectangle with rounded edges.
+      </div>
+      <span>
+        {{ activity.summary|safe }}</span>
+    </div>
+    <pdf:nextpage />
+
+    <div id="content3">
+      <h1>details</h1>
+      content 3
+    </div>
+    <pdf:nextpage />
+  </body>
+</html>

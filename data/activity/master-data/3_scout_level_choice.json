@@ -1,0 +1,32 @@
+[
+    {
+        "pk": 50,
+        "model": "activity.ScoutLevelChoice",
+        "fields": {
+            "id": 50,
+            "name": "Wölflinge",
+            "description": "",
+            "sorting": "1"
+        }
+    },
+    {
+        "pk": 51,
+        "model": "activity.ScoutLevelChoice",
+        "fields": {
+            "id": 51,
+            "name": "Pfadfinder",
+            "description": "",
+            "sorting": "2"
+        }
+    },
+    {
+        "pk": 52,
+        "model": "activity.ScoutLevelChoice",
+        "fields": {
+            "id": 52,
+            "name": "Rover",
+            "description": "",
+            "sorting": "3"
+        }
+    }
+]

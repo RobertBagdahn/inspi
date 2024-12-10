@@ -1,0 +1,23 @@
+{% extends "activity/_base_activity.html" %}
+{% load main_extras %}
+{% load static %}
+{% block header %}
+{{ form.media }}
+{% endblock header %}
+{% block detailcontent %}
+<main class="">
+  <section class="bg-white m-2">
+    <h2
+      class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
+    >
+      {{ selected_category }}
+    </h2>
+
+    <div class="container py-5">
+      <div class="row">
+        {% include 'activity/partials/all-activities.html' with category_name=category_name category_id=category_id  %}
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock detailcontent %}

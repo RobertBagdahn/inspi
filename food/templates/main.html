@@ -11,9 +11,9 @@
         <h2
           class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900"
         >
-          Essenspläne und Rezepte
+          Rezepte und Essenspläne
         </h2>
-        <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_food.png" %}" alt="image description">
+        <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_food.webp" %}" alt="image description">
         <p class="font-light text-gray-500 sm:text-xl my-5">
           Essenspläne in 5 Minuten und viele Pfadfinder Rezepte
         </p>
@@ -41,6 +41,7 @@
         class="mb-4 mt-8 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
       >
         Beliebteste Rezepte
+        <a href="{% url 'recipe-list' %}" class="text-md font-normal text-blue-600"> Alle Rezepte</a>
       </h2>
       <div class="grid gap-8 lg:grid-cols-3">
         {% for recipe in famous_recipes %}
@@ -58,7 +59,7 @@
         Beliebteste Zutaten
         <a href="{% url 'ingredient-list' %}" class="text-md font-normal text-blue-600"> Alle Zutaten</a>
       </h2>
-      <div class="grid gap-8 lg:grid-cols-3">
+      <div class="grid gap-8 lg:grid-cols-4">
         {% for ingredient in famous_ingredients %}
           <article
             class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"

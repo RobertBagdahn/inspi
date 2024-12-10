@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 /dist
+/data/data
 
 
 # local env files
@@ -201,3 +202,5 @@ zappa_settings.json
 /.idea/
 /backend/data/db/
 /backend/backend/.env.dev
+
+/data/data

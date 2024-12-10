@@ -7,7 +7,7 @@ from pictures.conf import get_settings
 urlpatterns = [
     # redirect to the overview/ page
     path("", include("activity.activity.urls")),
-    path("event_of_week", include("activity.event_of_week.urls")),
+    path("event-of-week/", include("activity.event_of_week.urls")),
 ]
 
 if get_settings().USE_PLACEHOLDERS:
