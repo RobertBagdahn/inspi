@@ -23,6 +23,7 @@ from django.forms.renderers import TemplatesSetting
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 env = environ.Env(DEBUG=(bool, False))
 env_file = os.path.join(BASE_DIR, ".env")
@@ -55,6 +56,9 @@ else:
     raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
 # [END gaestd_py_django_secret_config]
 
+# Just for Windows local development
+if os.getenv("NPM_BIN_PATH", None):
+    NPM_BIN_PATH = os.getenv("NPM_BIN_PATH", None)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
