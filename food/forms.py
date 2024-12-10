@@ -25,6 +25,8 @@ from .models import (
     TemplateOption,
     Ingredient,
     MetaInfo,
+    Meal,
+    MealDay,
 )
 
 from general.login.models import CustomUser
@@ -164,6 +166,7 @@ class MealEventTemplateFormUpdate(forms.ModelForm):
             "template_options",
         ]
 
+
 class IngredientForm(forms.Form):
     name = forms.CharField(
         label="Name der Zutat",
@@ -232,9 +235,7 @@ class IngredientForm(forms.Form):
         label="Mögliche Portionen",
         required=False,
         queryset=MeasuringUnit.objects.all(),
-        widget=forms.CheckboxSelectMultiple(
-            attrs={"class": "tailwind-checkbox"}
-        ),
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "tailwind-checkbox"}),
         help_text="Wählen Sie die möglichen Portionen für dieses Lebensmittel aus. Weitere sind später auch noch hinzufügbar.",
     )
     intolerances = forms.MultipleChoiceField(
@@ -294,7 +295,6 @@ class IngredientForm(forms.Form):
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
-
 
 
 class IngredientFormUpdate(forms.ModelForm):
@@ -419,6 +419,7 @@ class RecipeForm(forms.ModelForm):
             "hints",
         ]
 
+
 class RecipeFormUpdate(forms.ModelForm):
     class Meta:
         model = Recipe
@@ -483,3 +484,23 @@ class RecipeItemFormUpdate(forms.Form):
         required=True,
         widget=forms.HiddenInput(),
     )
+
+
+class MealForm(forms.ModelForm):
+    class Meta:
+        model = Meal
+        fields = [
+            "name",
+            "meal_day",
+            "day_part_factor",
+            "meal_type",
+            "time_start",
+            "time_end",
+            "is_public",
+        ]
+
+
+class MealDayForm(forms.ModelForm):
+    class Meta:
+        model = MealDay
+        fields = ["date"]

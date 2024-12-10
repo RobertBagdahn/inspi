@@ -416,7 +416,7 @@ class MealEvent(TimeStampMixin):
         return self.__str__()
 
     def list_meal_days(self):
-        return MealDay.objects.filter(meal_event=self)
+        return MealDay.objects.filter(meal_event=self).order_by("date")
 
     def list_meals(self):
         # filter all meals with with connected meal_days in meal_event=self
@@ -426,6 +426,7 @@ class MealEvent(TimeStampMixin):
 class MealDay(TimeStampMixin):
     meal_event = models.ForeignKey(MealEvent, on_delete=models.CASCADE, null=True)
     max_day_part_factor = models.FloatField(default=1)
+    date = models.DateField(default=datetime.date.today, blank=True, null=True)
     is_public = models.BooleanField(default=False)
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True

@@ -22,8 +22,25 @@ urlpatterns = [
     path("template-create/", views.template_create, name="template-create"),
     path("template-update/<id>/", views.template_update, name="template-update"),
 
+    path("plan/<slug>/meal/<id>/overview", views.meal_detail_overview, name="meal-detail-overview"),
+    path("plan/<slug>/meal/<id>/analyse", views.meal_detail_overview, name="meal-detail-analyse"),
+    path("plan/<slug>/meal/<i>/shopping", views.meal_detail_overview, name="meal-detail-shopping"),
+    path("plan/<slug>/meal/<id>/comment", views.meal_detail_overview, name="recipe-detail-comment"),
+
     path("meal-event-create/", views.meal_event_create, name="meal-event-create"),
     path("meal-event-clone", views.meal_event_clone, name="meal-event-clone"),
+
+    path("meal-event-update/<id>/", views.meal_event_update, name="meal-event-update"),
+    path("meal-event-delete/", views.meal_event_delete, name="meal-event-delete"),
+
+    # meal update and delete, create
+    path("meal-create/", views.meal_create, name="meal-create"),
+    path("meal-update/<id>/", views.meal_update, name="meal-update"),
+    path("meal-delete/<id>/", views.meal_delete, name="meal-delete"),
+
+    # meal-day update and delete
+    path("meal-day-update/<id>/", views.meal_day_update, name="meal-day-update"),
+    path("meal-day-delete/<id>/", views.meal_day_delete, name="meal-day-delete"),
 
     path("recipe-list/", views.recipe_list, name="recipe-list"),
     

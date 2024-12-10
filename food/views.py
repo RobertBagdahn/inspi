@@ -1,6 +1,6 @@
 from django_filters import CharFilter, NumberFilter
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -25,6 +25,8 @@ from .forms import (
     RecipeItemFormCreate,
     RecipeItemFormUpdate,
     RecipeFormUpdate,
+    MealForm,
+    MealDayForm,
 )
 from .models import (
     MealEvent,
@@ -44,6 +46,7 @@ from .models import (
 
 # create view with template main.html
 
+
 @login_required
 def mainView(request):
     famous_meal_events = MealEvent.objects.all()[0:3]
@@ -59,6 +62,7 @@ def mainView(request):
     }
     return render(request, "main.html", context)
 
+
 @login_required
 def plan(request, slug):
     plan = MealEvent.objects.get(slug=slug)
@@ -66,6 +70,7 @@ def plan(request, slug):
         "plan": plan,
     }
     return render(request, "plan.html", context)
+
 
 @login_required
 def plan_editor(request, slug):
@@ -76,6 +81,7 @@ def plan_editor(request, slug):
     }
     return render(request, "plan-editor.html", context)
 
+
 @login_required
 def plan_overview(request):
     plans = MealEvent.objects.all()
@@ -83,6 +89,7 @@ def plan_overview(request):
         "plans": plans,
     }
     return render(request, "plan-overview.html", context)
+
 
 @login_required
 def plan_create(request):
@@ -115,6 +122,7 @@ def plan_create(request):
         form = MealEventForm()
         return render(request, "plan-create.html", {"form": form})
 
+
 @login_required
 def plan_dashboard(request):
     plans = MealEvent.objects.all()
@@ -122,6 +130,7 @@ def plan_dashboard(request):
         "plans": plans,
     }
     return render(request, "plan-dashboard.html", context)
+
 
 @login_required
 def template_create(request):
@@ -142,7 +151,7 @@ def template_create(request):
 
             for intolerance in intolerances:
                 template.intolerances.add(intolerance)
-            
+
             for template_option in template_options:
                 template.template_options.add(template_option)
 
@@ -151,15 +160,15 @@ def template_create(request):
             # create meal events from template
             new_meal_event = MealEvent.objects.create(
                 # add random number to name
-                event_name = event_name,
-                slug = event_name_slug,
-                description = template.description,
-                meal_event_template = template,
-                norm_portions = 1,
-                reserve_factor = 1.0,
-                activity_factor = 'Z',
-                is_public = template.is_public,
-                is_approved = False,
+                event_name=event_name,
+                slug=event_name_slug,
+                description=template.description,
+                meal_event_template=template,
+                norm_portions=1,
+                reserve_factor=1.0,
+                activity_factor="Z",
+                is_public=template.is_public,
+                is_approved=False,
             )
             # add meta info
             new_meta_info = MetaInfo.objects.create()
@@ -169,8 +178,8 @@ def template_create(request):
             # add three meal_day
             for i in range(1, 4):
                 new_meal_day = MealDay.objects.create(
-                    meal_event = new_meal_event,
-                    max_day_part_factor = 1.0,
+                    meal_event=new_meal_event,
+                    max_day_part_factor=1.0,
                 )
                 # add meta info
                 new_meta_info = MetaInfo.objects.create()
@@ -179,52 +188,52 @@ def template_create(request):
 
                 meal_types = [
                     {
-                        'name': 'Tagesgetränke',
-                        'meal_type': 'drinks',
-                        'day_part_factor': 1.0,
+                        "name": "Tagesgetränke",
+                        "meal_type": "drinks",
+                        "day_part_factor": 1.0,
                     },
                     {
-                        'name': 'Tages-Snacks',
-                        'meal_type': 'snacks',
-                        'day_part_factor': 1.0,
+                        "name": "Tages-Snacks",
+                        "meal_type": "snacks",
+                        "day_part_factor": 1.0,
                     },
                     {
-                        'name': 'Frühstück',
-                        'meal_type': 'breakfast',
-                        'day_part_factor': 1.0,
-                        'time_start': '07:00',
-                        'time_end': '08:00',
+                        "name": "Frühstück",
+                        "meal_type": "breakfast",
+                        "day_part_factor": 1.0,
+                        "time_start": "07:00",
+                        "time_end": "08:00",
                     },
                     {
-                        'name': 'Mittagessen',
-                        'meal_type': 'lunch',
-                        'day_part_factor': 1.0,
-                        'time_start': '12:00',
-                        'time_end': '13:00',
+                        "name": "Mittagessen",
+                        "meal_type": "lunch",
+                        "day_part_factor": 1.0,
+                        "time_start": "12:00",
+                        "time_end": "13:00",
                     },
                     {
-                        'name': 'Abendessen',
-                        'meal_type': 'dinner',
-                        'day_part_factor': 1.0,
-                        'time_start': '18:00',
-                        'time_end': '19:00',
+                        "name": "Abendessen",
+                        "meal_type": "dinner",
+                        "day_part_factor": 1.0,
+                        "time_start": "18:00",
+                        "time_end": "19:00",
                     },
                     {
-                        'name': 'Abend-Snacks',
-                        'meal_type': 'evening_snacks',
-                        'day_part_factor': 1.0,
-                        'time_start': '21:00',
-                        'time_end': '22:00',
+                        "name": "Abend-Snacks",
+                        "meal_type": "evening_snacks",
+                        "day_part_factor": 1.0,
+                        "time_start": "21:00",
+                        "time_end": "22:00",
                     },
                 ]
                 for meal_type in meal_types:
                     new_meal = Meal.objects.create(
-                        meal_day = new_meal_day,
-                        name = meal_type['name'],
-                        meal_type = meal_type['meal_type'],
-                        day_part_factor = meal_type['day_part_factor'],
-                        time_start = meal_type.get('time_start', None),
-                        time_end = meal_type.get('time_end', None),
+                        meal_day=new_meal_day,
+                        name=meal_type["name"],
+                        meal_type=meal_type["meal_type"],
+                        day_part_factor=meal_type["day_part_factor"],
+                        time_start=meal_type.get("time_start", None),
+                        time_end=meal_type.get("time_end", None),
                     )
                     # add meta info
                     new_meta_info = MetaInfo.objects.create()
@@ -236,9 +245,9 @@ def template_create(request):
                     random_recipe = recipes[random.randint(0, len(recipes) - 1)]
 
                     new_meal_item = MealItem.objects.create(
-                        meal = new_meal,
-                        recipe = random_recipe,
-                        factor = 1.0,
+                        meal=new_meal,
+                        recipe=random_recipe,
+                        factor=1.0,
                     )
 
                     # add meta info
@@ -246,7 +255,7 @@ def template_create(request):
                     new_meal_item.meta_info = new_meta_info
 
                     new_meal_item.save()
-            
+
             return HttpResponseRedirect(f"/food/plan/{event_name_slug}")
 
     form = MealEventTemplateFormCreate(
@@ -262,6 +271,7 @@ def template_create(request):
         }
     )
     return render(request, "template/create.html", {"form": form})
+
 
 @login_required
 def template_update(request, id):
@@ -281,6 +291,18 @@ def template_update(request, id):
     }
     return render(request, "template/update.html", context)
 
+
+def meal_detail_overview(request, slug, id):
+    meal = Meal.objects.get(id=id)
+    plan = MealEvent.objects.get(slug=slug)
+    context = {
+        "meal": meal,
+        "plan": plan,
+        "module_name": "Übersicht",
+    }
+    return render(request, "meal/detail/overview/main.html", context)
+
+
 @login_required
 def meal_event_create(request):
     templates = MealEventTemplate.objects.all()
@@ -289,6 +311,7 @@ def meal_event_create(request):
     }
     return render(request, "meal-event-create.html", context)
 
+
 @login_required
 def meal_event_clone(request):
     mealEvents = MealEvent.objects.all()
@@ -296,6 +319,105 @@ def meal_event_clone(request):
         "mealEvents": mealEvents,
     }
     return render(request, "meal-event-clone.html", context)
+
+
+def meal_event_update(request, id):
+    instance = get_object_or_404(MealEvent, id=id)
+    if request.method == "POST":
+        form = MealEventForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f"/food/plan/{instance.slug}")
+    form = MealEventForm(instance=instance)
+
+    context = {
+        "plan": instance,
+        "form": form,
+    }
+    return render(request, "meal-event-update.html", context)
+
+
+def meal_event_delete(request):
+    if request.method == "POST":
+        meal_event_id = request.POST.get("meal_event_id")
+        meal_event = MealEvent.objects.get(pk=meal_event_id)
+        meal_event.delete()
+
+    return HttpResponse("")
+
+def meal_create(request):
+    if request.method == "POST":
+        form = MealForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            # create a new post
+            meal = Meal(**data)
+            meal.author = CustomUser.objects.first()
+            meal.save()
+
+            return HttpResponseRedirect("/food/plan-overview/")
+
+        return render(request, "meal/create.html", {"form": form})
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = MealForm()
+        return render(request, "meal/create.html", {"form": form})
+
+
+def meal_update(request, id):
+    instance = get_object_or_404(Meal, id=id)
+    if request.method == "POST":
+        form = MealForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f"/food/plan/{instance.slug}")
+    form = MealForm(instance=instance)
+
+    context = {
+        "meal": instance,
+        "form": form,
+    }
+    return render(request, "meal-update.html", context)
+
+
+def meal_delete(request, id):
+    instance = get_object_or_404(Meal, id=id)
+    instance.delete()
+
+    return HttpResponse("")
+
+
+def meal_day_update(request, id):
+    instance = get_object_or_404(MealDay, id=id)
+    plan = instance.meal_event
+    if request.method == "POST":
+        form = MealDayForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f"/food/plan/{plan.slug}")
+    form = MealDayForm(instance=instance)
+
+    context = {
+        "meal_day": instance,
+        "form": form,
+    }
+    return render(request, "meal-day/update.html", context)
+
+
+def meal_day_delete(request, id):
+    instance = get_object_or_404(MealDay, id=id)
+    event = instance.meal_event
+    instance.delete()
+
+    # success response 200
+    return HttpResponse("")
+
 
 @login_required
 def plan_shopping_cart(request, slug):
@@ -319,37 +441,59 @@ def plan_shopping_cart(request, slug):
                         * meal_item.factor,
                     }
                 )
-    
+
     # sum up the shopping list by ingredient
     shopping_list = [
         {
             "ingredient": item["ingredient"],
-            "quantity": sum([i["quantity"] for i in shopping_list if i["ingredient"] == item["ingredient"]]),
+            "quantity": sum(
+                [
+                    i["quantity"]
+                    for i in shopping_list
+                    if i["ingredient"] == item["ingredient"]
+                ]
+            ),
             "major_class": item["major_class"],
-            "recipe_name": ", ".join(set([i["recipe_name"] for i in shopping_list if i["ingredient"] == item["ingredient"]])),
+            "recipe_name": ", ".join(
+                set(
+                    [
+                        i["recipe_name"]
+                        for i in shopping_list
+                        if i["ingredient"] == item["ingredient"]
+                    ]
+                )
+            ),
             "weight_g": item["weight_g"],
-            "price": sum([i["price"] for i in shopping_list if i["ingredient"] == item["ingredient"]]),
+            "price": sum(
+                [
+                    i["price"]
+                    for i in shopping_list
+                    if i["ingredient"] == item["ingredient"]
+                ]
+            ),
         }
         for item in shopping_list
     ]
 
     # deduplicate the shopping list
-    shopping_list = [
-        dict(t) for t in {tuple(d.items()) for d in shopping_list}
-    ]
+    shopping_list = [dict(t) for t in {tuple(d.items()) for d in shopping_list}]
 
     # sort by major_class
     shopping_list = sorted(shopping_list, key=lambda x: x["major_class"])
-
 
     context = {
         "plan": plan,
         "shopping_list": shopping_list,
         "module_name": "Einkaufsliste",
         "total_price": sum([item["price"] for item in shopping_list]),
-        "total_weight": sum([item["quantity"] * item["weight_g"] for item in shopping_list]) * 0.001 * 0.001,
+        "total_weight": sum(
+            [item["quantity"] * item["weight_g"] for item in shopping_list]
+        )
+        * 0.001
+        * 0.001,
     }
     return render(request, "plan/shopping-list.html", context)
+
 
 @login_required
 def plan_participants(request, slug):
@@ -357,6 +501,7 @@ def plan_participants(request, slug):
 
     context = {"plan": plan, "module_name": "Teilnehmer"}
     return render(request, "plan/participants.html", context)
+
 
 @login_required
 def ingredient_create(request):
@@ -403,7 +548,7 @@ def ingredient_create(request):
                 ingredient=ingredient,
                 measuring_unit=MeasuringUnit.objects.get(name="g"),
                 quantity=1,
-                meta_info=new_portion_meta_info
+                meta_info=new_portion_meta_info,
             )
 
             ingredient.portions.add(new_portion)
@@ -412,6 +557,7 @@ def ingredient_create(request):
 
     form = IngredientForm()
     return render(request, "ingredient/create.html", {"form": form})
+
 
 @login_required
 def ingredient_update(request, slug):
@@ -430,6 +576,7 @@ def ingredient_update(request, slug):
     }
     return render(request, "ingredient/update.html", context)
 
+
 @login_required
 def ingredient_detail(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
@@ -440,10 +587,9 @@ def ingredient_detail(request, slug):
     )
 
     # get the recipes from recipe items, portions and ingredients
-    recipes = (
-        Recipe.objects.filter(recipe_items__portion__ingredient=ingredient)
-        .distinct()
-    )
+    recipes = Recipe.objects.filter(
+        recipe_items__portion__ingredient=ingredient
+    ).distinct()
 
     context = {
         "ingredient": ingredient,
@@ -452,6 +598,7 @@ def ingredient_detail(request, slug):
         "recipes": recipes,
     }
     return render(request, "ingredient/detail/main.html", context)
+
 
 @login_required
 def ingredient_list(request):
@@ -485,9 +632,10 @@ def ingredient_list(request):
     }
     return render(request, "ingredient/list/main.html", context)
 
+
 @login_required
 def recipe_list(request):
-    recipes = Recipe.objects.filter(~Q(status='simulator'))
+    recipes = Recipe.objects.filter(~Q(status="simulator"))
     search_form = SearchForm(request.GET)
 
     if search_form.is_valid():
@@ -504,6 +652,7 @@ def recipe_list(request):
     }
     return render(request, "recipe/list/main.html", context)
 
+
 @login_required
 def recipe_create(request):
     meta_info = MetaInfo.objects.create()
@@ -518,6 +667,7 @@ def recipe_create(request):
     recipe.save()
 
     return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/overview")
+
 
 @login_required
 def recipe_update(request, slug):
@@ -535,6 +685,7 @@ def recipe_update(request, slug):
         "form": form,
     }
     return render(request, "recipe/update.html", context)
+
 
 @login_required
 def recipe_clone(request, slug):
@@ -561,9 +712,10 @@ def recipe_clone(request, slug):
 
     return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/overview")
 
+
 @login_required
 def recipe_list(request):
-    recipes = Recipe.objects.filter(~Q(status='simulator'))
+    recipes = Recipe.objects.filter(~Q(status="simulator"))
     search_form = SearchForm(request.GET)
 
     if search_form.is_valid():
@@ -579,6 +731,7 @@ def recipe_list(request):
         "search_form": search_form,
     }
     return render(request, "recipe/list/main.html", context)
+
 
 @login_required
 def recipe_detail_overview(request, slug):
@@ -603,6 +756,7 @@ def recipe_detail_analyse(request, slug):
     }
     return render(request, "recipe/detail/analyse/main.html", context)
 
+
 @login_required
 def recipe_detail_shopping(request, slug):
     recipe = Recipe.objects.get(slug=slug)
@@ -610,9 +764,10 @@ def recipe_detail_shopping(request, slug):
     context = {
         "recipe": recipe,
         "module_name": "Einkauf",
-        "ingredients": Ingredient.objects.all(),
+        "recipe_ingredients": RecipeItem.objects.filter(recipe=recipe),
     }
     return render(request, "recipe/detail/shopping/main.html", context)
+
 
 @login_required
 def recipe_detail_comment(request, slug):
@@ -633,6 +788,7 @@ def recipes(request):
         "recipes": recipes,
     }
     return render(request, "recipe/main.html", context)
+
 
 @login_required
 def recipe_item_create(request, slug):
@@ -658,7 +814,10 @@ def recipe_item_create(request, slug):
             recipe_item.meta_info = new_meta_info
             recipe_item.save()
 
-            return HttpResponseRedirect(f"/food/recipe/{recipe_item.recipe.slug}/overview")
+            return HttpResponseRedirect(
+                f"/food/recipe/{recipe_item.recipe.slug}/overview"
+            )
+
 
 @login_required
 def recipe_item_update(request, slug):
@@ -667,7 +826,9 @@ def recipe_item_update(request, slug):
             data={
                 "recipe_item_id": request.POST.get("recipe_item_id"),
                 "recipe_id": Recipe.objects.get(slug=slug).id,
-                "portion_id": Portion.objects.get(pk=request.POST.get("portion_update")).id,
+                "portion_id": Portion.objects.get(
+                    pk=request.POST.get("portion_update")
+                ).id,
                 "quantity": int(request.POST.get("quantity")),
             }
         )
@@ -679,7 +840,10 @@ def recipe_item_update(request, slug):
             recipe_item.quantity = data["quantity"]
             recipe_item.save()
 
-            return HttpResponseRedirect(f"/food/recipe/{recipe_item.recipe.slug}/overview")
+            return HttpResponseRedirect(
+                f"/food/recipe/{recipe_item.recipe.slug}/overview"
+            )
+
 
 @login_required
 def recipe_item_delete(request):
@@ -690,6 +854,7 @@ def recipe_item_delete(request):
         recipe_item.delete()
 
         return HttpResponseRedirect(f"/food/recipe/{recipe_slug}/")
+
 
 @login_required
 def ingredient_portion_create(request, slug):
@@ -706,7 +871,8 @@ def ingredient_portion_create(request, slug):
                 weight_g=data["quantity"]
                 * data["measuring_unit"].quantity,  # todo: handle ml also here
                 price_per_kg=ingredient.meta_info.price_per_kg,
-                price_eur=ingredient.meta_info.price_per_kg * (data["quantity"] * data["measuring_unit"].quantity / 1000),
+                price_eur=ingredient.meta_info.price_per_kg
+                * (data["quantity"] * data["measuring_unit"].quantity / 1000),
             )
             data["meta_info"] = new_meta_info
 
@@ -721,6 +887,7 @@ def ingredient_portion_create(request, slug):
         "form": form,
     }
     return render(request, "ingredient/portion/create.html", context)
+
 
 @login_required
 def ingredient_portion_update(request, slug, pk):
@@ -740,6 +907,7 @@ def ingredient_portion_update(request, slug, pk):
     }
     return render(request, "ingredient/portion/update.html", context)
 
+
 @login_required
 def ingredient_price_create(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
@@ -750,7 +918,7 @@ def ingredient_price_create(request, slug):
             data = form.cleaned_data
 
             price = Price(**data)
-            price.save() # trigger post_save signal
+            price.save()  # trigger post_save signal
 
             return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/")
     form = PriceForm()
@@ -761,6 +929,7 @@ def ingredient_price_create(request, slug):
         "form": form,
     }
     return render(request, "ingredient/price/create.html", context)
+
 
 @login_required
 def update_price_in_portions(ingredient, price_per_kg):
@@ -773,11 +942,12 @@ def update_price_in_portions(ingredient, price_per_kg):
     ).update(price_per_kg=price_per_kg)
 
     # update the price of the ingredient
-    MetaInfo.objects.filter(
-        id=ingredient.meta_info.id
-    ).update(price_per_kg=price_per_kg)
+    MetaInfo.objects.filter(id=ingredient.meta_info.id).update(
+        price_per_kg=price_per_kg
+    )
 
     return True
+
 
 @login_required
 def ingredient_price_update(request, slug, pk):
@@ -787,7 +957,9 @@ def ingredient_price_update(request, slug, pk):
         form = PriceFormUpdate(request.POST, instance=price)
 
         if form.is_valid():
-            price_per_kg = form.cleaned_data["price_eur"] / (price.portion.meta_info.weight_g * 1000)
+            price_per_kg = form.cleaned_data["price_eur"] / (
+                price.portion.meta_info.weight_g * 1000
+            )
             update_price_in_portions(ingredient, price_per_kg)
             form.save()
             return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/")
@@ -800,17 +972,16 @@ def ingredient_price_update(request, slug, pk):
     }
     return render(request, "ingredient/price/update.html", context)
 
+
 @login_required
 def get_portions_by_ingredient(request):
 
     if request.method == "POST":
-        ingredient_slug = request.POST.get('ingredient')
-        data = {
-            "portions": []
-        }
-        if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+        ingredient_slug = request.POST.get("ingredient")
+        data = {"portions": []}
+        if request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest":
 
-            portions = None 
+            portions = None
             if ingredient_slug:
                 portions = Portion.objects.filter(ingredient__slug=ingredient_slug)
 
@@ -818,10 +989,16 @@ def get_portions_by_ingredient(request):
                 return JsonResponse(data)
 
             for portion in portions:
-                data['portions'].append({"id": portion.id, "display_name": f"{portion.name} in {portion.measuring_unit.name}"})
+                data["portions"].append(
+                    {
+                        "id": portion.id,
+                        "display_name": f"{portion.name} in {portion.measuring_unit.name}",
+                    }
+                )
 
             return JsonResponse(data)
-        
+
+
 @login_required
 def meal_detail(request, slug, id):
     plan = MealEvent.objects.get(slug=slug)
@@ -830,7 +1007,6 @@ def meal_detail(request, slug, id):
     context = {
         "meal": meal,
         "plan": plan,
-        "module_name": "Meal Detail",
-
+        "module_name": "Menü",
     }
     return render(request, "meal/detail/main.html", context)

@@ -50,7 +50,7 @@
         {{ obj.description| default_if_none:""}}
       </p>
       <p class="mb-3 text-gray-500">
-        {{ obj.price_eur| default_if_none:"12.31"}} €
+        {{ obj.meta_info.price_eur| default_if_none:"12.31"}} €
       </p>
       <p class="mb-3 text-gray-500">
         {{ obj.list_meal_days.count}} Tage

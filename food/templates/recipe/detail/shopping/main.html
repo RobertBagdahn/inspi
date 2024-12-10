@@ -8,6 +8,11 @@
       <div class="mx-auto max-w-3xl">
         Shipping
       </div>
+      {% for item in recipe_ingredients %}
+      <p>
+        {{ item.portion.ingredient.name }}
+      </p>
+      {% endfor %}
     </div>
   </section>
   {% endblock detailcontent %}
