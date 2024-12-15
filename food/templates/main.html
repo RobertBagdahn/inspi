@@ -17,22 +17,19 @@
         <p class="font-light text-gray-500 sm:text-xl my-5">
           Essenspläne in 5 Minuten und viele Pfadfinder Rezepte
         </p>
-        <a href="{% url 'plan-create' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Neuer Essensplan</a>
-        {% if user.is_authenticated %}
-          <a href="{% url 'plan-dashboard' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Meine Pläne</a>
-        {% endif %}
       </div>
       <h2
         class="mb-4 mt-8 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
       >
         Beliebteste Pläne
+        <a href="{% url 'plan-dashboard' %}" class="text-md font-normal text-blue-600"> Mehr Pläne</a>
       </h2>
       <div class="grid gap-8 lg:grid-cols-3">
         {% for meal_event in famous_meal_events %}
           <article
             class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
           >
-          {% include 'plan/plan-box.html' with obj=meal_event %}
+          {% include 'plan/overview/plan-box.html' with obj=meal_event %}
           </article>
         {% endfor %}
       </div>
@@ -41,7 +38,7 @@
         class="mb-4 mt-8 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
       >
         Beliebteste Rezepte
-        <a href="{% url 'recipe-list' %}" class="text-md font-normal text-blue-600"> Alle Rezepte</a>
+        <a href="{% url 'recipe-list' %}" class="text-md font-normal text-blue-600"> Mehr Rezepte</a>
       </h2>
       <div class="grid gap-8 lg:grid-cols-3">
         {% for recipe in famous_recipes %}
@@ -57,7 +54,7 @@
         class="mb-4 mt-8 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
       >
         Beliebteste Zutaten
-        <a href="{% url 'ingredient-list' %}" class="text-md font-normal text-blue-600"> Alle Zutaten</a>
+        <a href="{% url 'ingredient-list' %}" class="text-md font-normal text-blue-600"> Mehr Zutaten</a>
       </h2>
       <div class="grid gap-8 lg:grid-cols-4">
         {% for ingredient in famous_ingredients %}

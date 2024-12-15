@@ -27,6 +27,8 @@ from .forms import (
     RecipeFormUpdate,
     MealForm,
     MealDayForm,
+    MealItemFormCreate,
+    MealItemFormUpdate,
 )
 from .models import (
     MealEvent,
@@ -68,8 +70,9 @@ def plan(request, slug):
     plan = MealEvent.objects.get(slug=slug)
     context = {
         "plan": plan,
+        "module_name": "Übersicht",
     }
-    return render(request, "plan.html", context)
+    return render(request, "plan/time-table/plan.html", context)
 
 
 @login_required
@@ -79,16 +82,7 @@ def plan_editor(request, slug):
         "plan": plan,
         "module_name": "Editor",
     }
-    return render(request, "plan-editor.html", context)
-
-
-@login_required
-def plan_overview(request):
-    plans = MealEvent.objects.all()
-    context = {
-        "plans": plans,
-    }
-    return render(request, "plan-overview.html", context)
+    return render(request, "plan/editor/plan-editor.html", context)
 
 
 @login_required
@@ -115,12 +109,12 @@ def plan_create(request):
 
             return HttpResponseRedirect("/food/plan-list/")
 
-        return render(request, "plan-create.html", {"form": form})
+        return render(request, "plan/create/plan-create.html", {"form": form})
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = MealEventForm()
-        return render(request, "plan-create.html", {"form": form})
+        return render(request, "plan/create/plan-create.html", {"form": form})
 
 
 @login_required
@@ -129,7 +123,7 @@ def plan_dashboard(request):
     context = {
         "plans": plans,
     }
-    return render(request, "plan-dashboard.html", context)
+    return render(request, "plan/list/plan-dashboard.html", context)
 
 
 @login_required
@@ -265,12 +259,12 @@ def template_create(request):
             "max_price_eur": 7.00,
             "suit_level": "M",
             "warm_meal": "J",
-            "animal_products": "VEG",
+            "animal_product": "VEG",
             "meal_time_options": "SW",
             "child_frendly": "CA",
         }
     )
-    return render(request, "template/create.html", {"form": form})
+    return render(request, "plan/plan-template/create.html", {"form": form})
 
 
 @login_required
@@ -288,8 +282,9 @@ def template_update(request, id):
     context = {
         "template": instance,
         "form": form,
+        "plan": meal_event,
     }
-    return render(request, "template/update.html", context)
+    return render(request, "plan/plan-template/update.html", context)
 
 
 def meal_detail_overview(request, slug, id):
@@ -299,6 +294,10 @@ def meal_detail_overview(request, slug, id):
         "meal": meal,
         "plan": plan,
         "module_name": "Übersicht",
+        "recipes": Recipe.objects.all(),
+        "create_form": MealItemFormCreate(
+            initial={"meal": meal, "factor": 1.0, "recipe": Recipe.objects.first()}
+        ),
     }
     return render(request, "meal/detail/overview/main.html", context)
 
@@ -318,7 +317,7 @@ def meal_event_clone(request):
     context = {
         "mealEvents": mealEvents,
     }
-    return render(request, "meal-event-clone.html", context)
+    return render(request, "plan/create/meal-event-clone.html", context)
 
 
 def meal_event_update(request, id):
@@ -346,7 +345,7 @@ def meal_event_delete(request):
 
     return HttpResponse("")
 
-def meal_create(request):
+def meal_create(request, meal_day_id):
     if request.method == "POST":
         form = MealForm(request.POST)
 
@@ -358,13 +357,16 @@ def meal_create(request):
             meal.author = CustomUser.objects.first()
             meal.save()
 
-            return HttpResponseRedirect("/food/plan-overview/")
+            meal_day_id = MealDay.objects.get(pk=meal_day_id)
+
+            return HttpResponseRedirect(f"/food/plan/{meal_day_id.meal_event.slug}") 
 
         return render(request, "meal/create.html", {"form": form})
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = MealForm()
+        meal_day = MealDay.objects.get(pk=meal_day_id)
+        form = MealForm(initial={"meal_day": meal_day})
         return render(request, "meal/create.html", {"form": form})
 
 
@@ -391,6 +393,58 @@ def meal_delete(request, id):
 
     return HttpResponse("")
 
+@login_required
+def meal_item_create(request):
+    if request.method == "POST":
+        meal = Meal.objects.get(pk=request.POST.get("meal"))
+        recipe = Recipe.objects.get(pk=request.POST.get("recipe"))
+        form = MealItemFormCreate(
+            data={
+                "meal": meal,
+                "factor": request.POST.get("factor"),
+                "recipe": recipe,
+            }
+        )
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            # create a new post
+            meal_item = MealItem(**data)
+            meal_item.created_by = request.user
+            # add meta info
+            new_meta_info = MetaInfo.objects.create(
+                weight_g=meal_item.recipe.meta_info.weight_g * meal_item.factor,
+                price_per_kg=meal_item.recipe.meta_info.price_per_kg * meal_item.factor,
+                price_eur=meal_item.recipe.meta_info.price_eur * meal_item.factor,
+            )
+            meal_item.meta_info = new_meta_info
+            meal_item.save()
+
+            return HttpResponseRedirect(
+                f"/food/plan/{meal.meal_day.meal_event.slug}/meal/{meal.id}/overview"
+            )
+
+
+
+
+
+@login_required
+def meal_item_update(request, slug):
+    instance = get_object_or_404(MealItem, id=id)
+    if request.method == "POST":
+        form = MealItemFormUpdate(request.POST, instance=instance)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f"/food/plan/")
+    form = MealItemFormUpdate(instance=instance)
+
+    context = {
+        "meal_item": instance,
+        "form": form,
+    }
+    return render(request, "meal-item/update.html", context)
 
 def meal_day_update(request, id):
     instance = get_object_or_404(MealDay, id=id)
@@ -407,7 +461,7 @@ def meal_day_update(request, id):
         "meal_day": instance,
         "form": form,
     }
-    return render(request, "meal-day/update.html", context)
+    return render(request, "meal/meal-day/update.html", context)
 
 
 def meal_day_delete(request, id):
@@ -492,7 +546,7 @@ def plan_shopping_cart(request, slug):
         * 0.001
         * 0.001,
     }
-    return render(request, "plan/shopping-list.html", context)
+    return render(request, "plan/shopping-list/shopping-list.html", context)
 
 
 @login_required
@@ -500,7 +554,7 @@ def plan_participants(request, slug):
     plan = MealEvent.objects.get(slug=slug)
 
     context = {"plan": plan, "module_name": "Teilnehmer"}
-    return render(request, "plan/participants.html", context)
+    return render(request, "plan/participant/participants.html", context)
 
 
 @login_required
@@ -638,6 +692,8 @@ def recipe_list(request):
     recipes = Recipe.objects.filter(~Q(status="simulator"))
     search_form = SearchForm(request.GET)
 
+    print(recipes)
+
     if search_form.is_valid():
         if (
             search_form.cleaned_data["query"]
@@ -660,7 +716,7 @@ def recipe_create(request):
         "name": "Simulator",
         "slug": f"sim-{str(random.randint(1, 100000))}",
         "description": "Beschreibung",
-        "status": "draft",
+        "status": "simulator",
         "meta_info": meta_info,
     }
     recipe = Recipe(**data)
@@ -696,7 +752,7 @@ def recipe_clone(request, slug):
         "name": "Kopie von " + recipe_old.name,
         "slug": f"copy-{str(random.randint(1, 100000))}",
         "description": "",
-        "status": "draft",
+        "status": "simulator",
         "meta_info": meta_info,
     }
     recipe = Recipe(**data)
@@ -711,27 +767,6 @@ def recipe_clone(request, slug):
     recipe.managed_by.add(CustomUser.objects.first())
 
     return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/overview")
-
-
-@login_required
-def recipe_list(request):
-    recipes = Recipe.objects.filter(~Q(status="simulator"))
-    search_form = SearchForm(request.GET)
-
-    if search_form.is_valid():
-        if (
-            search_form.cleaned_data["query"]
-            and search_form.cleaned_data["query"] is not None
-        ):
-            recipes = recipes.filter(name__icontains=search_form.cleaned_data["query"])
-
-    context = {
-        "recipes": recipes,
-        "module_name": "Liste",
-        "search_form": search_form,
-    }
-    return render(request, "recipe/list/main.html", context)
-
 
 @login_required
 def recipe_detail_overview(request, slug):
@@ -1010,3 +1045,7 @@ def meal_detail(request, slug, id):
         "module_name": "Menü",
     }
     return render(request, "meal/detail/main.html", context)
+
+
+def admin_main(request):
+    return render(request, "plan/admin/main.html")

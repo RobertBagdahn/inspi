@@ -4,7 +4,6 @@ from . import views
 
 urlpatterns = [
     path("", views.mainView, name="food-main"),
-    path("plan-overview/", views.plan_overview, name="plan-overview"),
     path("plan-create/", views.plan_create, name="plan-create"),
     path("plan-dashboard/", views.plan_dashboard, name="plan-dashboard"),
     path("plan/<slug>/", views.plan, name="plan"),
@@ -34,9 +33,13 @@ urlpatterns = [
     path("meal-event-delete/", views.meal_event_delete, name="meal-event-delete"),
 
     # meal update and delete, create
-    path("meal-create/", views.meal_create, name="meal-create"),
+    path("meal-create/<meal_day_id>/", views.meal_create, name="meal-create"),
     path("meal-update/<id>/", views.meal_update, name="meal-update"),
     path("meal-delete/<id>/", views.meal_delete, name="meal-delete"),
+
+    # meal-item-create
+    path("meal-item-create/", views.meal_item_create, name="meal-item-create"),
+    path("meal-item-update/<id>/", views.meal_item_update, name="meal-item-update"),
 
     # meal-day update and delete
     path("meal-day-update/<id>/", views.meal_day_update, name="meal-day-update"),
@@ -70,4 +73,7 @@ urlpatterns = [
 
     # get_portions_by_ingredient
     path("portions-by-ingredient", views.get_portions_by_ingredient, name="portions-by-ingredient"),
+
+    # admin
+    path("admin/main", views.admin_main, name="food-admin-main"),
 ]

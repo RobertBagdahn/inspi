@@ -27,6 +27,7 @@ from .models import (
     MetaInfo,
     Meal,
     MealDay,
+    MealItem,
 )
 
 from general.login.models import CustomUser
@@ -159,7 +160,6 @@ class MealEventTemplateFormUpdate(forms.ModelForm):
             "is_public",
             "suit_level",
             "warm_meal",
-            "animal_products",
             "meal_time_options",
             "child_frendly",
             "intolerances",
@@ -487,6 +487,25 @@ class RecipeItemFormUpdate(forms.Form):
 
 
 class MealForm(forms.ModelForm):
+    meal_day = forms.ModelChoiceField(
+        queryset=MealDay.objects.all(),
+        widget=forms.HiddenInput(),
+    )
+    # time_start to time field
+    time_start = forms.TimeField(
+        widget=forms.TimeInput(format="%H:%M", attrs={"class": "tailwind-input", 'type': 'time'}),
+    )
+    time_end = forms.TimeField(
+        widget=forms.TimeInput(format="%H:%M", attrs={"class": "tailwind-input", 'type': 'time'}),
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        time_start = cleaned_data.get("time_start")
+        time_end = cleaned_data.get("time_end")
+
+        if time_start and time_end and time_end <= time_start:
+            self.add_error("time_end", "End time must be later than start time.")
     class Meta:
         model = Meal
         fields = [
@@ -496,7 +515,6 @@ class MealForm(forms.ModelForm):
             "meal_type",
             "time_start",
             "time_end",
-            "is_public",
         ]
 
 
@@ -504,3 +522,37 @@ class MealDayForm(forms.ModelForm):
     class Meta:
         model = MealDay
         fields = ["date"]
+
+
+class MealItemFormCreate(forms.ModelForm):
+    meal = forms.ModelChoiceField(
+        queryset=Meal.objects.all(),
+        widget=forms.HiddenInput(),
+    )
+    recipe = forms.ModelChoiceField(
+        queryset=Recipe.objects.all(),
+    )
+    factor = forms.FloatField(
+        widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
+    )
+    class Meta:
+        model = MealItem
+        fields = [
+            "meal",
+            "recipe",
+            "factor",
+        ]
+
+class MealItemFormUpdate(forms.ModelForm):
+    class Meta:
+        model = MealItem
+        fields = [
+            "meal",
+            "recipe",
+            "factor",
+        ]
+        widgets = {
+            "meal": forms.HiddenInput(),
+            "recipe": forms.Select(attrs={"class": "tailwind-select"}),
+            "factor": forms.NumberInput(attrs={"class": "tailwind-input"}),
+        }
