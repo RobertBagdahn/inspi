@@ -196,7 +196,13 @@ media/
 zappa_settings.json
 
 # Backend Static Files
-/static/
+/static/activity/
+/static/admin/
+/static/ckeditor/
+/static/colorfield/
+/static/css/
+/static/django-browser-reload/
+/static/image_cropping/
 /staticfiles/
 
 /.idea/

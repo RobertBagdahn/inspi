@@ -139,13 +139,8 @@ class Ingredient(TimeStampMixin):
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
     )
-    animal_product = models.CharField(
-        max_length=10,
-        choices=AnimalProducts.choices,
-        default=AnimalProducts.Vegetarian,
-    )
     intolerances = models.ManyToManyField(Intolerance, blank=True)
-    animal_products = models.CharField(
+    animal_product = models.CharField(
         max_length=10,
         choices=AnimalProducts.choices,
         default=AnimalProducts.Vegetarian,
@@ -321,14 +316,18 @@ class Price(TimeStampMixin):
     @property
     def price_per_kg(self):
         return round(
-            (self.price_eur)
-            / (self.portion.meta_info.weight_g * float(self.quantity) / 1000),
+            float(self.price_eur)
+            / float(float(self.portion.meta_info.weight_g) * float(self.quantity) / 1000),
             2,
         )
 
     @property
     def weight_g(self):
-        return self.portion.meta_info.weight_g * self.quantity
+        print('weight_g')
+        print(self.portion.meta_info.weight_g)
+        print('quantity')
+        print(self.quantity)
+        return float(self.portion.meta_info.weight_g) * float(self.quantity)
 
     def __str__(self):
         return f"{self.price_eur} € - {self.retailer}"
@@ -364,7 +363,7 @@ class MealEventTemplate(TimeStampMixin):
         choices=WarmMeal.choices,
         default=WarmMeal.JustEvening,
     )
-    animal_products = models.CharField(
+    animal_product = models.CharField(
         max_length=10,
         choices=AnimalProducts.choices,
         default=AnimalProducts.Vegetarian,
@@ -471,6 +470,9 @@ class MealItem(TimeStampMixin):
     recipe = models.ForeignKey(Recipe, on_delete=models.PROTECT)
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
     factor = models.FloatField(default=1)
+    meta_info = models.ForeignKey(
+        MetaInfo, on_delete=models.PROTECT, null=True, blank=True
+    )
 
     def __str__(self):
         return f"{self.recipe.name} - {self.meal.name}"

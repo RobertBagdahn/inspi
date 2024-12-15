@@ -10,7 +10,7 @@
         top-0 left-0 h-16" alt="thinking inspi" />
       </a>
       <div class="flex items-center lg:order-2">
-        <a
+        {% comment %} <a
           href="{% url 'activity-search' %}"
           id="search-button-acticate"
           type="button"
@@ -28,7 +28,7 @@
               clip-rule="evenodd"
             ></path>
           </svg>
-        </a>
+        </a> {% endcomment %}
         {% if user.is_authenticated and user.is_superuser %}
         <button
           type="button"
@@ -234,7 +234,7 @@
                 hover:bg-gray-100 md:hover:bg-transparent md:border-0
                 md:hover:text-blue-700 md:p-0
               "
-              >Rezepte</a>
+              >Essen</a>
           </li>
           {% endif %}
           {% if user.is_authenticated and user.is_superuser %}

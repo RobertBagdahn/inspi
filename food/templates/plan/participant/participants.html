@@ -1,0 +1,24 @@
+{% extends "plan/_base_plan.html" %}
+
+{% block detailcontent %}
+<div class="my-4 space-y-4 sm:flex sm:space-y-0">
+  <div class="grid gap-4 mb-4 grid-cols-2">
+    <div class="col-span-2">
+      {% include "plan/plan-create/control-button.html" with label="Anzahl Wölflinge" %}
+    </div>
+    <div class="col-span-1">
+      {% include "plan/plan-create/control-button.html" with label="Pfadfinder(m)" %}
+    </div>
+    <div class="col-span-1">
+      {% include "plan/plan-create/control-button.html" with label="Pfadfinder(w/d)" %}
+    </div>
+    <div class="col-span-1">
+      {% include "plan/plan-create/control-button.html" with label="Rover (m)"%}
+    </div>
+    <div class="col-span-1">
+      {% include "plan/plan-create/control-button.html" with label="Rover (w/d)" %}
+    </div>
+  </div>
+</div>
+
+{% endblock detailcontent %}

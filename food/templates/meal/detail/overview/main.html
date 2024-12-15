@@ -10,13 +10,12 @@
           <table class="w-full text-left text-base text-gray-900 dark:text-white md:table-fixed">
             <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
               {% if meal.list_meal_items.count %}
-                {% for item in meal.list_meal_items.all %}
-                  {{ item.factor }} x
-                  {{ item.recipe.name }}
+                {% for meal_item in meal.list_meal_items.all %}
+                  {% include "./meal_item.html" with meal_item=meal_item i=forloop.counter %}
                 {% endfor %}
               {% else %}
                 <tr>
-                  <td class="py-4 pr-4">Bisher noch keine Zutat vorhanden</td>
+                  <td class="py-4 pr-4">Bisher noch kein Rezept vorhanden</td>
                 </tr>
               {% endif %}
             </tbody>
@@ -31,14 +30,14 @@
             </svg>
           </button>
           <button type="button" data-drawer-target="drawer-add" data-drawer-show="drawer-add" aria-controls="drawer-add" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-green-500 hover:bg-green-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
-            <span class="sr-only">Neue Zutat</span>
+            <span class="sr-only">Neues Rezept</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </button>
           <!-- Delete Button -->
           <button type="button" data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-red-500 hover:bg-red-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
-            <span class="sr-only">Löschen</span>
+            <span class="sr-only">Menü Löschen</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18.75A2.25 2.25 0 0 0 8.25 21h7.5A2.25 2.25 0 0 0 18 18.75V7.5H6v11.25ZM9 10.5v6m3-6v6m3-6v6M10.5 4.5h3m-6 0h9M9 4.5V3.75A1.5 1.5 0 0 1 10.5 2.25h3A1.5 1.5 0 0 1 15 3.75V4.5" />
             </svg>
@@ -47,8 +46,10 @@
         {% comment %} <div class="my-3">
           {% include './summary.html' with recipe=recipe %}
         </div>
-        {% include './drawer_create.html' with recipe=recipe ingredients=ingredients %}
-        <a href="{% url 'recipe-update' meal.slug %}" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 my-4 rounded">Rezept Speichern</a>
+        {% endcomment %}
+        {% include './drawer_create.html' with recipe=recipe recipes=recipes create_form=create_form %}
+        
+        {% comment %} <a href="{% url 'recipe-update' meal.slug %}" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 my-4 rounded">Rezept Speichern</a>
         <a href="{% url 'recipe-clone' meal.slug %}" type="button" class="bg-yellow-300 hover:bg-yellow-500 text-white font-bold py-2 px-4 my-4 rounded mx-2">Rezept Simulieren</a> {% endcomment %}
       </div>
     </div>

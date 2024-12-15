@@ -1,0 +1,86 @@
+<div
+class="mb-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+>
+<div
+  class="items-start justify-between border-b border-gray-100 pb-4 dark:border-gray-700 md:flex"
+>
+  <div
+    class="mb-4 justify-between sm:flex sm:items-center md:mb-0 md:block lg:mb-4 lg:flex xl:mb-0 xl:block"
+  >
+    <div class="items-center gap-4 sm:flex">
+      <div class="mt-4 sm:mt-0">
+        <div class="mb-2 items-center sm:flex sm:space-x-2">
+          <a
+            href="{% url "meal-detail-overview" plan.slug item.id %}"
+            class="mb-2 block font-semibold text-gray-900 hover:underline dark:text-white sm:mb-0 sm:flex"
+            >{{ item.name }}</a
+          >
+          <span
+            class="inline-flex items-center rounded bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+          >
+            <svg
+              class="me-1 h-3 w-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M18.5 4h-13m13 16h-13M8 20v-3.333a2 2 0 0 1 .4-1.2L10 12.6a1 1 0 0 0 0-1.2L8.4 8.533a2 2 0 0 1-.4-1.2V4h8v3.333a2 2 0 0 1-.4 1.2L13.957 11.4a1 1 0 0 0 0 1.2l1.643 2.867a2 2 0 0 1 .4 1.2V20H8Z"
+              ></path>
+            </svg>
+            Änderungen nötig
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    data-drawer-target="extend-warranty-drawer"
+    data-drawer-show="extend-warranty-drawer"
+    data-drawer-placement="right"
+    type="button"
+    class="w-full rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:w-auto"
+  >
+    Anpassen
+  </button>
+</div>
+<div class="mb-4 items-center sm:flex sm:flex-wrap xl:flex">
+  <dl
+    class="mt-4 flex items-center text-gray-500 dark:text-gray-400 sm:me-8"
+  >
+    <dt class="me-2 font-medium text-gray-900 dark:text-white">
+      Tag
+    </dt>
+    <dd>{{ item.meal_day.date }}</dd>
+  </dl>
+  <dl
+    class="mt-4 flex items-center text-gray-500 dark:text-gray-400 sm:me-8"
+  >
+    <dt class="me-2 font-medium text-gray-900 dark:text-white">
+      Tagesbedarf als Faktor
+    </dt>
+    <dd>{{ item.day_part_factor }}</dd>
+  </dl>
+  
+</div>
+<div
+  class="flex items-center rounded-lg bg-green-50 px-4 py-3 text-sm text-green-800 dark:bg-gray-700 dark:text-orange-300"
+  role="alert"
+>
+  <span class="sr-only">Info</span>
+  <div>
+    <span class="font-medium">
+      {% for i in item.list_meal_items %}
+      {{ i.factor }} x {{ i.recipe.name }}<br>
+    {% endfor %}
+    </span>
+  </div>
+</div>
+</div>
