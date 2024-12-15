@@ -27,6 +27,10 @@ Mac, Linux:
 Windows:
 
 2) `poetry run python manage.py add_fixtures data\activity\master-data\`
+3) `poetry run python manage.py add_fixtures data\activity\test-data\`
+4) `poetry run python manage.py add_fixtures data\food\`
+4) `poetry run python manage.py add_fixtures data\blog\`
+
 Run Server
 
 `poetry run python manage.py runserver`
