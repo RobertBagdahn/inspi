@@ -834,6 +834,24 @@ files = [
 ]
 
 [[package]]
+name = "easy-thumbnails"
+version = "2.10"
+description = "Easy thumbnails for Django"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "easy_thumbnails-2.10-py3-none-any.whl", hash = "sha256:9e446fb9da1ca0cbc99bdd1fe8fdd5c38784323d64393a37e16d13cd736980b2"},
+    {file = "easy_thumbnails-2.10.tar.gz", hash = "sha256:d009462fcd791edf2496e5ed46d044712e1a06b7d4600e4cf2812002e9904ef5"},
+]
+
+[package.dependencies]
+django = ">=4.2"
+pillow = "*"
+
+[package.extras]
+svg = ["reportlab", "svglib"]
+
+[[package]]
 name = "frozenlist"
 version = "1.5.0"
 description = "A list-like structure which implements collections.abc.MutableSequence"
@@ -2645,4 +2663,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "2d63f35f4e1f1dbdf0fdb6961215e8c0794d3d16458ed9a4d83d403229358977"
+content-hash = "7e4277814ce76ae68190e072f2d333c2295d2c57b2086e599a0981a9c2b783b1"

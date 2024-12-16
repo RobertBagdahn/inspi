@@ -46,7 +46,5 @@ the file need to look like the example.env file in that folder
 # deploy
 `gcloud app deploy`
 
-
-
 # requirment.txt
 `poetry export --without-hashes --format=requirements.txt > requirements.txt`

@@ -34,6 +34,7 @@ openai = "^1.57.0"
 pydantic = "^2.10.3"
 google-generativeai = "^0.8.3"
 jsonref = "^1.1.0"
+easy-thumbnails = "^2.10"
 
 
 [build-system]
