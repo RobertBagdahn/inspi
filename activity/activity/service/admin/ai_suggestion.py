@@ -26,7 +26,6 @@ def get_ai_suggestion(prompt: str, model:str, OutputModel):
             response_model=OutputModel,
             max_retries=5,
         )
-        print('prompt', prompt)
     else:
         resp = OutputModel(summary="This is a test summary")
 

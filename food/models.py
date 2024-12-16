@@ -323,10 +323,6 @@ class Price(TimeStampMixin):
 
     @property
     def weight_g(self):
-        print('weight_g')
-        print(self.portion.meta_info.weight_g)
-        print('quantity')
-        print(self.quantity)
         return float(self.portion.meta_info.weight_g) * float(self.quantity)
 
     def __str__(self):
