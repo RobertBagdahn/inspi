@@ -63,6 +63,9 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG")
 
+if env.bool("NPM_BIN_PATH", default=False):
+    NPM_BIN_PATH = f'r{env("NPM_BIN_PATH")}'
+
 # [START gaestd_py_django_csrf]
 # SECURITY WARNING: It's recommended that you use this when
 # running in production. The URL will be known once you first deploy
@@ -353,3 +356,4 @@ TRACK_IGNORE_URLS = [r'/admin/', r'tracking.*', r'__reload__.*', r'sitemap.xml',
 if not DEBUG:
     INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'django_browser_reload']
     MIDDLEWARE = [m for m in MIDDLEWARE if m != 'django_browser_reload.middleware.BrowserReloadMiddleware']
+

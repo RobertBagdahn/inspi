@@ -200,7 +200,6 @@ zappa_settings.json
 /static/admin/
 /static/ckeditor/
 /static/colorfield/
-/static/css/
 /static/django-browser-reload/
 /static/image_cropping/
 /staticfiles/
