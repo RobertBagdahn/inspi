@@ -105,7 +105,6 @@ INSTALLED_APPS = [
     "allauth.account",
     "crispy_forms",
     "crispy_bootstrap4",
-    "crispy_tailwind",
     "widget_tweaks",
     "mathfilters",
     "formtools",
@@ -121,6 +120,10 @@ INSTALLED_APPS = [
     "blog",
     "general.footer",
     "general.login",
+    "event.basic",
+    "event.registration",
+    "event.participant",
+
 ]
 
 MIDDLEWARE = [
@@ -156,6 +159,9 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'blog/templates'),
             os.path.join(BASE_DIR, 'general/footer/templates'),
             os.path.join(BASE_DIR, 'general/login/templates'),
+            os.path.join(BASE_DIR, 'event/basic/templates'),
+            os.path.join(BASE_DIR, 'event/registration/templates'),
+            os.path.join(BASE_DIR, 'event/participant/templates'),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -171,6 +177,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "inspiapp.wsgi.application"
+
 
 
 # Database
@@ -341,3 +348,8 @@ TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
 TRACK_PAGEVIEWS = True
 TRACK_ANONYMOUS_USERS = True
 TRACK_IGNORE_URLS = [r'/admin/', r'tracking.*', r'__reload__.*', r'sitemap.xml', r'robots.txt', r'/favicon.ico', r'/static/.*', r'/media/.*']
+
+
+if not DEBUG:
+    INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'django_browser_reload']
+    MIDDLEWARE = [m for m in MIDDLEWARE if m != 'django_browser_reload.middleware.BrowserReloadMiddleware']

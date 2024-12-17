@@ -17,11 +17,14 @@
 # [START gaestd_py_django_app_yaml]
 runtime: python312
 env: standard
+instance_class: F2
 entrypoint: gunicorn -b :$PORT --timeout 300 --workers 4 inspiapp.wsgi
 
 env_variables:
   # This setting is used in settings.py to configure your ALLOWED_HOSTS
     APPENGINE_URL: https://gruppenstunde.de
+    DJANGO_SETTINGS_MODULE: inspiapp.settings
+    DEBUG: False
 
 handlers:
 # This configures Google App Engine to serve the files in the app's static
@@ -34,5 +37,6 @@ handlers:
 # the entire handlers section) when there are no static files defined.
 - url: /.*
   script: auto
+  secure: always
 
 # [END gaestd_py_django_app_yaml]

@@ -35,6 +35,7 @@ pydantic = "^2.10.3"
 google-generativeai = "^0.8.3"
 jsonref = "^1.1.0"
 easy-thumbnails = "^2.10"
+django-tracking2 = "^0.5.1"
 
 
 [build-system]

@@ -812,6 +812,19 @@ django = ">=3.2.14"
 reload = ["django-browser-reload (>=1.12.1,<2.0.0)"]
 
 [[package]]
+name = "django-tracking2"
+version = "0.5.1"
+description = "django-tracking2 tracks the length of time visitors and registered users spend on your site"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-tracking2-0.5.1.tar.gz", hash = "sha256:d1e9b4bb1eac8f74af5a267cbaa06575b0f3abb5af922101673929ca1fdfc28b"},
+]
+
+[package.dependencies]
+django = ">=3.2"
+
+[[package]]
 name = "django-widget-tweaks"
 version = "1.5.0"
 description = "Tweak the form field rendering in templates, not in python-level form definitions."
@@ -2663,4 +2676,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7e4277814ce76ae68190e072f2d333c2295d2c57b2086e599a0981a9c2b783b1"
+content-hash = "aaea937dda7c13fb7247c8ea7a0e0516348007b860d9779ecc575a50dc0a6404"

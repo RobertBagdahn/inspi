@@ -1151,7 +1151,7 @@
   <div class="justify-center max-w-lg mx-auto">
     {% if page_object.has_previous %}
     <a href="{% url 'activity-main'%}?{% updated_params %}&page=1">Anfang </a>
-    {% endif%} {% if page_object.has_previous %}
+    {% endif%} {% if .has_previous %}
     <button>
       <a
         href="{% url 'activity-main' %}?{% updated_params %}&page={{ page_object.previous_page_number }}"

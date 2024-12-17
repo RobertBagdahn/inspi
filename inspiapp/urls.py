@@ -36,6 +36,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("activity/", include("activity.urls")),
     path("general/", include("general.urls")),
+    path("event/", include("event.urls")),
     path("food/", include("food.urls")),
     path("blog/", include("blog.urls")),
     path("", index, name="index"),

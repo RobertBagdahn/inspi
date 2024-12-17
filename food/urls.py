@@ -71,6 +71,11 @@ urlpatterns = [
     path("ingredient/<slug>/price-create/", views.ingredient_price_create, name="ingredient-price-create"),
     path("ingredient/<slug>/price-update/<pk>", views.ingredient_price_update, name="ingredient-price-update"),
 
+    path("ingredient/<slug>/overview", views.ingredient_detail_overview, name="ingredient-detail-overview"),
+    path("ingredient/<slug>/analyse", views.ingredient_detail_analyse, name="ingredient-detail-analyse"),
+    path("ingredient/<slug>/portion", views.ingredient_detail_portion, name="ingredient-detail-portion"),
+    path("ingredient/<slug>/recipe", views.ingredient_detail_recipe, name="ingredient-detail-recipe"),
+
     # get_portions_by_ingredient
     path("portions-by-ingredient", views.get_portions_by_ingredient, name="portions-by-ingredient"),
 

@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 from copy import deepcopy
 
@@ -13,7 +14,6 @@ import random
 from .forms import (
     MealEventForm,
     SearchForm,
-    IngredientFilterForm,
     MealEventTemplateFormCreate,
     MealEventTemplateFormUpdate,
     IngredientForm,
@@ -658,9 +658,10 @@ def ingredient_detail(request, slug):
 def ingredient_list(request):
     ingredients = Ingredient.objects.all()
     search_form = SearchForm(request.GET)
-    filter_form = IngredientFilterForm(request.GET)
+
 
     if search_form.is_valid():
+        print(search_form.cleaned_data["query"])
         if (
             search_form.cleaned_data["query"]
             and search_form.cleaned_data["query"] is not None
@@ -668,21 +669,23 @@ def ingredient_list(request):
             ingredients = ingredients.filter(
                 name__icontains=search_form.cleaned_data["query"]
             )
-
-    if filter_form.is_valid():
         if (
-            filter_form.cleaned_data["physical_viscosity"]
-            and filter_form.cleaned_data["physical_viscosity"] is not None
+            search_form.cleaned_data["physical_viscosity"]
+            and search_form.cleaned_data["physical_viscosity"] is not None
         ):
             ingredients = ingredients.filter(
-                physical_viscosity=filter_form.cleaned_data["physical_viscosity"]
+                physical_viscosity=search_form.cleaned_data["physical_viscosity"]
             )
 
+    paginator = Paginator(ingredients, per_page=10)
+    page_num = request.GET.get("page")
+    page_object = paginator.get_page(page_num)
+    page_object.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
+
     context = {
-        "ingredients": ingredients,
+        "ingredients": page_object,
         "module_name": "Liste",
         "search_form": search_form,
-        "filterForm": filter_form,
     }
     return render(request, "ingredient/list/main.html", context)
 
@@ -1007,6 +1010,45 @@ def ingredient_price_update(request, slug, pk):
     }
     return render(request, "ingredient/price/update.html", context)
 
+@login_required
+def ingredient_detail_overview(request, slug):
+    ingredient = Ingredient.objects.get(slug=slug)
+
+    context = {
+        "ingredient": ingredient,
+        "module_name": "Detail",
+    }
+    return render(request, "ingredient/detail/overview/main.html", context)
+
+@login_required
+def ingredient_detail_analyse(request, slug):
+    ingredient = Ingredient.objects.get(slug=slug)
+
+    context = {
+        "ingredient": ingredient,
+        "module_name": "Analyse",
+    }
+    return render(request, "ingredient/detail/analyse/main.html", context)
+
+@login_required
+def ingredient_detail_portion(request, slug):
+    ingredient = Ingredient.objects.get(slug=slug)
+
+    context = {
+        "ingredient": ingredient,
+        "module_name": "Portionen",
+    }
+    return render(request, "ingredient/detail/portion/main.html", context)
+
+@login_required
+def ingredient_detail_recipe(request, slug):
+    ingredient = Ingredient.objects.get(slug=slug)
+
+    context = {
+        "ingredient": ingredient,
+        "module_name": "Rezepte",
+    }
+    return render(request, "ingredient/detail/recipe/main.html", context)
 
 @login_required
 def get_portions_by_ingredient(request):

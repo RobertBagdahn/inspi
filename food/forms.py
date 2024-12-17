@@ -1,4 +1,6 @@
 from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, Submit, HTML, Div
 
 from .choices import (
     SuitLevel,
@@ -61,26 +63,32 @@ class SearchForm(forms.Form):
         max_length=100,
         required=False,
         widget=forms.TextInput(attrs={"class": "form-control"}),
-        help_text="Suchen Sie nach einer Zutaz",
     )
-    physical_viscosity = forms.CharField(widget=forms.HiddenInput())
-
-
-class IngredientFilterForm(forms.Form):
     physical_viscosity = forms.ChoiceField(
         label="Viskosität",
         required=False,
-        choices=[
-            ("", "Alle"),
-            ("liquid", "Flüssig"),
-            ("solid", "Fest"),
-        ],
-        widget=forms.RadioSelect(
-            attrs={"class": "tailwind-radio", "onchange": "submit();"}
-        ),
+        choices=PhysicalViscosityChoices.choices,
+        widget=forms.Select(attrs={"class": "form-control", "onchange": "submit()"}),
     )
-    # add hidden query
-    query = forms.CharField(widget=forms.HiddenInput())
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Fieldset(
+                "",
+                Div(
+                    Div("query", css_class="col-md-6"),
+                    Div("physical_viscosity", css_class="col-md-6"),
+                    css_class="grid grid-rows-2 grid-cols-2 gap-4",
+                ),
+            ),
+            Submit(
+                "submit",
+                "Suchen",
+                css_class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+            ),
+        )
 
 
 class MealEventTemplateFormCreate(forms.Form):
@@ -195,7 +203,7 @@ class IngredientForm(forms.Form):
     physical_viscosity = forms.ChoiceField(
         label="Fest oder Flüssig",
         required=False,
-        initial="solid",
+        initial=PhysicalViscosityChoices.SOLID,
         choices=PhysicalViscosityChoices.choices,
         widget=forms.RadioSelect(attrs={"class": "tailwind-radio"}),
     )
@@ -493,10 +501,14 @@ class MealForm(forms.ModelForm):
     )
     # time_start to time field
     time_start = forms.TimeField(
-        widget=forms.TimeInput(format="%H:%M", attrs={"class": "tailwind-input", 'type': 'time'}),
+        widget=forms.TimeInput(
+            format="%H:%M", attrs={"class": "tailwind-input", "type": "time"}
+        ),
     )
     time_end = forms.TimeField(
-        widget=forms.TimeInput(format="%H:%M", attrs={"class": "tailwind-input", 'type': 'time'}),
+        widget=forms.TimeInput(
+            format="%H:%M", attrs={"class": "tailwind-input", "type": "time"}
+        ),
     )
 
     def clean(self):
@@ -506,6 +518,7 @@ class MealForm(forms.ModelForm):
 
         if time_start and time_end and time_end <= time_start:
             self.add_error("time_end", "End time must be later than start time.")
+
     class Meta:
         model = Meal
         fields = [
@@ -535,6 +548,7 @@ class MealItemFormCreate(forms.ModelForm):
     factor = forms.FloatField(
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
+
     class Meta:
         model = MealItem
         fields = [
@@ -542,6 +556,7 @@ class MealItemFormCreate(forms.ModelForm):
             "recipe",
             "factor",
         ]
+
 
 class MealItemFormUpdate(forms.ModelForm):
     class Meta:
