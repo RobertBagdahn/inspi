@@ -33,7 +33,7 @@ Run Server
 
 
 # env file
-in folder /inspiApp you need to put the .env file.
+in folder /config you need to put the .env file.
 Next to the file settings.py
 
 the file need to look like the example.env file in that folder
@@ -48,3 +48,10 @@ the file need to look like the example.env file in that folder
 
 # requirment.txt
 `poetry export --without-hashes --format=requirements.txt > requirements.txt`
+
+
+# formater for template files
+`poetry run djlint . --reformat`
+
+# linter for template files
+`poetry run djlint . --lint`

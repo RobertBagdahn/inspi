@@ -2,106 +2,83 @@
 {% load main_extras %}
 {% load static %}
 {% block header %}
-{{ form.media }}
+    {{ form.media }}
 {% endblock header %}
 {% block detailcontent %}
-<main class="">
-  <section class="bg-white m-2">
-    <div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
-      {% if selected_topic %}
-      <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-        <h2
-          class="mb-4 text-2xl lg:text-4xl tracking-tight font-extrabold text-gray-900">
-        {{ selected_topic.name }}
-        </h2>
-      </div>
-      {% elif selected_scout_level %}
-      <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-        <h2
-          class="mb-4 text-2xl lg:text-4xl tracking-tight font-extrabold text-gray-900">
-        Für {{ selected_scout_level.name }}
-        </h2>
-      </div>
-
-      {% else %} 
-      <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-        <h2
-          class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900"
-        >
-          {{ count }} Gruppenstunden Ideen
-        </h2>
-        <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_science.webp" %}" alt="image description">
-        <p class="font-light text-gray-500 sm:text-xl my-3">
-          Hier findest du Ideen für deine Gruppenstunde
-        </p>
-      </div>
-
-      <h2
-        class="hidden md:block mb-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
-      >
-        Themen
-      </h2>
-        <div class="hidden md:block">
-          {% for topic in topics %}
-            <a href="{% url 'activity-main-category' 'topic' topic.id %}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm my-1 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ topic.name }}</a>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-      <h2
-      class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
-    >
-      Inspiration für dich
-      <a href="{% url 'activity-main-category' 'random' 1 %}" class="text-md font-normal text-blue-600">mehr</a>
-    </h2>
-    <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
-      {% for activity in random_activities %}
-        <article
-          class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
-        >
-        {% include "activity/activity-card.html" with activity=activity %}
-      </article>
-        {% empty %}
-          <p>Keine Ideen gefunden</p>
-      {% endfor %}
-    </div>
-
-      <h2
-        class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
-      >
-        Ideen im Trend
-        <a href="{% url 'activity-main-category' 'trend' 1 %}" class="text-md font-normal text-blue-600">mehr</a>
-      </h2>
-      <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
-        {% for activity in famous_activities %}
-          <article
-            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
-          >
-          {% include "activity/activity-card.html" with activity=activity %}
-        </article>
-          {% empty %}
-            <p>Keine Ideen gefunden</p>
-
-        {% endfor %}
-      </div>
-    <h2
-      class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900"
-    >
-      Neusten Ideen
-      <a href="{% url 'activity-main-category' 'newest' 1 %}" class="text-md font-normal text-blue-600">mehr</a>
-    </h2>
-    <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
-      {% for activity in newest_activities %}
-        <article
-          class="p-6 bg-white rounded-lg border border-gray-200 shadow-md"
-        >
-        {% include "activity/activity-card.html" with activity=activity %}
-      </article>
-        {% empty %}
-          <p>Keine Ideen gefunden</p>
-      {% endfor %}
-    </div>
-
-  </section>
-</main>
+    <main>
+        <section class="bg-white m-2">
+            <div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
+                {% if selected_topic %}
+                    <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+                        <h2 class="mb-4 text-2xl lg:text-4xl tracking-tight font-extrabold text-gray-900">{{ selected_topic.name }}</h2>
+                    </div>
+                {% elif selected_scout_level %}
+                    <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+                        <h2 class="mb-4 text-2xl lg:text-4xl tracking-tight font-extrabold text-gray-900">
+                            Für {{ selected_scout_level.name }}
+                        </h2>
+                    </div>
+                {% else %}
+                    <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+                        <h2 class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900">{{ count }} Gruppenstunden Ideen</h2>
+                        <img class="h-40 max-w-full rounded-lg mx-auto"
+                             src="{% static 'images/inspi_science.webp' %}"
+                             alt="image description">
+                        <p class="font-light text-gray-500 sm:text-xl my-3">Hier findest du Ideen für deine Gruppenstunde</p>
+                    </div>
+                    <h2 class="hidden md:block mb-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900">
+                        Themen
+                    </h2>
+                    <div class="hidden md:block">
+                        {% for topic in topics %}
+                            <a href="{% url 'activity-main-category' 'topic' topic.id %}"
+                               class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm my-1 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ topic.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <h2 class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900">
+                Inspiration für dich
+                <a href="{% url 'activity-main-category' 'random' 1 %}"
+                   class="text-md font-normal text-blue-600">mehr</a>
+            </h2>
+            <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
+                {% for activity in random_activities %}
+                    <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md">
+                        {% include "activity/activity-card.html" with activity=activity %}
+                    </article>
+                {% empty %}
+                    <p>Keine Ideen gefunden</p>
+                {% endfor %}
+            </div>
+            <h2 class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900">
+                Ideen im Trend
+                <a href="{% url 'activity-main-category' 'trend' 1 %}"
+                   class="text-md font-normal text-blue-600">mehr</a>
+            </h2>
+            <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
+                {% for activity in famous_activities %}
+                    <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md">
+                        {% include "activity/activity-card.html" with activity=activity %}
+                    </article>
+                {% empty %}
+                    <p>Keine Ideen gefunden</p>
+                {% endfor %}
+            </div>
+            <h2 class="my-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900">
+                Neusten Ideen
+                <a href="{% url 'activity-main-category' 'newest' 1 %}"
+                   class="text-md font-normal text-blue-600">mehr</a>
+            </h2>
+            <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
+                {% for activity in newest_activities %}
+                    <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md">
+                        {% include "activity/activity-card.html" with activity=activity %}
+                    </article>
+                {% empty %}
+                    <p>Keine Ideen gefunden</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
 {% endblock detailcontent %}

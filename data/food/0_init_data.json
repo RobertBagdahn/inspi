@@ -130,5 +130,347 @@
       "quantity": 10.0,
       "unit": "ml"
     }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 1,
+    "fields": {
+      "name": "Sp",
+      "description": "Obst",
+      "rank": 1
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 2,
+    "fields": {
+      "name": "Gemüse",
+      "description": "Frisches Obst und Gemüse",
+      "rank": 2
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 3,
+    "fields": {
+      "name": "Fleisch und Fisch",
+      "description": "Frisches Fleisch und Fisch",
+      "rank": 3
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 4,
+    "fields": {
+      "name": "Milchprodukte",
+      "description": "Milch und Milchprodukte",
+      "rank": 4
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 5,
+    "fields": {
+      "name": "Backwaren",
+      "description": "Brot und Backwaren",
+      "rank": 5
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 6,
+    "fields": {
+      "name": "Getränke ohne Alkohol",
+      "description": "nicht-alkoholische Getränke",
+      "rank": 6
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 7,
+    "fields": {
+      "name": "Tiefkühlkost",
+      "description": "Gefrorene Lebensmittel",
+      "rank": 7
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 8,
+    "fields": {
+      "name": "Konserven",
+      "description": "Konservierte Lebensmittel",
+      "rank": 8
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 9,
+    "fields": {
+      "name": "Salzige Snacks",
+      "description": "Chips, Nüsse und andere Snacks",
+      "rank": 9
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 10,
+    "fields": {
+      "name": "Haushaltswaren",
+      "description": "Reinigungsmittel und andere Haushaltswaren",
+      "rank": 10
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 11,
+    "fields": {
+      "name": "Süßigkeiten",
+      "description": "Süßigkeiten und Schokolade",
+      "rank": 11
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 12,
+    "fields": {
+      "name": "Kaffee und Tee",
+      "description": "Kaffee und Tee",
+      "rank": 12
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 13,
+    "fields": {
+      "name": "Gewürze",
+      "description": "Gewürze und Kräuter",
+      "rank": 13
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 14,
+    "fields": {
+      "name": "Backzutaten",
+      "description": "Backzutaten",
+      "rank": 14
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 15,
+    "fields": {
+      "name": "Nudeln und Reis",
+      "description": "Nudeln und Reis",
+      "rank": 15
+    }
+  }, 
+  {
+    "model": "food.retailsection",
+    "pk": 16,
+    "fields": {
+      "name": "Fertiggerichte",
+      "description": "Fertiggerichte",
+      "rank": 16
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 17,
+    "fields": {
+      "name": "Sonstiges",
+      "description": "Sonstiges",
+      "rank": 17
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 18,
+    "fields": {
+      "name": "Saucen und Dressings",
+      "description": "Saucen und Dressings",
+      "rank": 18
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 19,
+    "fields": {
+      "name": "Öl und Essig",
+      "description": "Öl und Essig",
+      "rank": 19
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 20,
+    "fields": {
+      "name": "Müsli und Cerealien",
+      "description": "Müsli und Cerealien",
+      "rank": 20
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 21,
+    "fields": {
+      "name": "Kartoffelprodukte",
+      "description": "Kartoffelprodukte",
+      "rank": 21
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 22,
+    "fields": {
+      "name": "Käse",
+      "description": "Käse",
+      "rank": 22
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 23,
+    "fields": {
+      "name": "Wurst",
+      "description": "Wurst",
+      "rank": 23
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 24,
+    "fields": {
+      "name": "Eier",
+      "description": "Eier",
+      "rank": 24
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 25,
+    "fields": {
+      "name": "Fertigsaucen",
+      "description": "Fertigsaucen",
+      "rank": 25
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 26,
+    "fields": {
+      "name": "Fertiggerichte",
+      "description": "Fertiggerichte",
+      "rank": 26
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 27,
+    "fields": {
+      "name": "Alkoholische Getränke",
+      "description": "Alkoholische Getränke",
+      "rank": 27
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 28,
+    "fields": {
+      "name": "Brotaufstriche",
+      "description": "Brotaufstriche",
+      "rank": 28
+    }
+  },
+  {
+    "model": "food.retailsection",
+    "pk": 29,
+    "fields": {
+      "name": "Internationale Küche",
+      "description": "Internationale Küche",
+      "rank": 29
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 26,
+    "fields": {
+      "name": "Laktose",
+      "description": "Laktoseintoleranz",
+      "rank": 1
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 27,
+    "fields": {
+      "name": "Gluten",
+      "description": "Glutenunverträglichkeit",
+      "rank": 2
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 28,
+    "fields": {
+      "name": "Fructose",
+      "description": "Fructoseintoleranz",
+      "rank": 3
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 29,
+    "fields": {
+      "name": "Histamin",
+      "description": "Histaminintoleranz",
+      "rank": 4
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 30,
+    "fields": {
+      "name": "Nüsse",
+      "description": "Nussallergie",
+      "rank": 5
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 32,
+    "fields": {
+      "name": "Soja",
+      "description": "Sojaallergie",
+      "rank": 6
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 33,
+    "fields": {
+      "name": "Sellerie",
+      "description": "Sellerieallergie",
+      "rank": 7
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 34,
+    "fields": {
+      "name": "Sesam",
+      "description": "Sesamallergie",
+      "rank": 8
+    }
+  },
+  {
+    "model": "food.intolerance",
+    "pk": 35,
+    "fields": {
+      "name": "Senf",
+      "description": "Senfallergie",
+      "rank": 9
+    }
   }
 ]

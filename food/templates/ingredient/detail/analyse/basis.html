@@ -1,0 +1,55 @@
+<div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">
+        Nährwerte für 100g
+        <a href="{% url 'ingredient-update-nutrition' ingredient.slug %}"
+           class="ml-2 text-sm text-blue-500 hover:underline">
+            <svg class="inline h-8 w-8 pb-2"
+                 aria-hidden="true"
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+            </svg>
+        </a>
+    </h2>
+    <ul class="divide-y divide-gray-200">
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Energie</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.energy_kj|floatformat:0 }} Kj</span>
+        </li>
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Eiweiß</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.protein_g|floatformat:0 }} g</span>
+        </li>
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Fett</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.fat_g|floatformat:0 }} g</span>
+        </li>
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Gesättigtes Fett</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.fat_sat_g|floatformat:0 }} g</span>
+        </li>
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Natrium</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.sodium_mg|floatformat:0 }} mg</span>
+        </li>
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Kohlenhydrate</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.carbohydrate_g|floatformat:0 }} g</span>
+        </li>
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Zucker</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.sugar_g|floatformat:0 }} g</span>
+        </li>
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Balaststoffe</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.fibre_g|floatformat:0 }} g</span>
+        </li>
+        <li class="py-4 flex justify-between">
+            <span class="font-medium text-gray-900 dark:text-white">Frucht/Gemüse Gehalt</span>
+            <span class="text-gray-700 dark:text-gray-300">{{ meta_info.fruit_factor|floatformat:0 }} %</span>
+        </li>
+    </ul>
+</div>

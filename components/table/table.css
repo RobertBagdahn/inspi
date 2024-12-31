@@ -1,0 +1,14 @@
+.table-component {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-component th, .table-component td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table-component th {
+    background-color: #f2f2f2;
+    text-align: left;
+}

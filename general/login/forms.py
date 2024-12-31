@@ -3,6 +3,7 @@ from allauth.account.forms import LoginForm, SignupForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
+from group.models import InspiGroupMembership
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -33,9 +34,6 @@ class CustomUserChangeForm(forms.ModelForm):
             "username",
             "email",
             "scout_display_name",
-            "stamm",
-            "bund",
-            "about_me",
         )
 
 
@@ -53,3 +51,18 @@ class MySignupForm(SignupForm):
         user.scout_display_name = self.cleaned_data["scout_display_name"]
         user.save()
         return user
+
+
+class InspiGroupAdminSearchFilterForm(forms.ModelForm):
+    search = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={"placeholder": "Suche nach Gruppen"}),
+        required=False,
+        label="",
+    )
+
+    class Meta:
+        model = InspiGroupMembership
+        fields = [
+            "search",
+        ]

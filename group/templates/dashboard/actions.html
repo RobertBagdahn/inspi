@@ -1,0 +1,5 @@
+{% load component_tags %}
+{% component 'big-action-box' header='Gruppe mit Code beitreten' icon='key' color='blue' description='Geben Sie den von Ihrem Gruppenleiter bereitgestellten Code ein, um der Gruppe beizutreten.' button_text="Beitreten mit Code" url="{% url 'join-group-by-code' %}" %}
+{% endcomponent %}
+{% component 'big-action-box' header='Neue Gruppe erstellen' icon='plus' color='green' description='Du kannst deine eingene Gruppe erstellen. Genau für deine Bedürfnisse.' button_text="Erstellen" url="{% url 'create-group' %}" %}
+{% endcomponent %}

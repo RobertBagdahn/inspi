@@ -1,0 +1,17 @@
+{% load component_tags %}
+<div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 text-center flex flex-col items-center">
+    <svg class="w-10 h-10 text-gray-800 mx-auto"
+         aria-hidden="true"
+         xmlns="http://www.w3.org/2000/svg"
+         width="24"
+         height="24"
+         fill="currentColor"
+         viewBox="0 0 24 24">
+        {% component "icon" icon=icon color="black" %} {% endcomponent %}
+    </svg>
+    <h3 class="text-gray-500">{{ description }}</h3>
+    <p class="mt-2 flex justify-center text-sm text-gray-500">
+        <a href="{{ link }}"
+           class="bg-{{ color  }}-600 hover:bg-{{ color  }}-700 text-white font-bold py-2 px-4 rounded">{{ text }}</a>
+    </p>
+</div>

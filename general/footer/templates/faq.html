@@ -1,56 +1,41 @@
-{% extends "_base.html" %} {% load main_extras %} {% load crispy_forms_tags %}
-{% load pictures %} {% load static %} {% block header %} {% endblock header %}
+{% extends "_base.html" %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% load pictures %}
+{% load static %}
+{% block header %}
+{% endblock header %}
 {% block content %}
-
-<section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-    <h2
-      class="mb-8 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
-    >
-      Häufig gestellte Fragen
-    </h2>
-    <img
-      class="h-60 max-w-full rounded-lg mx-auto mb-8"
-      src="{% static 'images/inspi_scout.webp' %}"
-      alt="image description"
-    />
-    <div
-      class="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2"
-    >
-      {% for faq in faqs %}
-      <div class="mb-10">
-        <h3
-          class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white"
-        >
-          <svg
-            class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          {{ faq.question }}
-        </h3>
-        <p class="text-gray-500 dark:text-gray-400">{{ faq.answer|safe }}</p>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  <div class="text-center">
-    <p>
-      Du hast noch Fragen? Kontaktiere uns!
-    </p>
-    <a
-      href="{% url 'footer-contact' %}"
-      class="inline-flex items-center justify-center px-4 py-2 mt-8 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-md shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-    >
-      Kontaktiere uns
-    </a>
-  </div>
-</section>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+            <h2 class="mb-8 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Häufig gestellte Fragen</h2>
+            <img class="h-60 max-w-full rounded-lg mx-auto mb-8"
+                 src="{% static 'images/inspi_scout.webp' %}"
+                 alt="image description" />
+            <div class="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
+                {% for faq in faqs %}
+                    <div class="mb-10">
+                        <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
+                            <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
+                                 fill="currentColor"
+                                 viewBox="0 0 20 20"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd">
+                                </path>
+                            </svg>
+                            {{ faq.question }}
+                        </h3>
+                        <p class="text-gray-500 dark:text-gray-400">{{ faq.answer|safe }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="text-center">
+            <p>Du hast noch Fragen? Kontaktiere uns!</p>
+            <a href="{% url 'footer-contact' %}"
+               class="inline-flex items-center justify-center px-4 py-2 mt-8 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-md shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Kontaktiere uns
+            </a>
+        </div>
+    </section>
 {% endblock content %}

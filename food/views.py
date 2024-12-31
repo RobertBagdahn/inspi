@@ -5,11 +5,16 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator
+from pydantic import Field, BaseModel, PositiveFloat
+
 
 from copy import deepcopy
 
 from general.login.models import CustomUser
+from activity.activity.service.admin.ai_suggestion import get_ai_suggestion
 import random
+from enum import Enum
+from typing import List
 
 from .forms import (
     MealEventForm,
@@ -21,7 +26,10 @@ from .forms import (
     PortionFormUpdate,
     PriceForm,
     PriceFormUpdate,
-    IngredientFormUpdate,
+    IngredientFormUpdateBasic,
+    IngredientFormUpdateAttribute,
+    IngredientFormUpdateRef,
+    IngredientFormUpdateNutrition,
     RecipeItemFormCreate,
     RecipeItemFormUpdate,
     RecipeFormUpdate,
@@ -43,6 +51,8 @@ from .models import (
     MealDay,
     Meal,
     MealItem,
+    RetailSection,
+    Intolerance,
 )
 
 
@@ -259,7 +269,6 @@ def template_create(request):
             "max_price_eur": 7.00,
             "suit_level": "M",
             "warm_meal": "J",
-            "animal_product": "VEG",
             "meal_time_options": "SW",
             "child_frendly": "CA",
         }
@@ -345,6 +354,7 @@ def meal_event_delete(request):
 
     return HttpResponse("")
 
+
 def meal_create(request, meal_day_id):
     if request.method == "POST":
         form = MealForm(request.POST)
@@ -359,7 +369,7 @@ def meal_create(request, meal_day_id):
 
             meal_day_id = MealDay.objects.get(pk=meal_day_id)
 
-            return HttpResponseRedirect(f"/food/plan/{meal_day_id.meal_event.slug}") 
+            return HttpResponseRedirect(f"/food/plan/{meal_day_id.meal_event.slug}")
 
         return render(request, "meal/create.html", {"form": form})
 
@@ -392,6 +402,7 @@ def meal_delete(request, id):
     instance.delete()
 
     return HttpResponse("")
+
 
 @login_required
 def meal_item_create(request):
@@ -426,9 +437,6 @@ def meal_item_create(request):
             )
 
 
-
-
-
 @login_required
 def meal_item_update(request, slug):
     instance = get_object_or_404(MealItem, id=id)
@@ -445,6 +453,7 @@ def meal_item_update(request, slug):
         "form": form,
     }
     return render(request, "meal-item/update.html", context)
+
 
 def meal_day_update(request, id):
     instance = get_object_or_404(MealDay, id=id)
@@ -485,7 +494,7 @@ def plan_shopping_cart(request, slug):
                 shopping_list.append(
                     {
                         "ingredient": recipe_item.portion.ingredient.name,
-                        "major_class": recipe_item.portion.ingredient.major_class,
+                        "retail_section": recipe_item.portion.ingredient.retail_section,
                         "recipe_name": recipe_item.recipe.name,
                         "quantity": recipe_item.quantity * meal_item.factor,
                         "weight_g": recipe_item.meta_info.weight_g,
@@ -507,7 +516,7 @@ def plan_shopping_cart(request, slug):
                     if i["ingredient"] == item["ingredient"]
                 ]
             ),
-            "major_class": item["major_class"],
+            "retail_section": item["retail_section"],
             "recipe_name": ", ".join(
                 set(
                     [
@@ -532,8 +541,8 @@ def plan_shopping_cart(request, slug):
     # deduplicate the shopping list
     shopping_list = [dict(t) for t in {tuple(d.items()) for d in shopping_list}]
 
-    # sort by major_class
-    shopping_list = sorted(shopping_list, key=lambda x: x["major_class"])
+    # sort by retail_section
+    shopping_list = sorted(shopping_list, key=lambda x: x["retail_section"])
 
     context = {
         "plan": plan,
@@ -614,19 +623,175 @@ def ingredient_create(request):
 
 
 @login_required
-def ingredient_update(request, slug):
-    instance = get_object_or_404(Ingredient, slug=slug)
+def ingredient_update_basic(request, slug):
+    # get ?next=/some/url/ from request
+    name = request.GET.get("name", None)
+    description = request.GET.get("description", None)
+    retail_section = request.GET.get("retail_section", None)
+
+    ingredient = get_object_or_404(Ingredient, slug=slug)
+
+    if name:
+        ingredient.name = name
+
+    if description:
+        ingredient.description = description
+
+    if retail_section:
+        retail_section = RetailSection.objects.get(name=retail_section)
+        ingredient.retail_section = retail_section
+
     if request.method == "POST":
-        form = IngredientFormUpdate(request.POST, instance=instance)
+        form = IngredientFormUpdateBasic(request.POST, instance=ingredient)
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(f"/food/ingredient/{instance.slug}/")
-    form = IngredientFormUpdate(instance=instance)
+            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/overview")
+    form = IngredientFormUpdateBasic(instance=ingredient)
+
+    context = {
+        "ingredient": ingredient,
+        "form": form,
+        "url_variable": "ingredient-suggestions-basic",
+    }
+    return render(request, "ingredient/update.html", context)
+
+
+@login_required
+def ingredient_update_attribute(request, slug):
+    ingredient = get_object_or_404(Ingredient, slug=slug)
+    intolerances = request.GET.get("intolerances", None)
+    physical_viscosity = request.GET.get("physical_viscosity", None)
+    physical_density = request.GET.get("physical_density", None)
+    child_frendly_score = request.GET.get("child_frendly_score", None)
+    scout_frendly_score = request.GET.get("scout_frendly_score", None)
+
+    if intolerances and intolerances is not None and intolerances != "":
+        # remove ',[,] from string
+        intolerances = intolerances.replace(",", "")
+        intolerances = intolerances.replace("'", "")
+        intolerances = intolerances.replace('"', "")
+        intolerances = intolerances.replace("%27", "")
+        intolerances = intolerances.replace("]", "")
+        intolerances = intolerances.replace("[", "")
+
+        intolerances = [intolerance for intolerance in intolerances.split(",")]
+
+        print('intolerances')
+        print(intolerances)
+        print(intolerances)
+
+        intolerance_objects = Intolerance.objects.filter(name__in=intolerances)
+        intolerance_ids = [intolerance.id for intolerance in intolerance_objects]
+        print('intolerance_ids')
+        print(intolerance_ids)
+        ingredient.intolerances.set(intolerance_ids)
+
+    if physical_viscosity:
+        ingredient.physical_viscosity = physical_viscosity
+
+    if physical_density:
+        ingredient.physical_density = physical_density
+
+    if child_frendly_score:
+        ingredient.child_frendly_score = child_frendly_score
+
+    if scout_frendly_score:
+        ingredient.scout_frendly_score = scout_frendly_score
+
+
+    if request.method == "POST":
+        form = IngredientFormUpdateAttribute(request.POST, instance=ingredient)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/overview")
+    form = IngredientFormUpdateAttribute(instance=ingredient)
+
+    context = {
+        "ingredient": ingredient,
+        "form": form,
+        "url_variable": "ingredient-suggestions-attribute",
+    }
+    return render(request, "ingredient/update.html", context)
+
+
+@login_required
+def ingredient_update_ref(request, slug):
+    instance = get_object_or_404(Ingredient, slug=slug)
+    if request.method == "POST":
+        form = IngredientFormUpdateRef(request.POST, instance=instance)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f"/food/ingredient/{instance.slug}/overview")
+    form = IngredientFormUpdateRef(instance=instance)
 
     context = {
         "ingredient": instance,
         "form": form,
+        "url_variable": False
+    }
+    return render(request, "ingredient/update.html", context)
+
+
+@login_required
+def ingredient_update_nutrition(request, slug):
+    ingredient = get_object_or_404(Ingredient, slug=slug)
+    meta_info = ingredient.meta_info
+
+    energy_kj = float(request.GET.get("energy_kj", "0").replace(",", "."))
+    protein_g = float(request.GET.get("protein_g", "0").replace(",", "."))
+    fat_g = float(request.GET.get("fat_g", "0").replace(",", "."))
+    fat_sat_g = float(request.GET.get("fat_sat_g", "0").replace(",", "."))
+    sugar_g = float(request.GET.get("sugar_g", "0").replace(",", "."))
+    sodium_mg = float(request.GET.get("sodium_mg", "0").replace(",", "."))
+    fruit_factor = float(request.GET.get("fruit_factor", "0").replace(",", "."))
+    carbohydrate_g = float(request.GET.get("carbohydrate_g", "0").replace(",", "."))
+    fibre_g = float(request.GET.get("fibre_g", "0").replace(",", "."))
+
+    if energy_kj:
+        meta_info.energy_kj = energy_kj
+
+    if protein_g:
+        meta_info.protein_g = protein_g
+
+    if fat_g:
+        meta_info.fat_g = fat_g
+
+    if fat_sat_g:
+        meta_info.fat_sat_g = fat_sat_g
+
+    if sugar_g:
+        meta_info.sugar_g = sugar_g
+    
+    if sodium_mg:
+        meta_info.sodium_mg = sodium_mg
+
+    if fruit_factor:
+        meta_info.fruit_factor = fruit_factor
+    
+    if carbohydrate_g:
+        meta_info.carbohydrate_g = carbohydrate_g
+
+    if fibre_g:
+        meta_info.fibre_g = fibre_g    
+
+    print('meta_info')
+    print(meta_info)
+
+    if request.method == "POST":
+        form = IngredientFormUpdateNutrition(request.POST, instance=meta_info)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/analyse")
+    form = IngredientFormUpdateNutrition(instance=meta_info)
+
+    context = {
+        "ingredient": ingredient,
+        "form": form,
+        "url_variable": "ingredient-suggestions-nutrition",
     }
     return render(request, "ingredient/update.html", context)
 
@@ -639,6 +804,9 @@ def ingredient_detail(request, slug):
     lastest_price = (
         Price.objects.filter(portion_id__in=portion_ids).order_by("created_at").last()
     )
+
+    print("lastest_price")
+    print(lastest_price)
 
     # get the recipes from recipe items, portions and ingredients
     recipes = Recipe.objects.filter(
@@ -657,8 +825,14 @@ def ingredient_detail(request, slug):
 @login_required
 def ingredient_list(request):
     ingredients = Ingredient.objects.all()
-    search_form = SearchForm(request.GET)
-
+    search_form = SearchForm(
+        request.GET
+        or {
+            "query": "",
+            "physical_viscosity": "",
+            "retail_section": "",
+        }
+    )
 
     if search_form.is_valid():
         print(search_form.cleaned_data["query"])
@@ -676,9 +850,16 @@ def ingredient_list(request):
             ingredients = ingredients.filter(
                 physical_viscosity=search_form.cleaned_data["physical_viscosity"]
             )
+        if (
+            search_form.cleaned_data["retail_section"]
+            and search_form.cleaned_data["retail_section"] is not None
+        ):
+            ingredients = ingredients.filter(
+                retail_section=search_form.cleaned_data["retail_section"]
+            )
 
     paginator = Paginator(ingredients, per_page=10)
-    page_num = request.GET.get("page")
+    page_num = request.GET.get("page", 1)
     page_object = paginator.get_page(page_num)
     page_object.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
 
@@ -771,6 +952,7 @@ def recipe_clone(request, slug):
 
     return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/overview")
 
+
 @login_required
 def recipe_detail_overview(request, slug):
     recipe = Recipe.objects.get(slug=slug)
@@ -831,11 +1013,16 @@ def recipes(request):
 @login_required
 def recipe_item_create(request, slug):
     if request.method == "POST":
+        recipe = Recipe.objects.get(slug=slug)
+        ingredient_id = request.POST.get("ingredient")
         form = RecipeItemFormCreate(
             data={
-                "recipe": Recipe.objects.get(slug=slug),
-                "portion": Portion.objects.get(pk=request.POST.get("portion_create")),
-                "quantity": request.POST.get("quantity"),
+                "recipe": recipe,
+                "portion": Portion.objects.filter(ingredient_id=ingredient_id)
+                .order_by("rank")
+                .first()
+                .id,
+                "quantity": 100,
             }
         )
 
@@ -956,9 +1143,9 @@ def ingredient_price_create(request, slug):
             data = form.cleaned_data
 
             price = Price(**data)
-            price.save()  # trigger post_save signal
+            price.save()
 
-            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/")
+            return HttpResponseRedirect(f"ingredient/{ingredient.slug}/portion/")
     form = PriceForm()
     form.fields["portion"].queryset = Portion.objects.filter(ingredient=ingredient)
 
@@ -969,7 +1156,6 @@ def ingredient_price_create(request, slug):
     return render(request, "ingredient/price/create.html", context)
 
 
-@login_required
 def update_price_in_portions(ingredient, price_per_kg):
 
     MetaInfo.objects.filter(
@@ -987,7 +1173,6 @@ def update_price_in_portions(ingredient, price_per_kg):
     return True
 
 
-@login_required
 def ingredient_price_update(request, slug, pk):
     ingredient = Ingredient.objects.get(slug=slug)
     price = Price.objects.get(pk=pk)
@@ -1000,7 +1185,7 @@ def ingredient_price_update(request, slug, pk):
             )
             update_price_in_portions(ingredient, price_per_kg)
             form.save()
-            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/")
+            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/portion")
     form = PriceFormUpdate(instance=price)
     form.fields["portion"].queryset = Portion.objects.filter(ingredient=ingredient)
 
@@ -1009,6 +1194,7 @@ def ingredient_price_update(request, slug, pk):
         "form": form,
     }
     return render(request, "ingredient/price/update.html", context)
+
 
 @login_required
 def ingredient_detail_overview(request, slug):
@@ -1020,6 +1206,7 @@ def ingredient_detail_overview(request, slug):
     }
     return render(request, "ingredient/detail/overview/main.html", context)
 
+
 @login_required
 def ingredient_detail_analyse(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
@@ -1030,6 +1217,7 @@ def ingredient_detail_analyse(request, slug):
     }
     return render(request, "ingredient/detail/analyse/main.html", context)
 
+
 @login_required
 def ingredient_detail_portion(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
@@ -1037,18 +1225,29 @@ def ingredient_detail_portion(request, slug):
     context = {
         "ingredient": ingredient,
         "module_name": "Portionen",
+        "prices": Price.objects.filter(portion__ingredient=ingredient).order_by(
+            "-created_at",
+        ),
     }
     return render(request, "ingredient/detail/portion/main.html", context)
+
 
 @login_required
 def ingredient_detail_recipe(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
+    ingredients = Ingredient.objects.all().exclude(slug=slug).order_by("?")[0:5]
+    recipes = Recipe.objects.filter(
+        recipe_items__portion__ingredient=ingredient
+    ).distinct()
 
     context = {
         "ingredient": ingredient,
+        "ingredients": ingredients,
+        "recipes": recipes,
         "module_name": "Rezepte",
     }
     return render(request, "ingredient/detail/recipe/main.html", context)
+
 
 @login_required
 def get_portions_by_ingredient(request):
@@ -1077,6 +1276,152 @@ def get_portions_by_ingredient(request):
 
 
 @login_required
+def ingredient_suggestions_basic(request, slug):
+    ingredient = Ingredient.objects.get(slug=slug)
+
+    retail_sections = RetailSection.objects.all()
+
+    # create list from retail_sections
+    retail_sections = [section.name for section in retail_sections]
+
+    class OutputModel(BaseModel):
+        name: str = Field(
+            min_length=5,
+            max_length=1000,
+            description="name der Zutat. Kurz und prägnant. Ohne Mengenangaben. Ohne Sonderzeichen. Ohne Werbung. Ohne Markennamen.",
+        )
+        description: str = Field(
+            min_length=5,
+            max_length=1000,
+            description="Beschreibung der Zutat. Kurz und prägnant. Ohne Mengenangaben. Ohne Sonderzeichen.",
+        )
+        retail_section: str = Field(
+            description=f"Einzelhandelsbereich der Zutat. Z.B. {', '.join(retail_sections)}",
+        )
+
+    output = get_ai_suggestion(
+        prompt=f"""
+            Gebe mir passende technisch genaue Texte für die Rezepzutat
+            ohne Werbung. Sehr sachlich. Kurz. Konkret.
+            Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
+            {ingredient.name} {ingredient.description}
+        """,
+        model="models/gemini-2.0-flash-exp",
+        OutputModel=OutputModel,
+    )
+
+    output = output.model_dump()
+
+    # set retail_section id to the ingredient
+    if output["retail_section"] in retail_sections:
+        retail_section = RetailSection.objects.get(name=output["retail_section"])
+        ingredient.retail_section = retail_section
+
+    context = {
+        "output": output,
+    }
+    return render(request, "ingredient/detail/suggestions/basic.html", context)
+
+
+@login_required
+def ingredient_suggestions_attribute(request, slug):
+    ingredient = Ingredient.objects.get(slug=slug)
+
+    intolerances = Intolerance.objects.all()
+
+    # create list from retail_sections
+    intolerances_list = [intolerance.name for intolerance in intolerances]
+
+
+    class OutputModel(BaseModel):
+        intolerances: List[str] = Field(
+            description=f"Essens Unverträglichkeiten der Zutat. aus der Liste {', '.join(intolerances_list)}",
+        )
+        physical_viscosity: str = Field(
+            description="Physikalische Viskosität der Zutat. 'solid' oder 'beverage'",
+        )
+        physical_density: str = Field(
+            description="ungefähre physikalische Dichte der Zutat in g/cm³",
+        )
+        child_frendly_score: str = Field(
+            description="Wie sehr würden sich Kinder darüber freuen diese Zutat zu essen auf einer Skala von 1 bis 5. Wobei 1 sehr wenig und 5 sehr viel bedeutet.",
+        )
+        scout_frendly_score: str = Field(
+            description="Pfadfinderfreundlichkeit der Zutat auf einer Skala von 1 bis 5. Wobei 1 sehr wenig und 5 sehr viel bedeutet.",
+        )
+
+    output = get_ai_suggestion(
+        prompt=f"""
+            Gebe mir passende technisch genaue Texte für die Rezepzutat
+            ohne Werbung. Sehr sachlich. Kurz. Konkret.
+            Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
+            {ingredient.name} {ingredient.description}
+        """,
+        model="models/gemini-2.0-flash-exp",
+        OutputModel=OutputModel,
+    )
+
+    output = output.model_dump()
+
+    context = {
+        "output": output,
+    }
+    return render(request, "ingredient/detail/suggestions/basic.html", context)
+
+@login_required
+def ingredient_suggestions_nutrition(request, slug):
+    ingredient = Ingredient.objects.get(slug=slug)
+
+    class OutputModel(BaseModel):
+        energy_kj: float = Field(
+            description="Energiegehalt in kJ pro 100g",
+        )
+        protein_g: float = Field(
+            description="Proteingehalt in g pro 100g",
+        )
+        protein_g: float = Field(
+            description="Proteingehalt in g pro 100g",
+        )
+        fat_g: float = Field(
+            description="Fettgehalt in g pro 100g",
+        )
+        fat_sat_g: float = Field(
+            description="Gesättigte Fettsäuren in g pro 100g",
+        )
+        sodium_mg: float = Field(
+            description="Natriumgehalt in mg pro 100g",
+        )
+        carbohydrate_g: float = Field(
+            description="Kohlenhydratgehalt in g pro 100g",
+        )
+        sugar_g: float = Field(
+            description="Zuckergehalt in g pro 100g",
+        )
+        fibre_g: float = Field(
+            description="Ballaststoffgehalt in g pro 100g",
+        )
+        fruit_factor: float = Field(
+            description="Obst Gemüse faktor der Zutat für den Nutriscore berechnung. Von 0.0 bis 1.0",
+        )
+
+    output = get_ai_suggestion(
+        prompt=f"""
+            Gebe mir passende Nährwerte für die Rezepzutat. Falls nicht bekannt, dann schätze die Werte.
+            {ingredient.name} {ingredient.description}
+        """,
+        model="models/gemini-2.0-flash-exp",
+        OutputModel=OutputModel,
+    )
+
+    output = output.model_dump()
+
+    context = {
+        "output": output,
+    }
+    return render(request, "ingredient/detail/suggestions/basic.html", context)
+
+
+@login_required
 def meal_detail(request, slug, id):
     plan = MealEvent.objects.get(slug=slug)
     meal = Meal.objects.get(id=id)
@@ -1091,3 +1436,19 @@ def meal_detail(request, slug, id):
 
 def admin_main(request):
     return render(request, "plan/admin/main.html")
+
+
+@login_required
+def search_results_view(request):
+    query = request.GET.get("search", "")
+    print(f"{query = }")
+
+    all_data = Ingredient.objects.all()
+    if query and len(query) >= 3:
+        all_data = all_data.filter(name__icontains=query)
+        context = {"data": all_data[:10], "count": all_data.count()}
+    else:
+        all_data = []
+        context = {"data": all_data, "count": 0}
+
+    return render(request, "recipe/detail/overview/search_results.html", context)

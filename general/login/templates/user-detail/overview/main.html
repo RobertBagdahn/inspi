@@ -1,0 +1,25 @@
+{% extends 'user-detail/_user_detail_base.html' %}
+{% load component_tags %}
+{% block groupdetailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Profil von {{  user.username }}</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">Hier siehst du alle Informationen zu diesem Benutzer</p>
+            <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 my-4">
+                {% component "kpi-box"
+                kpi_value=kpi_membershps
+                kpi_description="Mitgliedschaften"
+                link="{% url 'user-detail-memberships' user.username %}"
+                link_text="Alle Gruppen"
+                color="blue"
+                icon="users"
+                %}
+            {% endcomponent %}
+        </div>
+        {% component 'simple-list' items=items_basic %} {% endcomponent %}
+        {% if items_personal %}
+            {% component 'simple-list' items=items_personal %} {% endcomponent %}
+        {% endif %}
+    </div>
+</section>
+{% endblock groupdetailcontent %}

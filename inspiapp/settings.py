@@ -116,6 +116,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     "tracking",
+    'django_components',
     # modules
     "food",
     "activity.activity",
@@ -126,6 +127,7 @@ INSTALLED_APPS = [
     "event.basic",
     "event.registration",
     "event.participant",
+    "group",
 
 ]
 
@@ -165,6 +167,8 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'event/basic/templates'),
             os.path.join(BASE_DIR, 'event/registration/templates'),
             os.path.join(BASE_DIR, 'event/participant/templates'),
+            os.path.join(BASE_DIR, 'group/templates'),
+            os.path.join(BASE_DIR, 'components'),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -175,7 +179,6 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
             ],
         },
-        "DIRS": [os.path.join(BASE_DIR, 'templates')],  # new
     },
 ]
 

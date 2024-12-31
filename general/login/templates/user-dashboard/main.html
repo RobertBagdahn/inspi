@@ -1,0 +1,14 @@
+{% extends 'user-detail/_user_detail_base.html' %}
+{% load component_tags %}
+{% block detailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-4">Hallo {{ user.username }}</h2>
+            <a class="text-lg text-blue-600 my-4"
+               href="{% url 'user-detail-overview' user.username %}">Zu deinem Account</a>
+            <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 my-4">
+                {% comment %} {% include './kpis.html' %} {% endcomment %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

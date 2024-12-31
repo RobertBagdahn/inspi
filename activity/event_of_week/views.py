@@ -1,11 +1,10 @@
-# test/views.py
+import os
 from django.http import FileResponse
 from activity.activity.models import Activity
 from django.shortcuts import redirect, render
 from .forms import ImageDownloadForm
 from django.template.loader import get_template
 
-from cairosvg import svg2png
 import io
 
 
@@ -14,9 +13,13 @@ def generate_png_from_svg(request, activity_id, color, page):
 
     template_path = f"svg/heimabend_der_woche_{page}.svg"
 
-    words = activity.summary.split('<br />')
-    words = [item for sublist in [word.split() for word in activity.summary.split('<br />')] for item in sublist]
-    
+    words = activity.summary.split("<br />")
+    words = [
+        item
+        for sublist in [word.split() for word in activity.summary.split("<br />")]
+        for item in sublist
+    ]
+
     words_20_chars = []
     current_word = ""
 
@@ -37,8 +40,6 @@ def generate_png_from_svg(request, activity_id, color, page):
 
     if current_word:
         words_20_chars.append(current_word)
-
-
 
     title_ary = activity.title.split(" ")
 
@@ -62,10 +63,9 @@ def generate_png_from_svg(request, activity_id, color, page):
 
     materials = activity.material_list.all()
     if not materials:
-        mat_list['mat_1'] = "Keine Materialien"
+        mat_list["mat_1"] = "Keine Materialien"
     for i, material in enumerate(materials):
         mat_list[f"mat_{i+1}"] = material.material_name.name
-
 
     context = {
         "activity": activity,
@@ -79,10 +79,22 @@ def generate_png_from_svg(request, activity_id, color, page):
 
     png_filelike = io.BytesIO()
 
-    svg2png(bytestring=svg_code, write_to=png_filelike)
+    if os.getenv("USE_CAIROSVG", "False") == "True":
+        from cairosvg import svg2png
+
+        svg2png(bytestring=svg_code, write_to=png_filelike)
+    else:
+        # Handle the case where cairosvg is not used
+        # For example, you can raise an exception or use a different library
+        raise NotImplementedError(
+            "SVG to PNG conversion without cairosvg is not implemented."
+        )
+
     png_filelike.seek(0)
 
-    return FileResponse(png_filelike, as_attachment=True, filename=f"heimabend_der_woche_{page}.png")
+    return FileResponse(
+        png_filelike, as_attachment=True, filename=f"heimabend_der_woche_{page}.png"
+    )
 
 
 def download_form(request, activity_id):

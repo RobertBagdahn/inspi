@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% block content %}
+    <h2>Manage Permissions for {{ group.name }}</h2>
+    <div class="container mx-auto px-4">
+        <div class="bg-white shadow-md rounded my-6">
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-600">Parent Group</th>
+                        <th class="py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-600">Group</th>
+                        <th class="py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-600">Read Access</th>
+                        <th class="py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-600">Full Access</th>
+                        <th class="py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-600">Created By</th>
+                        <th class="py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-600">Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for permission in permissions %}
+                        <tr class="hover:bg-gray-100">
+                            <td class="py-2 px-4 border-b border-gray-200">{{ permission.parent_group.name }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ permission.group.name }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ permission.read_access|yesno:"Yes,No" }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ permission.full_access|yesno:"Yes,No" }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ permission.created_by.username }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ permission.created_at }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

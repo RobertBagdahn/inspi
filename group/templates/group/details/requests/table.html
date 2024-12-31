@@ -1,0 +1,53 @@
+{% load component_tags %}
+{% component 'table' page_obj=page_obj form=search_filter_form %}
+{% fill 'table_heads' %}
+<tr>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Benutzer</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Erstellt am</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Status</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400"></th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+    <tr class="">
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+            <a href="{% url 'login-profile' item.user.username %}"
+               class="text-blue-600 hover:underline">{{ item.user.username }}</a>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ item.date_requested }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {% if item.approved is None %}
+                Ausstehend
+            {% else %}
+                {{ item.approved|yesno:'akzeptiert,abgelehnt' }}
+            {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {{ item.date_checked|date:'Y-m-d H:i' }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {% if item.user_checked_by %}
+                {{ item.user_checked_by }}
+            {% else %}
+                Noch nicht geprüft
+            {% endif %}
+        </td>
+        {% if item.approved is None %}
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                <div class="flex space-x-2">
+                    <a href="{% url 'approve-request' item.id %}"
+                       class="text-green-600 hover:text-green-800 ml-2">Genehmigen</a>
+                    <a href="{% url 'decline-request' item.id %}"
+                       class="text-red-600 hover:text-red-800 ml-2">Ablehnen</a>
+                </div>
+            </td>
+        {% endif %}
+    </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

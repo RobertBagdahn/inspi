@@ -4,56 +4,54 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block head %}
-{{ wizard.form.media }}
+    {{ wizard.form.media }}
 {% endblock head %}
 {% block content %}
-
     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-      <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-        <div class="mx-auto max-w-5xl space-y-6 lg:space-y-8">
-          <div class="space-y-6">
-            <div class="space-y-1">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Schritt 5: Material
-              </h3>
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <div class="mx-auto max-w-5xl space-y-6 lg:space-y-8">
+                <div class="space-y-6">
+                    <div class="space-y-1">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Schritt 5: Material</h3>
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <table>
+                            {{ wizard.management_form }}
+                            <div class="md:flex md:items-center md:justify-between">
+                                <div class="mt-4 flex md:mt-0 md:ml-4">
+                                    <button type="button"
+                                            hx-get="{% url 'create-material-item-form' %}"
+                                            hx-target="#bookforms"
+                                            hx-swap="beforeend"
+                                            class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Material hinzufügen 23
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="bookforms" class="py-5 mt-1"></div>
+                            <div class="mt-5 py-5 border-gray-100">
+                                {% for material_item in material_items %}
+                                    {% include "activity/partials/material-item-detail.html" %}
+                                {% endfor %}
+                            </div>
+                            {{ wizard.form.media }}
+                        </table>
+                        <div class="gap-4 sm:flex sm:items-center">
+                            {% if wizard.steps.prev %}
+                                {% comment %} <button name="wizard_goto_step" type="submit" class="w-full rounded-lg  border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto" value="{{ wizard.steps.first }}">first step</button> {% endcomment %}
+                                <button name="wizard_goto_step"
+                                        type="submit"
+                                        class="w-full rounded-lg  border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto"
+                                        value="{{ wizard.steps.prev }}">Zurück</button>
+                            {% endif %}
+                            <input class="mt-4 flex w-full items-center justify-center rounded-lg border border-blue-700 bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:border-blue-800 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-600 dark:bg-blue-600 dark:hover:border-blue-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:mt-0 sm:w-auto"
+                                   type="submit"
+                                   value="Weiter" />
+                        </div>
+                    </form>
+                </div>
             </div>
-    
-            <form action="" method="post">{% csrf_token %}
-              <table>
-                {{ wizard.management_form }}
-                <div class="md:flex md:items-center md:justify-between">
-                  <div class="mt-4 flex md:mt-0 md:ml-4">
-                      <button type="button" hx-get="{% url 'create-material-item-form' %}" hx-target="#bookforms" hx-swap="beforeend"
-                          class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                          Material hinzufügen 23
-                      </button>
-                  </div>
-              </div>
-              
-              
-              <div id="bookforms" class="py-5 mt-1"></div>
-              
-              <div class="mt-5 py-5 border-gray-100">
-                  {% for material_item in material_items %}
-              
-                  {% include "activity/partials/material-item-detail.html" %}
-              
-                  {% endfor %}
-              </div>
-                {{ wizard.form.media }}
-              </table>
-              <div class="gap-4 sm:flex sm:items-center">
-              {% if wizard.steps.prev %}
-                  {% comment %} <button name="wizard_goto_step" type="submit" class="w-full rounded-lg  border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto" value="{{ wizard.steps.first }}">first step</button> {% endcomment %}
-                  <button name="wizard_goto_step" type="submit" class="w-full rounded-lg  border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto" value="{{ wizard.steps.prev }}">Zurück</button>
-              {% endif %}
-              <input class="mt-4 flex w-full items-center justify-center rounded-lg border border-blue-700 bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:border-blue-800 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-600 dark:bg-blue-600 dark:hover:border-blue-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:mt-0 sm:w-auto" type="submit" value="Weiter"/>
-            </div>
-          </form>
-          </div>
         </div>
-      </div>
     </section>
 {% endblock content %}
-
-

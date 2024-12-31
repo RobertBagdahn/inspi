@@ -1,0 +1,17 @@
+{% extends '_base_group.html' %}
+{% load crispy_forms_tags %}
+{% block detailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h3 class="text-xl font-semibold mb-2">Mit Code beitreten</h3>
+            <form action="{% url 'join-group-by-code' %}" method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Gruppe beitreten
+                </button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

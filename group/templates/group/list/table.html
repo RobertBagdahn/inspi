@@ -1,0 +1,45 @@
+{% load component_tags %}
+{% component 'table' page_obj=page_obj form=form %}
+{% fill 'table_heads' %}
+<tr>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Gruppe</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
+        Mitgliedschaft
+    </th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Admin</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
+        Offene Gruppe?
+    </th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Öffentlich?</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400"></th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 {% if item.is_canceled %}bg-red-600{% endif %}">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+            <a href="{% url 'group-detail-overview' item.slug %}"
+               class="text-blue-600 hover:text-blue-700">{{ item.name }}</a>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm {% if item.is_member %}text-green-00{% else %}text-red-600{% endif %}">
+            {{ item.is_member|yesno:"Ja,Nein" }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm {% if item.is_admin %}text-green-600{% else %}text-red-600{% endif %}">
+            {{ item.is_admin|yesno:"Ja,Nein" }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm {% if item.free_to_join %}text-green-600{% else %}text-red-600{% endif %}">
+            {{ item.free_to_join|yesno:"Ja,Nein" }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm {% if item.is_visible %}text-green-600{% else %}text-red-600{% endif %}">
+            {{ item.is_visible|yesno:"Ja,Nein" }}
+        </td>
+    </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

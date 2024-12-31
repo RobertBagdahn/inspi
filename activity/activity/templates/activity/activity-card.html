@@ -1,73 +1,67 @@
-
 {% load main_extras %}
 {% load cropping %}
 {% load static %}
 {% block header %}
-{{ form.media }}
+    {{ form.media }}
 {% endblock header %}
 {% block content %}
-
-<div class="rounded-lg bg-white p-0 h-full max-h-full">
-  <a href="{% url 'activity-detail' activity.id %}">
-    {% if activity.image %}
-      {% comment %} <img class="w-full object-cover" src="{% cropped_thumbnail activity "cropping" %}" alt="image description"> {% endcomment %}
-      <img class="w-full object-cover" src="{{ activity.image.url }}" alt="image description">
-    {% else %}
-    <img class="w-full mx-auto" src="{% static "images/placeholder.webp" %}" alt="image description">
-    {% endif %}
-  </a>
-
-  <div class="pt-6 px-1">
-    <div class="flex flex-wrap my-1">
-      <div
-        class="me-2 rounded bg-gray-200 my-1 px-1 py-0.5 text-xs font-medium text-blue-900 border border-blue-900 inline-flex items-center justify-center"
-      >
-        {{ activity.activity_types_string }}
-      </div>
-      <div
-        class="me-2 rounded bg-gray-200 my-1 px-1 py-0.5 text-xs font-medium text-blue-900 border border-blue-900 inline-flex items-center justify-center"
-      >
-        {{ activity.scout_levels_string }}
-      </div>
+    <div class="rounded-lg bg-white p-0 h-full max-h-full">
+        <a href="{% url 'activity-detail' activity.id %}">
+            {% if activity.image %}
+                {% comment %} <img class="w-full object-cover" src="{% cropped_thumbnail activity "cropping" %}" alt="image description"> {% endcomment %}
+                <img class="w-full object-cover"
+                     src="{{ activity.image.url }}"
+                     alt="image description">
+            {% else %}
+                <img class="w-full mx-auto" src="{% static "images/placeholder.webp" %}" alt="image description">
+            {% endif %}
+        </a>
+        <div class="pt-6 px-1">
+            <div class="flex flex-wrap my-1">
+                <div class="me-2 rounded bg-gray-200 my-1 px-1 py-0.5 text-xs font-medium text-blue-900 border border-blue-900 inline-flex items-center justify-center">
+                    {{ activity.activity_types_string }}
+                </div>
+                <div class="me-2 rounded bg-gray-200 my-1 px-1 py-0.5 text-xs font-medium text-blue-900 border border-blue-900 inline-flex items-center justify-center">
+                    {{ activity.scout_levels_string }}
+                </div>
+            </div>
+            <div class="flex flex-wrap my-1">
+                {% if activity.topics.all %}
+                    {% for tag in activity.topics.all %}
+                        <a href="{% url 'activity-main-category' 'topic' tag.id %}"
+                           class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-sans my-1 me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ tag.name }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <a href="{% url 'activity-detail' activity.id %}"
+               class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">{{ activity.title }}</a>
+            <div class="my-2">
+                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ activity.summary|truncatewords:40|safe }}</p>
+            </div>
+            <div class="mt-2 flex flow items-end gap-2">
+                <div class="flex items-end">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white"
+                         aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         fill="currentColor"
+                         viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ activity.view_count }}</p>
+                <svg lass="w-4 h-4 text-gray-900"
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="1.5"
+                     stroke="currentColor"
+                     class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                </svg>
+                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ activity.comment_set.all.count }}</p>
+            </div>
+        </div>
     </div>
-    <div class="flex flex-wrap my-1">
-      {% if activity.topics.all %}
-        {% for tag in activity.topics.all %}
-        <a href="{% url 'activity-main-category' 'topic' tag.id %}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-sans my-1 me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ tag.name }}</a>
-        {% endfor %}
-      {% endif %}
-    </div>
-
-    <a
-      href="{% url 'activity-detail' activity.id %}"
-      class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white"
-      >{{ activity.title }}</a
-    >
-
-    <div class="my-2">
-      <p class="text-sm font-medium text-gray-900 dark:text-white">
-        {{ activity.summary|truncatewords:40|safe }}
-      </p>
-    </div>
-
-    <div class="mt-2 flex flow items-end gap-2">
-      <div class="flex items-end">
-        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-          <path fill-rule="evenodd" d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
-        </svg>        
-      </div>
-
-      <p class="text-sm font-medium text-gray-900 dark:text-white">
-        {{ activity.view_count }}
-      </p>
-      <svg lass="w-4 h-4 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-      </svg>
-      
-      <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
-        {{ activity.comment_set.all.count }}
-      </p>
-    </div>
-  </div>
-</div>
 {% endblock content %}

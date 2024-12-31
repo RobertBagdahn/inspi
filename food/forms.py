@@ -15,6 +15,7 @@ from .choices import (
     IntoleranceChoices,
     MealEventTemplateOptionsChoices,
     RecipeType,
+    IngredientStatus,
 )
 from .models import (
     MealEventTemplate,
@@ -30,6 +31,7 @@ from .models import (
     Meal,
     MealDay,
     MealItem,
+    RetailSection,
 )
 
 from general.login.models import CustomUser
@@ -62,13 +64,21 @@ class SearchForm(forms.Form):
         label="Suche",
         max_length=100,
         required=False,
-        widget=forms.TextInput(attrs={"class": "form-control"}),
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Suchbegriff eingeben"}
+        ),
     )
     physical_viscosity = forms.ChoiceField(
         label="Viskosität",
         required=False,
-        choices=PhysicalViscosityChoices.choices,
-        widget=forms.Select(attrs={"class": "form-control", "onchange": "submit()"}),
+        choices=[(None, "Alle")] + list(PhysicalViscosityChoices.choices),
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+    retail_section = forms.ChoiceField(
+        label="Hauptklasse",
+        required=False,
+        choices=[(None, "Alle")] + list(FoodMajorClasses.choices),
+        widget=forms.Select(attrs={"class": "form-control"}),
     )
 
     def __init__(self, *args, **kwargs):
@@ -79,8 +89,9 @@ class SearchForm(forms.Form):
                 "",
                 Div(
                     Div("query", css_class="col-md-6"),
-                    Div("physical_viscosity", css_class="col-md-6"),
-                    css_class="grid grid-rows-2 grid-cols-2 gap-4",
+                    Div("physical_viscosity", css_class="col-md-3"),
+                    Div("retail_section", css_class="col-md-3"),
+                    css_class="grid grid-cols-3 gap-2",
                 ),
             ),
             Submit(
@@ -129,12 +140,6 @@ class MealEventTemplateFormCreate(forms.Form):
         choices=WarmMeal.choices,
         widget=forms.RadioSelect(attrs={"class": "tailwind-radio"}),
         help_text="Soll es warme Mahlzeiten geben?",
-    )
-    animal_products = forms.ChoiceField(
-        label="Tierische Produkte",
-        required=False,
-        choices=AnimalProducts.choices,
-        widget=forms.RadioSelect(attrs={"class": "tailwind-radio"}),
     )
     child_frendly = forms.ChoiceField(
         label="Zielgruppe?",
@@ -228,10 +233,10 @@ class IngredientForm(forms.Form):
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
-    major_class = forms.ChoiceField(
+    retail_section = forms.ChoiceField(
         label="Major Class",
         required=False,
-        choices=FoodMajorClasses.choices,
+        choices=RetailSection.objects.all(),
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
     unprepared_eatable = forms.BooleanField(
@@ -251,12 +256,6 @@ class IngredientForm(forms.Form):
         required=False,
         choices=IntoleranceChoices.choices,
         widget=forms.CheckboxSelectMultiple(),
-    )
-    animal_products = forms.ChoiceField(
-        label="Tierische Produkte",
-        required=False,
-        choices=AnimalProducts.choices,
-        widget=forms.RadioSelect(attrs={"class": "tailwind-radio"}),
     )
     energy_kj = forms.FloatField(
         label="Energie (kJ je 100g)",
@@ -305,30 +304,137 @@ class IngredientForm(forms.Form):
     )
 
 
-class IngredientFormUpdate(forms.ModelForm):
+class IngredientFormUpdateBasic(forms.ModelForm):
+
+    name = forms.CharField(
+        label="Name der Zutat",
+        max_length=40,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+        help_text="Name des Lebensmittels",
+    )
+    description = forms.CharField(
+        label="Beschreibung",
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+        help_text="Beschreibung des Lebensmittels",
+    )
+    retail_section = forms.ModelChoiceField(
+        label="Supermarkt Kategorie",
+        required=False,
+        queryset=RetailSection.objects.all(),
+        widget=forms.Select(attrs={"class": "tailwind-select"}),
+        help_text="Kategorie des Lebensmittels",
+    )
+    status = forms.ChoiceField(
+        label="Status",
+        required=False,
+        choices=IngredientStatus.choices,
+        widget=forms.Select(attrs={"class": "tailwind-select"}),
+        help_text="Status der Veröffentlichung",
+    )
+
+    class Meta:
+        model = Ingredient
+        fields = ["name", "description", "retail_section", "status"]
+
+
+class IngredientFormUpdateAttribute(forms.ModelForm):
+
+    intolerances = forms.ModelMultipleChoiceField(
+        label="Unverträglichkeiten",
+        required=False,
+        queryset=Intolerance.objects.all(),
+        widget=forms.CheckboxSelectMultiple(),
+    )
+
+    physical_density = forms.FloatField(
+        label="Dichte des Lebensmittels",
+        required=False,
+        widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
+        initial=1.0,
+        help_text="Dichte in der Einheit g/cm³ oder Kg/l",
+    )
+    physical_viscosity = forms.ChoiceField(
+        label="Essen oder Getränk",
+        required=True,
+        initial=PhysicalViscosityChoices.SOLID,
+        choices=PhysicalViscosityChoices.choices,
+        widget=forms.RadioSelect(attrs={"class": "tailwind-radio"}),
+        help_text="Festes oder flüssiges Lebensmittel",
+    )
+    child_frendly_score = forms.IntegerField(
+        widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
+        label="Kinderfreundlich",
+        required=True,
+        help_text="Werte von 1 bis 5"
+        "1 = nicht kinderfreundlich"
+        "5 = sehr kinderfreundlich",
+        max_value=5,
+        min_value=1,
+    )
+    scout_frendly_score = forms.IntegerField(
+        widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
+        label="Pfadfinderfreundlich",
+        required=True,
+        help_text="Werte von 1 bis 5. 1 = nicht pfadfinderfreundlich, 5 = sehr pfadfinderfreundlich",
+        max_value=5,
+        min_value=1,
+    )
+
     class Meta:
         model = Ingredient
         fields = [
-            "name",
-            "description",
+            "intolerances",
             "physical_density",
             "physical_viscosity",
-            "ingredient_ref",
+            "child_frendly_score",
+            "scout_frendly_score",
+        ]
+
+
+class IngredientFormUpdateRef(forms.ModelForm):
+    class Meta:
+        model = Ingredient
+        fields = [
             "fdc_id",
             "nan_art_id_rewe",
             "ean",
-            "major_class",
+            "ingredient_ref",
         ]
         widgets = {
-            "name": forms.TextInput(attrs={"class": "tailwind-input"}),
-            "description": forms.TextInput(attrs={"class": "tailwind-input"}),
-            "physical_density": forms.NumberInput(attrs={"class": "tailwind-input"}),
-            "physical_viscosity": forms.RadioSelect(attrs={"class": "tailwind-radio"}),
-            "ingredient_ref": forms.Select(attrs={"class": "tailwind-radio"}),
             "fdc_id": forms.NumberInput(attrs={"class": "tailwind-input"}),
             "nan_art_id_rewe": forms.NumberInput(attrs={"class": "tailwind-input"}),
             "ean": forms.NumberInput(attrs={"class": "tailwind-input"}),
-            "major_class": forms.Select(attrs={"class": "tailwind-select"}),
+            "ingredient_ref": forms.Select(attrs={"class": "tailwind-select"}),
+        }
+
+
+class IngredientFormUpdateNutrition(forms.ModelForm):
+    class Meta:
+        model = MetaInfo
+        fields = [
+            "energy_kj",
+            "protein_g",
+            "fat_g",
+            "fat_sat_g",
+            "sodium_mg",
+            "carbohydrate_g",
+            "sugar_g",
+            "fibre_g",
+            "fruit_factor",
+        ]
+        widgets = {
+            "energy_kj": forms.NumberInput(attrs={"class": "tailwind-input"}),
+            "protein_g": forms.NumberInput(attrs={"class": "tailwind-input"}),
+            "fat_g": forms.NumberInput(attrs={"class": "tailwind-input"}),
+            "fat_sat_g": forms.NumberInput(attrs={"class": "tailwind-input"}),
+            "sodium_mg": forms.NumberInput(attrs={"class": "tailwind-input"}),
+            "carbohydrate_g": forms.NumberInput(attrs={"class": "tailwind-input"}),
+            "sugar_g": forms.NumberInput(attrs={"class": "tailwind-input"}),
+            "fibre_g": forms.NumberInput(attrs={"class": "tailwind-input"}),
+            "fruit_factor": forms.NumberInput(attrs={"class": "tailwind-input"}),
         }
 
 

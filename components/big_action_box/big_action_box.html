@@ -1,0 +1,14 @@
+{% load component_tags %}
+<div class="col-span-2 items-center gap-6 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-2 md:p-6 lg:flex">
+    <div class="w-full">
+        <h4 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ header }}</h4>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{{ description }}</p>
+        <div>
+            <a href="{{ url }}"
+               class="bg-{{ color }}-600 hover:bg-{{ color }}-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
+                {% component "icon" icon=icon %} {% endcomponent %}
+                {{ button_text }}
+            </a>
+        </div>
+    </div>
+</div>

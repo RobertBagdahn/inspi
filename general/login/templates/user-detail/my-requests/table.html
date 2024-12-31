@@ -1,0 +1,39 @@
+{% load component_tags %}
+{% component 'table' page_obj=page_obj form=form %}
+{% fill 'table_heads' %}
+<tr>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Gruppe</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Erstellt</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Status</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400"></th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+    <tr class="bg-white">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <a href="{% url 'group-detail-overview' item.group.slug %}"
+               class="text-blue-500 hover:underline">an {{ item.group.name }}</a>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ item.date_requested }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {% if item.approved %}
+                Genehmigt
+            {% elif item.approved is None %}
+                Ausstehend
+            {% else %}
+                Abgelehnt
+            {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <a href="{% url 'request-detail' item.id %}"
+               class="text-blue-500 hover:underline">Zur Anfrage</a>
+        </td>
+    </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

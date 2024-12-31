@@ -1,0 +1,5 @@
+{% load component_tags %}
+{% component 'kpi-box' kpi_value=kpi_memberships color='blue' kpi_description='in denen du Mitglied bist' link="{% url 'my-groups' %}" link_text='Alle Mitgliedschaften' icon="users" %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_adminships color='blue' kpi_description='die du verwalten kanst' link="{% url 'group-list' %}?is_admin=True" link_text='Alle Verwaltungsgruppen' icon="command" %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_free_to_join color='blue' kpi_description='kannst du beitreten' link="{% url 'group-list' %}?free_to_join=True&is_not_member=True" link_text='Alle beitretbaren Gruppen' icon="open-door" %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_open_request color='blue' kpi_description='sind noch offen' link="{% url 'my-requests' %}" link_text='Meine Anfragen' icon="question" %} {% endcomponent %}

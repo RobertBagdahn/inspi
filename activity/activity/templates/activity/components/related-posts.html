@@ -1,8 +1,7 @@
 {% load mathfilters %}
 {% load cropping %}
 {% load static %}
-
-  {% comment %} <div class="px-4 mx-auto max-w-screen-xl">
+{% comment %} <div class="px-4 mx-auto max-w-screen-xl">
     <h2 class="mb-8 text-xl font-semibold text-gray-900 dark:text-white">
       Relevante Artikel
     </h2>
@@ -13,11 +12,7 @@
           {% if activity.image %}
       </div>
       <div>
-          <img
-            class="mb-4 rounded-lg"
-            src="{% cropped_thumbnail activity "cropping" %}"
-            alt="{{ activity.title }}"
-          />
+          <img class="mb-4 rounded-lg" src="{% cropped_thumbnail activity "cropping" %}" alt="{{ activity.title }}" />
           {% else %}
           <img class="w-12 h-12 mx-auto" src="{% static "images/inspi_flying.webp" %}" alt="image description">
           {% endif %}
@@ -31,46 +26,38 @@
           </p>
         </div>
         <div>
-          <a href="{{ activity.get_absolute_url }}" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
+          <a href="{{ activity.get_absolute_url }}" class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
             Lesen
           </a>
         </div>
         </div>
       {% endfor %}
     </div>
-  </div> {% endcomment %}
-  <section class="bg-gray-50">
+</div> {% endcomment %}
+<section class="bg-gray-50">
     <div class="py-2 px-4 mx-auto max-w-screen-xl sm:py-2 lg:px-3">
-      <div class="mx-auto max-w-screen-md text-center mb-4 lg:mb-6">
-        <h2 class="mb-4 text-lg tracking-tight font-semibold text-gray-900">
-          Ähnliche Ideen
-        </h2>
-      </div>
-      <div class="space-y-8 grid grid-cols-2 gap-2 md:gap-8 xl:gap-8 md:space-y-0">
-        {% for activity in related_activities %}
-          <a href="{% url 'activity-detail' activity.id %}">
-            <div class="p-6 bg-white rounded shadow dark:bg-gray-800">
-              {% if activity.image %}
-                {% comment %} <img
-                  class="mb-4 rounded-lg"
-                  src="{% cropped_thumbnail activity "cropping" %}"
-                  alt="{{ activity.title }}"
-                /> {% endcomment %}
-                <img class="w-full object-cover" src="{{ activity.image.url }}" alt="{{ activity.title }}">
-              {% else %}
-                  <img
-                    class="w-auto mx-auto"
-                    src="{% static "images/placeholder.webp" %}"
-                    alt="image description"
-                  >
-              {% endif %}
-                <h3 class="mb-2 text-lg font-bold dark:text-white">{{ activity.title }}</h3>
-                <p class="font-light text-gray-500 dark:text-gray-400">
-                  {{ activity.summary|truncatechars:40 }}
-                </p>
-            </div>
-          </a>
+        <div class="mx-auto max-w-screen-md text-center mb-4 lg:mb-6">
+            <h2 class="mb-4 text-lg tracking-tight font-semibold text-gray-900">Ähnliche Ideen</h2>
+        </div>
+        <div class="space-y-8 grid grid-cols-2 gap-2 md:gap-8 xl:gap-8 md:space-y-0">
+            {% for activity in related_activities %}
+                <a href="{% url 'activity-detail' activity.id %}">
+                    <div class="p-6 bg-white rounded shadow dark:bg-gray-800">
+                        {% if activity.image %}
+                            {% comment %} <img class="mb-4 rounded-lg"
+      src="{% cropped_thumbnail activity "cropping" %}"
+      alt="{{ activity.title }}" /> {% endcomment %}
+                            <img class="w-full object-cover"
+                                 src="{{ activity.image.url }}"
+                                 alt="{{ activity.title }}">
+                        {% else %}
+                            <img class="w-auto mx-auto" src="{% static "images/placeholder.webp" %}" alt="image description">
+                        {% endif %}
+                        <h3 class="mb-2 text-lg font-bold dark:text-white">{{ activity.title }}</h3>
+                        <p class="font-light text-gray-500 dark:text-gray-400">{{ activity.summary|truncatechars:40 }}</p>
+                    </div>
+                </a>
             {% endfor %}
         </div>
     </div>
-  </section>
+</section>

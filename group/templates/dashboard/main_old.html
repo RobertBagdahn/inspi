@@ -1,0 +1,57 @@
+{% extends "group/details/_group_detail_base.html" %}
+{% block detailcontent %}
+    <div class="container mx-auto p-4">
+        <h2 class="text-2xl font-bold mb-4">Dashboard</h2>
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-2">Meine Gruppenmitgliedschaften</h3>
+            <ul class="list-disc pl-5">
+                {% for membership in memberships %}
+                    <li class="mb-2">
+                        <a href="{% url 'group-detail-overview' membership.group.slug %}"
+                           class="text-blue-500 hover:underline">{{ membership.group.name }}</a>
+                        <span class="ml-2">
+                            <a href="{% url 'manage-membership' membership.group.slug %}"
+                               class="text-gray-500 hover:text-gray-700">Verwalten</a>
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Offene Beitrittsanfragen für deine Gruppen</h3>
+            <ul class="list-disc pl-5">
+                {% if open_requests %}
+                    {% for request in open_requests %}
+                        <li class="mb-2">
+                            {{ request.user.username }} möchte beitreten
+                            <a href="{% url 'group-detail-overview' request.group.slug %}"
+                               class="text-blue-500 hover:underline">{{ request.group.name }}</a>
+                            <span class="ml-2">
+                                <a href="{% url 'approve-request' request.id %}"
+                                   class="text-green-500 hover:text-green-700">Annehmen</a>
+                                <a href="{% url 'decline-request' request.id %}"
+                                   class="text-red-500 hover:text-red-700 ml-2">Ablehnen</a>
+                            </span>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="mb-2">Keine offenen Anfragen</li>
+                {% endif %}
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Beitretbare offene Gruppen</h3>
+            <ul>
+                {% for group in joinable_groups %}
+                    <li>
+                        <a href="{% url 'group-detail-overview' group.slug %}">{{ group.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <a href="{% url 'join-group-by-code' %}"
+               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Beitreten mit Code</a>
+        </div>
+    </div>
+{% endblock detailcontent %}

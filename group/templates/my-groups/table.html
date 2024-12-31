@@ -1,0 +1,41 @@
+{% load component_tags %}
+{% component 'table' form=form page_obj=page_obj %}
+{% fill 'table_heads' %}
+<tr>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Gruppe</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Seit</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Status</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400"></th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 {% if item.is_canceled %}bg-red-500{% endif %}">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <a href="{% url 'group-detail-overview' item.group.slug %}"
+               class="text-blue-500 hover:underline">{{ item.group.name }}</a>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ item.date_joined }}</td>
+        <td>
+            {% if item.status == "member_cancelled" %}
+                Kein Mitglied mehr
+            {% elif item.status == "member_full_access" %}
+                Alle Personen
+            {% elif item.status == "member_read_access" %}
+                Nur deine Persönlichen Daten
+            {% else %}
+                Keine Persönlichen Daten
+            {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <a href="{% url 'membership-detail' item.id %}"
+               class="text-blue-500 hover:underline">Details</a>
+        </td>
+    </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

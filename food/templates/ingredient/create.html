@@ -1,25 +1,19 @@
-{% extends "_base.html" %}
+{% extends '_base.html' %}
 {% load main_extras %}
 {% load crispy_forms_tags %}
-{% block header %}
-{% endblock header %}
+{% block header %}{% endblock %}
 {% block content %}
-  <main class="max-w-3xl mx-auto px-4 py-8">
-    <article class="prose lg:prose-xl">
-      <h1
-        class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl"
-      >
-        Erstelle eine neue Zutat
-      </h1>
-      <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button
-          type="submit"
-          class="mt-4 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
-          <span class="text-sm font-semibold">Erstellen</span>
-        </button>
-      </form>
-    </article>
-  </main>
-{% endblock content %}
+    <main class="max-w-3xl mx-auto px-4 py-8">
+        <article class="prose lg:prose-xl">
+            <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">Erstelle eine neue Zutat</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit"
+                        class="mt-4 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                    <span class="text-sm font-semibold">Erstellen</span>
+                </button>
+            </form>
+        </article>
+    </main>
+{% endblock %}

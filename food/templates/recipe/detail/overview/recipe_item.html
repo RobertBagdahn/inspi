@@ -1,32 +1,39 @@
 <tr>
     <td class="w-96 min-w-56 whitespace-nowrap py-4">
-      <a href="{% url 'ingredient-detail' recipe_item.portion.ingredient.slug %}" class="flex items-center gap-4 font-bold hover:underline">
-        {{ recipe_item.portion.ingredient.name }} ({{ recipe_item.portion.name }})
-      </a>
+        <a href="{% url 'ingredient-detail-overview' recipe_item.portion.ingredient.slug %}"
+           class="flex items-center gap-4 font-bold hover:underline">
+            {{ recipe_item.portion.ingredient.name }} ({{ recipe_item.portion.name }})
+        </a>
     </td>
-
-    <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
-        {{ recipe_item.quantity }} x
-    </td>
+    <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">{{ recipe_item.quantity }} x</td>
     <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
         {{ recipe_item.meta_info.weight_g|floatformat:0 }} g
     </td>
     <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
         {{ recipe_item.meta_info.price_eur|floatformat:2 }} €
     </td>
-
     <td class="py-4">
-      <button type="button" data-drawer-target="drawer-update-{{ i }}" data-drawer-show="drawer-update-{{ i }}" aria-controls="drawer-update-{{ i }}" class="ml-auto block rounded-lg p-2 text-white bg-blue-600 hover:bg-blue-700 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
-        <span class="sr-only"> Edit </span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-        </svg>
-      </button>
-      <div id="remove-tooltip" role="tooltip" class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
-        Edit
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
+        <button type="button"
+                data-drawer-target="drawer-update-{{ i }}"
+                data-drawer-show="drawer-update-{{ i }}"
+                aria-controls="drawer-update-{{ i }}"
+                class="ml-auto block rounded-lg p-2 text-white bg-blue-600 hover:bg-blue-700 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+            <span class="sr-only">Edit</span>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke-width="1.5"
+                 stroke="currentColor"
+                 class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+            </svg>
+        </button>
+        <div id="remove-tooltip"
+             role="tooltip"
+             class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
+            Edit
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
     </td>
-    {% include './drawer_update.html' with recipe_item=recipe_item update_form=update_form i=i%}
-  </tr>
-
+    {% include './drawer_update.html' with recipe_item=recipe_item update_form=update_form i=i %}
+</tr>

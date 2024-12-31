@@ -4,14 +4,13 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block head %}
-{{ wizard.form.media }}
+    {{ wizard.form.media }}
 {% endblock head %}
 {% block content %}
-
     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-      <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-        <div class="mx-auto max-w-5xl space-y-6 lg:space-y-8">
-          {% comment %} <div class="space-y-6 sm:space-y-8">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <div class="mx-auto max-w-5xl space-y-6 lg:space-y-8">
+                {% comment %} <div class="space-y-6 sm:space-y-8">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Product return form</h2>
     
             <ol class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 sm:justify-center md:flex-row md:items-center lg:gap-6">
@@ -58,56 +57,52 @@
                 <p class="text-sm font-medium leading-tight text-gray-500 dark:text-gray-400">Confirmation</p>
               </li>
             </ol>
-          </div> {% endcomment %}
-    
-          <div class="space-y-6">
-            <div class="space-y-1">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Überschriften und Zusammenfassung
-              </h3>
-              <span class="subtitle-2">
-                Damit die Idee übersichtlicher dargestellt wird möchten wir dich
-                bitten, deinen Beschreibungstext gedanklich in zwei Abschnitte zu
-                gliedern: Im ersten Abschnitt fass bitte deine Heimabend-Idee kurz
-                zusammen und im zweiten Abschnitt kannst du genauer beschreiben, worum
-                es sich handelt. <br />
-                <br />
-                <i
-                  >Beachte: In dem nächsten Schritt hast du die Möglichkeit deine
-                  Materialliste zu erstellen, sodass du dein Material nicht im
-                  Beschreibungstext auflisten musst.</i
-                >
-                <br />
-                Viel Spaß dabei!
-              </span>
+                </div> {% endcomment %}
+                <div class="space-y-6">
+                    <div class="space-y-1">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Überschriften und Zusammenfassung</h3>
+                        <span class="subtitle-2">
+                            Damit die Idee übersichtlicher dargestellt wird möchten wir dich
+                            bitten, deinen Beschreibungstext gedanklich in zwei Abschnitte zu
+                            gliedern: Im ersten Abschnitt fass bitte deine Heimabend-Idee kurz
+                            zusammen und im zweiten Abschnitt kannst du genauer beschreiben, worum
+                            es sich handelt.
+                            <br />
+                            <br />
+                            <i>Beachte: In dem nächsten Schritt hast du die Möglichkeit deine
+                                Materialliste zu erstellen, sodass du dein Material nicht im
+                            Beschreibungstext auflisten musst.</i>
+                            <br />
+                            Viel Spaß dabei!
+                        </span>
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <table>
+                            {{ wizard.management_form }}
+                            {% if wizard.form.forms %}
+                                {{ wizard.form.management_form }}
+                                {% for form in wizard.form.forms %}{{ form|crispy }}{% endfor %}
+                            {% else %}
+                                {{ wizard.form|crispy }}
+                            {% endif %}
+                            {{ wizard.form.media }}
+                        </table>
+                        <div class="gap-4 sm:flex sm:items-center">
+                            {% if wizard.steps.prev %}
+                                {% comment %} <button name="wizard_goto_step" type="submit" class="w-full rounded-lg  border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto" value="{{ wizard.steps.first }}">first step</button> {% endcomment %}
+                                <button name="wizard_goto_step"
+                                        type="submit"
+                                        class="w-full rounded-lg  border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto"
+                                        value="{{ wizard.steps.prev }}">Zurück</button>
+                            {% endif %}
+                            <input class="mt-4 flex w-full items-center justify-center rounded-lg border border-blue-700 bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:border-blue-800 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-600 dark:bg-blue-600 dark:hover:border-blue-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:mt-0 sm:w-auto"
+                                   type="submit"
+                                   value="Weiter" />
+                        </div>
+                    </form>
+                </div>
             </div>
-    
-            <form action="" method="post">{% csrf_token %}
-              <table>
-              {{ wizard.management_form }}
-              {% if wizard.form.forms %}
-                  {{ wizard.form.management_form }}
-                  {% for form in wizard.form.forms %}
-                      {{ form|crispy }}
-                  {% endfor %}
-              {% else %}
-                  {{ wizard.form|crispy }}
-              {% endif %}
-                  {{ wizard.form.media }}
-              </table>
-              <div class="gap-4 sm:flex sm:items-center">
-              {% if wizard.steps.prev %}
-                  {% comment %} <button name="wizard_goto_step" type="submit" class="w-full rounded-lg  border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto" value="{{ wizard.steps.first }}">first step</button> {% endcomment %}
-                  <button name="wizard_goto_step" type="submit" class="w-full rounded-lg  border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto" value="{{ wizard.steps.prev }}">Zurück</button>
-              {% endif %}
-              <input class="mt-4 flex w-full items-center justify-center rounded-lg border border-blue-700 bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:border-blue-800 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-600 dark:bg-blue-600 dark:hover:border-blue-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:mt-0 sm:w-auto" type="submit" value="Weiter"/>
-            </div>
-          </form>
-  
-          </div>
         </div>
-      </div>
     </section>
 {% endblock content %}
-
-

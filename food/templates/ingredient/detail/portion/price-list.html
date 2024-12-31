@@ -1,0 +1,83 @@
+<div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
+        Preise
+        <a href="{% url 'ingredient-price-create' ingredient.slug %}"
+           class="ml-2 text-sm text-blue-500 hover:underline">
+            <svg class="inline h-8 w-8 pb-2 text-green-500"
+                 aria-hidden="true"
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+            </svg>
+        </a>
+    </h2>
+    <div class="flex items-center justify-between">
+        <div class="divide-y divide-gray-200 dark:divide-gray-700">
+            {% if ingredient.slug and prices %}
+                {% for price in prices %}
+                    <div class="flex flex-wrap items-center gap-y-4 py-6">
+                        <dl class="">
+                            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Name der Packung</dt>
+                            <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                                {{ price.name }}
+                            </dd>
+                        </dl>
+                        <dl class="mx-6">
+                            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Portionen je Packung</dt>
+                            <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                                {{ price.quantity }} x {{ price.portion.name }}
+                            </dd>
+                        </dl>
+                        <dl class="mx-6">
+                            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Preis je Packung</dt>
+                            <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                                {{ price.price_eur|floatformat:2 }} €
+                            </dd>
+                        </dl>
+                        <dl class="mx-6">
+                            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Packungsinhalt</dt>
+                            <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                                {{ price.weight_g|floatformat:0 }} g
+                            </dd>
+                        </dl>
+                        <dl class="mx-6">
+                            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Preis je Kg</dt>
+                            <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                                {{ price.price_per_kg }} €
+                            </dd>
+                        </dl>
+                        <dl class="mx-6">
+                            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Datum</dt>
+                            <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                                {{ price.created_at|date:'d.m.Y' }}
+                            </dd>
+                        </dl>
+                        <a href="{% url 'ingredient-price-update' ingredient.slug price.pk %}"
+                           class="inline-flex items-center mx-2 px-2 py-2 text-sm">
+                            <svg class="w-8 h-8 text-blue-500 bg-white rounded-full p-1"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                            </svg>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="flex flex-wrap items-center gap-y-4 py-6">
+                    <dl class="">
+                        <dd class="mt-1.5 text-base font-semibold text-red-500 dark:text-white">
+                            Noch kein Preis vorhanden
+                        </dd>
+                    </dl>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

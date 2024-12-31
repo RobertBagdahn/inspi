@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+{% block content %}
+    <h2>Manage Join Requests for {{ group.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <ul>
+            {% for join_request in join_requests %}
+                <li>
+                    {{ join_request.user.username }}
+                    <button type="submit" name="approve_{{ join_request.id }}">Approve</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </form>
+{% endblock content %}

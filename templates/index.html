@@ -1,138 +1,104 @@
 <!-- templates/index.html -->
-
 {% extends "_base.html" %}
 {% load static %}
 {% block header %}
 {% endblock header %}
 {% block content %}
-<main>
-  <!-- Start block -->
-  <section class="bg-white">
-    <div
-      class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12"
-    >
-      {% comment %} <a
-        href="#"
-        class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-200 rounded-full"
-        role="alert"
-      >
-        <span
-          class="text-xs bg-blue-600 rounded-full text-gray-100 px-4 py-1.5 mr-3"
-          >New</span
-        >
+    <main>
+        <!-- Start block -->
+        <section class="bg-white">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+                {% comment %} <a href="#" class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-200 rounded-full" role="alert">
+        <span class="text-xs bg-blue-600 rounded-full text-gray-100 px-4 py-1.5 mr-3">New</span>
         <span class="text-sm font-medium">Heimabend der Woche</span>
-        <svg
-          class="ml-2 w-5 h-5 text-black"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-            clip-rule="evenodd"
-          ></path>
+        <svg class="ml-2 w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
         </svg>
-      </a> {% endcomment %}
-      <h1
-        class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl"
-      >
-        Inspi hat immer eine Idee.
-      </h1>
-      <p
-        class="mb-2 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48"
-      >
-        Ein guter Anlaufpunkt für jede*n der*die eine neue Idee braucht.
-      </p>
-    
-      
-      <section class="bg-white dark:bg-gray-900 antialiased">
-        <div class="max-w-screen-xl px-4 py-2 mx-auto lg:px-6 sm:py-16 lg:py-24">      
-          <div class="grid grid-cols-1 mt-12 text-center sm:mt-16 gap-x-20 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="space-y-4">
-              <span
-                class="text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
-                <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_science.webp" %}" alt="image description">
-              </span>
-              <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">
-                Gruppenstunde und Spiele
-              </h3>
-              <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
-                Finde hier Ideen für deine Gruppenstunde und Spiele.
-              </p>
-              <a href="{% url 'activity-main'%}" title=""
-                class="text-white bg-blue-700 justify-center hover:bg-blue-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                role="button">
-                Öffnen
-                <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                  fill="currentColor">
-                  <path fill-rule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd" />
-                </svg>
-              </a>
+                </a> {% endcomment %}
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">
+                    Inspi hat immer eine Idee.
+                </h1>
+                <p class="mb-2 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    Ein guter Anlaufpunkt für jede*n der*die eine neue Idee braucht.
+                </p>
+                <section class="bg-white dark:bg-gray-900 antialiased">
+                    <div class="max-w-screen-xl px-4 py-2 mx-auto lg:px-6 sm:py-16 lg:py-24">
+                        <div class="grid grid-cols-1 mt-12 text-center sm:mt-16 gap-x-20 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="space-y-4">
+                                <span class="text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                                    <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_science.webp" %}" alt="image description">
+                                </span>
+                                <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">Gruppenstunde und Spiele</h3>
+                                <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
+                                    Finde hier Ideen für deine Gruppenstunde und Spiele.
+                                </p>
+                                <a href="{% url 'activity-main' %}"
+                                   title=""
+                                   class="text-white bg-blue-700 justify-center hover:bg-blue-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                   role="button">
+                                    Öffnen
+                                    <svg aria-hidden="true"
+                                         class="w-5 h-5 ml-2 -mr-1"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20"
+                                         fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="space-y-4">
+                                <span class=" text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                                    <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_food.webp" %}" alt="image description">
+                                </span>
+                                <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">Rezepte und Essenspläne</h3>
+                                <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
+                                    Finde hier Rezepte und Essenspläne für deine Gruppenstunde.
+                                </p>
+                                {% if user.is_authenticated and user.is_staff %}
+                                    <a href="{% url 'food-main' %}"
+                                       title=""
+                                       class="text-white bg-blue-700 justify-center hover:bg-blue-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                       role="button">
+                                        Öffnen
+                                        <svg aria-hidden="true"
+                                             class="w-5 h-5 ml-2 -mr-1"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 20 20"
+                                             fill="currentColor">
+                                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="space-y-4">
+                                <span class="text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                                    <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_teacher.webp" %}" alt="image description">
+                                </span>
+                                <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">Wissensbeiträge</h3>
+                                <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
+                                    Finde hier kleine Beiträge für deine Gruppenstunde, die sich vertieft mit unterschiedlichen Themen auseinandersetzen
+                                </p>
+                                {% if user.is_authenticated and user.is_staff %}
+                                    <a href="{% url 'blog-main' %}"
+                                       title=""
+                                       class="text-white bg-blue-700 justify-center hover:bg-blue-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                       role="button">
+                                        Öffnen
+                                        <svg aria-hidden="true"
+                                             class="w-5 h-5 ml-2 -mr-1"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 20 20"
+                                             fill="currentColor">
+                                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-      
-            <div class="space-y-4">
-              <span
-                class=" text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
-                <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_food.webp" %}" alt="image description">
-              </span>
-              <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">
-                Rezepte und Essenspläne
-              </h3>
-              <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
-                Finde hier Rezepte und Essenspläne für deine Gruppenstunde.
-              </p>
-              {% if user.is_authenticated and user.is_staff %}
-              <a href="{% url 'food-main'%}" title=""
-                class="text-white bg-blue-700 justify-center hover:bg-blue-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                role="button">
-                Öffnen
-
-                <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                  fill="currentColor">
-                  <path fill-rule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd" />
-                </svg>
-              </a>
-            {% endif %}
-            </div>
-      
-            <div class="space-y-4">
-              <span
-                class="text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
-                <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_teacher.webp" %}" alt="image description">
-              </span>
-              <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">
-                Wissensbeiträge
-              </h3>
-              <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
-                Finde hier kleine Beiträge für deine Gruppenstunde, die sich vertieft mit unterschiedlichen Themen auseinandersetzen
-              </p>
-              {% if user.is_authenticated and user.is_staff %}
-                <a href="{% url 'blog-main'%}" title=""
-                  class="text-white bg-blue-700 justify-center hover:bg-blue-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  role="button">
-                  Öffnen
-                  <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                    fill="currentColor">
-                    <path fill-rule="evenodd"
-                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clip-rule="evenodd" />
-                  </svg>
-                </a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </section>
-     
-    </div>
-  </section>
-</main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
 {% endblock content %}
-
-

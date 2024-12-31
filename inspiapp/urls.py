@@ -39,6 +39,7 @@ urlpatterns = [
     path("event/", include("event.urls")),
     path("food/", include("food.urls")),
     path("blog/", include("blog.urls")),
+    path("group/", include("group.urls")),
     path("", index, name="index"),
     path("accounts/", include("allauth.urls")),
     path("__reload__/", include("django_browser_reload.urls")),

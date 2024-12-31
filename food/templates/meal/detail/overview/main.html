@@ -2,77 +2,133 @@
 {% load main_extras %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
-  <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-      <div class="mx-auto max-w-3xl">
-        <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{{ meal.name }}</h2>
-        <div class="relative mt-6 overflow-x-auto border-b border-gray-200 dark:border-gray-800 sm:mt-8">
-          <table class="w-full text-left text-base text-gray-900 dark:text-white md:table-fixed">
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
-              {% if meal.list_meal_items.count %}
-                {% for meal_item in meal.list_meal_items.all %}
-                  {% include "./meal_item.html" with meal_item=meal_item i=forloop.counter %}
-                {% endfor %}
-              {% else %}
-                <tr>
-                  <td class="py-4 pr-4">Bisher noch kein Rezept vorhanden</td>
-                </tr>
-              {% endif %}
-            </tbody>
-          </table>
-        </div>
-        <div class="flex justify-between mt-2">
-          <div class="grow"></div>
-          <button type="button" data-drawer-target="drawer-scale" data-drawer-show="drawer-scale" aria-controls="drawer-scale" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-yellow-300 hover:bg-yellow-400 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
-            <span class="sr-only">Skalieren</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m9 14.25 6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-            </svg>
-          </button>
-          <button type="button" data-drawer-target="drawer-add" data-drawer-show="drawer-add" aria-controls="drawer-add" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-green-500 hover:bg-green-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
-            <span class="sr-only">Neues Rezept</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-          </button>
-          <!-- Delete Button -->
-          <button type="button" data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-red-500 hover:bg-red-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
-            <span class="sr-only">Menü Löschen</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18.75A2.25 2.25 0 0 0 8.25 21h7.5A2.25 2.25 0 0 0 18 18.75V7.5H6v11.25ZM9 10.5v6m3-6v6m3-6v6M10.5 4.5h3m-6 0h9M9 4.5V3.75A1.5 1.5 0 0 1 10.5 2.25h3A1.5 1.5 0 0 1 15 3.75V4.5" />
-            </svg>
-          </button>
-        </div>
-        {% comment %} <div class="my-3">
+    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <div class="mx-auto max-w-3xl">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{{ meal.name }}</h2>
+                <div class="relative mt-6 overflow-x-auto border-b border-gray-200 dark:border-gray-800 sm:mt-8">
+                    <table class="w-full text-left text-base text-gray-900 dark:text-white md:table-fixed">
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+                            {% if meal.list_meal_items.count %}
+                                {% for meal_item in meal.list_meal_items.all %}
+                                    {% include "./meal_item.html" with meal_item=meal_item i=forloop.counter %}
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="py-4 pr-4">Bisher noch kein Rezept vorhanden</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex justify-between mt-2">
+                    <div class="grow"></div>
+                    <button type="button"
+                            data-drawer-target="drawer-scale"
+                            data-drawer-show="drawer-scale"
+                            aria-controls="drawer-scale"
+                            class="ml-2 mb-2 block rounded-lg p-2 text-white bg-yellow-300 hover:bg-yellow-400 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+                        <span class="sr-only">Skalieren</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke-width="1.5"
+                             stroke="currentColor"
+                             class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m9 14.25 6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                    </button>
+                    <button type="button"
+                            data-drawer-target="drawer-add"
+                            data-drawer-show="drawer-add"
+                            aria-controls="drawer-add"
+                            class="ml-2 mb-2 block rounded-lg p-2 text-white bg-green-500 hover:bg-green-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+                        <span class="sr-only">Neues Rezept</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke-width="1.5"
+                             stroke="currentColor"
+                             class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </button>
+                    <!-- Delete Button -->
+                    <button type="button"
+                            data-modal-target="delete-modal"
+                            data-modal-toggle="delete-modal"
+                            class="ml-2 mb-2 block rounded-lg p-2 text-white bg-red-500 hover:bg-red-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+                        <span class="sr-only">Menü Löschen</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke-width="1.5"
+                             stroke="currentColor"
+                             class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18.75A2.25 2.25 0 0 0 8.25 21h7.5A2.25 2.25 0 0 0 18 18.75V7.5H6v11.25ZM9 10.5v6m3-6v6m3-6v6M10.5 4.5h3m-6 0h9M9 4.5V3.75A1.5 1.5 0 0 1 10.5 2.25h3A1.5 1.5 0 0 1 15 3.75V4.5" />
+                        </svg>
+                    </button>
+                </div>
+                {% comment %} <div class="my-3">
           {% include './summary.html' with recipe=recipe %}
         </div>
-        {% endcomment %}
-        {% include './drawer_create.html' with recipe=recipe recipes=recipes create_form=create_form %}
-        
-        {% comment %} <a href="{% url 'recipe-update' meal.slug %}" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 my-4 rounded">Rezept Speichern</a>
-        <a href="{% url 'recipe-clone' meal.slug %}" type="button" class="bg-yellow-300 hover:bg-yellow-500 text-white font-bold py-2 px-4 my-4 rounded mx-2">Rezept Simulieren</a> {% endcomment %}
-      </div>
-    </div>
-  </section>
-  <!-- Delete Modal -->
-  <div id="delete-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full bg-gray-900 bg-opacity-50">
-    <div class="relative w-full h-full max-w-md md:h-auto">
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="delete-modal">
-          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z" clip-rule="evenodd"></path>
-          </svg>
-          <span class="sr-only">Close modal</span>
-        </button>
-        <div class="p-6 text-center">
-          <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18.5a1.5 1.5 0 0 0 1.5-1.5h-3a1.5 1.5 0 0 0 1.5 1.5z"></path>
-          </svg>
-          <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Sind Sie sicher, dass Sie dieses Element löschen möchten?</h3>
-          <button hx-post="{% url 'meal-delete' meal.id %}" hx-target="closest div" data-modal-hide="delete-modal" hx-swap="none" hx-on="htmx:afterRequest: window.location.href = '{% url 'plan' plan.slug %}'" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">Ja, sicher</button>
-          <button data-modal-hide="delete-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Nein, abbrechen</button>
+                {% endcomment %}
+                {% include './drawer_create.html' with recipe=recipe recipes=recipes create_form=create_form %}
+                {% comment %} <a href="{% url 'recipe-update' meal.slug %}" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 my-4 rounded">Rezept Speichern</a>
+                <a href="{% url 'recipe-clone' meal.slug %}"
+                   type="button"
+                   class="bg-yellow-300 hover:bg-yellow-500 text-white font-bold py-2 px-4 my-4 rounded mx-2">Rezept Simulieren</a> {% endcomment %}
+            </div>
         </div>
-      </div>
+    </section>
+    <!-- Delete Modal -->
+    <div id="delete-modal"
+         tabindex="-1"
+         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full bg-gray-900 bg-opacity-50">
+        <div class="relative w-full h-full max-w-md md:h-auto">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                        data-modal-hide="delete-modal">
+                    <svg aria-hidden="true"
+                         class="w-5 h-5"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z" clip-rule="evenodd">
+                        </path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-6 text-center">
+                    <svg aria-hidden="true"
+                         class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18.5a1.5 1.5 0 0 0 1.5-1.5h-3a1.5 1.5 0 0 0 1.5 1.5z">
+                        </path>
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                        Sind Sie sicher, dass Sie dieses Element löschen möchten?
+                    </h3>
+                    <button hx-post="{% url 'meal-delete' meal.id %}"
+                            hx-target="closest div"
+                            data-modal-hide="delete-modal"
+                            hx-swap="none"
+                            hx-on="htmx:afterRequest: window.location.href = '{% url 'plan' plan.slug %}'"
+                            type="button"
+                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                        Ja, sicher
+                    </button>
+                    <button data-modal-hide="delete-modal"
+                            type="button"
+                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                        Nein, abbrechen
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 {% endblock %}

@@ -1,0 +1,87 @@
+{% load crispy_forms_tags %}
+{% load component_tags %}
+<div class="divide-y divide-gray-200 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-800">
+    <div class="space-y-4 p-4">
+        <div class="flex flex-col justify-between md:flex-row space-10 flex-1 items-center">
+            <form class="w-full">
+                <div class="flex items-start space-x-8">
+                    {{ form|crispy }}
+                    {% component 'submit-button' text="Suchen" color="blue" %}
+                {% endcomponent %}
+            </div>
+        </form>
+    </div>
+</div>
+<div class="relative overflow-x-auto">
+    <table class="w-full divide-y divide-gray-200 text-left text-sm text-gray-900 dark:divide-gray-700 dark:text-white">
+        <thead class="text-xs uppercase text-gray-900">
+            <tr>{% slot "table_heads" %}header{% endslot %}</tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+            {% if page_obj|length == 0 %}
+                <tr>
+                    <td colspan="100%" class="text-center py-4">Keine Daten vorhanden</td>
+                </tr>
+            {% else %}
+                {% slot "table_row" %}row{% endslot %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+<div class="px-4 py-4">
+    <nav class="flex flex-col items-start justify-between space-y-3 md:flex-row md:items-center md:space-y-0"
+         aria-label="Table navigation">
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Zeige <span class="font-semibold text-gray-900 dark:text-white">{{ page_obj.start_index }}-{{ page_obj.end_index }}</span> von <span class="font-semibold text-gray-900 dark:text-white">{{ page_obj.paginator.count }}</span></span>
+        <ul class="flex h-8 items-center -space-x-px text-sm">
+            {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}"
+                       class="ms-0 flex h-8 items-center justify-center rounded-s-lg border border-e-0 border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Vorherige</span>
+                        <svg class="h-4 w-4 rtl:rotate-180"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             fill="none"
+                             viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7" />
+                        </svg>
+                    </a>
+                </li>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li>
+                        <a href="#"
+                           aria-current="page"
+                           class="z-10 flex h-8 items-center justify-center border border-primary-300 bg-primary-50 px-3 leading-tight text-primary-600 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{ num }}</a>
+                    </li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li>
+                        <a href="?page={{ num }}"
+                           class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}"
+                       class="flex h-8 items-center justify-center rounded-e-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Nächste</span>
+                        <svg class="h-4 w-4 rtl:rotate-180"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             fill="none"
+                             viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7" />
+                        </svg>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+</div>

@@ -2,16 +2,13 @@
 {% load main_extras %}
 {% load static %}
 {% block header %}
-{{ form.media }}
+    {{ form.media }}
 {% endblock header %}
 {% block insidecontent %}
-
-<main class="">
-  <section class="bg-white m-2">
-    <h1>
-        Kommentare
-    </h1>
-    {% include "activity/admin/components/list/list-main.html" %}
-  </section>
-</main>
+    <main class="">
+        <section class="bg-white m-2">
+            <h1>Kommentare</h1>
+            {% include "activity/admin/components/list/list-main.html" %}
+        </section>
+    </main>
 {% endblock insidecontent %}

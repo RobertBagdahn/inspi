@@ -17,6 +17,7 @@ from .models import (
     Portion,
     Intolerance,
     TemplateOption,
+    RetailSection,
 )
 
 admin.site.register(MeasuringUnit)
@@ -87,3 +88,4 @@ admin.site.register(MealItem)
 admin.site.register(MealEventTemplate)
 
 admin.site.register(MetaInfo)
+admin.site.register(RetailSection)

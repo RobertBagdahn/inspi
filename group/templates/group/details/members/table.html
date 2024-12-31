@@ -1,0 +1,37 @@
+{% load component_tags %}
+{% component 'table' page_obj=page_obj form=search_filter_form %}
+{% fill 'table_heads' %}
+<tr>
+    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Name</th>
+    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Beigetreten</th>
+    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Status</th>
+    <th class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Aktionen</th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+            <a href="{% url 'login-profile' item.user.username %}"
+               class="text-blue-600 hover:underline">{{ item.user }}</a>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ item.date_joined }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {% if item.is_cancelled %}
+                Mitglied gekündigt
+            {% elif item.full_access %}
+                Mitglied voller Datenteilung
+            {% elif item.read_access %}
+                Mitglied Lesezugang
+            {% else %}
+                Mitglied kein Datenteilung
+            {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+            <a href="{% url 'membership-detail' item.id %}"
+               class="text-blue-600 hover:underline">Details</a>
+        </td>
+    </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

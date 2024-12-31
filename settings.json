@@ -1,0 +1,17 @@
+{
+    "editor.fontSize": 14,
+    "editor.tabSize": 4,
+    "files.autoSave": "onFocusChange",
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true
+    },
+    "eslint.enable": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+    "[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
+        "editor.defaultFormatter": "monosans.djlint"
+    }
+}

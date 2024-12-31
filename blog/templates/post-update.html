@@ -1,77 +1,53 @@
-{% extends "_base.html" %} {% load main_extras %} {% load crispy_forms_tags %}
-{% block header %} {% endblock header %} {% block content %}
-
-<section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl">
-    <form action="" method="post">
-      <div class="grid gap-4 mb-4">
-        {% csrf_token %}
-        <div class="form-group">
-          <label
-            for="{{ form.title.id_for_label }}"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >{{ form.title.label }}
-          </label>
-          <input
-            type="text"
-            id="{{ form.title.id_for_label }}"
-            aria-describedby="helper-text-explanation"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 {% if form.title.errors %}border-red-500{% endif %}"
-            placeholder=""
-            value="{{ form.title.value | default_if_none:'' }}"
-            name="{{ form.title.name }}"
-          />
-
-          <p
-            id="helper-text-explanation"
-            class="mt-2 text-sm text-gray-500 dark:text-gray-400"
-          >
-            {{ form.title.help_text }}
-          </p>
+{% extends "_base.html" %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl">
+            <form action="" method="post">
+                <div class="grid gap-4 mb-4">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.title.id_for_label }}"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ form.title.label }}
+                        </label>
+                        <input type="text"
+                               id="{{ form.title.id_for_label }}"
+                               aria-describedby="helper-text-explanation"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 {% if form.title.errors %}border-red-500{% endif %}"
+                               placeholder=""
+                               value="{{ form.title.value | default_if_none:'' }}"
+                               name="{{ form.title.name }}" />
+                        <p id="helper-text-explanation"
+                           class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ form.title.help_text }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.overview.id_for_label }}"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ form.overview.label }}
+                        </label>
+                        <input type="textarea"
+                               id="{{ form.overview.id_for_label }}"
+                               aria-describedby="helper-text-explanation"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 {% if form.title.errors %}border-red-500{% endif %}"
+                               placeholder=""
+                               value="{{ form.overview.value | default_if_none:'' }}"
+                               name="{{ form.overview.name }}" />
+                        <p id="helper-text-explanation"
+                           class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ form.overview.help_text }}</p>
+                    </div>
+                    <div class="form-group col-start-1">{{ form.media }} {{ form.content }}</div>
+                    <div class="form-group col-start-1">{{ form.categories|as_crispy_field }}</div>
+                    <div class="form-group col-start-1">{{ form.author|as_crispy_field }}</div>
+                    <div class="form-group col-start-1">{{ form.status|as_crispy_field }}</div>
+                    <div class="form-group col-start-1">
+                        <button class="btn btn-success" type="submit">Absenden</button>
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class="form-group">
-          <label
-            for="{{ form.overview.id_for_label }}"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >{{ form.overview.label }}
-          </label>
-          <input
-            type="textarea"
-            id="{{ form.overview.id_for_label }}"
-            aria-describedby="helper-text-explanation"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 {% if form.title.errors %}border-red-500{% endif %}"
-            placeholder=""
-            value="{{ form.overview.value | default_if_none:'' }}"
-            name="{{ form.overview.name }}"
-          />
-
-          <p
-            id="helper-text-explanation"
-            class="mt-2 text-sm text-gray-500 dark:text-gray-400"
-          >
-            {{ form.overview.help_text }}
-          </p>
-        </div>
-
-        <div class="form-group col-start-1">
-          {{ form.media }} {{ form.content }}
-        </div>
-
-        <div class="form-group col-start-1">
-          {{ form.categories|as_crispy_field }}
-        </div>
-        <div class="form-group col-start-1">
-          {{ form.author|as_crispy_field }}
-        </div>
-        <div class="form-group col-start-1">
-          {{ form.status|as_crispy_field }}
-        </div>
-        <div class="form-group col-start-1">
-          <button class="btn btn-success" type="submit">Absenden</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</section>
+    </section>
 {% endblock content %}

@@ -1,44 +1,41 @@
 {% extends '_base.html' %}
 {% load main_extras %}
 {% load static %}
-{% block header %}
-
-{% endblock %}
+{% block header %}{% endblock %}
 {% block content %}
-  <section class="bg-white dark:bg-gray-900">
-    <div class="max-w-screen-xl px-4 py-8 mx-auto lg:px-6 max-w-xl">
-      <div class="grid grid-cols-1 gap-6 text-left">
-        <div>
-          <h2 class="mb-8 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Die Idee</h2>
-          <img class="h-60 max-w-full rounded-lg mx-auto" src="{% static 'images/inspi_happy.webp' %}" alt="image description" />
-          <div class="max-w-3xl p-5 mx-auto mt-8 space-y-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-            <div class="pb-5 border-b border-gray-200 dark:border-gray-700">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Kostenlos
-              </h3>
-              <p class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
-                Wir haben diese Plattform geschaffen, um die kostbaren Erfahrungsschätze aus unserem Bund miteinander zu teilen und gemeinsam davon zu profitieren - damit die wenigen Alltags Stunden jedes jungen Pfadfinders am Heim für die ganze Gruppe zu einem noch größeren Abenteuer werden. <br />
-              </p>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="max-w-screen-xl px-4 py-8 mx-auto lg:px-6 max-w-xl">
+            <div class="grid grid-cols-1 gap-6 text-left">
+                <div>
+                    <h2 class="mb-8 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Die Idee</h2>
+                    <img class="h-60 max-w-full rounded-lg mx-auto"
+                         src="{% static 'images/inspi_happy.webp' %}"
+                         alt="image description" />
+                    <div class="max-w-3xl p-5 mx-auto mt-8 space-y-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="pb-5 border-b border-gray-200 dark:border-gray-700">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Kostenlos</h3>
+                            <p class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
+                                Wir haben diese Plattform geschaffen, um die kostbaren Erfahrungsschätze aus unserem Bund miteinander zu teilen und gemeinsam davon zu profitieren - damit die wenigen Alltags Stunden jedes jungen Pfadfinders am Heim für die ganze Gruppe zu einem noch größeren Abenteuer werden.
+                                <br />
+                            </p>
+                        </div>
+                        <div class="pb-5 border-b border-gray-200 dark:border-gray-700">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Vielfältig</h3>
+                            <p class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
+                                Auf dieser Seite sammeln wir verschiedene kreative Heimabend-Programm-Ideen - für alle Altersstufen, egal ob drinnen oder draußen, mit oder ohne Vorbereitung, aufwändig oder ohne Kosten, Lückenfüller oder Großprojekt. Nutzt dafür gerne eigene Ideen, aber auch analoge Quellen wie bspw. ein Ideenbuch aus eurem Stamm oder die Früchte der eigenen Erfahrung.
+                                <br />
+                            </p>
+                        </div>
+                        <div class="pb-5 border-b border-gray-200 dark:border-gray-700">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Inspiration</h3>
+                            <p class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
+                                Es geht uns nicht darum, fertig geplante Heimabend-Konzepte und Protokolle auszutauschen und in der Gruppe nachzumachen. Vielmehr soll euch die Seite als Ideenquelle dienen, um Input für eure eigenen Heimabende zu haben, an euren Gruppenstunden-Konzepten zu basteln, mit der Gruppe neue Erfahrungen zu machen und euch selbst kreativ zu verwirklichen.
+                                <br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="pb-5 border-b border-gray-200 dark:border-gray-700">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Vielfältig
-              </h3>
-              <p class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
-                Auf dieser Seite sammeln wir verschiedene kreative Heimabend-Programm-Ideen - für alle Altersstufen, egal ob drinnen oder draußen, mit oder ohne Vorbereitung, aufwändig oder ohne Kosten, Lückenfüller oder Großprojekt. Nutzt dafür gerne eigene Ideen, aber auch analoge Quellen wie bspw. ein Ideenbuch aus eurem Stamm oder die Früchte der eigenen Erfahrung. <br />
-              </p>
-            </div>
-            <div class="pb-5 border-b border-gray-200 dark:border-gray-700">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Inspiration
-              </h3>
-              <p class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
-                Es geht uns nicht darum, fertig geplante Heimabend-Konzepte und Protokolle auszutauschen und in der Gruppe nachzumachen. Vielmehr soll euch die Seite als Ideenquelle dienen, um Input für eure eigenen Heimabende zu haben, an euren Gruppenstunden-Konzepten zu basteln, mit der Gruppe neue Erfahrungen zu machen und euch selbst kreativ zu verwirklichen.<br />
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 {% endblock %}

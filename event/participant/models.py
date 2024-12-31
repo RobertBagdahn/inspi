@@ -7,17 +7,7 @@ from event.registration import models as registration_models
 from event.basic import models as basic_models
 from event.basic import choices as basic_choices
 
-class Person(models.Model):
-    """
-    Model to save a natural person with or without login
-    """
-    id = models.UUIDField(auto_created=True, primary_key=True, default=uuid.uuid4, editable=False)
-    scout_name = models.CharField(max_length=100, blank=True, null=True)
-    first_name = models.CharField(max_length=100, default="")
-    last_name = models.CharField(max_length=100, default="")
-    address = models.CharField(max_length=200, blank=True, null=True)
-    address_supplement = models.CharField(max_length=100, blank=True, null=True)
-    zip_code = models.CharField(max_length=5, blank=True, null=True)
+from general.login.models import Person
 
 # Create your models here.
 class Participant(models.Model):

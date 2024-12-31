@@ -1,0 +1,29 @@
+{% extends 'group/details/_group_detail_base.html' %}
+{% load component_tags %}
+{% block detailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Mitgliedschaft</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">
+                Hier sind alle Informationen zu deiner Mitgliedschaft in der Gruppe aufgelistet
+            </p>
+            {% component 'simple-list' items=items %} {% endcomponent %}
+            <div class="mt-4">
+                <div class="flex space-x-4">
+                    {% if not membership.is_canceled %}
+                        {% component 'link-button' color='red' text='Mitgliedschaft beenden' icon='leave' url="{% url 'remove-membership' membership.id %}" %}
+                    {% endcomponent %}
+                {% endif %}
+                {% if is_member and not membership.is_canceled %}
+                    {% component 'link-button' color='blue' text='bearbeiten als Mitglied' icon='edit' url="{% url 'edit-membership-member' membership.id %}" %}
+                {% endcomponent %}
+            {% endif %}
+            {% if is_admin and not membership.is_canceled %}
+                {% component 'link-button' color='blue' text='bearbeiten als Admin' icon='edit' url="{% url 'edit-membership-admin' membership.id %}" %}
+            {% endcomponent %}
+        {% endif %}
+    </div>
+</div>
+</div>
+</section>
+{% endblock %}

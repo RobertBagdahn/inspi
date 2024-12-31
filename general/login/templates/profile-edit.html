@@ -3,32 +3,27 @@
 {% load crispy_forms_tags %}
 {% load pictures %}
 {% block content %}
-<section class="bg-white dark:bg-gray-900">
-  <div class="py-8 mx-auto max-w-6xl lg:py-16">
-    <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-      <h2
-        class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
-      >
-        Profil bearbeiten <br />
-      </h2>
-    </div>
-    <div class="max-w-screen-md mb-8 lg:mb-12">
-      <form
-        href="{% url 'login-profile-edit' user.username %}"
-        method="POST"
-        enctype="multipart/form-data"
-      >
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form|crispy }}
-        <button
-          type="submit"
-          class="mt-4 px-4 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
-        >
-          <span class="text-sm font-semibold">ändern</span>
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 mx-auto max-w-6xl lg:py-16">
+            <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                    Profil bearbeiten
+                    <br />
+                </h2>
+            </div>
+            <div class="max-w-screen-md mb-8 lg:mb-12">
+                <form href="{% url 'login-profile-edit' user.username %}"
+                      method="POST"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form|crispy }}
+                    <button type="submit"
+                            class="mt-4 px-4 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                        <span class="text-sm font-semibold">ändern</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 {% endblock content %}

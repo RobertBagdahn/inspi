@@ -4,14 +4,12 @@ import google.generativeai as genai
 from pydantic import BaseModel, Field
 
 
-def get_ai_suggestion(prompt: str, model:str, OutputModel):
+def get_ai_suggestion(prompt: str, model: str, OutputModel):
 
     local = False
 
     if not local:
-        genai.configure(
-            api_key=os.environ["GEMINI_API_KEY"]
-        )
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
         client = instructor.from_gemini(
             client=genai.GenerativeModel(
                 model_name=model,
@@ -20,14 +18,11 @@ def get_ai_suggestion(prompt: str, model:str, OutputModel):
         )
 
         resp = client.chat.completions.create(
-            messages=[
-                {"role": "user", "content": prompt + " "}
-            ],
+            messages=[{"role": "user", "content": prompt + " "}],
             response_model=OutputModel,
             max_retries=5,
         )
     else:
         resp = OutputModel(summary="This is a test summary")
 
-    print(resp)
-    return resp.text
+    return resp

@@ -70,5 +70,8 @@ class AiPromptChoices(models.TextChoices):
     summary_long = 'summary_long', _('Zusammenfassung lang')
 
 class AiModelChoices(models.TextChoices):
+    GEMINI_FLASH_EXP = 'models/gemini-2.0-flash-exp', _('Gemini 2.0 Flash Exp')
     GEMINI_PRO = 'models/gemini-1.5-pro-latest', _('Gemini 1.5 Pro')
     GEMINI_FLASH = 'models/gemini-1.5-flash-latest', _('Gemini 1.5 Flash')
+
+

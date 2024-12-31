@@ -27,6 +27,7 @@ from .choices import (
     MealType,
     RecipeType,
     RecipeStatus,
+    IngredientStatus,
 )
 
 from general.login.models import CustomUser
@@ -106,8 +107,24 @@ class MetaInfo(TimeStampMixin):
             return f"{round(self.weight_g/1000,1)} kg"
         return f"{round(self.weight_g, 0)} g"
 
+    @property
+    def nutri_score_display(self):
+        return {1: "A", 2: "B", 3: "C", 4: "D", 5: "E"}.get(self.nutri_class, "Unknown")
+
     def __str__(self):
         return "MetaInfo"
+
+    def __repr__(self):
+        return self.__str__()
+
+
+class RetailSection(TimeStampMixin):
+    name = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=255, blank=True)
+    rank = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.name
 
     def __repr__(self):
         return self.__str__()
@@ -136,26 +153,32 @@ class Ingredient(TimeStampMixin):
         choices=FoodMajorClasses.choices,
         default=FoodMajorClasses.UNDEFINED,
     )
+    retail_section = models.ForeignKey(
+        RetailSection, on_delete=models.PROTECT, null=True, blank=True
+    )
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
     )
     intolerances = models.ManyToManyField(Intolerance, blank=True)
-    animal_product = models.CharField(
-        max_length=10,
-        choices=AnimalProducts.choices,
-        default=AnimalProducts.Vegetarian,
-    )
     child_frendly_score = models.IntegerField(
-        default=1,
-        validators=[MinValueValidator(1), MaxValueValidator(5)]
+        default=1, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     scout_frendly_score = models.IntegerField(
-        default=1,
-        validators=[MinValueValidator(1), MaxValueValidator(5)]
+        default=1, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     created_by = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, null=True, blank=True
     )
+    status = models.CharField(
+        max_length=11, choices=IngredientStatus.choices, default=IngredientStatus.DRAFT
+    )
+
+    @property
+    def nan_rewe(self):
+        try:
+            return self.nan_art_id_rewe - 100000000
+        except TypeError:
+            return False
 
     def __str__(self):
         return f"{self.name} - {self.description}"
@@ -244,8 +267,6 @@ class Hint(TimeStampMixin):
         return self.__str__()
 
 
-
-
 class Recipe(TimeStampMixin):
     name = models.CharField(max_length=255, null=True, blank=True)
     slug = models.SlugField(max_length=255, unique=True, null=True, blank=True)
@@ -317,7 +338,9 @@ class Price(TimeStampMixin):
     def price_per_kg(self):
         return round(
             float(self.price_eur)
-            / float(float(self.portion.meta_info.weight_g) * float(self.quantity) / 1000),
+            / float(
+                float(self.portion.meta_info.weight_g) * float(self.quantity) / 1000
+            ),
             2,
         )
 
@@ -358,11 +381,6 @@ class MealEventTemplate(TimeStampMixin):
         max_length=10,
         choices=WarmMeal.choices,
         default=WarmMeal.JustEvening,
-    )
-    animal_product = models.CharField(
-        max_length=10,
-        choices=AnimalProducts.choices,
-        default=AnimalProducts.Vegetarian,
     )
     meal_time_options = models.CharField(
         max_length=10,

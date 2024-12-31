@@ -15,7 +15,7 @@
 #
 
 # [START gaestd_py_django_app_yaml]
-runtime: python312
+runtime: python313
 env: standard
 instance_class: F2
 entrypoint: gunicorn -b :$PORT --timeout 300 --workers 4 inspiapp.wsgi

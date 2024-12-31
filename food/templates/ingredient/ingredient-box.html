@@ -1,21 +1,15 @@
-<div
-  class="w-full max-w-sm p-4 bg-whiterounded-lg "
->
-  <a
-  href="{% url 'ingredient-detail-overview' ingredient.slug %}"
-  >
-    <h5 class="text-xl font-medium text-blue-700">
-      {{ ingredient.name }}
-    </h5>
-  </a>
-  <div class="flex items-baseline text-gray-900 dark:text-white mb-2">
-    <span class="text-md font-light">{{ ingredient.get_major_class_display }}</span>
-  </div>
-  <div class="flex items-baseline text-gray-900 dark:text-white">
-    <span class="text-md font-medium">Preis pro Kg: {{ ingredient.meta_info.price_per_kg|floatformat:2 }}</span>
-    <span class="pl-1 text-md font-medium"> €</span>
-  </div>
-  <div class="flex items-baseline text-gray-900 dark:text-white">
-    <span class="text-md font-medium">Nutri: A</span>
-  </div>
+<div class="w-full max-w-sm p-4 bg-whiterounded-lg">
+    <a href="{% url 'ingredient-detail-overview' ingredient.slug %}">
+        <h5 class="text-xl font-medium text-blue-700">{{ ingredient.name }}</h5>
+    </a>
+    <div class="flex items-baseline text-gray-900 dark:text-white mb-2">
+        <span class="text-md font-light">{{ ingredient.retail_section.name }}</span>
+    </div>
+    <div class="flex items-baseline text-gray-900 dark:text-white">
+        <span class="text-md font-medium">Preis pro Kg: {{ ingredient.meta_info.price_per_kg|floatformat:2 }}</span>
+        <span class="pl-1 text-md font-medium">€</span>
+    </div>
+    <div class="flex items-baseline text-gray-900 dark:text-white">
+        <span class="text-md font-medium">Nutri: A</span>
+    </div>
 </div>

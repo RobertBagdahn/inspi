@@ -1,0 +1,43 @@
+<ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+    {% if count > 0 %}
+        {% for item in data %}
+            <li class="pb-3 sm:pb-4">
+                <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                    <input type="radio"
+                           id="item-{{ forloop.counter }}"
+                           name="user"
+                           value="{{ item.id }}"
+                           class="hidden peer"
+                           required />
+                    <label for="item-{{ forloop.counter }}"
+                           class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <div class="block">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">{{ item.username }}</p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">{{ item.email }}</p>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </li>
+        {% endfor %}
+    {% elif count == 0 %}
+        <li class="pb-3 sm:pb-4">
+            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">Keine Benutzer gefunden.</p>
+                </div>
+            </div>
+        </li>
+    {% else %}
+        <li class="pb-3 sm:pb-4">
+            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                        Die Suchergebnisse werden angezeigt, wenn die ersten 2 Zeichen eingetippt werden.
+                    </p>
+                </div>
+            </div>
+        </li>
+    {% endif %}
+</ul>

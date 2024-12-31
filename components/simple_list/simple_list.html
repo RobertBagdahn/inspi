@@ -1,0 +1,14 @@
+<div>
+    <div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+        {% for item in items %}
+            <dl class="list-inside text-gray-500 dark:text-gray-400">
+                <div class="py-4 sm:flex sm:items-center sm:justify-between{% if not forloop.last %} border-b border-gray-200 dark:border-gray-700{% endif %}">
+                    <dt class="font-semibold text-gray-900 dark:text-white">{{ item.title }}</dt>
+                    <dd class="sm:text-end">
+                        {{ item.value }}
+                    </dd>
+                </div>
+            </dl>
+        {% endfor %}
+    </div>
+</div>

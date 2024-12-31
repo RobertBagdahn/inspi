@@ -1,0 +1,14 @@
+{% extends 'group/details/_group_detail_base.html' %}
+{% block detailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-4">Dashboard</h2>
+            <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+                {% comment %} {% include './summary.html' %} {% endcomment %}
+                {% include './kpis.html' %}
+                {% include './actions.html' %}
+                {% comment %} {% include './list.html' %} {% endcomment %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

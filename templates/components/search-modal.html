@@ -1,70 +1,43 @@
 <!-- Main modal -->
-<div
-  id="search-modal"
-  tabindex="-1"
-  aria-hidden="true"
-  class="hidden bg-gray-900 bg-opacity-50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-30 justify-center items-center w-full md:inset-0 h-[calc(120%-1rem)] max-h-full"
->
-  <div class="relative p-4 w-full max-w-2xl h-full bg-gray-100">
-    <!-- Modal content -->
-    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-      Suche in allen Inhalten
-    </h2>
-    <div class="relative w-full items-stretch max-w-4xl h-screen overflow-auto">
-      <!-- Modal header -->
-      <div class="flex p-4 md:p-5 border-b rounded-t">
-        <form class="w-full">
-          <div class="flex w-full">
-            <div class="relative w-full">
-              <input
-                autofocus
-                type="search"
-                id="search-dropdown"
-                class="block p-2.5 w-full z-40 text-sm text-gray-900 bg-gray-50 rounded-lg
-                  border-6 border border-gray-600 focus:ring-blue-500 focus:border-blue-500
-                  dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                  dark:text-white dark:focus:border-blue-500"
-                placeholder="Suche über alle Einträge. Rezepte, Blogs und Gruppenstunden"
-                required
-              />
+<div id="search-modal"
+     tabindex="-1"
+     aria-hidden="true"
+     class="hidden bg-gray-900 bg-opacity-50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-30 justify-center items-center w-full md:inset-0 h-[calc(120%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full bg-gray-100">
+        <!-- Modal content -->
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Suche in allen Inhalten</h2>
+        <div class="relative w-full items-stretch max-w-4xl h-screen overflow-auto">
+            <!-- Modal header -->
+            <div class="flex p-4 md:p-5 border-b rounded-t">
+                <form class="w-full">
+                    <div class="flex w-full">
+                        <div class="relative w-full">
+                            <input autofocus
+                                   type="search"
+                                   id="search-dropdown"
+                                   class="block p-2.5 w-full z-40 text-sm text-gray-900 bg-gray-50 rounded-lg border-6 border border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                                   placeholder="Suche über alle Einträge. Rezepte, Blogs und Gruppenstunden"
+                                   required />
+                        </div>
+                    </div>
+                </form>
+                <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg class="w-3 h-3"
+                         aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg"
+                         fill="none"
+                         viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
             </div>
-          </div>
-        </form>
-
-        <button
-          type="button"
-          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900
-            rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center
-            dark:hover:bg-gray-600 dark:hover:text-white"
-        >
-          <svg
-            class="w-3 h-3"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-            />
-          </svg>
-          <span class="sr-only">Close modal</span>
-        </button>
-      </div>
-      <!-- Modal body -->
-      <div class="p-4 md:p-5 space-y-4 mb-12">
-        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          Suchergebnisse
-        </p>
-
-        <div id="replaceable-content" class="col-6 mb-12">
-          {% include 'components/results-partial.html' %}
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4 mb-12">
+                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">Suchergebnisse</p>
+                <div id="replaceable-content" class="col-6 mb-12">{% include 'components/results-partial.html' %}</div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

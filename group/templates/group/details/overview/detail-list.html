@@ -1,0 +1,57 @@
+<div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Gruppendetails</h2>
+    <!-- Liste -->
+    <dl class="list-inside text-gray-500 dark:text-gray-400">
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Beschreibung</dt>
+            <dd class="sm:text-end">
+                {{ group.description }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Erstellt von</dt>
+            <dd class="sm:text-end">
+                {{ group.created_by.username }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Öffentlich Sichtbar?</dt>
+            <dd class="sm:text-end">
+                {{ group.is_visible|yesno:"Ja,Nein" }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Frei beizutreten</dt>
+            <dd class="sm:text-end">
+                {{ group.free_to_join|yesno:"Ja,Nein" }}
+            </dd>
+        </div>
+        <div class=" py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Beitrittscode</dt>
+            <dd class="sm:text-end">
+                {{ group.join_code }}
+            </dd>
+        </div>
+        {% if group.is_cancelled %}
+            <hr class="border-gray-200 dark:border-gray-700">
+            <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+                <dt class="font-semibold text-gray-900 dark:text-white">Storniert</dt>
+                <dd class="sm:text-end">
+                    {{ group.is_cancelled|yesno:"Ja,Nein" }}
+                </dd>
+            </div>
+            <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+                <dt class="font-semibold text-gray-900 dark:text-white">Storniert am</dt>
+                <dd class="sm:text-end">
+                    {{ group.date_cancelled }}
+                </dd>
+            </div>
+            <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+                <dt class="font-semibold text-gray-900 dark:text-white">Stornierungsanfrage von</dt>
+                <dd class="sm:text-end">
+                    {{ group.cancel_by.username }}
+                </dd>
+            </div>
+        {% endif %}
+    </dl>
+</div>

@@ -137,3 +137,10 @@ class RecipeStatus(models.TextChoices):
     VERIFIED = "verified", "Verified by Inspi"
     USER_CONENT = "user_conent", "Benutzer erstellt"
     USER_CONENT_PUBLIC = "user_public", "Benutzer Öffentlich"
+
+
+class IngredientStatus(models.TextChoices):
+    VERIFIED = "verified", "Verified by Inspi"
+    USER_CONENT = "user_conent", "Benutzer erstellt"
+    USER_CONENT_PUBLIC = "user_public", "Benutzer Öffentlich"
+    DRAFT = "draft", "Entwurf"
