@@ -75,10 +75,9 @@ class SearchForm(forms.Form):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
     retail_section = forms.ChoiceField(
-        label="Hauptklasse",
-        required=False,
-        choices=[(None, "Alle")] + list(FoodMajorClasses.choices),
-        widget=forms.Select(attrs={"class": "form-control"}),
+        label="Major Class",
+        choices=None,
+        widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
 
     def __init__(self, *args, **kwargs):
@@ -235,8 +234,7 @@ class IngredientForm(forms.Form):
     )
     retail_section = forms.ChoiceField(
         label="Major Class",
-        required=False,
-        choices=RetailSection.objects.all(),
+        choices=None,
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
     unprepared_eatable = forms.BooleanField(
