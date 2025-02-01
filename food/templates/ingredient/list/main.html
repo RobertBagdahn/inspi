@@ -1,22 +1,23 @@
 {% extends "_base_food.html" %}
 {% block detailcontent %}
-  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
-    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-      <h2 class="text-2xl font-bold mb-4">Alle Zutaten
-        <a href="{% url 'ingredient-create-choice' %}"
-        class="ml-2 text-sm text-blue-500 hover:underline">
-         <svg class="inline h-8 w-8 pb-2 text-green-500"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24">
-             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
-         </svg>
-     </a>
-      </h2>
-      {% include "./table.html" with page_obj=page_obj %}
-    </div>
-  </section>
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-4">
+                Alle Zutaten
+                <a href="{% url 'ingredient-create-choice' %}"
+                   class="ml-2 text-sm text-blue-500 hover:underline">
+                    <svg class="inline h-8 w-8 pb-2 text-green-500"
+                         aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         fill="none"
+                         viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+                    </svg>
+                </a>
+            </h2>
+            {% include "./table.html" with page_obj=page_obj %}
+        </div>
+    </section>
 {% endblock %}

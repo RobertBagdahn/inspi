@@ -2,23 +2,23 @@
 {% load main_extras %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
-<section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
-    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-        <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
-        <p class="text-lg text-gray-500 mb-4">Voll der gute Plan</p>
-        <h2 class="text-4xl font-extrabold dark:text-white">Einkaufsliste</h2>
-        <p class="my-4 text-lg text-gray-500">Liste mit allen Zutaten sortiert nach Kategorien.</p>
-        <ul class="mx-auto divide-y divide-gray-200 dark:divide-gray-700">
-            {% for item in shopping_list %}
-                {% include "plan/shopping-list/list-item.html" with item=item %}
-            {% endfor %}
-        </ul>
-        <div class="mt-4">
-            <h3 class="text-2xl font-bold dark:text-white">Gesamtsummen</h3>
-            <p class="text-lg text-gray-500">Gesamtpreis: {{ total_price|floatformat:2 }} €</p>
-            <p class="text-lg text-gray-500">Anzahl der Zutaten: {{ shopping_list|length }}</p>
-            <p class="text-lg text-gray-500">Gesamtgewicht: {{ total_weight|floatformat:2 }} Kg</p>
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
+            <p class="text-lg text-gray-500 mb-4">Voll der gute Plan</p>
+            <h2 class="text-4xl font-extrabold dark:text-white">Einkaufsliste</h2>
+            <p class="my-4 text-lg text-gray-500">Liste mit allen Zutaten sortiert nach Kategorien.</p>
+            <ul class="mx-auto divide-y divide-gray-200 dark:divide-gray-700">
+                {% for item in shopping_list %}
+                    {% include "plan/shopping-list/list-item.html" with item=item %}
+                {% endfor %}
+            </ul>
+            <div class="mt-4">
+                <h3 class="text-2xl font-bold dark:text-white">Gesamtsummen</h3>
+                <p class="text-lg text-gray-500">Gesamtpreis: {{ total_price|floatformat:2 }} €</p>
+                <p class="text-lg text-gray-500">Anzahl der Zutaten: {{ shopping_list|length }}</p>
+                <p class="text-lg text-gray-500">Gesamtgewicht: {{ total_weight|floatformat:2 }} Kg</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock detailcontent %}

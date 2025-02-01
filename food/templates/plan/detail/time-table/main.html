@@ -2,10 +2,10 @@
 {% load main_extras %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
-<section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
-    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-        <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
-        <p class="text-lg text-gray-500 mb-4">Voll der gute Plan</p>
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
+            <p class="text-lg text-gray-500 mb-4">Voll der gute Plan</p>
             <div class="grid grid-cols-1 mt-12 -mx-8 lg:mt-16 lg:grid-cols-{% if plan.list_meal_days.count > 2 %}3{% else %}1{% endif %} gap-y-12">
                 {% for meal_day in plan.list_meal_days.all %}
                     <div class="px-8 space-y-6">

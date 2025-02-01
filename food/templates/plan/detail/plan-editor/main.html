@@ -2,232 +2,232 @@
 {% load main_extras %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
-<section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
-    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-        <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
-        <p class="text-lg text-gray-500 mb-4">Voll der gute Plan</p>
-    <div class="gap-8 mx-4 my-2">
-        <div class="w-full">
-            <div class="mb-4 items-center justify-between md:flex md:space-x-4">
-                <form class="w-full flex-1 md:mr-4 md:max-w-md">
-                    <label for="default-search"
-                           class="sr-only text-sm font-medium text-gray-900 dark:text-white">Search</label>
-                    <div class="relative">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg aria-hidden="true"
-                                 class="h-4 w-4 text-gray-500 dark:text-gray-400"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 viewBox="0 0 24 24"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
-                                </path>
-                            </svg>
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
+            <p class="text-lg text-gray-500 mb-4">Voll der gute Plan</p>
+            <div class="gap-8 mx-4 my-2">
+                <div class="w-full">
+                    <div class="mb-4 items-center justify-between md:flex md:space-x-4">
+                        <form class="w-full flex-1 md:mr-4 md:max-w-md">
+                            <label for="default-search"
+                                   class="sr-only text-sm font-medium text-gray-900 dark:text-white">Search</label>
+                            <div class="relative">
+                                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <svg aria-hidden="true"
+                                         class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         viewBox="0 0 24 24"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <input type="search"
+                                       id="default-search"
+                                       class="block w-full rounded-lg border border-gray-300 bg-white p-2 pl-9 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                                       placeholder="Suche..."
+                                       required="" />
+                                <button type="submit"
+                                        class="absolute bottom-0 right-0 top-0 rounded-r-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Suche
+                                </button>
+                            </div>
+                        </form>
+                        <div class="mt-4 items-center space-y-4 sm:flex sm:space-x-4 sm:space-y-0 md:mt-0">
+                            <button id="dropdownFilterButton2"
+                                    data-dropdown-toggle="dropdownFilter2"
+                                    type="button"
+                                    class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
+                                <svg class="-ms-0.5 me-1.5 h-4 w-4"
+                                     aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     fill="none"
+                                     viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z" />
+                                </svg>
+                                Filter
+                                <svg class="-me-0.5 ms-1.5 h-4 w-4"
+                                     aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     fill="none"
+                                     viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <!-- Filter Dropdown Menu -->
+                            <div id="dropdownFilter2"
+                                 class="z-50 hidden w-56 rounded-lg bg-white p-2 shadow dark:bg-gray-700">
+                                <h6 class="mb-2 ps-3 text-sm font-medium text-gray-900 dark:text-white">Status</h6>
+                                <ul class="mb-3 text-sm" aria-labelledby="dropdownFilterButton2">
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            Active
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600"
+                                                   checked />
+                                            Pending
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            Expired
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            Cancelled
+                                        </label>
+                                    </li>
+                                </ul>
+                                <h6 class="mb-2 ps-3 text-sm font-medium text-gray-900 dark:text-white">Type</h6>
+                                <ul class="mb-3 text-sm" aria-labelledby="dropdownDefault">
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            Limited
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            Standard
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600"
+                                                   checked />
+                                            Extended
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            Premium
+                                        </label>
+                                    </li>
+                                </ul>
+                                <h6 class="mb-2 ps-3 text-sm font-medium text-gray-900 dark:text-white">length</h6>
+                                <ul class="mb-3 text-sm" aria-labelledby="dropdownDefault">
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            12 months
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            24 months
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            36 months
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            48 months
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
+                                            <input type="checkbox"
+                                                   value=""
+                                                   class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
+                                            60 months
+                                        </label>
+                                    </li>
+                                </ul>
+                                <button type="button"
+                                        class="w-full rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Apply
+                                </button>
+                            </div>
+                            <button id="showDropdownButton2"
+                                    data-dropdown-toggle="showDropdown2"
+                                    type="button"
+                                    class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
+                                Änderungen nötig
+                                <svg class="-me-0.5 ms-1.5 h-4 w-4"
+                                     aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     fill="none"
+                                     viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div id="showDropdown2"
+                                 class="z-10 hidden w-36 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
+                                 data-popper-placement="bottom">
+                                <ul class="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
+                                    aria-labelledby="filterDropdownButtonButton2">
+                                    <li>
+                                        <a href="#"
+                                           class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            <span class="me-2 h-2.5 w-2.5 rounded-full bg-green-600"></span>
+                                            <span>In Ordnung</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                           class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            <span class="me-2 h-2.5 w-2.5 rounded-full bg-blue-700"></span>
+                                            Änderungen nötig
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <input type="search"
-                               id="default-search"
-                               class="block w-full rounded-lg border border-gray-300 bg-white p-2 pl-9 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                               placeholder="Suche..."
-                               required="" />
-                        <button type="submit"
-                                class="absolute bottom-0 right-0 top-0 rounded-r-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Suche
-                        </button>
                     </div>
-                </form>
-                <div class="mt-4 items-center space-y-4 sm:flex sm:space-x-4 sm:space-y-0 md:mt-0">
-                    <button id="dropdownFilterButton2"
-                            data-dropdown-toggle="dropdownFilter2"
-                            type="button"
-                            class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
-                        <svg class="-ms-0.5 me-1.5 h-4 w-4"
-                             aria-hidden="true"
-                             xmlns="http://www.w3.org/2000/svg"
-                             width="24"
-                             height="24"
-                             fill="none"
-                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z" />
-                        </svg>
-                        Filter
-                        <svg class="-me-0.5 ms-1.5 h-4 w-4"
-                             aria-hidden="true"
-                             xmlns="http://www.w3.org/2000/svg"
-                             width="24"
-                             height="24"
-                             fill="none"
-                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <!-- Filter Dropdown Menu -->
-                    <div id="dropdownFilter2"
-                         class="z-50 hidden w-56 rounded-lg bg-white p-2 shadow dark:bg-gray-700">
-                        <h6 class="mb-2 ps-3 text-sm font-medium text-gray-900 dark:text-white">Status</h6>
-                        <ul class="mb-3 text-sm" aria-labelledby="dropdownFilterButton2">
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    Active
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600"
-                                           checked />
-                                    Pending
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    Expired
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    Cancelled
-                                </label>
-                            </li>
-                        </ul>
-                        <h6 class="mb-2 ps-3 text-sm font-medium text-gray-900 dark:text-white">Type</h6>
-                        <ul class="mb-3 text-sm" aria-labelledby="dropdownDefault">
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    Limited
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    Standard
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600"
-                                           checked />
-                                    Extended
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    Premium
-                                </label>
-                            </li>
-                        </ul>
-                        <h6 class="mb-2 ps-3 text-sm font-medium text-gray-900 dark:text-white">length</h6>
-                        <ul class="mb-3 text-sm" aria-labelledby="dropdownDefault">
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    12 months
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    24 months
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    36 months
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    48 months
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex w-full items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                                    <input type="checkbox"
-                                           value=""
-                                           class="mr-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600" />
-                                    60 months
-                                </label>
-                            </li>
-                        </ul>
-                        <button type="button"
-                                class="w-full rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Apply
-                        </button>
-                    </div>
-                    <button id="showDropdownButton2"
-                            data-dropdown-toggle="showDropdown2"
-                            type="button"
-                            class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
-                        Änderungen nötig
-                        <svg class="-me-0.5 ms-1.5 h-4 w-4"
-                             aria-hidden="true"
-                             xmlns="http://www.w3.org/2000/svg"
-                             width="24"
-                             height="24"
-                             fill="none"
-                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div id="showDropdown2"
-                         class="z-10 hidden w-36 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
-                         data-popper-placement="bottom">
-                        <ul class="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
-                            aria-labelledby="filterDropdownButtonButton2">
-                            <li>
-                                <a href="#"
-                                   class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    <span class="me-2 h-2.5 w-2.5 rounded-full bg-green-600"></span>
-                                    <span>In Ordnung</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                   class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    <span class="me-2 h-2.5 w-2.5 rounded-full bg-blue-700"></span>
-                                    Änderungen nötig
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- Cards -->
+                    {% for item in plan.list_meals %}
+                        {% include "plan/detail/plan-editor/card.html" with plan_items=item %}
+                    {% endfor %}
                 </div>
             </div>
-            <!-- Cards -->
-            {% for item in plan.list_meals %}
-                {% include "plan/detail/plan-editor/card.html" with plan_items=item %}
-            {% endfor %}
         </div>
-    </div>
-    </div>
-</section>
+    </section>
     {% include "plan/detail/plan-editor/extend_drawer.html" with plan_items=item %}
 {% endblock detailcontent %}

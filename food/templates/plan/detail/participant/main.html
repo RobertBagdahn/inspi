@@ -2,19 +2,19 @@
 {% load main_extras %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
-<section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
-    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-        <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
-        <p class="text-lg text-gray-500 mb-4">Voll der gute Plan</p>
-        <div class="my-4 space-y-4 sm:flex sm:space-y-0">
-            <div class="grid gap-4 mb-4 grid-cols-2">
-                <div class="col-span-2">{% include "plan/plan-create/control-button.html" with label="Anzahl Wölflinge" %}</div>
-                <div class="col-span-1">{% include "plan/plan-create/control-button.html" with label="Pfadfinder(m)" %}</div>
-                <div class="col-span-1">{% include "plan/plan-create/control-button.html" with label="Pfadfinder(w/d)" %}</div>
-                <div class="col-span-1">{% include "plan/plan-create/control-button.html" with label="Rover (m)" %}</div>
-                <div class="col-span-1">{% include "plan/plan-create/control-button.html" with label="Rover (w/d)" %}</div>
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
+            <p class="text-lg text-gray-500 mb-4">Voll der gute Plan</p>
+            <div class="my-4 space-y-4 sm:flex sm:space-y-0">
+                <div class="grid gap-4 mb-4 grid-cols-2">
+                    <div class="col-span-2">{% include "plan/plan-create/control-button.html" with label="Anzahl Wölflinge" %}</div>
+                    <div class="col-span-1">{% include "plan/plan-create/control-button.html" with label="Pfadfinder(m)" %}</div>
+                    <div class="col-span-1">{% include "plan/plan-create/control-button.html" with label="Pfadfinder(w/d)" %}</div>
+                    <div class="col-span-1">{% include "plan/plan-create/control-button.html" with label="Rover (m)" %}</div>
+                    <div class="col-span-1">{% include "plan/plan-create/control-button.html" with label="Rover (w/d)" %}</div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock detailcontent %}

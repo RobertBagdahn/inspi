@@ -2,13 +2,14 @@
     <td class="w-96 min-w-56 whitespace-nowrap py-4">
         <a href="{% url 'ingredient-detail-overview' recipe_item.portion.ingredient.slug %}"
            class="flex items-center gap-4 font-bold hover:underline">
-            {{ recipe_item.portion.ingredient.name }}{% if recipe_item.portion.name %} ({{ recipe_item.portion.name }}){% endif %}
+            {{ recipe_item.portion.ingredient.name }}
+            {% if recipe_item.portion.name %}({{ recipe_item.portion.name }}){% endif %}
         </a>
     </td>
     {% if recipe_item.portion.name %}
-    <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">{{ recipe_item.quantity }} x</td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">{{ recipe_item.quantity }} x</td>
     {% else %}
-    <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white"></td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white"></td>
     {% endif %}
     <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
         {{ recipe_item.portion.ingredient.meta_info.nutri_score_display }}

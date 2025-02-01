@@ -90,19 +90,25 @@
                     <li>
                         <a href="{% url 'recipe-detail-shopping' recipe.slug %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if "/shopping" in request.path %}!bg-blue-700 !text-white{% endif %} " id="returns-tab" type="button">
                             <svg class="me-2 h-5 w-5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                fill="none"
-                                viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
-                        </svg>
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
+                            </svg>
                             Einkaufen
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'recipe-detail-comment' recipe.slug %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/comment' in request.path %}!bg-blue-700 !text-white{% endif %} " id="reviews-tab" type="button" role="tab" aria-controls="reviews" aria-selected="false">
+                        <a href="{% url 'recipe-detail-comment' recipe.slug %}"
+                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/comment' in request.path %}!bg-blue-700 !text-white{% endif %} "
+                           id="reviews-tab"
+                           type="button"
+                           role="tab"
+                           aria-controls="reviews"
+                           aria-selected="false">
                             <svg class="me-2 h-5 w-5"
                                  aria-hidden="true"
                                  xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +122,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'recipe-detail-manage' recipe.slug %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/manage' in request.path %}!bg-blue-700 !text-white{% endif %} " id="reviews-tab" type="button" role="tab" aria-controls="reviews" aria-selected="false">
+                        <a href="{% url 'recipe-detail-manage' recipe.slug %}"
+                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/manage' in request.path %}!bg-blue-700 !text-white{% endif %} "
+                           id="reviews-tab"
+                           type="button"
+                           role="tab"
+                           aria-controls="reviews"
+                           aria-selected="false">
                             <svg class="me-2 h-5 w-5"
                                  aria-hidden="true"
                                  xmlns="http://www.w3.org/2000/svg"

@@ -2,20 +2,20 @@
 {% load main_extras %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
-  {% load component_tags %}
-  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
-    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-      <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
-      <p class="text-gray-500 dark:text-gray-400 mb-4">Hier siehst du alle Informationen zu diesem Benutzer</p>
-        {% component 'simple-list' items=plan_list %} {% endcomponent %}
-        <hr class="my-8 border-gray-200 dark:border-gray-700" />
-        <h2 class="text-2xl font-bold mb-1">Vorlage</h2>
-        <p class="text-gray-500 dark:text-gray-400 mb-4">Das sind die Ranbedingen deines Essensplans</p>
-        {% component 'simple-list' items=template_list %} {% endcomponent %}
-        <hr class="my-8 border-gray-200 dark:border-gray-700" />
-        <h2 class="text-2xl font-bold mb-1">Kennzahlen</h2>
-        <p class="text-gray-500 dark:text-gray-400 mb-4">Das sind Kennzahlen deiner Veranstaltung</p>
-        {% component 'simple-list' items=meta_info_list %} {% endcomponent %}
-    </div>
-  </section>
+    {% load component_tags %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Plan {{ plan.event_name }}</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">Hier siehst du alle Informationen zu diesem Benutzer</p>
+            {% component 'simple-list' items=plan_list %} {% endcomponent %}
+            <hr class="my-8 border-gray-200 dark:border-gray-700" />
+            <h2 class="text-2xl font-bold mb-1">Vorlage</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">Das sind die Ranbedingen deines Essensplans</p>
+            {% component 'simple-list' items=template_list %} {% endcomponent %}
+            <hr class="my-8 border-gray-200 dark:border-gray-700" />
+            <h2 class="text-2xl font-bold mb-1">Kennzahlen</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">Das sind Kennzahlen deiner Veranstaltung</p>
+            {% component 'simple-list' items=meta_info_list %} {% endcomponent %}
+        </div>
+    </section>
 {% endblock %}

@@ -1,18 +1,20 @@
 {% extends '_base.html' %}
 {% load main_extras %}
-{% load static %}%{% block header %}
-
-{% endblock %}
+{% load static %}
+%
+{% block header %}{% endblock %}
 {% block content %}
-  <section class="bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-      <div class="mx-auto max-w-screen-sm text-center">
-        <h2 class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900">Internetnacht 2025</h2>
-        <img class="h-60 max-w-full rounded-lg mx-auto" src="{% static 'images/inspi_party_head.webp' %}" alt="image description" />
-        <p class="font-light text-gray-500 sm:text-xl my-5">
-            <strong>Glückwünsch du hast mein Versteck gefunden. Noch Viel Spaß bei der Besten Internetnacht der Welt</strong>
-        </p>
-      </div>
-    </div>
-  </section>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+            <div class="mx-auto max-w-screen-sm text-center">
+                <h2 class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900">Internetnacht 2025</h2>
+                <img class="h-60 max-w-full rounded-lg mx-auto"
+                     src="{% static 'images/inspi_party_head.webp' %}"
+                     alt="image description" />
+                <p class="font-light text-gray-500 sm:text-xl my-5">
+                    <strong>Glückwünsch du hast mein Versteck gefunden. Noch Viel Spaß bei der Besten Internetnacht der Welt</strong>
+                </p>
+            </div>
+        </div>
+    </section>
 {% endblock %}

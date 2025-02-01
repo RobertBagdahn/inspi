@@ -2,17 +2,18 @@
 {% component 'table' page_obj=page_obj form=form %}
 {% fill 'table_heads' %}
 <tr>
-  <th scope="col" class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Name</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Name</th>
 </tr>
 {% endfill %}
 {% fill 'table_row' %}
 {% for item in page_obj %}
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-700 {% if item.is_canceled %}bg-red-600{% endif %}">
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-        <a href="{% url 'plan-detail-overview' item.slug %}"
-           class="text-blue-600 hover:text-blue-700">{{ item.event_name }}</a>
-    </td>
-</tr>
+    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 {% if item.is_canceled %}bg-red-600{% endif %}">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+            <a href="{% url 'plan-detail-overview' item.slug %}"
+               class="text-blue-600 hover:text-blue-700">{{ item.event_name }}</a>
+        </td>
+    </tr>
 {% endfor %}
 {% endfill %}
 {% endcomponent %}
