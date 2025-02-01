@@ -3,6 +3,7 @@
     <div class="w-full">
         <h4 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ header }}</h4>
         <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{{ description }}</p>
+        {% if url %}
         <div>
             <a href="{{ url }}"
                class="bg-{{ color }}-600 hover:bg-{{ color }}-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
@@ -10,5 +11,17 @@
                 {{ button_text }}
             </a>
         </div>
+        {% endif %}
+        {% if post_url %}
+        <div>
+            <form action="{{ post_url }}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="bg-{{ color }}-600 hover:bg-{{ color }}-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
+                {% component "icon" icon=icon %} {% endcomponent %}
+                {{ button_text }}
+            </button>
+            </form>
+        </div>
+        {% endif %}
     </div>
 </div>

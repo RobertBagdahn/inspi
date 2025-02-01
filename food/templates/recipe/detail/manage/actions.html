@@ -1,0 +1,3 @@
+{% load component_tags %}
+{% component 'big-action-box' header='Zutaten aktualisieren' icon='key' color='green' description='Preise und Inhaltsstoffe der Zutaten aktualisieren.' button_text="Updaten" post_url="{% url 'recipe-update-meta-infos' recipe.slug %}" %}
+{% endcomponent %}

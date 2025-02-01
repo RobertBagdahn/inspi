@@ -1,0 +1,29 @@
+<div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+  <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Rezept Elemente</h2>
+<table class="min-w-full bg-white">
+    <thead>
+        <tr>
+            <th class="py-2 px-4 border-b text-center">Name der Zutat</th>
+            <th class="py-2 px-4 border-b text-center">Energie (kJ)</th>
+            <th class="py-2 px-4 border-b text-center">Protein (g)</th>
+            <th class="py-2 px-4 border-b text-center">Fett ges. (g)</th>
+            <th class="py-2 px-4 border-b text-center">Zucker (g)</th>
+            <th class="py-2 px-4 border-b text-center">Natrium (mg)</th>
+            <th class="py-2 px-4 border-b text-center">Ballaststoffe (g)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in recipe_items %}
+            <tr>
+            <td class="py-2 px-4 border-b font-bold text-center">{{ item.portion.ingredient.name }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_energy_kj|floatformat:2 }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_protein_g|floatformat:2 }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_fat_sat_g|floatformat:2 }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_sugar_g|floatformat:2 }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_sodium_mg|floatformat:2 }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_fibre_g|floatformat:2 }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>

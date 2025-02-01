@@ -1,6 +1,5 @@
 from food import models as food_models
 from django.db.models import Sum
-from food.service.nutri_lib import Nutri
 
 
 def agg_func(obj, agg_field):

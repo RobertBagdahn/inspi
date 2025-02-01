@@ -1,0 +1,13 @@
+{% load component_tags %}
+<a href="{{ url }}"
+   class="ml-2 text-sm text-{{ color }}-500 hover:underline">
+    <svg class="inline h-8 w-8 pb-2"
+         aria-hidden="true"
+         xmlns="http://www.w3.org/2000/svg"
+         width="24"
+         height="24"
+         fill="none"
+         viewBox="0 0 24 24">
+         {% component "icon" icon=icon %} {% endcomponent %}
+    </svg>
+</a>

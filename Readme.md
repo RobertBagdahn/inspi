@@ -28,8 +28,11 @@ Windows:
 
 2) `poetry run python manage.py add_fixtures data\activity\master-data\`
 Run Server
-
 `poetry run python manage.py runserver`
+
+
+If statics are not already in sttic folder run this:
+`poetry run python manage.py collectstatic`
 
 
 # env file

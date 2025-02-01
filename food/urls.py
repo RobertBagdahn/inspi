@@ -3,9 +3,18 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path("", views.mainView, name="food-main"),
+    path("main", views.mainView, name="food-main"),
+    path("dashboard", views.food_dashboard, name="food-dashboard"),
     path("plan-create/", views.plan_create, name="plan-create"),
     path("plan-dashboard/", views.plan_dashboard, name="plan-dashboard"),
+
+    # plan detail
+    path("plan/<slug>/overview", views.plan_detail_overview, name="plan-detail-overview"),
+    path("plan/<slug>/participant", views.plan_detail_participant, name="plan-detail-participant"),
+    path("plan/<slug>/plan-editor", views.plan_detail_plan_editor, name="plan-detail-plan-editor"),
+    path("plan/<slug>/shopping-list", views.plan_detail_shopping_list, name="plan-detail-shopping-list"),
+    path("plan/<slug>/time-table", views.plan_detail_time_table, name="plan-detail-time-table"),
+
     path("plan/<slug>/", views.plan, name="plan"),
     path("plan/<slug>/editor", views.plan_editor, name="plan-editor"),
     path(
@@ -30,7 +39,7 @@ urlpatterns = [
         name="meal-detail-analyse",
     ),
     path(
-        "plan/<slug>/meal/<i>/shopping",
+        "plan/<slug>/meal/<id>/shopping",
         views.meal_detail_overview,
         name="meal-detail-shopping",
     ),
@@ -74,6 +83,11 @@ urlpatterns = [
         views.recipe_detail_comment,
         name="recipe-detail-comment",
     ),
+    path(
+        "recipe/<slug>/manage",
+        views.recipe_detail_manage,
+        name="recipe-detail-manage",
+    ),
     path("recipes/", views.recipes, name="recipe-main"),
     path("recipe-create/", views.recipe_create, name="recipe-create"),
     path("recipe-update/<slug>/", views.recipe_update, name="recipe-update"),
@@ -85,8 +99,22 @@ urlpatterns = [
         "recipe-item-update/<slug>", views.recipe_item_update, name="recipe-item-update"
     ),
     path("recipe-item-delete/", views.recipe_item_delete, name="recipe-item-delete"),
+
+
+    # recipe_update_meta_infos
+    path(
+        "recipe-update-meta-infos/<slug>/",
+        views.recipe_update_meta_infos,
+        name="recipe-update-meta-infos",
+    ),
     path("search/results/", views.search_results_view, name="search_results_view"),
+    path("ingredient-create-choice/", views.ingredient_create_choice, name="ingredient-create-choice"),
     path("ingredient-create/", views.ingredient_create, name="ingredient-create"),
+    path("ingredient-create-copy/", views.ingredient_create_copy, name="ingredient-create-copy"),
+    path("ingredient-create-ai/", views.ingredient_create_ai, name="ingredient-create-ai"),
+
+    path("ingredients/autocomplete/", views.ingredients_autocomplete, name="ingredients-autocomplete"),
+
 
     path("ingredient-update-basic/<slug>/", views.ingredient_update_basic, name="ingredient-update-basic"),
     path("ingredient-update-attribute/<slug>/", views.ingredient_update_attribute, name="ingredient-update-attribute"),

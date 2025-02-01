@@ -30,12 +30,12 @@
 </div>
 <div class="px-4 py-4">
     <nav class="flex flex-col items-start justify-between space-y-3 md:flex-row md:items-center md:space-y-0"
-         aria-label="Table navigation">
+        aria-label="Table navigation">
         <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Zeige <span class="font-semibold text-gray-900 dark:text-white">{{ page_obj.start_index }}-{{ page_obj.end_index }}</span> von <span class="font-semibold text-gray-900 dark:text-white">{{ page_obj.paginator.count }}</span></span>
         <ul class="flex h-8 items-center -space-x-px text-sm">
             {% if page_obj.has_previous %}
                 <li>
-                    <a href="?page={{ page_obj.previous_page_number }}"
+                    <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}"
                        class="ms-0 flex h-8 items-center justify-center rounded-s-lg border border-e-0 border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                         <span class="sr-only">Vorherige</span>
                         <svg class="h-4 w-4 rtl:rotate-180"
@@ -59,14 +59,14 @@
                     </li>
                 {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
                     <li>
-                        <a href="?page={{ num }}"
+                        <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ num }}"
                            class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ num }}</a>
                     </li>
                 {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
                 <li>
-                    <a href="?page={{ page_obj.next_page_number }}"
+                    <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}"
                        class="flex h-8 items-center justify-center rounded-e-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                         <span class="sr-only">Nächste</span>
                         <svg class="h-4 w-4 rtl:rotate-180"

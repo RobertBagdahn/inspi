@@ -1,0 +1,5 @@
+{% load component_tags %}
+{% component 'big-action-box' header='Neuen Essensplan erstellen' icon='key' color='green' description='Erstelle für deine Veranstaltung einen gesamten Essensplan.' button_text="Plan Erstellen" url="{% url 'plan-create' %}" %}
+{% endcomponent %}
+{% component 'big-action-box' header='Rezept erstellen' icon='plus' color='green' description='Erstelle und Simulieren deine eigenes Rezept.' button_text="Rezept Erstellen" url="{% url 'recipe-create' %}" %}
+{% endcomponent %}

@@ -68,26 +68,6 @@ class PhysicalViscosityChoices(models.TextChoices):
     BEVERAGE = "beverage", "Getränk"
 
 
-class FoodMajorClasses(models.TextChoices):
-    BACKED = "Baked Products", "Backwaren"
-    BEEF = "Beef Products", "Ringfleisch"
-    BEVERRAGES = "Beverages", "Getränk"
-    PASTA = "Cereal Grains and Pasta", "Nudeln und Getreide "
-    EGG = "Dairy and Egg Products", "Milch und Ei"
-    FATS = "Fats and Oils", "Fette und and Öl"
-    FISH = "Finfish and Shellfish Products", "Meeresfrücht und Fisch"
-    FRUIT = "Fruits and Fruit Juices", "Früchte"
-    LEGUNE = "Legumes and Legume Products", "Hülsenfrüchte"
-    NUTS = "Nut and Seed Products", "Nuß und Samen"
-    PORK = "Pork Products", "Schweinefleisch"
-    POULTRY = "Poultry Products", "Geflügel"
-    SAUSAGES = "Sausages and Luncheon Meats", "Wurst"
-    SOUPS = "Soups, Sauces, and Gravies", "Suppe oder Soße"
-    SPICES = "Spices and Herbs", "Gewürz"
-    SWEETS = "Sweets", "Süßigkeit"
-    VEGETABLES = "Vegetables and Vegetable Products", "Gemüse"
-    UNDEFINED = "undefined", "unbekannt"
-
 class Units(models.TextChoices):
     VOLUME = "ml", "Millilitter"
     MASS = "g", "Gramm"

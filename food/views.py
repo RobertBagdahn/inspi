@@ -7,6 +7,8 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from pydantic import Field, BaseModel, PositiveFloat
 
+from django.contrib import messages
+
 
 from copy import deepcopy
 
@@ -22,6 +24,8 @@ from .forms import (
     MealEventTemplateFormCreate,
     MealEventTemplateFormUpdate,
     IngredientForm,
+    IngredientFormCopy,
+    IngredientFormAi,
     PortionFormCreate,
     PortionFormUpdate,
     PriceForm,
@@ -37,6 +41,8 @@ from .forms import (
     MealDayForm,
     MealItemFormCreate,
     MealItemFormUpdate,
+    SearchRecipeForm,
+    SearchPlanForm,
 )
 from .models import (
     MealEvent,
@@ -53,7 +59,12 @@ from .models import (
     MealItem,
     RetailSection,
     Intolerance,
+    TemplateOption,
 )
+
+# import update_recipe from service
+from .service.recipe import update_recipe
+from .service.nutri_lib import get_nutri_items, update_meta_info_nutri
 
 
 # create view with template main.html
@@ -76,6 +87,22 @@ def mainView(request):
 
 
 @login_required
+def food_dashboard(request):
+    kpi_own_meal_events = MealEvent.objects.filter(managed_by=request.user).count()
+    kpi_all_meal_events = MealEvent.objects.all().count()
+    kpi_all_recipes = Recipe.objects.filter(~Q(status="simulator")).count()
+    kpi_all_ingredients = Ingredient.objects.all().count()
+
+    context = {
+        "kpi_own_meal_events": kpi_own_meal_events,
+        "kpi_all_meal_events": kpi_all_meal_events,
+        "kpi_all_recipes": kpi_all_recipes,
+        "kpi_all_ingredients": kpi_all_ingredients,
+    }
+    return render(request, "food-dashboard/main.html", context)
+
+
+@login_required
 def plan(request, slug):
     plan = MealEvent.objects.get(slug=slug)
     context = {
@@ -83,6 +110,134 @@ def plan(request, slug):
         "module_name": "Übersicht",
     }
     return render(request, "plan/time-table/plan.html", context)
+
+
+@login_required
+def plan_detail_overview(request, slug):
+    plan = MealEvent.objects.get(slug=slug)
+
+    # event_name
+    plan_list = [
+        {"title": "Name", "value": plan.event_name},
+        {"title": "Beschreibung", "value": plan.description},
+        # norm_portions
+        {"title": "Aktuelle Normportionen", "value": plan.norm_portions},
+        # activity_factor
+        {"title": "Aktivitätsfaktor", "value": plan.get_activity_factor_display},
+        # reserve_factor
+        {"title": "Reservefaktor", "value": plan.reserve_factor},
+        # is_public
+        {"title": "Öffentlich?", "value": plan.is_public},
+        # is_approved
+        {"title": "Von Inspi Überprüft", "value": plan.is_approved},
+        # managed_by
+        {
+            "title": "Verantwortlich",
+            "value": (
+                ", ".join(user.username for user in plan.managed_by.all())
+                if plan.managed_by.exists()
+                else "kein Verantwortlicher"
+            ),
+        },
+        # day_count
+        {"title": "Tage", "value": f"{len(plan.list_meal_days())} Tage"},
+        # list meal count
+        {"title": "Mahlzeiten", "value": f"{len(plan.list_meals())} Mahlzeiten"},
+    ]
+
+    template_list = [
+        {"title": "Vorlagen Name", "value": plan.meal_event_template.name},
+        {"title": "Beschreibung", "value": plan.meal_event_template.description},
+        {"title": "Öffentlich", "value": plan.meal_event_template.is_public},
+        {
+            "title": "Maximaler Preis",
+            "value": f"{plan.meal_event_template.max_price_eur} €",
+        },
+        {
+            "title": "Geeignet für",
+            "value": plan.meal_event_template.get_suit_level_display,
+        },
+        {
+            "title": "Warmes Essen",
+            "value": plan.meal_event_template.get_warm_meal_display,
+        },
+        {
+            "title": "Essenszeit Optionen",
+            "value": plan.meal_event_template.get_meal_time_options_display,
+        },
+        {
+            "title": "Kinderfreundlich",
+            "value": plan.meal_event_template.get_child_frendly_display,
+        },
+        {
+            "title": "Unverträglichkeiten",
+            "value": (
+                ", ".join(
+                    [
+                        intolerance.name
+                        for intolerance in plan.meal_event_template.intolerances.all()
+                    ]
+                )
+                if plan.meal_event_template.intolerances.exists()
+                else "keine Einschränkungen"
+            ),
+        },
+    ]
+
+    meta_info_list = [
+        {"title": "Nutri Klasse", "value": plan.meta_info.nutri_class},
+        # price_eur
+        {"title": "Preis", "value": plan.meta_info.price_eur},
+    ]
+
+    context = {
+        "plan": plan,
+        "module_name": "Übersicht",
+        "plan_list": plan_list,
+        "template_list": template_list,
+        "meta_info_list": meta_info_list,
+    }
+    return render(request, "plan/detail/overview/main.html", context)
+
+
+@login_required
+def plan_detail_participant(request, slug):
+    plan = MealEvent.objects.get(slug=slug)
+    context = {
+        "plan": plan,
+        "module_name": "Teilnehmer",
+    }
+    return render(request, "plan/detail/participant/main.html", context)
+
+
+@login_required
+def plan_detail_plan_editor(request, slug):
+    plan = MealEvent.objects.get(slug=slug)
+    context = {
+        "plan": plan,
+        "module_name": "Editor",
+    }
+    return render(request, "plan/detail/plan-editor/main.html", context)
+
+
+@login_required
+def plan_detail_shopping_list(request, slug):
+    plan = MealEvent.objects.get(slug=slug)
+    context = {
+        "plan": plan,
+        "module_name": "Einkaufsliste",
+    }
+    return render(request, "plan/detail/shopping-list/main.html", context)
+
+
+@login_required
+def plan_detail_time_table(request, slug):
+    plan = MealEvent.objects.get(slug=slug)
+    context = {
+        "plan": plan,
+        "module_name": "Zeitplan",
+    }
+    return render(request, "plan/detail/time-table/main.html", context)
 
 
 @login_required
@@ -130,10 +285,18 @@ def plan_create(request):
 @login_required
 def plan_dashboard(request):
     plans = MealEvent.objects.all()
+    form = SearchPlanForm(request.GET)
+
+    paginator = Paginator(plans, per_page=10)
+    page_num = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_num)
+    page_obj.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
+
     context = {
-        "plans": plans,
+        "page_obj": page_obj,
+        "form": form,
     }
-    return render(request, "plan/list/plan-dashboard.html", context)
+    return render(request, "plan/list/main.html", context)
 
 
 @login_required
@@ -154,10 +317,22 @@ def template_create(request):
             template.save()
 
             for intolerance in intolerances:
-                template.intolerances.add(intolerance)
+                try:
+                    intolerance_obj = Intolerance.objects.get(name=intolerance)
+                    template.intolerances.add(intolerance_obj)
+                except Intolerance.DoesNotExist:
+                    # Handle the case where the intolerance does not exist
+                    print(f"Intolerance '{intolerance}' does not exist.")
 
             for template_option in template_options:
-                template.template_options.add(template_option)
+                try:
+                    template_option_obj = TemplateOption.objects.get(
+                        name=template_option
+                    )
+                    template.template_options.add(template_option_obj)
+                except TemplateOption.DoesNotExist:
+                    # Handle the case where the template option does not exist
+                    print(f"Template option '{template_option}' does not exist.")
 
             event_name = f"{template.name}-{str(random.randint(1, 10000))}"
             event_name_slug = event_name.replace(" ", "-").lower()
@@ -260,7 +435,7 @@ def template_create(request):
 
                     new_meal_item.save()
 
-            return HttpResponseRedirect(f"/food/plan/{event_name_slug}")
+            return HttpResponseRedirect(f"/food/plan/{event_name_slug}/overview")
 
     form = MealEventTemplateFormCreate(
         initial={
@@ -285,7 +460,7 @@ def template_update(request, id):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(f"/food/plan/{meal_event.slug}/")
+            return HttpResponseRedirect(f"/food/plan/{meal_event.slug}/overview")
     form = MealEventTemplateFormUpdate(instance=instance)
 
     context = {
@@ -317,7 +492,7 @@ def meal_event_create(request):
     context = {
         "templates": templates,
     }
-    return render(request, "meal-event-create.html", context)
+    return render(request, "plan/create/meal-event-create.html", context)
 
 
 @login_required
@@ -336,7 +511,7 @@ def meal_event_update(request, id):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(f"/food/plan/{instance.slug}")
+            return HttpResponseRedirect(f"/food/plan/{instance.slug}/overview")
     form = MealEventForm(instance=instance)
 
     context = {
@@ -369,15 +544,17 @@ def meal_create(request, meal_day_id):
 
             meal_day_id = MealDay.objects.get(pk=meal_day_id)
 
-            return HttpResponseRedirect(f"/food/plan/{meal_day_id.meal_event.slug}")
+            return HttpResponseRedirect(
+                f"/food/plan/{meal_day_id.meal_event.slug}/overview"
+            )
 
-        return render(request, "meal/create.html", {"form": form})
+        return render(request, "meal/create/main.html", {"form": form})
 
     # if a GET (or any other method) we'll create a blank form
     else:
         meal_day = MealDay.objects.get(pk=meal_day_id)
         form = MealForm(initial={"meal_day": meal_day})
-        return render(request, "meal/create.html", {"form": form})
+        return render(request, "meal/create/main.html", {"form": form})
 
 
 def meal_update(request, id):
@@ -387,7 +564,7 @@ def meal_update(request, id):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(f"/food/plan/{instance.slug}")
+            return HttpResponseRedirect(f"/food/plan/{instance.slug}/overview")
     form = MealForm(instance=instance)
 
     context = {
@@ -445,7 +622,7 @@ def meal_item_update(request, slug):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(f"/food/plan/")
+            return HttpResponseRedirect(f"/food/dashboard/")
     form = MealItemFormUpdate(instance=instance)
 
     context = {
@@ -542,7 +719,7 @@ def plan_shopping_cart(request, slug):
     shopping_list = [dict(t) for t in {tuple(d.items()) for d in shopping_list}]
 
     # sort by retail_section
-    shopping_list = sorted(shopping_list, key=lambda x: x["retail_section"])
+    shopping_list = sorted(shopping_list, key=lambda x: str(x["retail_section"]) or "")
 
     context = {
         "plan": plan,
@@ -565,6 +742,43 @@ def plan_participants(request, slug):
     context = {"plan": plan, "module_name": "Teilnehmer"}
     return render(request, "plan/participant/participants.html", context)
 
+
+@login_required
+def ingredient_create_choice(request):
+    boxes = [
+        {
+            "header": "Komplett selbst",
+            "text":"""
+                Mit dieser Option kannst du ein neues Lebensmittel komplett selbst erstellen und jedes Detail selbst bestimmen.
+                Eine Anlage dauert allerdings ein paar Minuten.
+            """,
+            "link": "ingredient-create",
+            "icon": "adjust"
+        },
+        {
+            "header": "Auf Basis eines anderen Lebensmittels",
+            "text": """
+                Mit dieser Option kannst du ein neues Lebensmittel auf Basis eines anderen Lebensmittels erstellen.
+                Nutze diese Option wenn du ein Lebensmittel erstellen möchtest, dass sich nur in wenigen Details von
+                einem bereits existierenden Lebensmittel unterscheidet. z.B. Cocktail- und Rispentomate.
+            """,
+            "link": "ingredient-create-copy",
+            "icon": "copy"
+        },
+        {
+            "header": "Mit Hilfe eines KI Vorschlags",
+            "text": """
+                Mit dieser Option kannst du ein neues Lebensmittel auf Basis eines KI Vorschlags erstellen.
+                Alle Daten werden von einer Sprach KI generiert und können dann von dir noch angepasst werden.
+            """,
+            "link": "ingredient-create-ai",
+            "icon": "brain"
+        },
+    ]
+    context = {
+        "boxes": boxes,
+    }
+    return render(request, "ingredient/create/choice/main.html", context)
 
 @login_required
 def ingredient_create(request):
@@ -619,7 +833,133 @@ def ingredient_create(request):
             return HttpResponseRedirect("/food/ingredient-list/")
 
     form = IngredientForm()
-    return render(request, "ingredient/create.html", {"form": form})
+    return render(request, "general/_generic_form.html", {"form": form, "header": "Lebensmittel erstellen"})
+
+@login_required
+def ingredient_create_copy(request):
+    if request.method == "POST":
+        # create a form instance and populate it with data from the request:
+
+        form = IngredientFormCopy(request.POST)
+
+        if form.is_valid():
+
+            data_input = form.cleaned_data
+
+
+            source_data = Ingredient.objects.get(id=data_input["ingredient_ref"].id)
+            # deepcopy data
+            data = deepcopy(source_data.__dict__)
+
+            # remove id, created_at, updated_at, author
+            data.pop("id")
+            data.pop("created_at")
+            data.pop("updated_at")
+
+
+            # overwrite name, slug, description
+            data["name"] = data_input["name"]
+            data["slug"] = data_input["name"].replace(" ", "-").lower()
+
+            # check for slug uniqueness and add a random number incase of duplicate
+            if Ingredient.objects.filter(slug=data["slug"]).exists():
+                data["slug"] = f"{data['slug']}-{random.randint(1, 100)}"
+            data["description"] = data_input["description"]
+            data['ingredient_ref'] = source_data
+
+
+            valid_fields = {field.name for field in Ingredient._meta.get_fields()}
+            filtered_data = {key: value for key, value in data.items() if key in valid_fields}
+            ingredient = Ingredient(**filtered_data)
+
+            ingredient.author = request.user
+            # add meta info from source_data as copy
+            new_meta_info = MetaInfo.objects.get(id=source_data.meta_info.id)
+            # validate that the meta_info is not the same
+            new_meta_info.id = None
+            new_meta_info.save()
+            ingredient.meta_info = new_meta_info
+
+            ingredient.save()
+
+            # copy portions and prices from source_data and add to ingredient
+            for portion in source_data.portions.all():
+                new_portion = Portion.objects.create(
+                    name=portion.name,
+                    ingredient=ingredient,
+                    measuring_unit=portion.measuring_unit,
+                    quantity=portion.quantity,
+                    meta_info=portion.meta_info,
+                )
+                new_portion.save()
+
+                for price in portion.prices.all():
+                    new_price = Price.objects.create(
+                        price_eur=price.price_eur,
+                        name=price.name,
+                        portion=new_portion,
+                        quantity=price.quantity,
+                        retailer=price.retailer,
+                        quality=price.quality,
+                    )
+                    new_price.save()
+
+            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/overview")
+
+    form = IngredientFormCopy()
+    return render(request, "general/_generic_form.html", {"form": form, "header": "Lebensmittel erstellen mit Vorlage"})
+
+
+@login_required
+def ingredient_create_ai(request):
+    if request.method == "POST":
+        # create a form instance and populate it with data from the request:
+
+        form = IngredientFormAi(request.POST)
+
+        if form.is_valid():
+
+            data = form.cleaned_data
+
+            data["slug"] = data["name"].replace(" ", "-").lower()
+
+
+            # create a new post
+            ingredient = Ingredient(**data)
+            ingredient.author = request.user
+            # add meta info
+            new_meta_info = MetaInfo.objects.create()
+            ingredient.meta_info = new_meta_info
+
+            ingredient.save()
+
+            new_portion_meta_info = MetaInfo.objects.create(
+                weight_g=1.0,
+            )
+            new_portion = Portion.objects.create(
+                name=f"{ingredient.name} in g",
+                ingredient=ingredient,
+                measuring_unit=MeasuringUnit.objects.get(name="g"),
+                quantity=1,
+                meta_info=new_portion_meta_info,
+            )
+
+            ingredient.portions.add(new_portion)
+
+            return HttpResponseRedirect("/food/ingredient-list/")
+
+    form = IngredientFormAi()
+    return render(request, "general/_generic_form.html", {"form": form, "header": "Lebensmittel mit KI erstellen"})
+
+
+@login_required
+def ingredients_autocomplete(request):
+    if request.method == "GET":
+        query = request.GET.get("query", "")
+        ingredients = Ingredient.objects.filter(name__icontains=query)[:50]
+        results = [{"id": ingredient.id, "name": ingredient.name} for ingredient in ingredients]
+        return render(request, "ingredient/autocomplete.html", {"results": results})
+    return 
 
 
 @login_required
@@ -628,6 +968,9 @@ def ingredient_update_basic(request, slug):
     name = request.GET.get("name", None)
     description = request.GET.get("description", None)
     retail_section = request.GET.get("retail_section", None)
+
+    print("retail_section")
+    print(retail_section)
 
     ingredient = get_object_or_404(Ingredient, slug=slug)
 
@@ -638,15 +981,11 @@ def ingredient_update_basic(request, slug):
         ingredient.description = description
 
     if retail_section:
-        retail_section = RetailSection.objects.get(name=retail_section)
-        ingredient.retail_section = retail_section
+        ingredient.retail_section = RetailSection.objects.get(name=retail_section)
 
     if request.method == "POST":
-        form = IngredientFormUpdateBasic(request.POST, instance=ingredient)
-
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/overview")
+        ingredient.save()
+        return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/overview")
     form = IngredientFormUpdateBasic(instance=ingredient)
 
     context = {
@@ -677,13 +1016,13 @@ def ingredient_update_attribute(request, slug):
 
         intolerances = [intolerance for intolerance in intolerances.split(",")]
 
-        print('intolerances')
+        print("intolerances")
         print(intolerances)
         print(intolerances)
 
         intolerance_objects = Intolerance.objects.filter(name__in=intolerances)
         intolerance_ids = [intolerance.id for intolerance in intolerance_objects]
-        print('intolerance_ids')
+        print("intolerance_ids")
         print(intolerance_ids)
         ingredient.intolerances.set(intolerance_ids)
 
@@ -698,7 +1037,6 @@ def ingredient_update_attribute(request, slug):
 
     if scout_frendly_score:
         ingredient.scout_frendly_score = scout_frendly_score
-
 
     if request.method == "POST":
         form = IngredientFormUpdateAttribute(request.POST, instance=ingredient)
@@ -727,11 +1065,7 @@ def ingredient_update_ref(request, slug):
             return HttpResponseRedirect(f"/food/ingredient/{instance.slug}/overview")
     form = IngredientFormUpdateRef(instance=instance)
 
-    context = {
-        "ingredient": instance,
-        "form": form,
-        "url_variable": False
-    }
+    context = {"ingredient": instance, "form": form, "url_variable": False}
     return render(request, "ingredient/update.html", context)
 
 
@@ -764,21 +1098,18 @@ def ingredient_update_nutrition(request, slug):
 
     if sugar_g:
         meta_info.sugar_g = sugar_g
-    
+
     if sodium_mg:
         meta_info.sodium_mg = sodium_mg
 
     if fruit_factor:
         meta_info.fruit_factor = fruit_factor
-    
+
     if carbohydrate_g:
         meta_info.carbohydrate_g = carbohydrate_g
 
     if fibre_g:
-        meta_info.fibre_g = fibre_g    
-
-    print('meta_info')
-    print(meta_info)
+        meta_info.fibre_g = fibre_g
 
     if request.method == "POST":
         form = IngredientFormUpdateNutrition(request.POST, instance=meta_info)
@@ -835,7 +1166,6 @@ def ingredient_list(request):
     )
 
     if search_form.is_valid():
-        print(search_form.cleaned_data["query"])
         if (
             search_form.cleaned_data["query"]
             and search_form.cleaned_data["query"] is not None
@@ -853,6 +1183,7 @@ def ingredient_list(request):
         if (
             search_form.cleaned_data["retail_section"]
             and search_form.cleaned_data["retail_section"] is not None
+            and search_form.cleaned_data["retail_section"] != "Alle"
         ):
             ingredients = ingredients.filter(
                 retail_section=search_form.cleaned_data["retail_section"]
@@ -860,13 +1191,13 @@ def ingredient_list(request):
 
     paginator = Paginator(ingredients, per_page=10)
     page_num = request.GET.get("page", 1)
-    page_object = paginator.get_page(page_num)
-    page_object.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
+    page_obj = paginator.get_page(page_num)
+    page_obj.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
 
     context = {
-        "ingredients": page_object,
+        "page_obj": page_obj,
         "module_name": "Liste",
-        "search_form": search_form,
+        "form": search_form,
     }
     return render(request, "ingredient/list/main.html", context)
 
@@ -874,9 +1205,7 @@ def ingredient_list(request):
 @login_required
 def recipe_list(request):
     recipes = Recipe.objects.filter(~Q(status="simulator"))
-    search_form = SearchForm(request.GET)
-
-    print(recipes)
+    search_form = SearchRecipeForm(request.GET)
 
     if search_form.is_valid():
         if (
@@ -885,10 +1214,15 @@ def recipe_list(request):
         ):
             recipes = recipes.filter(name__icontains=search_form.cleaned_data["query"])
 
+    paginator = Paginator(recipes, per_page=10)
+    page_num = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_num)
+    page_obj.adjusted_elided_pages = paginator.get_elided_page_range(page_num)
+
     context = {
-        "recipes": recipes,
+        "page_obj": page_obj,
         "module_name": "Liste",
-        "search_form": search_form,
+        "form": search_form,
     }
     return render(request, "recipe/list/main.html", context)
 
@@ -897,9 +1231,9 @@ def recipe_list(request):
 def recipe_create(request):
     meta_info = MetaInfo.objects.create()
     data = {
-        "name": "Simulator",
+        "name": None,
         "slug": f"sim-{str(random.randint(1, 100000))}",
-        "description": "Beschreibung",
+        "description": None,
         "status": "simulator",
         "meta_info": meta_info,
     }
@@ -957,10 +1291,41 @@ def recipe_clone(request, slug):
 def recipe_detail_overview(request, slug):
     recipe = Recipe.objects.get(slug=slug)
 
+    kpi_price = f"{recipe.meta_info.price_eur:.2f} €"
+    kpi_weight = f"{recipe.meta_info.weight_g:.1f} g"
+    kpi_nutri_class = recipe.meta_info.nutri_score_display
+    kpi_popularity = 1
+
+    # energy_kj, protein_g, sugar_g, fibre_g kpis
+    kpi_energy_kj = f"{recipe.meta_info.energy_kj:.0f} kJ"
+    kpi_protein_g = (
+        f"{recipe.meta_info.protein_g:.1f} g - {recipe.meta_info.protein_g / recipe.meta_info.weight_g * 100:.0f}%"
+        if recipe.meta_info.weight_g != 0
+        else f"{recipe.meta_info.protein_g:.1f} g"
+    )
+    kpi_sugar_g = (
+        f"{recipe.meta_info.sugar_g:.1f} g - {recipe.meta_info.sugar_g / recipe.meta_info.weight_g * 100:.0f}%"
+        if recipe.meta_info.weight_g != 0
+        else f"{recipe.meta_info.sugar_g:.1f} g"
+    )
+    kpi_fibre_g = (
+        f"{recipe.meta_info.fibre_g:.1f} g - {recipe.meta_info.fibre_g / recipe.meta_info.weight_g * 100:.0f}%"
+        if recipe.meta_info.weight_g != 0
+        else f"{recipe.meta_info.fibre_g:.1f} g"
+    )
+
     context = {
         "recipe": recipe,
         "module_name": "Detail",
         "ingredients": Ingredient.objects.all(),
+        "kpi_price": kpi_price,
+        "kpi_weight": kpi_weight,
+        "kpi_nutri_class": kpi_nutri_class,
+        "kpi_popularity": kpi_popularity,
+        "kpi_energy_kj": kpi_energy_kj,
+        "kpi_protein_g": kpi_protein_g,
+        "kpi_sugar_g": kpi_sugar_g,
+        "kpi_fibre_g": kpi_fibre_g,
     }
     return render(request, "recipe/detail/overview/main.html", context)
 
@@ -968,11 +1333,12 @@ def recipe_detail_overview(request, slug):
 @login_required
 def recipe_detail_analyse(request, slug):
     recipe = Recipe.objects.get(slug=slug)
+    recipe_items = RecipeItem.objects.filter(recipe=recipe)
 
     context = {
         "recipe": recipe,
         "module_name": "Analyse",
-        "ingredients": Ingredient.objects.all(),
+        "recipe_items": recipe_items,
     }
     return render(request, "recipe/detail/analyse/main.html", context)
 
@@ -999,6 +1365,17 @@ def recipe_detail_comment(request, slug):
         "ingredients": Ingredient.objects.all(),
     }
     return render(request, "recipe/detail/comment/main.html", context)
+
+
+@login_required
+def recipe_detail_manage(request, slug):
+    recipe = Recipe.objects.get(slug=slug)
+
+    context = {
+        "recipe": recipe,
+        "module_name": "Verwalten",
+    }
+    return render(request, "recipe/detail/manage/main.html", context)
 
 
 @login_required
@@ -1039,6 +1416,8 @@ def recipe_item_create(request, slug):
             recipe_item.meta_info = new_meta_info
             recipe_item.save()
 
+            update_recipe(recipe)
+
             return HttpResponseRedirect(
                 f"/food/recipe/{recipe_item.recipe.slug}/overview"
             )
@@ -1047,10 +1426,11 @@ def recipe_item_create(request, slug):
 @login_required
 def recipe_item_update(request, slug):
     if request.method == "POST":
+        recipe = Recipe.objects.get(slug=slug)
         form = RecipeItemFormUpdate(
             data={
                 "recipe_item_id": request.POST.get("recipe_item_id"),
-                "recipe_id": Recipe.objects.get(slug=slug).id,
+                "recipe_id": recipe.id,
                 "portion_id": Portion.objects.get(
                     pk=request.POST.get("portion_update")
                 ).id,
@@ -1065,6 +1445,8 @@ def recipe_item_update(request, slug):
             recipe_item.quantity = data["quantity"]
             recipe_item.save()
 
+            update_recipe(recipe)
+
             return HttpResponseRedirect(
                 f"/food/recipe/{recipe_item.recipe.slug}/overview"
             )
@@ -1075,10 +1457,26 @@ def recipe_item_delete(request):
     if request.method == "POST":
         recipe_item_id = request.POST.get("recipe_item_id")
         recipe_item = RecipeItem.objects.get(pk=recipe_item_id)
-        recipe_slug = recipe_item.recipe.slug
+        recipe = recipe_item.recipe
         recipe_item.delete()
 
-        return HttpResponseRedirect(f"/food/recipe/{recipe_slug}/")
+        update_recipe(recipe)
+
+        return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/")
+
+
+@login_required
+def recipe_update_meta_infos(request, slug):
+    recipe = Recipe.objects.get(slug=slug)
+    recipe_items = RecipeItem.objects.filter(recipe=recipe)
+
+    if request.method == "POST":
+        update_recipe(recipe)
+        update_meta_info_nutri(recipe, recipe_items)
+
+        messages.success(request, "Die Nährwerte wurden erfolgreich aktualisiert.")
+
+        return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/overview")
 
 
 @login_required
@@ -1332,7 +1730,6 @@ def ingredient_suggestions_attribute(request, slug):
     # create list from retail_sections
     intolerances_list = [intolerance.name for intolerance in intolerances]
 
-
     class OutputModel(BaseModel):
         intolerances: List[str] = Field(
             description=f"Essens Unverträglichkeiten der Zutat. aus der Liste {', '.join(intolerances_list)}",
@@ -1367,6 +1764,7 @@ def ingredient_suggestions_attribute(request, slug):
         "output": output,
     }
     return render(request, "ingredient/detail/suggestions/basic.html", context)
+
 
 @login_required
 def ingredient_suggestions_nutrition(request, slug):

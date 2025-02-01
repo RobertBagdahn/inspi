@@ -44,7 +44,11 @@ class MyCustomLoginForm(LoginForm):
 
 class MySignupForm(SignupForm):
 
-    scout_display_name = forms.CharField(max_length=50, label="Scout Display Name")
+    scout_display_name = forms.CharField(
+        max_length=50,
+        label="Anzeigename",
+        help_text="Der Anzeigename wird auf der Plattform angezeigt und kann von deinem Benutzernamen abweichen.",
+    )
 
     def save(self, request):
         user = super(MySignupForm, self).save(request)

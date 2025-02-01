@@ -1,6 +1,5 @@
 from food import models as food_models
 from django.db.models import Sum
-from food.service.nutri_lib import Nutri
 
 
 class RecipeModule:
@@ -9,7 +8,6 @@ class RecipeModule:
         return ['energy_kj', 'sugar_g', 'fibre_g', 'protein_g', 'sodium_mg','salt_g', 'fat_sat_g']
 
     def recalculate_recipe_items(self, recipe):
-        NutriClass = Nutri()
 
         recipe_item_set = food_models.RecipeItem.objects.filter(
             recipe=recipe)

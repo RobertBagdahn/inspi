@@ -1,16 +1,20 @@
-{% extends "_base.html" %}
+{% extends '_base.html' %}
 {% load crispy_forms_tags %}
 {% load component_tags %}
-{% block title %}Einloggen{% endblock %}
+{% block title %}
+  Einloggen
+{% endblock %}
 {% block content %}
-    <div class="mx-auto flex flex-col items-center justify-center">
-        <h2 class="my-2">Anmelden</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-success" type="submit">Einloggen</button>
-            {% component 'link-button' color='blue' text='Registrieren' icon='user-plus' url="{% url 'account_signup' %}?next={{ request.GET.next|default:'' }}" %}
-        {% endcomponent %}
+  <div class="mx-auto flex flex-col items-center justify-center">
+    <h2 class="my-2">Anmelden</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      {% component 'submit-button' color='green' text='Anmelden' icon='key' %}
+      {% endcomponent %}
+      <div class="my-4 w-full border-t border-gray-300"></div>
+      {% component 'link-button' color='blue' text='Registrieren' icon='user-plus' url="{% url 'account_signup' %}?next={{ request.GET.next|default:'' }}" %}
+      {% endcomponent %}
     </form>
-</div>
-{% endblock content %}
+  </div>
+{% endblock %}

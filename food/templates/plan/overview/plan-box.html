@@ -1,5 +1,5 @@
 <div class="w-full bg-white rounded-lg">
-    <a href="{% url 'plan' obj.slug %}"
+    <a href="{% url 'plan-detail-overview' obj.slug %}"
        class="inline-flex items-center font-large text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700">{{ obj.event_name }}</a>
     <p class="mb-3 text-gray-500 dark:text-gray-400">{{ obj.description|default_if_none:'' }}</p>
     <p class="mb-3 text-gray-500">{{ obj.meta_info.price_eur|default_if_none:'12.31' }} €</p>

@@ -7,7 +7,6 @@ from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-from food.service.nutri_lib import Nutri
 from food.service.recipe_logic import RecipeModule
 from food.service.hint import HintModule
 from food.service.price_logic import PriceModule
@@ -19,7 +18,6 @@ from .choices import (
     MealTimeOptions,
     ChildFrendly,
     PhysicalViscosityChoices,
-    FoodMajorClasses,
     Units,
     BrandQualityChoises,
     RetailerTypeChoise,
@@ -106,6 +104,7 @@ class MetaInfo(TimeStampMixin):
         if self.weight_g > 1000:
             return f"{round(self.weight_g/1000,1)} kg"
         return f"{round(self.weight_g, 0)} g"
+        
 
     @property
     def nutri_score_display(self):
@@ -148,11 +147,6 @@ class Ingredient(TimeStampMixin):
     nan_art_id_rewe = models.IntegerField(null=True, blank=True)
     ean = models.BigIntegerField(null=True, blank=True)
 
-    major_class = models.CharField(
-        max_length=60,
-        choices=FoodMajorClasses.choices,
-        default=FoodMajorClasses.UNDEFINED,
-    )
     retail_section = models.ForeignKey(
         RetailSection, on_delete=models.PROTECT, null=True, blank=True
     )
@@ -188,7 +182,7 @@ class Ingredient(TimeStampMixin):
 
 
 class Portion(TimeStampMixin):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True)
     measuring_unit = models.ForeignKey(
         MeasuringUnit, on_delete=models.PROTECT, blank=True, null=True, default=3
     )
@@ -212,6 +206,10 @@ class Portion(TimeStampMixin):
         if self.meta_info.weight_g and self.meta_info.price_per_kg:
             return self.meta_info.weight_g * self.meta_info.price_per_kg * 1000
         return 0.00
+    
+    @property
+    def prices(self):
+        return Price.objects.filter(portion=self).order_by("price_eur")
 
     class Meta:
         ordering = ("name",)
@@ -308,6 +306,44 @@ class RecipeItem(TimeStampMixin):
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
     )
+
+    @property
+    def weight_quote(self):
+        return round(
+            float(self.meta_info.weight_g) / float(self.recipe.meta_info.weight_g) * 100.0, 0
+        ) 
+
+    @property
+    def weighted_nutri_points_energy_kj(self):
+        return self.meta_info.nutri_points_energy_kj * self.weight_quote / 100
+
+    @property
+    def weighted_nutri_points_protein_g(self):
+        return self.meta_info.nutri_points_protein_g * self.weight_quote / 100
+
+    @property
+    def weighted_nutri_points_fat_sat_g(self):
+        return self.meta_info.nutri_points_fat_sat_g * self.weight_quote / 100
+
+    @property
+    def weighted_nutri_points_sugar_g(self):
+        return self.meta_info.nutri_points_sugar_g * self.weight_quote / 100
+
+    @property
+    def weighted_nutri_points_salt_g(self):
+        return self.meta_info.nutri_points_salt_g * self.weight_quote / 100
+
+    @property
+    def weighted_nutri_points_sodium_mg(self):
+        return self.meta_info.nutri_points_sodium_mg * self.weight_quote / 100
+
+    @property
+    def weighted_nutri_points_fibre_g(self):
+        return self.meta_info.nutri_points_fibre_g * self.weight_quote / 100
+    
+    @property
+    def weighted_nutri_points(self):
+        return self.meta_info.nutri_points * self.weight_quote / 100
 
     def __str__(self):
         return f"{self.recipe} - {self.quantity} x {self.portion}"
@@ -420,6 +456,9 @@ class MealEvent(TimeStampMixin):
     is_approved = models.BooleanField(default=False)
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
+    )
+    managed_by = models.ManyToManyField(
+        CustomUser, related_name="meal_event_created_by", blank=True
     )
 
     def __str__(self):

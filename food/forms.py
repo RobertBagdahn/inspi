@@ -9,13 +9,13 @@ from .choices import (
     MealTimeOptions,
     ChildFrendly,
     PhysicalViscosityChoices,
-    FoodMajorClasses,
     RetailerTypeChoise,
     BrandQualityChoises,
     IntoleranceChoices,
     MealEventTemplateOptionsChoices,
     RecipeType,
     IngredientStatus,
+    MealType,
 )
 from .models import (
     MealEventTemplate,
@@ -75,8 +75,10 @@ class SearchForm(forms.Form):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
     retail_section = forms.ChoiceField(
-        label="Major Class",
-        choices=None,
+        label="Supermarkt Kategorie",  # RetailSection
+        choices=[(None, "Alle")]
+        + [(rs.id, rs.name) for rs in RetailSection.objects.all()],
+        required=False,
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
 
@@ -179,6 +181,65 @@ class MealEventTemplateFormUpdate(forms.ModelForm):
         ]
 
 
+class IngredientFormCopy(forms.Form):
+    name = forms.CharField(
+        label="Name der Zutat",
+        max_length=40,
+        required=True,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+    )
+    description = forms.CharField(
+        label="Beschreibung",
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+    )
+    query = forms.CharField(
+        label="Filter für Basis Zutat",
+        max_length=40,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "tailwind-input",
+                "placeholder": "Suchbegriff eingeben",
+                "hx-trigger": "keyup delay:500ms",
+                "hx-get": "/food/ingredients/autocomplete",
+                "hx-target": "#id_ingredient_ref",
+            }
+        ),
+    )
+    ingredient_ref = forms.ModelChoiceField(
+        label="Basis Zutat",
+        required=True,
+        queryset=Ingredient.objects.all(),
+        initial=Ingredient.objects.first(),
+        widget=forms.Select(
+            attrs={"class": "tailwind-select", "id": "id_ingredient_ref"}
+        ),
+        help_text="Wählen Sie die Zutat aus, die kopiert werden soll.",
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class IngredientFormAi(forms.Form):
+    name = forms.CharField(
+        label="Name der Zutat",
+        max_length=40,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+        help_text="Name des Lebensmittels",
+    )
+    description = forms.CharField(
+        label="Beschreibung",
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+        help_text="Beschreibung des Lebensmittels, welches die KI erzeugt soll.",
+    )
+
+
 class IngredientForm(forms.Form):
     name = forms.CharField(
         label="Name der Zutat",
@@ -233,8 +294,10 @@ class IngredientForm(forms.Form):
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
     retail_section = forms.ChoiceField(
-        label="Major Class",
-        choices=None,
+        label="Supermarkt Kategorie",  # RetailSection
+        choices=[(None, "Alle")]
+        + [(rs.id, rs.name) for rs in RetailSection.objects.all()],
+        required=False,
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
     unprepared_eatable = forms.BooleanField(
@@ -318,12 +381,12 @@ class IngredientFormUpdateBasic(forms.ModelForm):
         widget=forms.TextInput(attrs={"class": "tailwind-input"}),
         help_text="Beschreibung des Lebensmittels",
     )
-    retail_section = forms.ModelChoiceField(
-        label="Supermarkt Kategorie",
+    retail_section = forms.ChoiceField(
+        label="Supermarkt Kategorie",  # RetailSection
+        choices=[(None, "Alle")]
+        + [(rs.id, rs.name) for rs in RetailSection.objects.all()],
         required=False,
-        queryset=RetailSection.objects.all(),
         widget=forms.Select(attrs={"class": "tailwind-select"}),
-        help_text="Kategorie des Lebensmittels",
     )
     status = forms.ChoiceField(
         label="Status",
@@ -533,28 +596,31 @@ class RecipeForm(forms.ModelForm):
 
 
 class RecipeFormUpdate(forms.ModelForm):
+    name = forms.CharField(
+        label="Name",
+        max_length=255,
+        required=True,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+    )
+    description = forms.CharField(
+        label="Beschreibung",
+        required=True,
+        widget=forms.Textarea(attrs={"class": "tailwind-textarea"}),
+    )
+    recipe_type = forms.ChoiceField(
+        label="Rezept Typ",
+        required=True,
+        choices=RecipeType.choices,
+        widget=forms.Select(attrs={"class": "tailwind-select"}),
+    )
+
     class Meta:
         model = Recipe
         fields = [
             "name",
             "description",
-            "status",
             "recipe_type",
-            # "managed_by",
         ]
-        widgets = {
-            "name": forms.TextInput(attrs={"class": "tailwind-input"}),
-            "description": forms.Textarea(attrs={"class": "tailwind-textarea"}),
-            "status": forms.Select(attrs={"class": "tailwind-select"}),
-            "recipe_type": forms.Select(
-                attrs={"class": "tailwind-select"},
-                choices=RecipeType.choices,
-            ),
-            # "managed_by": forms.SelectMultiple(
-            #     attrs={"class": "tailwind-select"},
-            #     choices=CustomUser.objects.all(),
-            # ),
-        }
 
 
 class RecipeItemFormCreate(forms.Form):
@@ -603,17 +669,37 @@ class MealForm(forms.ModelForm):
         queryset=MealDay.objects.all(),
         widget=forms.HiddenInput(),
     )
-    # time_start to time field
+    meal_type = forms.ChoiceField(
+        label="Typ der Mahlzeit",
+        choices=MealType.choices,
+        widget=forms.Select(attrs={"class": "tailwind-select"}),
+    )
+    day_part_factor = forms.FloatField(
+        label="Prozent der Tagesättigung",
+        widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
+    )
+    name = forms.CharField(
+        label="Name (optional)",
+        help_text="Wenn kein Name vergeben wird, dann wird der Mahlzeittyp verwendet.",
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+    )
     time_start = forms.TimeField(
+        label="Start Zeit",
         widget=forms.TimeInput(
             format="%H:%M", attrs={"class": "tailwind-input", "type": "time"}
         ),
     )
     time_end = forms.TimeField(
+        label="End Zeit",
         widget=forms.TimeInput(
             format="%H:%M", attrs={"class": "tailwind-input", "type": "time"}
         ),
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -626,12 +712,12 @@ class MealForm(forms.ModelForm):
     class Meta:
         model = Meal
         fields = [
-            "name",
             "meal_day",
-            "day_part_factor",
             "meal_type",
+            "day_part_factor",
             "time_start",
             "time_end",
+            "name",
         ]
 
 
@@ -675,3 +761,31 @@ class MealItemFormUpdate(forms.ModelForm):
             "recipe": forms.Select(attrs={"class": "tailwind-select"}),
             "factor": forms.NumberInput(attrs={"class": "tailwind-input"}),
         }
+
+
+class SearchRecipeForm(forms.Form):
+    query = forms.CharField(
+        label="Suche",
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Suchbegriff eingeben"}
+        ),
+    )
+    recipe_type = forms.ChoiceField(
+        label="Rezept Typ",
+        required=False,
+        choices=[(None, "Alle")] + list(RecipeType.choices),
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+
+class SearchPlanForm(forms.Form):
+    query = forms.CharField(
+        label="Suche",
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Suchbegriff eingeben"}
+        ),
+    )

@@ -1,108 +1,22 @@
-{% extends '_base.html' %}
-{% load main_extras %}
-{% load crispy_forms_tags %}
-{% block content %}
-    <section class="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5">
-        <div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                <div class="border-b dark:border-gray-700 mx-4">
-                    <form method="GET"
-                          action="{% url 'ingredient-list' %}"
-                          class="w-full md:max-w-sm flex-1 md:mr-4">
-                        {% crispy search_form %}
-                    </form>
-                    {% if request.GET %}
-                        <a href="{% url 'ingredient-list' %}"
-                           class="text-blue-500 hover:underline">Filter zurücksetzen</a>
-                    {% endif %}
-                    <div class="w-full md:w-auto flex flex-col md:flex-row mb-3 md:mb-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                        <button type="button"
-                                class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            <svg class="h-3.5 w-3.5 mr-2"
-                                 fill="currentColor"
-                                 viewbox="0 0 20 20"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 aria-hidden="true">
-                                <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-4 py-3">Name</th>
-                                <th scope="col" class="px-4 py-3">Kategorie</th>
-                                <th scope="col" class="px-4 py-3">Preis</th>
-                                <th scope="col" class="px-4 py-3">Nutri</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for ingredient in ingredients %}
-                                {% include 'ingredient/list/listItem.html' with item=ingredient %}
-                            {% endfor %}
-                        </tbody>
-                        {% if not ingredients %}
-                            <tr>
-                                <td colspan="4" class="text-center py-4">
-                                    Keine Zutaten gefunden. <a href="{% url 'ingredient-list' %}"
-    class="text-blue-500 hover:underline">Filter zurücksetzen</a>
-                                </td>
-                            </tr>
-                        {% endif %}
-                    </table>
-                </div>
-                <nav class="mt-6">
-                    <ul class="inline-flex items-center -space-x-px">
-                        {% if ingredients.has_previous %}
-                            <li>
-                                <a href="?{% for key, value in request.GET.items %} {% if key != 'page' %}{{ key }}={{ value }}&{% endif %} {% endfor %}page=1"
-                                   class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                    Anfang
-                                </a>
-                            </li>
-                            <li>
-                                <a href="?{% for key, value in request.GET.items %} {% if key != 'page' %}{{ key }}={{ value }}&{% endif %} {% endfor %}page={{ activities.previous_page_number }}"
-                                   class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                    Vorherige
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% for num in ingredients.paginator.page_range %}
-                            {% if ingredients.number == num %}
-                                <li>
-                                    <span class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ num }}</span>
-                                </li>
-                            {% elif num > ingredients.number|add:'-3' and num < ingredients.number|add:'3' %}
-                                <li>
-                                    <a href="?{% for key, value in request.GET.items %} {% if key != 'page' %}{{ key }}={{ value }}&{% endif %} {% endfor %}page={{ num }}"
-                                       class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                        {{ num }}
-                                    </a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                        {% if ingredients.has_next %}
-                            <li>
-                                <a href="?{% for key, value in request.GET.items %} {% if key != 'page' %}{{ key }}={{ value }}&{% endif %} {% endfor %}page={{ activities.next_page_number }}"
-                                   class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                    Nächste
-                                </a>
-                            </li>
-                            <li>
-                                <a href="?{% for key, value in request.GET.items %} {% if key != 'page' %}{{ key }}={{ value }}&{% endif %} {% endfor %}page={{ activities.paginator.num_pages }}"
-                                   class="flex h-8 items-center justify-center rounded-e-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                    Letzte
-                                </a>
-                                <span class="sr-only">Nächstes</span>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </section>
-    {% include './deleteModal.html' %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+{% extends "_base_food.html" %}
+{% block detailcontent %}
+  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+      <h2 class="text-2xl font-bold mb-4">Alle Zutaten
+        <a href="{% url 'ingredient-create-choice' %}"
+        class="ml-2 text-sm text-blue-500 hover:underline">
+         <svg class="inline h-8 w-8 pb-2 text-green-500"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24">
+             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+         </svg>
+     </a>
+      </h2>
+      {% include "./table.html" with page_obj=page_obj %}
+    </div>
+  </section>
 {% endblock %}

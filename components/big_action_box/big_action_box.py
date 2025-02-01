@@ -12,7 +12,8 @@ class BigActionBoxComponent(component.Component):
         color="blue",
         description="Geben Sie den von Ihrem Gruppenleiter bereitgestellten Code ein, um der Gruppe beizutreten.",
         button_text="Beitreten mit Code",
-        url="",
+        url=None,
+        post_url=None,
     ):
         return {
             "header": header,
@@ -21,4 +22,5 @@ class BigActionBoxComponent(component.Component):
             "description": description,
             "button_text": button_text,
             "url": url,
+            "post_url": post_url,
         }

@@ -38,18 +38,6 @@
                         </article>
                     {% endfor %}
                 </div>
-                <h2 class="mb-4 mt-8 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900">
-                    Beliebteste Zutaten
-                    <a href="{% url 'ingredient-list' %}"
-                       class="text-md font-normal text-blue-600">Mehr Zutaten</a>
-                </h2>
-                <div class="grid gap-8 lg:grid-cols-4">
-                    {% for ingredient in famous_ingredients %}
-                        <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md">
-                            {% include "ingredient/ingredient-box.html" with ingredient=ingredient %}
-                        </article>
-                    {% endfor %}
-                </div>
             </div>
         </section>
     </main>

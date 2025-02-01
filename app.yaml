@@ -24,7 +24,7 @@ env_variables:
   # This setting is used in settings.py to configure your ALLOWED_HOSTS
     APPENGINE_URL: https://gruppenstunde.de
     DJANGO_SETTINGS_MODULE: inspiapp.settings
-    DEBUG: True
+    DEBUG: False
 
 handlers:
 # This configures Google App Engine to serve the files in the app's static
