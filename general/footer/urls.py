@@ -9,4 +9,5 @@ urlpatterns = [
     path("impressum/", views.impressum, name="footer-impressum"),
     path("privacy/", views.privacy, name="footer-privacy"),
     path("support/", views.support, name="footer-support"),
+    path("internetnacht/", views.internetnacht, name="footer-internetnacht"),
 ]

@@ -32,3 +32,6 @@ def privacy(request):
 
 def support(request):
     return render(request, 'support.html') 
+
+def internetnacht(request):
+    return render(request, 'internetnacht.html')
