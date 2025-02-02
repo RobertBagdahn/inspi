@@ -74,10 +74,12 @@ class SearchForm(forms.Form):
         choices=[(None, "Alle")] + list(PhysicalViscosityChoices.choices),
         widget=forms.Select(attrs={"class": "form-control"}),
     )
-    retail_section = forms.ChoiceField(
+    retail_section = forms.ModelChoiceField(
         label="Supermarkt Kategorie",  # RetailSection
-        choices=[(None, "Alle")]
-        + [(rs.id, rs.name) for rs in RetailSection.objects.all()],
+        queryset=RetailSection.objects.all(),
+        empty_label="Alle",
+        to_field_name="name",
+        initial=None,
         required=False,
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
@@ -212,7 +214,9 @@ class IngredientFormCopy(forms.Form):
         label="Basis Zutat",
         required=True,
         queryset=Ingredient.objects.all(),
-        initial=Ingredient.objects.first(),
+        empty_label="Alle",
+        to_field_name="name",
+        initial=None,
         widget=forms.Select(
             attrs={"class": "tailwind-select", "id": "id_ingredient_ref"}
         ),
@@ -293,11 +297,12 @@ class IngredientForm(forms.Form):
         required=False,
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
     )
-    retail_section = forms.ChoiceField(
+    retail_section = forms.ModelChoiceField(
         label="Supermarkt Kategorie",  # RetailSection
-        choices=[(None, "Alle")]
-        + [(rs.id, rs.name) for rs in RetailSection.objects.all()],
-        required=False,
+        queryset=RetailSection.objects.all(),
+        initial=None,
+        to_field_name="name",
+        empty_label="Alle",
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
     unprepared_eatable = forms.BooleanField(
@@ -381,10 +386,12 @@ class IngredientFormUpdateBasic(forms.ModelForm):
         widget=forms.TextInput(attrs={"class": "tailwind-input"}),
         help_text="Beschreibung des Lebensmittels",
     )
-    retail_section = forms.ChoiceField(
+    retail_section = forms.ModelChoiceField(
         label="Supermarkt Kategorie",  # RetailSection
-        choices=[(None, "Alle")]
-        + [(rs.id, rs.name) for rs in RetailSection.objects.all()],
+        queryset=RetailSection.objects.all(),
+        empty_label="Alle",
+        to_field_name="name",
+        initial=None,
         required=False,
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
