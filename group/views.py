@@ -267,6 +267,25 @@ def approve_membership(request, membership_id):
     membership.save()
     return redirect("manage_requests", group_slug=group.slug)
 
+@login_required
+def group_detail_news(request, group_slug):
+    group = get_object_or_404(InspiGroup, slug=group_slug)
+
+    is_admin = request.user in group.editable_by_users.all()
+    is_member = group.memberships.filter(user=request.user, is_cancelled=False).exists()
+    
+    if is_member != True:
+        messages.error(request, "Du kann nicht auf die News dieser Gruppe zugreifen. Da du kein Mitglied bist.")
+        return redirect("group-detail-overview", group_slug=group.slug)
+
+    context = {
+        "group": group,
+        "count": 1,
+        "is_admin": is_admin,
+        "is_member": is_member,
+    }
+    return render(request, "group/details/news/main.html", context)
+
 
 @login_required
 def group_detail_overview(request, group_slug):
