@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import (
     InspiGroup,
+    InspiGroupNews,
     InspiGroupMembership,
     InspiGroupJoinRequest,
     InspiGroupPermission,
@@ -273,6 +274,7 @@ def group_detail_news(request, group_slug):
 
     is_admin = request.user in group.editable_by_users.all()
     is_member = group.memberships.filter(user=request.user, is_cancelled=False).exists()
+    news = InspiGroupNews.objects.filter(group=group).filter(is_visible = True).order_by("-created_at")
     
     if is_member != True:
         messages.error(request, "Du kann nicht auf die News dieser Gruppe zugreifen. Da du kein Mitglied bist.")
@@ -280,7 +282,7 @@ def group_detail_news(request, group_slug):
 
     context = {
         "group": group,
-        "count": 1,
+        "news": news,
         "is_admin": is_admin,
         "is_member": is_member,
     }
