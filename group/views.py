@@ -275,11 +275,14 @@ def group_detail_news(request, group_slug):
 
     is_admin = request.user in group.editable_by_users.all()
     is_member = group.memberships.filter(user=request.user, is_cancelled=False).exists()
-    news = InspiGroupNews.objects.filter(group=group).filter(is_visible = True).order_by("-created_at")
+    news = InspiGroupNews.objects.filter(group=group).order_by("-created_at")
     
-    if is_member != True:
+    if is_member == False and is_admin == False:
         messages.error(request, "Du kann nicht auf die News dieser Gruppe zugreifen. Da du kein Mitglied bist.")
         return redirect("group-detail-overview", group_slug=group.slug)
+    
+    if is_admin == False: 
+        news = news.filter(is_visible=True)
 
     context = {
         "group": group,
