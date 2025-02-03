@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.contrib import messages
+from django.http import HttpResponse
 from django.core.paginator import Paginator
 from .models import (
     InspiGroup,
@@ -332,6 +333,18 @@ def edit_group_news(request, group_slug, news_id):
         form = InspiGroupNewsForm(instance=news)
     return render(request, "group/details/news/createEdit.html", {"form": form, "create": False, "group": group})
 
+@login_required
+def delete_group_news(request,  group_slug, news_id):
+    group = get_object_or_404(InspiGroup, slug=group_slug)
+    instance = get_object_or_404(InspiGroupNews, id=news_id)
+    is_admin = request.user in group.editable_by_users.all()
+    
+    if is_admin == False:
+        return HttpResponse(status_code=403, content="Du kannst keine News löschen, da du kein Admin dieser Gruppe bist.")
+    
+    instance.delete()
+
+    return HttpResponse("")
 
 @login_required
 def group_detail_overview(request, group_slug):
