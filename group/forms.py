@@ -2,6 +2,7 @@
 from django import forms
 from .models import (
     InspiGroup,
+    InspiGroupNews,
     InspiGroupJoinRequest,
     InspiGroupMembership,
     InspiGroupPermission,
@@ -44,6 +45,30 @@ class InspiGroupForm(forms.ModelForm):
             "join_code",
             "is_visible",
             "free_to_join",
+        ]
+        
+class InspiGroupNewsForm(forms.ModelForm):
+    subject = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={"placeholder": "Betreff eingeben"}),
+        label="Betreff",
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={"placeholder": "Nachricht eingeben"}),
+        label="Nachricht",
+    )
+    is_visible = forms.BooleanField(
+        required=False,
+        label="Sichtbar?",
+        help_text="Wird dieses News für alle Gruppenmitglieder sichtbar sein?",
+    )
+
+    class Meta:
+        model = InspiGroupNews
+        fields = [
+            "subject",
+            "message",
+            "is_visible",
         ]
 
 

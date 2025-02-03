@@ -12,6 +12,8 @@ urlpatterns = [
     
     path('detail/<slug:group_slug>/overview', views.group_detail_overview, name='group-detail-overview'),
     path('detail/<slug:group_slug>/news', views.group_detail_news, name='group-detail-news'),
+    path('detail/<slug:group_slug>/news/create', views.create_group_news, name='group-detail-news-create'),
+    path('detail/<slug:group_slug>/news/edit/<int:news_id>', views.edit_group_news, name='group-detail-news-edit'),
     path('detail/<slug:group_slug>/members', views.group_detail_members, name='group-detail-members'),
     path('detail/<slug:group_slug>/admins', views.group_detail_admins, name='group-detail-admins'),
     path('detail/<slug:group_slug>/requests', views.group_detail_requests, name='group-detail-requests'),

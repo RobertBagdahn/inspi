@@ -21,6 +21,7 @@ from .forms import (
     ManageMembershipForm,
     InspiGroupMembershipSearchFilterForm,
     MyGroupsFilterForm,
+    InspiGroupNewsForm,
     GroupListFilter,
     MyRequestsFilterForm,
     InspiGroupRequestSearchFilterForm,
@@ -287,6 +288,46 @@ def group_detail_news(request, group_slug):
         "is_member": is_member,
     }
     return render(request, "group/details/news/main.html", context)
+
+@login_required
+def create_group_news(request, group_slug):
+    group = get_object_or_404(InspiGroup, slug=group_slug)
+    is_admin = request.user in group.editable_by_users.all()
+    
+    if is_admin == False:
+        messages.error(request, "Du kannst keine News erstellen, da du kein Admin dieser Gruppe bist.")
+        return redirect("group-detail-news", group_slug=group.slug)
+    
+    if request.method == "POST":
+        form = InspiGroupNewsForm(request.POST)
+        if form.is_valid():
+            news = form.save(commit=False)
+            news.group = group
+            news.created_by = request.user
+            form.save()
+            return redirect("group-detail-news", group_slug=group.slug)
+    else:
+        form = InspiGroupNewsForm()
+    return render(request, "group/details/news/createEdit.html", {"form": form, "create": True, "group": group})
+
+@login_required
+def edit_group_news(request, group_slug, news_id):
+    group = get_object_or_404(InspiGroup, slug=group_slug)
+    news = get_object_or_404(InspiGroupNews, id=news_id)
+    is_admin = request.user in group.editable_by_users.all()
+    
+    if is_admin == False:
+        messages.error(request, "Du kannst keine News bearbeiten, da du kein Admin dieser Gruppe bist.")
+        return redirect("group-detail-news", group_slug=group.slug)
+    
+    if request.method == "POST":
+        form = InspiGroupNewsForm(request.POST, instance=news)
+        if form.is_valid():
+            form.save()
+            return redirect("group-detail-news", group_slug=group.slug)
+    else:
+        form = InspiGroupNewsForm(instance=news)
+    return render(request, "group/details/news/createEdit.html", {"form": form, "create": False, "group": group})
 
 
 @login_required
