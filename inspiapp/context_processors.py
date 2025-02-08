@@ -14,6 +14,18 @@ def header_app(request) -> dict:
 
     header_app = [
         {
+            "display_name_short": "DPV Tool",
+            "display_name": "Alle DPV Tools",
+            "main_url": f"{base_url}",
+            "icon_name": "brain",
+            "module_name": "",
+            "description": "Hier findest du viele Tools für Pfadfinder.",
+            "inspi_img": "inspi_science.webp",
+            "domain": "https://dpvonline.cloud",
+            "icon": "images/inspi_thinking.webp",
+            "is_visible": False,
+        },
+        {
             "display_name_short": "Idee",
             "display_name": "Gruppenstunden Ideen",
             "main_url": f"{base_url}/activity/",
@@ -23,6 +35,7 @@ def header_app(request) -> dict:
             "inspi_img": "inspi_science.webp",
             "domain": "https://gruppenstunde.de",
             "icon": "images/inspi_thinking.webp",
+            "is_visible": True,
         },
         {
             "display_name_short": "Essen",
@@ -34,6 +47,7 @@ def header_app(request) -> dict:
             "inspi_img": "inspi_food.webp",
             "domain": "https://gruppenstunde.de",
             "icon": "images/inspi_thinking.webp",
+            "is_visible": True,
         },
         {
             "display_name_short": "Wissen",
@@ -45,6 +59,7 @@ def header_app(request) -> dict:
             "inspi_img": "inspi_flying.webp",
             "domain": "https://gruppenstunde.de",
             "icon": "images/inspi_thinking.webp",
+            "is_visible": True,
         },
         {
             "display_name_short": "Gruppen",
@@ -56,6 +71,7 @@ def header_app(request) -> dict:
             "inspi_img": "inspi_backpack.webp",
             "domain": "https://gruppenstunde.de",
             "icon": "images/logo.png",
+            "is_visible": True,
         },
         {
             "display_name_short": "Anmeldung",
@@ -67,6 +83,7 @@ def header_app(request) -> dict:
             "inspi_img": "inspi_teacher.webp",
             "domain": "https://gruppenstunde.de",
             "icon": "images/logo.png",
+            "is_visible": True,
         },
     ]
 
@@ -76,6 +93,10 @@ def header_app(request) -> dict:
         ]
     except IndexError:
         current_app = header_app[0]
+
+     # filter is_visible
+    header_app = [app for app in header_app if app["is_visible"]]
+
 
     return {
         "header_app": header_app,
