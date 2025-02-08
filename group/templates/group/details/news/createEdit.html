@@ -1,28 +1,35 @@
-{% extends '_base_group.html' %} {% load crispy_forms_tags %} {% block
-detailcontent %}
+{% extends '_base_group.html' %} 
+{% load main_extras %} 
+{% load crispy_forms_tags %}
+{% block header %}{% endblock header %}
+{% block detailcontent %}
 <main class="max-w-3xl mx-auto px-4 py-8">
   <article class="prose lg:prose-xl">
     {% if create %}
     <h3
       class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl"
     >
-    News für {{ group.name }} erstellen
+      News für {{ group.name }} erstellen
     </h3>
     <p class="mb-4 text-sm text-gray-600">
-      Du kannst dieses Nachricht später noch einmal bearbeiten. Sie Sichtbar schalten oder die Nachricht anpassen.
+      Du kannst dieses Nachricht später noch einmal bearbeiten. Sie Sichtbar
+      schalten oder die Nachricht anpassen.
     </p>
     {% else %}
     <h3
       class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl"
     >
-    News für {{ group.name }} bearbeiten
+      News für {{ group.name }} bearbeiten
     </h3>
     <p class="mb-4 text-sm text-gray-600">
-        Du kannst dieses Nachricht später noch einmal bearbeiten. Die Mitglieder werden über die Änderung informiert.
+      Du kannst dieses Nachricht später noch einmal bearbeiten. Die Mitglieder
+      werden über die Änderung informiert.
     </p>
     {% endif %}
     <form method="post">
-      {% csrf_token %} {{ form|crispy }}
+      {% csrf_token %} 
+      {{ form|crispy }}
+      <div class="form-group col-start-1">{{ form.media }} {{ form.content }}</div>
       <button
         type="submit"
         class="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150"
@@ -65,7 +72,13 @@ detailcontent %}
           fill="none"
           viewBox="0 0 24 24"
         >
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18 17.94 6M18 18 6.06 6"
+          />
         </svg>
         Abbrechen
       </a>

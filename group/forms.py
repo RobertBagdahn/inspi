@@ -9,6 +9,8 @@ from .models import (
     User,
 )
 
+from ckeditor.widgets import CKEditorWidget
+
 
 class InspiGroupForm(forms.ModelForm):
     name = forms.CharField(
@@ -52,10 +54,12 @@ class InspiGroupNewsForm(forms.ModelForm):
         max_length=100,
         widget=forms.TextInput(attrs={"placeholder": "Betreff eingeben"}),
         label="Betreff",
+        required=True,
     )
     message = forms.CharField(
-        widget=forms.Textarea(attrs={"placeholder": "Nachricht eingeben"}),
+        widget=CKEditorWidget(attrs={"placeholder": "Nachricht eingeben"}),
         label="Nachricht",
+        required=True,
     )
     is_visible = forms.BooleanField(
         required=False,
