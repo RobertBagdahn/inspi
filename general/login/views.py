@@ -15,22 +15,6 @@ def randomword(length):
    return ''.join(random.choice(letters) for i in range(length))
 
 
-def user_profile(request, username):
-    try:
-        user = CustomUser.objects.get(username=username)
-        if not user.is_active:
-            return render(request, "user-profile.html", {
-                "deleted": True
-            })
-    except CustomUser.DoesNotExist:
-        return render(request, "user-profile.html", {
-            "deleted": True
-        })
-    return render(request, "user-profile.html", {
-        "user": user,
-        "deleted": False,
-    })
-
 
 def profile_edit(request, username):
     user = CustomUser.objects.get(username=username)
@@ -100,12 +84,12 @@ def user_detail_overview(request, username):
     ]
     if user.is_staff:
         items_basic.append(
-            {"title": "Ist Admin", "value": user.is_staff}
+            {"title": "Ist Admin", "value": "Ja" if user.is_staff else "Nein"}
         )
 
     if user.is_superuser:
         items_basic.append(
-            {"title": "Ist Superuser", "value": user.is_superuser}
+            {"title": "Ist Superuser", "value": "Ja" if user.is_superuser else "Nein"}
         )
 
     if user.person:
