@@ -26,7 +26,7 @@
                 data-modal-toggle="delete-modal-{{ news.id }}">
                     {% component "icon" icon="trash-can" size="lg" %}{% endcomponent %}
                 </button>
-                {% component "delete-Model"
+                {% component "delete-modal"
                     id="delete-modal-{{ news.id }}"
                     text="Möchtest du die News '{{ news.subject }}' wirklich löschen? <br><small>Dieses ist unwiderruflich und kann nicht rückgängig gemacht werden.</small>"
                     post_url="{% url 'group-detail-news-delete' group.slug news.id %}"
