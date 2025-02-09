@@ -12,27 +12,27 @@
                 {% endif %}
             </p>
             {% if is_admin %}
-            <div class="mb-6">
-                {% component "action-box"
-                description="Neue Ankündigung erstellen und Mitglieder informieren."
-                text="News erstellen"
-                link="{% url 'group-detail-news-create' group.slug %}"
-                color="green"
-                icon="plus"
-                %}
+                <div class="mb-6">
+                    {% component "action-box"
+                    description="Neue Ankündigung erstellen und Mitglieder informieren."
+                    text="News erstellen"
+                    link="{% url 'group-detail-news-create' group.slug %}"
+                    color="green"
+                    icon="plus"
+                    %}
                 {% endcomponent %}
             </div>
-            {% endif %}
-            {% if news.count == 0 %}
+        {% endif %}
+        {% if news.count == 0 %}
             <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 text-center flex flex-col items-center mb-6">
                 {% component "icon" icon="bullhorn" size="xl" css_class="text-gray-800 mb-5" %}{% endcomponent %}
                 <h3 class="text-gray-500">Es wurde noch keine News von den Gruppen Admins veröffentlicht.</h3>
             </div>
-            {% endif %}
-            {% for news in news %}
-                {% include 'group/details/news/news_card.html' %}
-            {% endfor %}
-</div>
+        {% endif %}
+        {% for news in news %}
+            {% include 'group/details/news/news_card.html' %}
+        {% endfor %}
+    </div>
 </div>
 </section>
 {% endblock %}
