@@ -312,7 +312,7 @@ def create_group_news(request, group_slug):
             return redirect("group-detail-news", group_slug=group.slug)
     else:
         form = InspiGroupNewsForm()
-    return render(request, "group/details/news/createEdit.html", {"form": form, "create": True, "group": group})
+    return render(request, "group/details/news/create_edit.html", {"form": form, "create": True, "group": group})
 
 @login_required
 def edit_group_news(request, group_slug, news_id):
@@ -331,7 +331,7 @@ def edit_group_news(request, group_slug, news_id):
             return redirect("group-detail-news", group_slug=group.slug)
     else:
         form = InspiGroupNewsForm(instance=news)
-    return render(request, "group/details/news/createEdit.html", {"form": form, "create": False, "group": group})
+    return render(request, "group/details/news/create_edit.html", {"form": form, "create": False, "group": group})
 
 @login_required
 def delete_group_news(request,  group_slug, news_id):

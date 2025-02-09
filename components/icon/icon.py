@@ -5,9 +5,10 @@ from django_components import component
 class IconComponent(component.Component):
     template_name = "icon/icon.html"
 
-    def get_context_data(self, icon="Suchen", color="blue", size="md"):
+    def get_context_data(self, icon="Suchen", css_class="", color="blue", size="md"):
         return {
             "icon": icon,
             "color": color,
+            "css_class": css_class,
             "size": size,
         }
