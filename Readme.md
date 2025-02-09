@@ -31,7 +31,7 @@ Run Server
 `poetry run python manage.py runserver`
 
 
-If statics are not already in sttic folder run this:
+If statics are not already in static folder run this:
 `poetry run python manage.py collectstatic`
 
 

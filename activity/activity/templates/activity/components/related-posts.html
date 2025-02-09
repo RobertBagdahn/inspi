@@ -51,7 +51,9 @@
                                  src="{{ activity.image.url }}"
                                  alt="{{ activity.title }}">
                         {% else %}
-                            <img class="w-auto mx-auto" src="{% static "images/placeholder.webp" %}" alt="image description">
+                            <img class="w-auto mx-auto"
+                                 src="{% static 'images/placeholder.webp' %}"
+                                 alt="image description">
                         {% endif %}
                         <h3 class="mb-2 text-lg font-bold dark:text-white">{{ activity.title }}</h3>
                         <p class="font-light text-gray-500 dark:text-gray-400">{{ activity.summary|truncatechars:40 }}</p>

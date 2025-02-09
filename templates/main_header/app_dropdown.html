@@ -1,0 +1,15 @@
+{% load component_tags %}
+<div class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg"
+     id="apps-dropdown">
+    <a href="{% url 'index' %}"
+       class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 hover:bg-gray-100 hover:text-gray-900">Alle Apps</a>
+    <div class="grid grid-cols-3 gap-4 p-4">
+        {% for app in header_app %}
+            <a href="{% if is_local %}{{ app.main_url }}{% else %}{{ app.domain }}{% endif %}"
+               class="block p-4 text-center rounded-lg hover:bg-gray-100 group center">
+                {% component 'icon' icon=app.icon_name color='gray' size='md' align='center' %} {% endcomponent %}
+                <div class="text-sm font-medium text-gray-900 m-2">{{ app.display_name_short }}</div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
