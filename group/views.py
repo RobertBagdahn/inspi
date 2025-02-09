@@ -353,7 +353,7 @@ def group_detail_overview(request, group_slug):
     editable_by_users = group.editable_by_users.count()
     open_requests = InspiGroupJoinRequest.objects.filter(group=group)
     news = InspiGroupNews.objects.filter(group=group).filter(is_visible=True).order_by("-created_at")
-    news_count = news.count()+1
+    news_count = news.count()
     news = news.last()
 
     # hide geheime field join_code is_visible
