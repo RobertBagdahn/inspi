@@ -352,6 +352,9 @@ def group_detail_overview(request, group_slug):
     memberships = InspiGroupMembership.objects.filter(group=group).count()
     editable_by_users = group.editable_by_users.count()
     open_requests = InspiGroupJoinRequest.objects.filter(group=group)
+    news = InspiGroupNews.objects.filter(group=group).filter(is_visible=True).order_by("-created_at")
+    news_count = news.count()+1
+    news = news.last()
 
     # hide geheime field join_code is_visible
     if not request.user in group.editable_by_users.all():
@@ -367,6 +370,8 @@ def group_detail_overview(request, group_slug):
         "admin_kpi": f"{editable_by_users} Personen",
         "open_requests": open_requests,
         "is_admin": is_admin,
+        "news": news,
+        "news_count": news_count,
         "is_member": is_member,
     }
     return render(request, "group/details/overview/main.html", context)

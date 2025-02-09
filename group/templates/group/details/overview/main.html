@@ -20,6 +20,16 @@
                 {% endif %}
             </p>
             {% include './detail-list.html' %}
+            {% if is_member and news %}
+                <h2 class="text-2xl font-bold mb-4 mt-4">Letzte Ankündigung</h2>
+                {% include 'group/details/news/news_card.html' %}
+                {% if news_count > 1 %}
+                    <div class="px-4 pb-4  text-center flex flex-col items-center">
+                        {% component "link-button" text="Mehr Ankündigung" icon="bullhorn" url="{% url 'group-detail-news' group.slug %}" %}{% endcomponent %}
+                    </div>
+                {% endif %}
+            {% endif %}
+            <h2 class="text-2xl font-bold mb-4 mt-4">Gruppen Aktionen</h2>
             <div id="overview"
                  role="tabpanel"
                  aria-labelledby="overview-tab"
