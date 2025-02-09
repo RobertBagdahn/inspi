@@ -9,7 +9,9 @@
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                 <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
                     <h2 class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900">Pfadfinderwissen</h2>
-                    <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_teacher.webp" %}" alt="image description">
+                    <img class="h-40 max-w-full rounded-lg mx-auto"
+                         src="{% static 'images/inspi_teacher.webp' %}"
+                         alt="image description">
                     <p class="font-light text-gray-500 sm:text-xl my-3">Wissenswerte Artikel für Pfadfinder und Gruppenführungen</p>
                     {% comment %} <a href="{% url 'post-list' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Mehr Artikel</a> {% endcomment %}
                     {% if user.is_authenticated %}

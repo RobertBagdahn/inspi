@@ -74,7 +74,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'recipe-detail-analyse' recipe.slug %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if "/analyse" in request.path %}!bg-blue-700 !text-white{% endif %} " id="orders-tab" type="button">
+                        <a href="{% url 'recipe-detail-analyse' recipe.slug %}"
+                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/analyse' in request.path %}!bg-blue-700 !text-white{% endif %} "
+                           id="orders-tab"
+                           type="button">
                             <svg class="me-2 h-5 w-5"
                                  aria-hidden="true"
                                  xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +91,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'recipe-detail-shopping' recipe.slug %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if "/shopping" in request.path %}!bg-blue-700 !text-white{% endif %} " id="returns-tab" type="button">
+                        <a href="{% url 'recipe-detail-shopping' recipe.slug %}"
+                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if "/shopping" in request.path %}!bg-blue-700 !text-white{% endif %} "
+                           id="returns-tab"
+                           type="button">
                             <svg class="me-2 h-5 w-5"
                                  aria-hidden="true"
                                  xmlns="http://www.w3.org/2000/svg"
