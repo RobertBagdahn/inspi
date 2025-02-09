@@ -3,9 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.contrib import messages
+from django.http import HttpResponse
 from django.core.paginator import Paginator
 from .models import (
     InspiGroup,
+    InspiGroupNews,
     InspiGroupMembership,
     InspiGroupJoinRequest,
     InspiGroupPermission,
@@ -20,6 +22,7 @@ from .forms import (
     ManageMembershipForm,
     InspiGroupMembershipSearchFilterForm,
     MyGroupsFilterForm,
+    InspiGroupNewsForm,
     GroupListFilter,
     MyRequestsFilterForm,
     InspiGroupRequestSearchFilterForm,
@@ -267,6 +270,81 @@ def approve_membership(request, membership_id):
     membership.save()
     return redirect("manage_requests", group_slug=group.slug)
 
+@login_required
+def group_detail_news(request, group_slug):
+    group = get_object_or_404(InspiGroup, slug=group_slug)
+
+    is_admin = request.user in group.editable_by_users.all()
+    is_member = group.memberships.filter(user=request.user, is_cancelled=False).exists()
+    news = InspiGroupNews.objects.filter(group=group).order_by("-created_at")
+    
+    if is_member == False and is_admin == False:
+        messages.error(request, "Du kann nicht auf die News dieser Gruppe zugreifen. Da du kein Mitglied bist.")
+        return redirect("group-detail-overview", group_slug=group.slug)
+    
+    if is_admin == False: 
+        news = news.filter(is_visible=True)
+
+    context = {
+        "group": group,
+        "news": news,
+        "is_admin": is_admin,
+        "is_member": is_member,
+    }
+    return render(request, "group/details/news/main.html", context)
+
+@login_required
+def create_group_news(request, group_slug):
+    group = get_object_or_404(InspiGroup, slug=group_slug)
+    is_admin = request.user in group.editable_by_users.all()
+    
+    if is_admin == False:
+        messages.error(request, "Du kannst keine News erstellen, da du kein Admin dieser Gruppe bist.")
+        return redirect("group-detail-news", group_slug=group.slug)
+    
+    if request.method == "POST":
+        form = InspiGroupNewsForm(request.POST)
+        if form.is_valid():
+            news = form.save(commit=False)
+            news.group = group
+            news.created_by = request.user
+            form.save()
+            return redirect("group-detail-news", group_slug=group.slug)
+    else:
+        form = InspiGroupNewsForm()
+    return render(request, "group/details/news/create_edit.html", {"form": form, "create": True, "group": group})
+
+@login_required
+def edit_group_news(request, group_slug, news_id):
+    group = get_object_or_404(InspiGroup, slug=group_slug)
+    news = get_object_or_404(InspiGroupNews, id=news_id)
+    is_admin = request.user in group.editable_by_users.all()
+    
+    if is_admin == False:
+        messages.error(request, "Du kannst keine News bearbeiten, da du kein Admin dieser Gruppe bist.")
+        return redirect("group-detail-news", group_slug=group.slug)
+    
+    if request.method == "POST":
+        form = InspiGroupNewsForm(request.POST, instance=news)
+        if form.is_valid():
+            form.save()
+            return redirect("group-detail-news", group_slug=group.slug)
+    else:
+        form = InspiGroupNewsForm(instance=news)
+    return render(request, "group/details/news/create_edit.html", {"form": form, "create": False, "group": group})
+
+@login_required
+def delete_group_news(request,  group_slug, news_id):
+    group = get_object_or_404(InspiGroup, slug=group_slug)
+    instance = get_object_or_404(InspiGroupNews, id=news_id)
+    is_admin = request.user in group.editable_by_users.all()
+    
+    if is_admin == False:
+        return HttpResponse(status_code=403, content="Du kannst keine News löschen, da du kein Admin dieser Gruppe bist.")
+    
+    instance.delete()
+
+    return HttpResponse("")
 
 @login_required
 def group_detail_overview(request, group_slug):
@@ -274,6 +352,9 @@ def group_detail_overview(request, group_slug):
     memberships = InspiGroupMembership.objects.filter(group=group).count()
     editable_by_users = group.editable_by_users.count()
     open_requests = InspiGroupJoinRequest.objects.filter(group=group)
+    news = InspiGroupNews.objects.filter(group=group).filter(is_visible=True).order_by("-created_at")
+    news_count = news.count()
+    news = news.last()
 
     # hide geheime field join_code is_visible
     if not request.user in group.editable_by_users.all():
@@ -289,6 +370,8 @@ def group_detail_overview(request, group_slug):
         "admin_kpi": f"{editable_by_users} Personen",
         "open_requests": open_requests,
         "is_admin": is_admin,
+        "news": news,
+        "news_count": news_count,
         "is_member": is_member,
     }
     return render(request, "group/details/overview/main.html", context)

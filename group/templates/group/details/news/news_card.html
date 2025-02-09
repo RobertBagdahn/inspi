@@ -1,0 +1,53 @@
+{% load component_tags %}
+<div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4 mb-6">
+    <div class="mb-4">
+        <h5 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center w-full">
+            <div class="flex items-center space-x-2 flex-1">
+                {% if news.is_visible == False %}
+                    <div data-tooltip-target="tooltip-light-{{ news.id }}">
+                        {% component "icon" icon="eye-off" css_class="text-gray-800" %}{% endcomponent %}
+                    </div>
+                    <div id="tooltip-light-{{ news.id }}"
+                         role="tooltip"
+                         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 tooltip">
+                        Diese News ist nicht sichtbar für Mitglieder der Gruppe, sondern nur für dich als Admin.
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                {% endif %}
+                <div>{{ news.subject }}</div>
+            </div>
+            {% if is_admin %}
+                <div class="w-5 h-5 flex items-center justify-end flex-1">
+                    <a href="{% url 'group-detail-news-edit' group.slug news.id %}">
+                        {% component "icon" icon="edit" size="lg" %}{% endcomponent %}
+                    </a>
+                    <button type="button"
+                            class="ml-2"
+                            data-modal-target="delete-modal-{{ news.id }}"
+                            data-modal-toggle="delete-modal-{{ news.id }}">
+                        {% component "icon" icon="trash-can" size="lg" %}{% endcomponent %}
+                    </button>
+                    {% component "delete-modal"
+                    id="delete-modal-{{ news.id }}"
+                    text="Möchtest du die News '{{ news.subject }}' wirklich löschen? <br><small>Dieses ist unwiderruflich und kann nicht rückgängig gemacht werden.</small>"
+                    post_url="{% url 'group-detail-news-delete' group.slug news.id %}"
+                    after_post_url="{% url 'group-detail-news' group.slug %}" %}
+                {% endcomponent %}
+            </div>
+        {% endif %}
+    </h5>
+    <p class="text-sm text-gray-500 dark:text-gray-400">
+        <span class="font-semibold">von
+            <a href="{% url 'user-detail-overview' news.created_by.username %}"
+               class="text-blue-600 hover:underline">{{ news.created_by.username }}</a>
+            am {{ news.created_at.date }} um {{ news.created_at.time }} Uhr
+        </span>
+    </p>
+</div>
+<div class="no-tailwind">{{ news.message|safe }}</div>
+<style>
+        .no-tailwind * {
+          all: revert;
+        }
+</style>
+</div>

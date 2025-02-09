@@ -12,7 +12,7 @@
                             <span class="font-xl text-gray-600 dark:text-gray-300">{{ user|title|make_list|first }}</span>
                         </div>
                         <div>
-                            <a href="{% url 'login-profile' post.author.scout_display_name %}"
+                            <a href="{% url 'user-detail-overview' post.author.scout_display_name %}"
                                rel="author"
                                class="text-xl font-bold text-gray-900">{{ post.author.scout_display_name }}</a>
                             <p class="text-base text-gray-500">{{ post.author.about }}</p>

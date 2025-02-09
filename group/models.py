@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.utils import timezone
 
+from ckeditor.fields import RichTextField
+
 
 User = get_user_model()
 
@@ -146,3 +148,12 @@ class InspiGroupPermission(models.Model):
 
     def __str__(self):
         return f"{self.group.name} gave permissions to {self.parent_group.name}"
+    
+class InspiGroupNews(models.Model):
+    id = models.AutoField(primary_key=True)
+    group = models.ForeignKey(InspiGroup, on_delete=models.CASCADE, related_name="news")
+    subject = models.CharField(max_length=255)
+    message = RichTextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="created_group_news")
+    is_visible = models.BooleanField(default=True)

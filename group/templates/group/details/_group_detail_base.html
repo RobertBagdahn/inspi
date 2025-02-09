@@ -1,8 +1,9 @@
 {% extends '_base_group.html' %}
+{% load component_tags %}
 {% block detailcontent %}
     <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
         <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-            {% comment %} <nav class="mb-4 flex" aria-label="Breadcrumb">
+            {% comment %}<nav class="mb-4 flex" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li class="inline-flex items-center">
             <a href="{% url 'group-dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
@@ -42,6 +43,18 @@
                             Übersicht
                         </a>
                     </li>
+                    {% if is_member %}
+                        <li>
+                            <a href="{% url 'group-detail-news' group.slug %}"
+                               class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'news' in request.path %}!bg-blue-700 !text-white{% endif %} "
+                               id="overview-tab"
+                               type="button"
+                               role="tab">
+                                {% component "icon" icon="bullhorn" css_class="me-2" %}{% endcomponent %}
+                                Ankündigungen
+                            </a>
+                        </li>
+                    {% endif %}
                     <li>
                         <a href="{% url 'group-detail-members' group.slug %}"
                            class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/members' in request.path %}!bg-blue-700 !text-white{% endif %} "
