@@ -10,7 +10,7 @@
 {% for item in page_obj %}
     <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-            <a href="{% url 'login-profile' item.username %}"
+            <a href="{% url 'user-detail-overview' item.username %}"
                class="text-blue-600 hover:underline">{{ item.username }}</a>
         </td>
     </tr>

@@ -286,7 +286,7 @@
                             <div class="grid grid-cols-1 gap-3 mx-3">
                                 {% for author in activity.authors.all %}
                                     <div>
-                                        - <a href="{% url 'login-profile' author.scout_display_name %}"
+                                        - <a href="{% url 'user-detail-overview' author.scout_display_name %}"
     class="text-blue-900 underline">{{ author.scout_display_name }}</a>
                                     </div>
                                     <p class="mx-3">am {{ activity.created_at|date:"d.m.Y" }}</p>
