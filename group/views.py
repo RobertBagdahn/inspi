@@ -939,12 +939,9 @@ def search_results_view(request, group_slug):
 
     all_data = User.objects.exclude(id__in=group_members.values_list("user", flat=True))
     if query and len(query) > 0:
-        print('1')
         all_data = all_data.filter(username__icontains=query)
         context = {"data": all_data[:10], "count": all_data.count()}
-        print(context)
     else:
-        print('2')
         all_data = []
         context = {"data": all_data, "count": -1}
 

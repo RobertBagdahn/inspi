@@ -85,9 +85,7 @@ class InspiGroup(models.Model):
 
     @property
     def direct_join_url(self):
-        local_env = os.getenv("LOCAL", "False")
-        print(local_env)
-        if local_env == "False":
+        if True:
             base_url = "https://gruppenstunde.de"
         else:
             base_url = "http://127.0.0.1:8000"
