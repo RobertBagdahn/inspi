@@ -26,10 +26,16 @@
                 {{ group.free_to_join|yesno:"Ja,Nein" }}
             </dd>
         </div>
-        <div class=" py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
             <dt class="font-semibold text-gray-900 dark:text-white">Beitrittscode</dt>
             <dd class="sm:text-end">
                 {{ group.join_code }}
+            </dd>
+        </div>
+        <div class="py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Direkter Beitrittslink</dt>
+            <dd class="sm:text-end flex items-center">
+                {{ group.direct_join_url }}
             </dd>
         </div>
         {% if group.is_cancelled %}

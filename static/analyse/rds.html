@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Analyse der DPV Mitgliederzahlen 24 and der Teilnehmenden Zahlen von VIA24</title>
-<style>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="generator" content="quarto-1.6.40">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>Analyse der DPV Mitgliederzahlen 24 and der Teilnehmenden Zahlen von VIA24</title>
+        <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,537 +18,709 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="rds_files/libs/clipboard/clipboard.min.js"></script>
-<script src="rds_files/libs/quarto-html/quarto.js"></script>
-<script src="rds_files/libs/quarto-html/popper.min.js"></script>
-<script src="rds_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="rds_files/libs/quarto-html/anchor.min.js"></script>
-<link href="rds_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="rds_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="rds_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="rds_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="rds_files/libs/bootstrap/bootstrap-10aa609f432f1f83b4bb2470422f844b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-
-
-</head>
-
-<body>
-
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#dpv-meldezahlen" id="toc-dpv-meldezahlen" class="nav-link active" data-scroll-target="#dpv-meldezahlen">DPV Meldezahlen</a>
-  <ul class="collapse">
-  <li><a href="#liste-mit-daten" id="toc-liste-mit-daten" class="nav-link" data-scroll-target="#liste-mit-daten">Liste mit Daten</a></li>
-  <li><a href="#diagramm-mit-dpv-mitgliederzahlen" id="toc-diagramm-mit-dpv-mitgliederzahlen" class="nav-link" data-scroll-target="#diagramm-mit-dpv-mitgliederzahlen">Diagramm mit DPV-Mitgliederzahlen</a></li>
-  <li><a href="#list-mit-anzahl-der-stämme-von-allen-bünden" id="toc-list-mit-anzahl-der-stämme-von-allen-bünden" class="nav-link" data-scroll-target="#list-mit-anzahl-der-stämme-von-allen-bünden">List mit Anzahl der Stämme von allen Bünden</a></li>
-  <li><a href="#diagramm-mit-stammesdurchschnittsgröße" id="toc-diagramm-mit-stammesdurchschnittsgröße" class="nav-link" data-scroll-target="#diagramm-mit-stammesdurchschnittsgröße">Diagramm mit Stammesdurchschnittsgröße</a></li>
-  <li><a href="#diagramm-mit-geschlechterverteilung" id="toc-diagramm-mit-geschlechterverteilung" class="nav-link" data-scroll-target="#diagramm-mit-geschlechterverteilung">Diagramm mit Geschlechterverteilung</a></li>
-  </ul></li>
-  <li><a href="#via-anmelde-tool-daten" id="toc-via-anmelde-tool-daten" class="nav-link" data-scroll-target="#via-anmelde-tool-daten">VIA Anmelde-Tool Daten</a>
-  <ul class="collapse">
-  <li><a href="#liste-mit-teilnehmenden-nach-bund" id="toc-liste-mit-teilnehmenden-nach-bund" class="nav-link" data-scroll-target="#liste-mit-teilnehmenden-nach-bund">Liste mit Teilnehmenden nach Bund</a></li>
-  <li><a href="#diagramm-mit-teilnehmenden-nach-bund" id="toc-diagramm-mit-teilnehmenden-nach-bund" class="nav-link" data-scroll-target="#diagramm-mit-teilnehmenden-nach-bund">Diagramm mit Teilnehmenden nach Bund</a></li>
-  <li><a href="#aktivierung-der-teilnehmenden-je-bund" id="toc-aktivierung-der-teilnehmenden-je-bund" class="nav-link" data-scroll-target="#aktivierung-der-teilnehmenden-je-bund">Aktivierung der Teilnehmenden je Bund</a></li>
-  <li><a href="#diagramm-von-aktivierten-stämmen-je-bund" id="toc-diagramm-von-aktivierten-stämmen-je-bund" class="nav-link" data-scroll-target="#diagramm-von-aktivierten-stämmen-je-bund">Diagramm von Aktivierten Stämmen je Bund</a></li>
-  <li><a href="#durschnittalter-auf-via24-je-bund" id="toc-durschnittalter-auf-via24-je-bund" class="nav-link" data-scroll-target="#durschnittalter-auf-via24-je-bund">Durschnittalter auf VIA24 je Bund</a></li>
-  <li><a href="#verteilung-der-altersstruktur-je-stamm" id="toc-verteilung-der-altersstruktur-je-stamm" class="nav-link" data-scroll-target="#verteilung-der-altersstruktur-je-stamm">Verteilung der Altersstruktur je Stamm</a></li>
-  <li><a href="#diagramm-der-geschlechterverteilung" id="toc-diagramm-der-geschlechterverteilung" class="nav-link" data-scroll-target="#diagramm-der-geschlechterverteilung">Diagramm der Geschlechterverteilung</a></li>
-  <li><a href="#diagramm-mit-geschlechterverteilungen-je-stamm" id="toc-diagramm-mit-geschlechterverteilungen-je-stamm" class="nav-link" data-scroll-target="#diagramm-mit-geschlechterverteilungen-je-stamm">Diagramm mit Geschlechterverteilungen je Stamm</a></li>
-  <li><a href="#diagramm-mit-altersverteilung-je-stamm" id="toc-diagramm-mit-altersverteilung-je-stamm" class="nav-link" data-scroll-target="#diagramm-mit-altersverteilung-je-stamm">Diagramm mit Altersverteilung je Stamm</a></li>
-  </ul></li>
-  <li><a href="#fazit" id="toc-fazit" class="nav-link" data-scroll-target="#fazit">Fazit</a>
-  <ul class="collapse">
-  <li><a href="#dpbm" id="toc-dpbm" class="nav-link" data-scroll-target="#dpbm">DPBM</a></li>
-  <li><a href="#pbn" id="toc-pbn" class="nav-link" data-scroll-target="#pbn">PBN</a></li>
-  <li><a href="#pbw" id="toc-pbw" class="nav-link" data-scroll-target="#pbw">PBW</a></li>
-  </ul></li>
-  </ul>
-</nav>
-</div>
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Analyse der DPV Mitgliederzahlen 24 and der Teilnehmenden Zahlen von VIA24</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Die Offizellen Meldezahlen aus dem Jahr 24 wurden als aggregierte Daten verwendet. Bei VIA24 wurden aggregierte Daten aus dem Anmelde-Tool verwendet. Die Daten aus dem Anmelde-Tool können Fehlerhaft sein, wenn die Daten inkorrekt eingetragen wurden.</p>
-<section id="dpv-meldezahlen" class="level1">
-<h1>DPV Meldezahlen</h1>
-<section id="liste-mit-daten" class="level2">
-<h2 class="anchored" data-anchor-id="liste-mit-daten">Liste mit Daten</h2>
-<div id="212f312f" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Bundename</th>
-<th data-quarto-table-cell-role="th">Männliche Personen</th>
-<th data-quarto-table-cell-role="th">Weibliche Personen</th>
-<th data-quarto-table-cell-role="th">Gesamtanzahl</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>DPBM</td>
-<td>1320</td>
-<td>1080</td>
-<td>2400</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>PBN</td>
-<td>310</td>
-<td>869</td>
-<td>1179</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>PBW</td>
-<td>571</td>
-<td>473</td>
-<td>1044</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>PSD</td>
-<td>286</td>
-<td>260</td>
-<td>546</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>PB-Horizonte</td>
-<td>302</td>
-<td>199</td>
-<td>501</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>PBMV</td>
-<td>205</td>
-<td>211</td>
-<td>416</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>PB-Nordlicht</td>
-<td>50</td>
-<td>272</td>
-<td>322</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>PB Boreas</td>
-<td>158</td>
-<td>135</td>
-<td>293</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>DPBH</td>
-<td>168</td>
-<td>82</td>
-<td>250</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>Jomsburg</td>
-<td>123</td>
-<td>84</td>
-<td>207</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>BEP</td>
-<td>65</td>
-<td>46</td>
-<td>111</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>FPS</td>
-<td>39</td>
-<td>34</td>
-<td>73</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="diagramm-mit-dpv-mitgliederzahlen" class="level2">
-<h2 class="anchored" data-anchor-id="diagramm-mit-dpv-mitgliederzahlen">Diagramm mit DPV-Mitgliederzahlen</h2>
-<div id="5627fd4b" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-6-output-1.png" width="828" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Laut den gemeldeten Mitgliedern ist der DPBM dominierend.</p>
-</section>
-<section id="list-mit-anzahl-der-stämme-von-allen-bünden" class="level2">
-<h2 class="anchored" data-anchor-id="list-mit-anzahl-der-stämme-von-allen-bünden">List mit Anzahl der Stämme von allen Bünden</h2>
-<p>Achtung: hier können auch inaktive Stämme enthalten sein bzw. es kann sein, dass neue Stämme noch nicht vorhanden sind.</p>
-<div id="a8ae01f1" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="8">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Bundename</th>
-<th data-quarto-table-cell-role="th">Anzahl Stämme</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>DPBM</td>
-<td>46</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>PBW</td>
-<td>39</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>PBN</td>
-<td>19</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>DPBH</td>
-<td>13</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>PB Boreas</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>PB-Nordlicht</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>PBMV</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>PSD</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>FPS</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>PB-Horizonte</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>BEP</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>Jomsburg</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="diagramm-mit-stammesdurchschnittsgröße" class="level2">
-<h2 class="anchored" data-anchor-id="diagramm-mit-stammesdurchschnittsgröße">Diagramm mit Stammesdurchschnittsgröße</h2>
-<div id="b85ab9a2" class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-11-output-1.png" width="820" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>PBW, DPBH und FPS haben sehr kleine Stämme. Das scheint nicht gesund zu sein.</p>
-</section>
-<section id="diagramm-mit-geschlechterverteilung" class="level2">
-<h2 class="anchored" data-anchor-id="diagramm-mit-geschlechterverteilung">Diagramm mit Geschlechterverteilung</h2>
-<p>Ein Faktor von 0 bedeutet 100% weiblich und 1 bedeutet 100% männlich. 0,5 ist damit eine parität.</p>
-<div id="c91a09e0" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-12-output-1.png" width="816" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>PBN und PBNL haben einen starkes weibliches Übergewicht, während der DPBH viele männliche Personen hat.</p>
-</section>
-</section>
-<section id="via-anmelde-tool-daten" class="level1">
-<h1>VIA Anmelde-Tool Daten</h1>
-<section id="liste-mit-teilnehmenden-nach-bund" class="level2">
-<h2 class="anchored" data-anchor-id="liste-mit-teilnehmenden-nach-bund">Liste mit Teilnehmenden nach Bund</h2>
-<div id="835d0df6" class="cell" data-execution_count="17">
-<div class="cell-output cell-output-stdout">
-<pre><code>Gesamtteilnahmezahl an VIA 3122</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Bunesname</th>
-<th data-quarto-table-cell-role="th">Teilnehmer VIA24</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>DPBM</td>
-<td>952</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>PBN</td>
-<td>910</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>PBW</td>
-<td>204</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>PSD</td>
-<td>140</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>PB-Horizonte</td>
-<td>98</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>PBMV</td>
-<td>93</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>PB-Nordlicht</td>
-<td>201</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>PB Boreas</td>
-<td>215</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>DPBH</td>
-<td>129</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>Jomsburg</td>
-<td>29</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>BEP</td>
-<td>33</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>FPS</td>
-<td>24</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="diagramm-mit-teilnehmenden-nach-bund" class="level2">
-<h2 class="anchored" data-anchor-id="diagramm-mit-teilnehmenden-nach-bund">Diagramm mit Teilnehmenden nach Bund</h2>
-<div id="83de9ae7" class="cell" data-execution_count="18">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-19-output-1.png" width="820" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>DPBM und PBN haben deutlich mehr als die Hälfte aller Teilnehmenden gestellt.</p>
-</section>
-<section id="aktivierung-der-teilnehmenden-je-bund" class="level2">
-<h2 class="anchored" data-anchor-id="aktivierung-der-teilnehmenden-je-bund">Aktivierung der Teilnehmenden je Bund</h2>
-<div id="47044ac5" class="cell" data-execution_count="20">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-21-output-1.png" width="816" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Wenn alle Bünde ihre Teilnehmenden ähnlichstarkt wie PBN, PBNL und Boreas hätten aktivieren können, wären wir auf dem Lager über 5000 Personen gewesen.</p>
-</section>
-<section id="diagramm-von-aktivierten-stämmen-je-bund" class="level2">
-<h2 class="anchored" data-anchor-id="diagramm-von-aktivierten-stämmen-je-bund">Diagramm von Aktivierten Stämmen je Bund</h2>
-<div id="fa440265" class="cell" data-execution_count="22">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-23-output-1.png" width="812" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Ingesamt waren viele Stämme des DPVs auf dem Lager Aktiv. Der PBW, der PBMV und Jomsburg hatten allerdings mehr Stämme nicht auf dem Lager als da waren. Da scheit es ein struktuelles Problem zu geben.</p>
-</section>
-<section id="durschnittalter-auf-via24-je-bund" class="level2">
-<h2 class="anchored" data-anchor-id="durschnittalter-auf-via24-je-bund">Durschnittalter auf VIA24 je Bund</h2>
-<div id="b1be719d" class="cell" data-execution_count="23">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-24-output-1.png" width="812" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="verteilung-der-altersstruktur-je-stamm" class="level2">
-<h2 class="anchored" data-anchor-id="verteilung-der-altersstruktur-je-stamm">Verteilung der Altersstruktur je Stamm</h2>
-<div id="726f2259" class="cell" data-execution_count="25">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-26-output-1.png" width="887" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Das Durschschnittsalter ist in allen Bünden sehr ähnlich. Die Verteilung der Alter allderings nicht. Der Median auf dem Lager war 15 Jahre. Also gab es genausoviel 7-14 wie 15-80 jährige. Es fällt auf, dass der PBW und Boreas recht alt sind im Vergleich zu den anderen Bünden.</p>
-</section>
-<section id="diagramm-der-geschlechterverteilung" class="level2">
-<h2 class="anchored" data-anchor-id="diagramm-der-geschlechterverteilung">Diagramm der Geschlechterverteilung</h2>
-<div id="24ff84c6" class="cell" data-execution_count="27">
-<div class="cell-output cell-output-stdout">
-<pre><code>Das durschnittliche Geschlechterverhältnis bei VIA ist 0.44</code></pre>
-</div>
-</div>
-<div id="f079e921" class="cell" data-execution_count="28">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-29-output-1.png" width="816" height="586" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Der PBN und der PBNL fallen klar aus dem Muster. Diese beiden Stämme scheinen einen große weibliche dominanz zu haben. Diese beiden Stämme ziehen auch den Durschnitt in Richtung weibliche Dominanz. Die Werte unterscheiden sich nicht stark von der Mitgliedermeldungen.</p>
-</section>
-<section id="diagramm-mit-geschlechterverteilungen-je-stamm" class="level2">
-<h2 class="anchored" data-anchor-id="diagramm-mit-geschlechterverteilungen-je-stamm">Diagramm mit Geschlechterverteilungen je Stamm</h2>
-<div id="ba75f753" class="cell" data-execution_count="30">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-31-output-1.png" width="667" height="439" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Geschmichte Stämme scheinen eher Männer dominiert zu sein, während die reinen Frauenstämme oft sehr groß sind.</p>
-</section>
-<section id="diagramm-mit-altersverteilung-je-stamm" class="level2">
-<h2 class="anchored" data-anchor-id="diagramm-mit-altersverteilung-je-stamm">Diagramm mit Altersverteilung je Stamm</h2>
-<div id="f32c9814" class="cell" data-execution_count="31">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="rds_files/figure-html/cell-32-output-1.png" width="663" height="439" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Es scheint so, dass nicht alle Stämme die Wölflinge mitgenommen haben. Sonst lässt es sich nur schwer erklären warum beim Mosaik z.B. bei 17-18 ein Häufung zu erkennen ist.</p>
-</section>
-</section>
-<section id="fazit" class="level1">
-<h1>Fazit</h1>
-<section id="dpbm" class="level2">
-<h2 class="anchored" data-anchor-id="dpbm">DPBM</h2>
-<p>Mit Abstand größter Bund nach gemeldeten Zahlen. Auch die meisten Stämme. Durchschnittliche Aktivierungsquote.</p>
-</section>
-<section id="pbn" class="level2">
-<h2 class="anchored" data-anchor-id="pbn">PBN</h2>
-<p>Wachener Bund, starkes übergewicht von Mädchen. Herausragende Aktivierungsquote. Sehr Junges durchschnittsalter.</p>
-</section>
-<section id="pbw" class="level2">
-<h2 class="anchored" data-anchor-id="pbw">PBW</h2>
-<p>…</p>
-</section>
-</section>
-
-</main>
-<!-- /main column -->
-<script id="quarto-html-after-body" type="application/javascript">
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+                integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+                crossorigin="anonymous"></script><script src="rds_files/libs/clipboard/clipboard.min.js"></script>
+        <script src="rds_files/libs/quarto-html/quarto.js"></script>
+        <script src="rds_files/libs/quarto-html/popper.min.js"></script>
+        <script src="rds_files/libs/quarto-html/tippy.umd.min.js"></script>
+        <script src="rds_files/libs/quarto-html/anchor.min.js"></script>
+        <link href="rds_files/libs/quarto-html/tippy.css" rel="stylesheet">
+        <link href="rds_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css"
+              rel="stylesheet"
+              id="quarto-text-highlighting-styles">
+        <script src="rds_files/libs/bootstrap/bootstrap.min.js"></script>
+        <link href="rds_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+        <link href="rds_files/libs/bootstrap/bootstrap-10aa609f432f1f83b4bb2470422f844b.min.css"
+              rel="stylesheet"
+              append-hash="true"
+              id="quarto-bootstrap"
+              data-mode="light">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"
+                integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg=="
+                crossorigin="anonymous"></script>
+        <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+    </head>
+    <body>
+        <div id="quarto-content"
+             class="page-columns page-rows-contents page-layout-article">
+            <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+                <nav id="TOC" role="doc-toc" class="toc-active">
+                    <h2 id="toc-title">Table of contents</h2>
+                    <ul class="collapse">
+                        <li>
+                            <a href="#dpv-meldezahlen"
+                               id="toc-dpv-meldezahlen"
+                               class="nav-link active"
+                               data-scroll-target="#dpv-meldezahlen">DPV Meldezahlen</a>
+                            <ul class="collapse">
+                                <li>
+                                    <a href="#liste-mit-daten"
+                                       id="toc-liste-mit-daten"
+                                       class="nav-link"
+                                       data-scroll-target="#liste-mit-daten">Liste mit Daten</a>
+                                </li>
+                                <li>
+                                    <a href="#diagramm-mit-dpv-mitgliederzahlen"
+                                       id="toc-diagramm-mit-dpv-mitgliederzahlen"
+                                       class="nav-link"
+                                       data-scroll-target="#diagramm-mit-dpv-mitgliederzahlen">Diagramm mit DPV-Mitgliederzahlen</a>
+                                </li>
+                                <li>
+                                    <a href="#list-mit-anzahl-der-stämme-von-allen-bünden"
+                                       id="toc-list-mit-anzahl-der-stämme-von-allen-bünden"
+                                       class="nav-link"
+                                       data-scroll-target="#list-mit-anzahl-der-stämme-von-allen-bünden">List mit Anzahl der Stämme von allen Bünden</a>
+                                </li>
+                                <li>
+                                    <a href="#diagramm-mit-stammesdurchschnittsgröße"
+                                       id="toc-diagramm-mit-stammesdurchschnittsgröße"
+                                       class="nav-link"
+                                       data-scroll-target="#diagramm-mit-stammesdurchschnittsgröße">Diagramm mit Stammesdurchschnittsgröße</a>
+                                </li>
+                                <li>
+                                    <a href="#diagramm-mit-geschlechterverteilung"
+                                       id="toc-diagramm-mit-geschlechterverteilung"
+                                       class="nav-link"
+                                       data-scroll-target="#diagramm-mit-geschlechterverteilung">Diagramm mit Geschlechterverteilung</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#via-anmelde-tool-daten"
+                               id="toc-via-anmelde-tool-daten"
+                               class="nav-link"
+                               data-scroll-target="#via-anmelde-tool-daten">VIA Anmelde-Tool Daten</a>
+                            <ul class="collapse">
+                                <li>
+                                    <a href="#liste-mit-teilnehmenden-nach-bund"
+                                       id="toc-liste-mit-teilnehmenden-nach-bund"
+                                       class="nav-link"
+                                       data-scroll-target="#liste-mit-teilnehmenden-nach-bund">Liste mit Teilnehmenden nach Bund</a>
+                                </li>
+                                <li>
+                                    <a href="#diagramm-mit-teilnehmenden-nach-bund"
+                                       id="toc-diagramm-mit-teilnehmenden-nach-bund"
+                                       class="nav-link"
+                                       data-scroll-target="#diagramm-mit-teilnehmenden-nach-bund">Diagramm mit Teilnehmenden nach Bund</a>
+                                </li>
+                                <li>
+                                    <a href="#aktivierung-der-teilnehmenden-je-bund"
+                                       id="toc-aktivierung-der-teilnehmenden-je-bund"
+                                       class="nav-link"
+                                       data-scroll-target="#aktivierung-der-teilnehmenden-je-bund">Aktivierung der Teilnehmenden je Bund</a>
+                                </li>
+                                <li>
+                                    <a href="#diagramm-von-aktivierten-stämmen-je-bund"
+                                       id="toc-diagramm-von-aktivierten-stämmen-je-bund"
+                                       class="nav-link"
+                                       data-scroll-target="#diagramm-von-aktivierten-stämmen-je-bund">Diagramm von Aktivierten Stämmen je Bund</a>
+                                </li>
+                                <li>
+                                    <a href="#durschnittalter-auf-via24-je-bund"
+                                       id="toc-durschnittalter-auf-via24-je-bund"
+                                       class="nav-link"
+                                       data-scroll-target="#durschnittalter-auf-via24-je-bund">Durschnittalter auf VIA24 je Bund</a>
+                                </li>
+                                <li>
+                                    <a href="#verteilung-der-altersstruktur-je-stamm"
+                                       id="toc-verteilung-der-altersstruktur-je-stamm"
+                                       class="nav-link"
+                                       data-scroll-target="#verteilung-der-altersstruktur-je-stamm">Verteilung der Altersstruktur je Stamm</a>
+                                </li>
+                                <li>
+                                    <a href="#diagramm-der-geschlechterverteilung"
+                                       id="toc-diagramm-der-geschlechterverteilung"
+                                       class="nav-link"
+                                       data-scroll-target="#diagramm-der-geschlechterverteilung">Diagramm der Geschlechterverteilung</a>
+                                </li>
+                                <li>
+                                    <a href="#diagramm-mit-geschlechterverteilungen-je-stamm"
+                                       id="toc-diagramm-mit-geschlechterverteilungen-je-stamm"
+                                       class="nav-link"
+                                       data-scroll-target="#diagramm-mit-geschlechterverteilungen-je-stamm">Diagramm mit Geschlechterverteilungen je Stamm</a>
+                                </li>
+                                <li>
+                                    <a href="#diagramm-mit-altersverteilung-je-stamm"
+                                       id="toc-diagramm-mit-altersverteilung-je-stamm"
+                                       class="nav-link"
+                                       data-scroll-target="#diagramm-mit-altersverteilung-je-stamm">Diagramm mit Altersverteilung je Stamm</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#fazit"
+                               id="toc-fazit"
+                               class="nav-link"
+                               data-scroll-target="#fazit">Fazit</a>
+                            <ul class="collapse">
+                                <li>
+                                    <a href="#dpbm"
+                                       id="toc-dpbm"
+                                       class="nav-link"
+                                       data-scroll-target="#dpbm">DPBM</a>
+                                </li>
+                                <li>
+                                    <a href="#pbn" id="toc-pbn" class="nav-link" data-scroll-target="#pbn">PBN</a>
+                                </li>
+                                <li>
+                                    <a href="#pbw" id="toc-pbw" class="nav-link" data-scroll-target="#pbw">PBW</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <main class="content" id="quarto-document-content">
+                <header id="title-block-header" class="quarto-title-block default">
+                    <div class="quarto-title">
+                        <h1 class="title">Analyse der DPV Mitgliederzahlen 24 and der Teilnehmenden Zahlen von VIA24</h1>
+                    </div>
+                    <div class="quarto-title-meta"></div>
+                </header>
+                <p>
+                    Die Offizellen Meldezahlen aus dem Jahr 24 wurden als aggregierte Daten verwendet. Bei VIA24 wurden aggregierte Daten aus dem Anmelde-Tool verwendet. Die Daten aus dem Anmelde-Tool können Fehlerhaft sein, wenn die Daten inkorrekt eingetragen wurden.
+                </p>
+                <section id="dpv-meldezahlen" class="level1">
+                    <h1>DPV Meldezahlen</h1>
+                    <section id="liste-mit-daten" class="level2">
+                        <h2 class="anchored" data-anchor-id="liste-mit-daten">Liste mit Daten</h2>
+                        <div id="212f312f" class="cell" data-execution_count="4">
+                            <div class="cell-output cell-output-display" data-execution_count="4">
+                                <div>
+                                    <table class="dataframe caption-top table table-sm table-striped small"
+                                           data-quarto-postprocess="true"
+                                           data-border="1">
+                                        <thead>
+                                            <tr class="header">
+                                                <th data-quarto-table-cell-role="th"></th>
+                                                <th data-quarto-table-cell-role="th">Bundename</th>
+                                                <th data-quarto-table-cell-role="th">Männliche Personen</th>
+                                                <th data-quarto-table-cell-role="th">Weibliche Personen</th>
+                                                <th data-quarto-table-cell-role="th">Gesamtanzahl</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">0</td>
+                                                <td>DPBM</td>
+                                                <td>1320</td>
+                                                <td>1080</td>
+                                                <td>2400</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">1</td>
+                                                <td>PBN</td>
+                                                <td>310</td>
+                                                <td>869</td>
+                                                <td>1179</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">2</td>
+                                                <td>PBW</td>
+                                                <td>571</td>
+                                                <td>473</td>
+                                                <td>1044</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">3</td>
+                                                <td>PSD</td>
+                                                <td>286</td>
+                                                <td>260</td>
+                                                <td>546</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">4</td>
+                                                <td>PB-Horizonte</td>
+                                                <td>302</td>
+                                                <td>199</td>
+                                                <td>501</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">5</td>
+                                                <td>PBMV</td>
+                                                <td>205</td>
+                                                <td>211</td>
+                                                <td>416</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">6</td>
+                                                <td>PB-Nordlicht</td>
+                                                <td>50</td>
+                                                <td>272</td>
+                                                <td>322</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">7</td>
+                                                <td>PB Boreas</td>
+                                                <td>158</td>
+                                                <td>135</td>
+                                                <td>293</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">8</td>
+                                                <td>DPBH</td>
+                                                <td>168</td>
+                                                <td>82</td>
+                                                <td>250</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">9</td>
+                                                <td>Jomsburg</td>
+                                                <td>123</td>
+                                                <td>84</td>
+                                                <td>207</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">10</td>
+                                                <td>BEP</td>
+                                                <td>65</td>
+                                                <td>46</td>
+                                                <td>111</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">11</td>
+                                                <td>FPS</td>
+                                                <td>39</td>
+                                                <td>34</td>
+                                                <td>73</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="diagramm-mit-dpv-mitgliederzahlen" class="level2">
+                        <h2 class="anchored" data-anchor-id="diagramm-mit-dpv-mitgliederzahlen">Diagramm mit DPV-Mitgliederzahlen</h2>
+                        <div id="5627fd4b" class="cell" data-execution_count="5">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-6-output-1.png"
+                                                 width="828"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Laut den gemeldeten Mitgliedern ist der DPBM dominierend.</p>
+                    </section>
+                    <section id="list-mit-anzahl-der-stämme-von-allen-bünden" class="level2">
+                        <h2 class="anchored"
+                            data-anchor-id="list-mit-anzahl-der-stämme-von-allen-bünden">
+                            List mit Anzahl der Stämme von allen Bünden
+                        </h2>
+                        <p>
+                            Achtung: hier können auch inaktive Stämme enthalten sein bzw. es kann sein, dass neue Stämme noch nicht vorhanden sind.
+                        </p>
+                        <div id="a8ae01f1" class="cell" data-execution_count="8">
+                            <div class="cell-output cell-output-display" data-execution_count="8">
+                                <div>
+                                    <table class="dataframe caption-top table table-sm table-striped small"
+                                           data-quarto-postprocess="true"
+                                           data-border="1">
+                                        <thead>
+                                            <tr class="header">
+                                                <th data-quarto-table-cell-role="th"></th>
+                                                <th data-quarto-table-cell-role="th">Bundename</th>
+                                                <th data-quarto-table-cell-role="th">Anzahl Stämme</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">0</td>
+                                                <td>DPBM</td>
+                                                <td>46</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">1</td>
+                                                <td>PBW</td>
+                                                <td>39</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">2</td>
+                                                <td>PBN</td>
+                                                <td>19</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">3</td>
+                                                <td>DPBH</td>
+                                                <td>13</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">4</td>
+                                                <td>PB Boreas</td>
+                                                <td>10</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">5</td>
+                                                <td>PB-Nordlicht</td>
+                                                <td>7</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">6</td>
+                                                <td>PBMV</td>
+                                                <td>6</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">7</td>
+                                                <td>PSD</td>
+                                                <td>6</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">8</td>
+                                                <td>FPS</td>
+                                                <td>4</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">9</td>
+                                                <td>PB-Horizonte</td>
+                                                <td>4</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">10</td>
+                                                <td>BEP</td>
+                                                <td>3</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">11</td>
+                                                <td>Jomsburg</td>
+                                                <td>3</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="diagramm-mit-stammesdurchschnittsgröße" class="level2">
+                        <h2 class="anchored"
+                            data-anchor-id="diagramm-mit-stammesdurchschnittsgröße">
+                            Diagramm mit Stammesdurchschnittsgröße
+                        </h2>
+                        <div id="b85ab9a2" class="cell" data-execution_count="10">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-11-output-1.png"
+                                                 width="820"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>PBW, DPBH und FPS haben sehr kleine Stämme. Das scheint nicht gesund zu sein.</p>
+                    </section>
+                    <section id="diagramm-mit-geschlechterverteilung" class="level2">
+                        <h2 class="anchored" data-anchor-id="diagramm-mit-geschlechterverteilung">Diagramm mit Geschlechterverteilung</h2>
+                        <p>Ein Faktor von 0 bedeutet 100% weiblich und 1 bedeutet 100% männlich. 0,5 ist damit eine parität.</p>
+                        <div id="c91a09e0" class="cell" data-execution_count="11">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-12-output-1.png"
+                                                 width="816"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>PBN und PBNL haben einen starkes weibliches Übergewicht, während der DPBH viele männliche Personen hat.</p>
+                    </section>
+                </section>
+                <section id="via-anmelde-tool-daten" class="level1">
+                    <h1>VIA Anmelde-Tool Daten</h1>
+                    <section id="liste-mit-teilnehmenden-nach-bund" class="level2">
+                        <h2 class="anchored" data-anchor-id="liste-mit-teilnehmenden-nach-bund">Liste mit Teilnehmenden nach Bund</h2>
+                        <div id="835d0df6" class="cell" data-execution_count="17">
+                            <div class="cell-output cell-output-stdout">
+                                <pre><code>Gesamtteilnahmezahl an VIA 3122</code></pre>
+                            </div>
+                            <div class="cell-output cell-output-display" data-execution_count="17">
+                                <div>
+                                    <table class="dataframe caption-top table table-sm table-striped small"
+                                           data-quarto-postprocess="true"
+                                           data-border="1">
+                                        <thead>
+                                            <tr class="header">
+                                                <th data-quarto-table-cell-role="th"></th>
+                                                <th data-quarto-table-cell-role="th">Bunesname</th>
+                                                <th data-quarto-table-cell-role="th">Teilnehmer VIA24</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">0</td>
+                                                <td>DPBM</td>
+                                                <td>952</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">1</td>
+                                                <td>PBN</td>
+                                                <td>910</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">2</td>
+                                                <td>PBW</td>
+                                                <td>204</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">3</td>
+                                                <td>PSD</td>
+                                                <td>140</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">4</td>
+                                                <td>PB-Horizonte</td>
+                                                <td>98</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">5</td>
+                                                <td>PBMV</td>
+                                                <td>93</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">6</td>
+                                                <td>PB-Nordlicht</td>
+                                                <td>201</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">7</td>
+                                                <td>PB Boreas</td>
+                                                <td>215</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">8</td>
+                                                <td>DPBH</td>
+                                                <td>129</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">9</td>
+                                                <td>Jomsburg</td>
+                                                <td>29</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td data-quarto-table-cell-role="th">10</td>
+                                                <td>BEP</td>
+                                                <td>33</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td data-quarto-table-cell-role="th">11</td>
+                                                <td>FPS</td>
+                                                <td>24</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="diagramm-mit-teilnehmenden-nach-bund" class="level2">
+                        <h2 class="anchored"
+                            data-anchor-id="diagramm-mit-teilnehmenden-nach-bund">
+                            Diagramm mit Teilnehmenden nach Bund
+                        </h2>
+                        <div id="83de9ae7" class="cell" data-execution_count="18">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-19-output-1.png"
+                                                 width="820"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>DPBM und PBN haben deutlich mehr als die Hälfte aller Teilnehmenden gestellt.</p>
+                    </section>
+                    <section id="aktivierung-der-teilnehmenden-je-bund" class="level2">
+                        <h2 class="anchored"
+                            data-anchor-id="aktivierung-der-teilnehmenden-je-bund">
+                            Aktivierung der Teilnehmenden je Bund
+                        </h2>
+                        <div id="47044ac5" class="cell" data-execution_count="20">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-21-output-1.png"
+                                                 width="816"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Wenn alle Bünde ihre Teilnehmenden ähnlichstarkt wie PBN, PBNL und Boreas hätten aktivieren können, wären wir auf dem Lager über 5000 Personen gewesen.
+                        </p>
+                    </section>
+                    <section id="diagramm-von-aktivierten-stämmen-je-bund" class="level2">
+                        <h2 class="anchored"
+                            data-anchor-id="diagramm-von-aktivierten-stämmen-je-bund">
+                            Diagramm von Aktivierten Stämmen je Bund
+                        </h2>
+                        <div id="fa440265" class="cell" data-execution_count="22">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-23-output-1.png"
+                                                 width="812"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Ingesamt waren viele Stämme des DPVs auf dem Lager Aktiv. Der PBW, der PBMV und Jomsburg hatten allerdings mehr Stämme nicht auf dem Lager als da waren. Da scheit es ein struktuelles Problem zu geben.
+                        </p>
+                    </section>
+                    <section id="durschnittalter-auf-via24-je-bund" class="level2">
+                        <h2 class="anchored" data-anchor-id="durschnittalter-auf-via24-je-bund">Durschnittalter auf VIA24 je Bund</h2>
+                        <div id="b1be719d" class="cell" data-execution_count="23">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-24-output-1.png"
+                                                 width="812"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="verteilung-der-altersstruktur-je-stamm" class="level2">
+                        <h2 class="anchored"
+                            data-anchor-id="verteilung-der-altersstruktur-je-stamm">
+                            Verteilung der Altersstruktur je Stamm
+                        </h2>
+                        <div id="726f2259" class="cell" data-execution_count="25">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-26-output-1.png"
+                                                 width="887"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Das Durschschnittsalter ist in allen Bünden sehr ähnlich. Die Verteilung der Alter allderings nicht. Der Median auf dem Lager war 15 Jahre. Also gab es genausoviel 7-14 wie 15-80 jährige. Es fällt auf, dass der PBW und Boreas recht alt sind im Vergleich zu den anderen Bünden.
+                        </p>
+                    </section>
+                    <section id="diagramm-der-geschlechterverteilung" class="level2">
+                        <h2 class="anchored" data-anchor-id="diagramm-der-geschlechterverteilung">Diagramm der Geschlechterverteilung</h2>
+                        <div id="24ff84c6" class="cell" data-execution_count="27">
+                            <div class="cell-output cell-output-stdout">
+                                <pre><code>Das durschnittliche Geschlechterverhältnis bei VIA ist 0.44</code></pre>
+                            </div>
+                        </div>
+                        <div id="f079e921" class="cell" data-execution_count="28">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-29-output-1.png"
+                                                 width="816"
+                                                 height="586"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Der PBN und der PBNL fallen klar aus dem Muster. Diese beiden Stämme scheinen einen große weibliche dominanz zu haben. Diese beiden Stämme ziehen auch den Durschnitt in Richtung weibliche Dominanz. Die Werte unterscheiden sich nicht stark von der Mitgliedermeldungen.
+                        </p>
+                    </section>
+                    <section id="diagramm-mit-geschlechterverteilungen-je-stamm" class="level2">
+                        <h2 class="anchored"
+                            data-anchor-id="diagramm-mit-geschlechterverteilungen-je-stamm">
+                            Diagramm mit Geschlechterverteilungen je Stamm
+                        </h2>
+                        <div id="ba75f753" class="cell" data-execution_count="30">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-31-output-1.png"
+                                                 width="667"
+                                                 height="439"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Geschmichte Stämme scheinen eher Männer dominiert zu sein, während die reinen Frauenstämme oft sehr groß sind.</p>
+                    </section>
+                    <section id="diagramm-mit-altersverteilung-je-stamm" class="level2">
+                        <h2 class="anchored"
+                            data-anchor-id="diagramm-mit-altersverteilung-je-stamm">
+                            Diagramm mit Altersverteilung je Stamm
+                        </h2>
+                        <div id="f32c9814" class="cell" data-execution_count="31">
+                            <div class="cell-output cell-output-display">
+                                <div>
+                                    <figure class="figure">
+                                        <p>
+                                            <img src="rds_files/figure-html/cell-32-output-1.png"
+                                                 width="663"
+                                                 height="439"
+                                                 class="figure-img">
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Es scheint so, dass nicht alle Stämme die Wölflinge mitgenommen haben. Sonst lässt es sich nur schwer erklären warum beim Mosaik z.B. bei 17-18 ein Häufung zu erkennen ist.
+                        </p>
+                    </section>
+                </section>
+                <section id="fazit" class="level1">
+                    <h1>Fazit</h1>
+                    <section id="dpbm" class="level2">
+                        <h2 class="anchored" data-anchor-id="dpbm">DPBM</h2>
+                        <p>Mit Abstand größter Bund nach gemeldeten Zahlen. Auch die meisten Stämme. Durchschnittliche Aktivierungsquote.</p>
+                    </section>
+                    <section id="pbn" class="level2">
+                        <h2 class="anchored" data-anchor-id="pbn">PBN</h2>
+                        <p>Wachener Bund, starkes übergewicht von Mädchen. Herausragende Aktivierungsquote. Sehr Junges durchschnittsalter.</p>
+                    </section>
+                    <section id="pbw" class="level2">
+                        <h2 class="anchored" data-anchor-id="pbw">PBW</h2>
+                        <p>…</p>
+                    </section>
+                </section>
+            </main>
+            <!-- /main column -->
+            <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -966,10 +1136,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-</div> <!-- /content -->
-
-
-
-
-</body></html>
+            </script>
+        </div>
+        <!-- /content -->
+    </body>
+</html>
