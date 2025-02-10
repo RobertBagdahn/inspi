@@ -46,6 +46,10 @@ the file need to look like the example.env file in that folder
 `export USE_CLOUD_SQL_AUTH_PROXY=true`
 `./cloud-sql-proxy inspi-441320:europe-west3:inspi-prod`
 
+# migrate remote database (new terminal)
+`export USE_CLOUD_SQL_AUTH_PROXY=true`
+`poetry run python manage.py migrate`
+
 # deploy
 `gcloud app deploy`
 
