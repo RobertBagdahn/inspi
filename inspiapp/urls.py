@@ -25,7 +25,6 @@ from django.urls import re_path
 from django.contrib.sitemaps.views import sitemap
 from activity.sitemaps import ActivitySitemap
 
-
 from .views import index, search, autocompleteModel
 
 sitemaps = {
