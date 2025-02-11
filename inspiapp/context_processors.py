@@ -18,7 +18,7 @@ def header_app(request) -> dict:
             "display_name": "Alle DPV Tools",
             "main_url": f"{base_url}/apps",
             "icon_name": "brain",
-            "module_name": "",
+            "module_name": "apps",
             "description": "Hier findest du viele Tools für Pfadfinder.",
             "inspi_img": "inspi_science.webp",
             "domain": "https://gruppenstunde.de/apps",
