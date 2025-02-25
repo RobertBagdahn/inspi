@@ -1,0 +1,138 @@
+{% extends "_base.html" %}
+{% load main_extras %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+    <script>
+        function autoResize(textarea) {
+            textarea.style.height = "auto";
+            textarea.style.height = (textarea.scrollHeight) + "px";
+        }
+    </script>
+    <style>
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip-box {
+            display: none;
+            position: absolute;
+            background: black;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            width: 150px;
+            text-align: center;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .tooltip-container:hover .tooltip-box {
+            display: block;
+        }
+        </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+    <main class="">
+        <section class="bg-white">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+                <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+                    <h2 class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900">Veranstaltung erstellen</h2>
+                    <p class="font-light text-gray-500 sm:text-xl my-3">
+                        Hier kannst du eine neue Veranstaltung erstellen.
+                    </p>
+                    <form method="post" style="text-align: left">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <!--{ % if event.current_participants < event.max_participants %}-->
+                        {% if 1 < 2 %}
+                            <!--über Models verkürzen-->
+                            <p>&nbsp;</p>
+                            <hr class=" h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                            <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Name:&nbsp;*</div>
+                            <label for="id_name"></label><input type="text" id="id_name" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier den Namen der Veranstaltung ein..." value="" name="name"><p>&nbsp;</p>
+                            <div class="inline-flex">
+                                <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3"><div class="tooltip-container tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Slug: *<div class="tooltip-box tracking-tight font-medium text-black-500 sm:text-lg my-3">Die Kurzbeschreibung wird später dazu verwendet, einen Link für die Veranstaltung zu erstellen</div></div></div>
+                                <!--img src="{ % static "images/favicon/pngegg.webp" %}" style="width:6%; height: 6%;" alt="" class="w-full rounded-lg"-->
+                            </div>
+                            <label for="id_slug"></label><input type="text" id="id_slug" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier eine Kurzbezeichnung ein..." value="" name="name"><p>&nbsp;</p>
+                            <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Beschreibung:&nbsp;*</div>
+                            <label for="id_description"></label><textarea oninput="autoResize(this)" id="id_description" aria-describedby="helper-text-explanation" style="resize: none; overflow: hidden; height: 100%" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier eine Beschreibung für die Veranstaltung ein..." name="firstname"></textarea><p>&nbsp;</p>
+                            <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Veranstalter:&nbsp;*</div>
+                            <label for="id_email"></label><select id="id_email" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine E-Mail-Adresse ein..." name="firstname"><p>&nbsp;</p>
+                                <option value="">Bitte wähle den veranstaltenden Bund/Verband aus...</option>
+                                <option value="dpv">Deutscher Pfadfinder*innenverband (DPV)</option>
+                            </select><p>&nbsp;</p>
+                            <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Datum:&nbsp;*</div>
+                            <table style="width: 100%;">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="tracking-tight font-medium text-black-500 sm:text-lg my-3">Von:&nbsp;</div></td>
+                                        <td><div class="tracking-tight font-medium text-black-500 sm:text-lg my-3">Bis:&nbsp;</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="id_start"></label><input style="box-sizing: border-box; width: 100%" type="date" id="id_start" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier dein Geburtsdatum ein..." value="" name="firstname"/><p>&nbsp;</p></td>
+                                        <td><label for="id_start"></label><input style="box-sizing: border-box; width: 100%" type="date" id="id_start" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier dein Geburtsdatum ein..." value="" name="firstname"/><p>&nbsp;</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>&nbsp;</p>
+                            <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Anmeldezeitraum:&nbsp;*</div>
+                            <table style="width: 100%;">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="tracking-tight font-medium text-black-500 sm:text-lg my-3">Von:&nbsp;</div></td>
+                                        <td><div class="tracking-tight font-medium text-black-500 sm:text-lg my-3">Bis:&nbsp;</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="id_start"></label><input style="box-sizing: border-box; width: 100%" type="date" id="id_start" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier dein Geburtsdatum ein..." value="" name="firstname"/><p>&nbsp;</p></td>
+                                        <td><label for="id_start"></label><input style="box-sizing: border-box; width: 100%" type="date" id="id_start" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier dein Geburtsdatum ein..." value="" name="firstname"/><p>&nbsp;</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>&nbsp;</p>
+                            <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Verantwortliche Personen:&nbsp;*</div>
+                            <label for="id_email"></label><select id="id_email" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine E-Mail-Adresse ein..." name="firstname"><p>&nbsp;</p>
+                                <option value="">Bitte wähle den veranstaltenden Bund/Verband aus...</option>
+                                <option value="dpv">Deutscher Pfadfinder*innenverband (DPV)</option>
+                            </select><p>&nbsp;</p>
+                            <label for="users"></label>
+                            <input list="user-list" name="users" id="users" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib einen Namen ein...">
+
+                            <datalist id="user-list">
+                                {% for person in user_list %}
+                                <option value="{{ person.username }}">{{ person.username }}</option>
+                                {% endfor %}
+                                <option value="1">
+                                <option value="2">
+                                <option value="3">
+                                <option value="4">
+                                <option value="5">
+                                <option value="6">
+                                <option value="7">
+                            </datalist><p>&nbsp;</p>
+                            <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Optionen:</div>
+                            <div style="width:12px" class="font-light text-black-500 sm:text-xl my-3">
+                                <div class="flex items-center gap-2">
+                                    <input type="checkbox" id="id_veggie" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine E-Mail-Adresse ein..." value="" name="firstname"><nobr>Veranstaltung öffentlich anzeigen</nobr><p>&nbsp;</p>
+                                </div>
+                            </div>
+                            <hr class=" h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                            <p>&nbsp;</p>
+                            <form type="POST">
+                                    <p class="font-bold tracking-normal py-3 mx-6 text-center text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><button>Veranstaltung erstellen</button></p>
+                            </form>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

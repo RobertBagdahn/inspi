@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "_base.html" %}
+{% load main_extras %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>{{ event.name }}</title>
+    </head>
+    <main class="">
+        <section class="bg-white">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+                <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+                    <h2 class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900">{{ event.name }}</h2>
+                    <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_backpack.webp" %}" alt="image description">
+                    <p class="font-light text-gray-500 sm:text-xl my-3">
+                        Hier kannst du dich zur Veranstaltung anmelden.
+                    </p>
+                    <table>
+                    <div>
+                        <h2 class="text-left mb-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900">
+                                Übersicht
+                                <div class="font-light text-black-500 sm:text-xl my-3">
+                                    {{ event.description }}
+                                </div>
+                                <div style="line-height: 0.8; margin: 0; padding: 0;">
+                                    <div style="display: inline-flex; align-items: center;">
+                                        <div class="font-extrabold text-black-500 sm:text-lg">Datum:&nbsp</div>
+                                        <div class="font-light text-gray-500 sm:text-lg my-3">
+                                            {% if event.start_date.day < 10 %}
+                                            0{{ event.start_date.day }}. bis
+                                            {% else %}
+                                            {{ event.start_date.day }}. bis
+                                            {% endif %}
+
+                                            {% if event.end_date.day < 10 %}
+                                            0{{ event.end_date.day }}.
+                                            {% else %}
+                                            {{ event.end_date.day }}.
+                                            {% endif %}
+
+                                            {% if event.start_date.month < 10 %}
+                                            0{{ event.start_date.month }}.
+                                            {% else %}
+                                            {{ event.start_date.month }}.
+                                            {% endif %}
+
+                                            {{ event.start_date.year }}
+
+                                        </div>
+                                    </div><br>
+                                    <div style="display: inline-flex; align-items: center; line-height: 1;">
+                                        <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Lagerbeitrag:&nbsp</div>
+                                        <div class="font-light text-gray-500 sm:text-lg my-3">
+                                            {{ event.responsible_persons.count }} €
+                                        </div>
+                                    </div><br>
+                                    <div style="display: inline-flex; align-items: center;">
+                                        <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Treffpunkt:&nbsp</div>
+                                        <div class="font-light text-gray-500 sm:text-lg my-3">
+                                            {{ event.start_date.time }} Uhr / {{ event.slug }}
+                                        </div>
+                                    </div><br>
+                                    <p>&nbsp;</p>
+                                    <hr class=" h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                                    <p>&nbsp;</p>
+                                        <!-- Anmeldeformular -->
+                                        <h2 class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900"> Anmeldung </h2>
+                                            {% if now >= event.registration_start %}
+                                            {% else %}
+                                                <div class="font-bold py-3 px-4 my-2 mx-2 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">Die Anmeldung für diese Veranstaltung hat leider noch nicht begonnen! <br> Die Anmeldung öffnet am {{ event.registration_start.date }} </div>
+                                            {% endif %}
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                {{ form.as_p }}
+                                                <!--{ % if event.current_participants < event.max_participants %}-->
+                                                {% if 1 < 2 %}
+                                                    <!--über Models verkürzen-->
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Vorname:&nbsp;*</div>
+                                                    <input type="text" id="id_firstname" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deinen Vornamen ein..." value="" name="firstname"><p>&nbsp;</p>
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Nachname:&nbsp;*</div>
+                                                    <input type="text" id="id_surname" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deinen Nachnamen ein..." value="" name="firstname"><p>&nbsp;</p>
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Bund:&nbsp;*</div>
+                                                    <select id="id_email" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" name="firstname"><p>&nbsp;</p>
+                                                        <option value="">Bitte wähle deinen Bund aus...</option>
+                                                        <option value="bep">Bund Europäischer Pfadfinder</option>
+                                                        <option value="dpbh">Deutscher Pfadfinderbund Hamburg</option>
+                                                        <option value="pbm">Pfadfinder*innenbund Mosaik</option>
+                                                        <option value="fp">Freie Pfadfinderschaft</option>
+                                                        <option value="pbm">Pfadfinder*innenbund Mosaik</option>
+                                                        <option value="pbb">Pfadfinderbund Boreas</option>
+                                                        <option value="pbh">Pfadfinderbund Horizonte</option>
+                                                        <option value="pbmv">Pfadfinderbund Mecklenburg-Vorpommern</option>
+                                                        <option value="pbm">Jomsburg freier Pfadfinderbund</option>
+                                                        <option value="pbn">Pfadfinder*innenbund Nord</option>
+                                                        <option value="pbw">Pfadfinderbund Weltenbummler</option>
+                                                        <option value="psd">Pfadfinderschaft Süddeutschland</option>
+                                                    </select><p>&nbsp;</p>
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Stamm:&nbsp;*</div>
+                                                    <input type="text" id="id_email" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier den Namen deines Stammes ein..." value="" name="firstname"><p>&nbsp;</p>
+
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Geburtsdatum:&nbsp;*</div>
+                                                    <input type="date" id="id_birthdate" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier dein Geburtsdatum ein..." value="" name="firstname"><p>&nbsp;</p>
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">E-Mail-Adresse:&nbsp;*</div>
+                                                    <input type="text" id="id_email" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine E-Mail-Adresse ein..." value="" name="firstname"><p>&nbsp;</p>
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Telefonnummer:&nbsp;*</div>
+                                                    <input type="tel" id="id_tel" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine Telefonnummer ein..." value="" name="firstname"><p>&nbsp;</p>
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Ernährung:&nbsp;*</div>
+                                                    <div style="width:12px" class="font-light text-black-500 sm:text-xl my-3">
+                                                        <div class="flex items-center gap-2">
+                                                            <input type="checkbox" id="id_veggie" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine E-Mail-Adresse ein..." value="" name="firstname"><nobr>Vegetarisch</nobr><p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="flex items-center gap-2 mt-2">
+                                                            <input type="checkbox" id="id_vegan" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine E-Mail-Adresse ein..." value="" name="firstname"><nobr>Vegan</nobr><p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="flex items-center gap-2 mt-2">
+                                                            <input type="checkbox" id="id_allergie" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine E-Mail-Adresse ein..." value="" name="firstname"><nobr>Laktosefrei</nobr><p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="flex items-center gap-2 mt-2">
+                                                            <input type="checkbox" id="id_allergie" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine E-Mail-Adresse ein..." value="" name="firstname"><nobr>Glutenfrei</nobr><p>&nbsp;</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex items-center gap-2 mt-2">
+                                                        <div class="font-light text-black-500 sm:text-xl my-3">Sonstiges:&nbsp;</div>
+                                                        <input type="text" id="id_email" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier Sonstige Unverträglichkeiten, Allergien und Besonderheiten ein..." value="" name="firstname"><p>&nbsp;</p>
+                                                    </div>
+                                                    <div><p>&nbsp;</p>
+                                                    <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Bestätigung & Einwilligung:&nbsp;*</div>
+                                                        <div class="flex items-center gap-2 mt-2">
+                                                        <input style="width:12px" type="checkbox" id="id_tel" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-medium" placeholder="Gib hier deine Telefonnummer ein..." value="" name="firstname"><p>&nbsp;</p>
+                                                            <div class="font-light text-black-500 sm:text-xl my-3">
+                                                                Ich melde die obenstehende Person verpflichtend zu "{{ event.name }}" des Deutschen Pfadfinder*innenverband e.V. (DPV) an.
+                                                            </div>
+                                                        </div>
+                                                        <form method="post">
+                                                        {% if now >= event.registration_start %}
+                                                        <button type="submit" class="font-bold py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-red-800"><input type="submit" value="Anmeldung abschließen" /></button>
+                                                        {% else %}
+                                                        <button type="button" disabled class="font-bold py-3 px-4 my-2 mx-2 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"><input type="submit" disabled value="Die Anmeldung für diese Veranstaltung hat leider noch nicht begonnen!" /></button>
+                                                        {% endif %}
+                                                        </form>
+                                                {% else %}
+                                                    <p>Leider ist die maximale Teilnehmerzahl erreicht.</p>
+                                                {% endif %}
+                                                </div>
+                                            </form>
+                                    </div>
+                                {% comment %}
+                                    <a href="{% url 'event-main' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-red-800"> keine Anmeldung möglich!</a> {% endcomment %}
+                        </h2>
+                    </div>
+                <hr class=" h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                <p align="center">
+                    <a href="{% url 'event-main' %}">
+                        <button class="font-bold py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-lg rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Zurück zur Übersicht </button>
+                    </a>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const scrollToTopButton = document.getElementById('scrollToTop');
+
+                            // Zeigt den Button an, wenn der Benutzer scrollt
+                            window.addEventListener('scroll', () => {
+                                if (window.scrollY > 200) {
+                                    scrollToTopButton.classList.remove('hidden');
+                                } else {
+                                    scrollToTopButton.classList.add('hidden');
+                                }
+                            });
+
+                            // Scrollt zur Seite nach oben, wenn der Button angeklickt wird
+                            scrollToTopButton.addEventListener('click', () => {
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth' // Animiert das Scrollen
+                                });
+                            });
+                        });
+                    </script>
+                    <button id="scrollToTop" class="font-bold py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-lg rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Nach Oben </button>
+                </p>
+
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+</html>

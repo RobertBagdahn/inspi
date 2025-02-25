@@ -5,16 +5,226 @@
 {% endblock header %}
 {% block content %}
 <main class="">
-  <section class="bg-white">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-      <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-        <h2
-          class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900"
-        >
-          Veranstaltung
-        </h2>
-      </div>
-    </div>
-  </section>
+    <!--link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.css" rel="stylesheet"-->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: right;
+            padding: 8px;
+        }
+        th {background-color: #f2f2f2;}
+
+    .fc {
+        background-color: #ffffff; /* Grüne Hintergrundfarbe */
+        color: #595959;             /* Weiße Schrift */
+        border: none;             /* Keine Rahmen */
+        padding: 6px 12px;        /* Innenabstand */
+        transition: background-color 0.3s;
+        .fc-button {
+            background-color: #1A56DB;
+            border: none;
+        }
+        .fc-button:hover {
+            background-color: #1E429F;
+        }
+        .fc-today-button {
+            background-color: #1A56DB;
+        }
+        .fc-today-button:hover {
+            background-color: #1A56DB;
+        }
+        .fc-toolbar-title {
+            font-size: 20px;
+        }
+        .fc-event-time {
+            display: none;
+        }
+    }
+    </style>
+        <section class="bg-white">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+                <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+                    <h2 class="mb-4 text-xl lg:text-4xl tracking-tight font-extrabold text-gray-900">
+                        Veranstaltung
+                    </h2>
+                    <img class="h-40 max-w-full rounded-lg mx-auto" src="{% static "images/inspi_teacher.webp" %}" alt="image description">
+                    <p class="font-light text-gray-500 sm:text-xl my-3">
+                        Anstehende Veranstaltungen
+                    </p>
+
+                    {% comment %} <a href="{% url 'event-main' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Mehr Veranstaltungen</a> {% endcomment %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'event-main' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-lg rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Meine Veranstaltungen</a>
+                    {% endif %}
+                </div>
+                <table>
+                    <h2 class="mb-4 text-lg lg:text-4xl tracking-tight font-extrabold text-gray-900">Übersicht</h2>
+                    <p class="font-light text-gray-500 sm:text-xl my-3">
+                        Hier ist ein Überblick über die nächsten anstehenden Veranstaltungen für dich
+                    </p>
+                    <p>&nbsp;</p>
+                        <script>
+                            document.getElementById('scrollToCal').addEventListener('click', () => {
+                                const target = document.getElementById('calendar');
+                                target.addEventListener('click', () => {
+                                    target.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start',
+                                    });
+                                });
+                            });
+                        </script>
+                    <p>
+                        <div style="display: inline-flex;">
+                            <button id="scrollToCal" class="font-bold py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-lg rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Zum Kalender </button>
+                            <button id="newEvent" class="font-bold py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-lg rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><a href="/event/create">Neue Veranstaltung erstellen </a></button>
+                        </div>
+                    </p>
+                    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                    <div>
+                        <h2 class="mb-4 text-lg text-gray-500 lg:text-2xl tracking-tight font-extrabold text-gray-900">
+                            {% for i in events %}
+                                {{ forloop.counter }}.&nbsp{{ i.name }}
+                                <div class="font-light text-black-500 sm:text-xl my-3">
+                                    {{ i.description }}
+                                </div>
+                                <div style="line-height: 0.8; margin: 0; padding: 0;">
+                                    <div style="display: inline-flex; align-items: center;">
+                                        <div class="font-extrabold text-black-500 sm:text-lg">Datum:&nbsp</div>
+                                        <div class="font-light text-gray-500 sm:text-lg my-3">
+                                            {% if i.start_date.day < 10 %}
+                                            0{{ i.start_date.day }}. bis
+                                            {% else %}
+                                            {{ i.start_date.day }}. bis
+                                            {% endif %}
+
+                                            {% if i.end_date.day < 10 %}
+                                            0{{ i.end_date.day }}.
+                                            {% else %}
+                                            {{ i.end_date.day }}.
+                                            {% endif %}
+
+                                            {% if i.start_date.month < 10 %}
+                                            0{{ i.start_date.month }}.
+                                            {% else %}
+                                            {{ i.start_date.month }}.
+                                            {% endif %}
+
+                                            {{ i.start_date.year }}
+
+                                        </div>
+                                    </div><br>
+                                    <div style="display: inline-flex; align-items: center; line-height: 1;">
+                                        <div class="tracking-tight font-extrabold text-black-500 sm:text-lg">Preis:&nbsp</div>
+                                        <div class="font-light text-gray-500 sm:text-lg my-3">
+                                            {{ i.responsible_persons.count }} €
+                                        </div>
+                                    </div><br>
+                                    <div style="display: inline-flex; align-items: center;">
+                                        <div class="tracking-tight font-extrabold text-black-500 sm:text-lg my-3">Treffpunkt:&nbsp</div>
+                                        <div class="font-light text-gray-500 sm:text-lg my-3">
+                                            {{ i.start_date.time }} Uhr {% if forloop.counter == 1 %} am Wendehammer Eckental {% endif %} {% if forloop.counter == 2 %} an der Jugendburg Ludwigstein {% endif %} {% if forloop.counter == 3 %} in der Jugendherberge Chemnitz {% endif %}
+                                        </div>
+                                    </div><br>
+                                </div>
+                                {% comment %} <a href="{% url 'event-main' %}" class="py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-red-800"> keine Anmeldung möglich!</a> {% endcomment %}
+                                <div style="display: inline-flex;">
+                                <!--{ % if user.is_authenticated %}-->
+                                    <a href='/event/details/{{ i.slug }}'>
+                                    <button class="font-bold tracking-normal py-3 mx-6 text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zur Veranstaltung anmelden</button>
+                                    </a>
+                                    <!--{ % endif %}-->
+                                </div>
+                                <hr class=" h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                            {% endfor %}
+                        </h2>
+                        <div class="">
+                            {% for category in categories %}
+                            <a href="{% url 'blog-main-slug' category.slug %}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center">{{ category.title }}</a>
+                            {% endfor %}
+                        </div>
+                        <!--
+                        % if user.is_authenticated %}
+                        -->
+
+                        <a href="{% url 'event-main' %}"><p class="font-bold tracking-normal py-3 mx-6 text-center text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Mehr Veranstaltungen laden</p></a>
+                        <!--
+                        % endif %}
+                        -->
+                        <hr class=" h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                    </div>
+                <h2 id="Kalender" class="mb-4 text-lg lg:text-4xl tracking-tight font-extrabold text-gray-900">Kalender</h2>
+                <!-- p class="font-light text-gray-500 sm:text-xl my-3">Coming soon...</p -->
+                <div>
+                    <div id="calendar" class="fc fc-button fc-today-button fc-toolbar-title fc-event-time"></div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var calendarEl = document.getElementById('calendar');
+                            var calendar = new FullCalendar.Calendar(calendarEl, {
+                                initialView: 'dayGridMonth',
+                                locale: 'de',
+                                firstDay: 1,
+                                buttonText: {
+                                    today: 'Heute',
+                                    dayGridMonth: 'Monat',
+                                    timeGridWeek: 'Woche',
+                                },
+                                headerToolbar: {
+                                    left: 'prev,next today',
+                                    center: 'title',
+                                    right: 'dayGridMonth,timeGridWeek'
+                                },
+                                events: [
+                                    {% for i in events %}
+                                    {
+                                        title: '{{ i.name }}',
+                                        start: '{{ i.start_date.isoformat }}',
+                                        end: '{{ i.end_date.isoformat }}',
+                                        description: '{{ i.description }}',
+                                        url: '/event/details/{{ i.slug }}',
+                                    },
+                                    {% endfor %}
+                                ],
+                                eventClick: function(info) {
+                                    window.location.href = info.event.url;
+                                }
+                            })
+                            calendar.render();
+                        });
+                    </script>
+                </div>
+                <p>&nbsp;</p>
+                <hr class=" h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const scrollToTopButton = document.getElementById('scrollToTop');
+
+                            // Zeigt den Button an, wenn der Benutzer scrollt
+                            window.addEventListener('scroll', () => {
+                                if (window.scrollY > 200) {
+                                    scrollToTopButton.classList.remove('hidden');
+                                } else {
+                                    scrollToTopButton.classList.add('hidden');
+                                }
+                            });
+
+                            // Scrollt zur Seite nach oben, wenn der Button angeklickt wird
+                            scrollToTopButton.addEventListener('click', () => {
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth'
+                                });
+                            });
+                        });
+                    </script>
+                <p align="center"><button id="scrollToTop" class="font-bold py-3 px-4 my-2 mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-lg rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Nach Oben </button></p>
+            </table>
+        </div>
+    </section>
 </main>
 {% endblock content %}

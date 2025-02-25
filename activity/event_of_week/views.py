@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from .forms import ImageDownloadForm
 from django.template.loader import get_template
 
-from cairosvg import svg2png
+#from cairosvg import svg2png
 import io
 
 
@@ -79,7 +79,7 @@ def generate_png_from_svg(request, activity_id, color, page):
 
     png_filelike = io.BytesIO()
 
-    svg2png(bytestring=svg_code, write_to=png_filelike)
+    #svg2png(bytestring=svg_code, write_to=png_filelike)
     png_filelike.seek(0)
 
     return FileResponse(png_filelike, as_attachment=True, filename=f"heimabend_der_woche_{page}.png")

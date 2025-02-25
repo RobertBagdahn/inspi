@@ -2,9 +2,12 @@ import uuid
 
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.shortcuts import render
+from django.urls import reverse
 
 User = get_user_model()
 
+user = User.objects.get(username="admin")
 
 class Event(models.Model):
     name = models.CharField(max_length=50)
@@ -17,6 +20,10 @@ class Event(models.Model):
     last_possible_update = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     is_public = models.BooleanField(default=False)
     responsible_persons = models.ManyToManyField(User)
+
+    def get_absolute_url(self):
+        return reverse('event_detail', kwargs={'slug': self.slug})
+
     def __str__(self):
         return f"{self.name}"
 
@@ -32,3 +39,12 @@ class BookingOption(models.Model):
 
     def __str__(self):
         return self.name
+
+class EventRegistration(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    event_date = models.DateField()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.event_date}"

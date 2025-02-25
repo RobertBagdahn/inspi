@@ -66,6 +66,8 @@ DEBUG = env("DEBUG")
 if env.bool("NPM_BIN_PATH", default=False):
     NPM_BIN_PATH = f'r{env("NPM_BIN_PATH")}'
 
+if env.bool("NPM_BIN_PATH", default=False):
+    NPM_BIN_PATH = f'r{env("NPM_BIN_PATH")}'
 # [START gaestd_py_django_csrf]
 # SECURITY WARNING: It's recommended that you use this when
 # running in production. The URL will be known once you first deploy
@@ -189,12 +191,12 @@ WSGI_APPLICATION = "inspiapp.wsgi.application"
 # Database
 # [START gaestd_py_django_database_config]
 # Use django-environ to parse the connection string
-DATABASES = {"default": env.db()}
+#DATABASES = {"default": env.db()}
 
-if not env.bool("LOCAL"):
-    if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
-        DATABASES["default"]["HOST"] = "127.0.0.1"
-        DATABASES["default"]["PORT"] = 5432
+#if not env.bool("LOCAL"):
+#    if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
+#        DATABASES["default"]["HOST"] = "127.0.0.1"
+#        DATABASES["default"]["PORT"] = 5432
 
 # [END gaestd_py_django_database_config]
 
