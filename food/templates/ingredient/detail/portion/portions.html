@@ -24,12 +24,14 @@
                             {{ portion.rank }}
                         </dd>
                     </dl>
+                    {% if portion.name and portion.quantity == 1 and portion.measuring_unit.id == 1  %}
                     <dl class="ml-6">
                         <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Name der Portion</dt>
                         <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
                             {{ portion.name }}
                         </dd>
                     </dl>
+                    {% endif %}
                     <dl class="ml-6">
                         <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Menge / Einheit</dt>
                         <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">

@@ -25,12 +25,14 @@
                                 {{ price.name }}
                             </dd>
                         </dl>
-                        <dl class="mx-6">
-                            <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Portionen je Packung</dt>
-                            <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                                {{ price.quantity }} x {{ price.portion.name }}
-                            </dd>
-                        </dl>
+                        {% if price.portion.name %}
+                            <dl class="mx-6">
+                                <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Portionen je Packung</dt>
+                                <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                                    {{ price.quantity }} x {{ price.portion.name }}
+                                </dd>
+                            </dl>
+                        {% endif %}
                         <dl class="mx-6">
                             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Preis je Packung</dt>
                             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
@@ -46,7 +48,7 @@
                         <dl class="mx-6">
                             <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Preis je Kg</dt>
                             <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                                {{ price.price_per_kg }} €
+                                {{ price.price_per_kg|floatformat:2 }} €
                             </dd>
                         </dl>
                         <dl class="mx-6">

@@ -1,72 +1,34 @@
 <!-- drawer component -->
-<div id="drawer-update-{{ forloop.counter }}"
-     class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
-     tabindex="-1"
-     aria-labelledby="drawer-label">
-    <div class="flex justify-between items-center mb-4">
-        <h5 id="drawer-label"
-            class="inline-flex items-center text-base font-semibold text-gray-500 dark:text-gray-400">
-            <svg class="w-4 h-4 me-2.5"
-                 aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg"
-                 fill="currentColor"
-                 viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-            </svg>
-            {{ recipe_item.recipe.name }}
-        </h5>
-        <button type="button"
-                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                onclick="closeDrawer({{ forloop.counter }})">
-            <svg class="w-5 h-5"
-                 fill="currentColor"
-                 viewBox="0 0 20 20"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd">
-                </path>
-            </svg>
-        </button>
+<div id="drawer-update-{{ forloop.counter }}" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
+  <div class="flex justify-between items-center mb-4">
+    <h5 id="drawer-label" class="inline-flex items-center text-base font-semibold text-gray-500 dark:text-gray-400">
+      <svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+      </svg>
+      {{ recipe_item.recipe.name }}
+    </h5>
+    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="closeDrawer({{ forloop.counter }})">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  <form method="POST" action="{% url 'recipe-item-update' recipe.slug %}">
+    {% csrf_token %}
+    <input type="hidden" id="loop_count-{{ forloop.counter }}" name="forloop_counter" value="{{ forloop.counter }}" />
+    <input type="hidden" name="recipe_item_id" value="{{ recipe_item.id }}" />
+    <input type="hidden" name="ingredient" id="ingredient-{{ forloop.counter }}" value="{{ recipe_item.portion.ingredient.slug }}" />
+    <div class="mb-4">
+      <label for="portion_update" class="block mb-2 text-sm font-medium text-gray-700">Portion</label>
+      <select name="portion_update" id="portion_update-{{ forloop.counter }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></select>
     </div>
-    <form method="POST" action="{% url 'recipe-item-update' recipe.slug %}">
-        {% csrf_token %}
-        <input type="hidden"
-               id="loop_count-{{ forloop.counter }}"
-               name="forloop_counter"
-               value="{{ forloop.counter }}">
-        <input type="hidden" name="recipe_item_id" value="{{ recipe_item.id }}">
-        <input type="hidden"
-               name="ingredient"
-               id="ingredient-{{ forloop.counter }}"
-               value="{{ recipe_item.portion.ingredient.slug }}">
-        <div class="mb-4">
-            <label for="portion_update"
-                   class="block mb-2 text-sm font-medium text-gray-700">Portion</label>
-            <select name="portion_update"
-                    id="portion_update-{{ forloop.counter }}"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required></select>
-        </div>
-        <div class="mb-4">
-            <label for="quantity" class="block mb-2 text-sm font-medium text-gray-700">Anzahl</label>
-            <input type="number"
-                   name="quantity"
-                   id="quantity"
-                   value="{{ recipe_item.quantity|floatformat }}"
-                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                   required />
-        </div>
-        <button type="submit"
-                class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
-            Ändern
-        </button>
-        <button type="button"
-                class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none focus:bg-red-600"
-                hx-post="/food/recipe-item-delete/"
-                hx-include="[name='recipe_item_id']"
-                hx-trigger="click"
-                hx-swap="none"
-                hx-refresh="true">Löschen</button>
-    </form>
+    <div class="mb-4">
+      <label for="quantity" class="block mb-2 text-sm font-medium text-gray-700">Anzahl</label>
+      <input type="number" name="quantity" id="quantity" value="{{ recipe_item.quantity|stringformat:'f'|slice:':-2' }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required />
+    </div>
+    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:bg-blue-700">Ändern</button>
+    <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:bg-red-700" hx-post="/food/recipe-item-delete/" hx-include="[name='recipe_item_id']" hx-trigger="click" hx-swap="none" hx-refresh="true">Löschen</button>
+  </form>
 </div>
 <script>
   function getCookie(name) {

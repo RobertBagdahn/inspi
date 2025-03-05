@@ -34,6 +34,7 @@ sitemaps = {
 }
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path("activity/", include("activity.urls")),
     path('', RedirectView.as_view(url=reverse_lazy('activity-main'))),
     path("general/", include("general.urls")),
@@ -41,6 +42,7 @@ urlpatterns = [
     path("food/", include("food.urls")),
     path("blog/", include("blog.urls")),
     path("group/", include("group.urls")),
+    path("master-data/", include("masterdata.urls")),
     path("apps", index, name="index"),
     path("accounts/", include("allauth.urls")),
     path("__reload__/", include("django_browser_reload.urls")),

@@ -1,7 +1,7 @@
 import datetime
 
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
@@ -104,7 +104,6 @@ class MetaInfo(TimeStampMixin):
         if self.weight_g > 1000:
             return f"{round(self.weight_g/1000,1)} kg"
         return f"{round(self.weight_g, 0)} g"
-        
 
     @property
     def nutri_score_display(self):
@@ -166,6 +165,11 @@ class Ingredient(TimeStampMixin):
     status = models.CharField(
         max_length=11, choices=IngredientStatus.choices, default=IngredientStatus.DRAFT
     )
+    recipe_counts = models.IntegerField(
+        help_text="Number of recipes using this ingredient",
+        default=0,
+    )
+
 
     @property
     def nan_rewe(self):
@@ -173,6 +177,7 @@ class Ingredient(TimeStampMixin):
             return self.nan_art_id_rewe - 100000000
         except TypeError:
             return False
+
 
     def __str__(self):
         return f"{self.name} - {self.description}"
@@ -206,7 +211,7 @@ class Portion(TimeStampMixin):
         if self.meta_info.weight_g and self.meta_info.price_per_kg:
             return self.meta_info.weight_g * self.meta_info.price_per_kg * 1000
         return 0.00
-    
+
     @property
     def prices(self):
         return Price.objects.filter(portion=self).order_by("price_eur")
@@ -310,8 +315,11 @@ class RecipeItem(TimeStampMixin):
     @property
     def weight_quote(self):
         return round(
-            float(self.meta_info.weight_g) / float(self.recipe.meta_info.weight_g) * 100.0, 0
-        ) 
+            float(self.meta_info.weight_g)
+            / float(self.recipe.meta_info.weight_g)
+            * 100.0,
+            0,
+        )
 
     @property
     def weighted_nutri_points_energy_kj(self):
@@ -340,7 +348,7 @@ class RecipeItem(TimeStampMixin):
     @property
     def weighted_nutri_points_fibre_g(self):
         return self.meta_info.nutri_points_fibre_g * self.weight_quote / 100
-    
+
     @property
     def weighted_nutri_points(self):
         return self.meta_info.nutri_points * self.weight_quote / 100
@@ -350,6 +358,36 @@ class RecipeItem(TimeStampMixin):
 
     def __repr__(self):
         return self.__str__()
+
+
+@receiver(post_save, sender=RecipeItem)
+def update_ingredient_recipe_count(sender, instance, **kwargs):
+    """Update recipe_counts for each ingredient when a RecipeItem is saved"""
+    if instance.portion and instance.portion.ingredient:
+        # Get the ingredient
+        ingredient = instance.portion.ingredient
+        # Count unique recipes using this ingredient
+        recipe_count = RecipeItem.objects.filter(
+            portion__ingredient=ingredient
+        ).values('recipe').distinct().count()
+        # Update the count
+        ingredient.recipe_counts = recipe_count
+        ingredient.save()
+
+
+@receiver(models.signals.post_delete, sender=RecipeItem)
+def update_ingredient_recipe_count_on_delete(sender, instance, **kwargs):
+    """Update recipe_counts when a RecipeItem is deleted"""
+    if instance.portion and instance.portion.ingredient:
+        # Get the ingredient
+        ingredient = instance.portion.ingredient
+        # Count unique recipes using this ingredient
+        recipe_count = RecipeItem.objects.filter(
+            portion__ingredient=ingredient
+        ).values('recipe').distinct().count()
+        # Update the count
+        ingredient.recipe_counts = recipe_count
+        ingredient.save()
 
 
 class Price(TimeStampMixin):

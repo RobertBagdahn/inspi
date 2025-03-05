@@ -16,6 +16,7 @@ from .choices import (
     RecipeType,
     IngredientStatus,
     MealType,
+    RecipeStatus,
 )
 from .models import (
     MealEventTemplate,
@@ -83,6 +84,24 @@ class SearchForm(forms.Form):
         required=False,
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
+    status = forms.ChoiceField(
+        label="Status",
+        required=False,
+        choices=[(None, "Alle")] + list(IngredientStatus.choices),
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+    order_by = forms.ChoiceField(
+        label="Sortieren",
+        required=False,
+        choices=[
+            ("popularity", "Beliebtheit"),
+            ("alpha", "Alphabetisch"),
+            ("price_asc", "Preis aufsteigend"),
+            ("price_desc", "Preis absteigend"),
+        ],
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -390,7 +409,6 @@ class IngredientFormUpdateBasic(forms.ModelForm):
         label="Supermarkt Kategorie",  # RetailSection
         queryset=RetailSection.objects.all(),
         empty_label="Alle",
-        to_field_name="name",
         initial=None,
         required=False,
         widget=forms.Select(attrs={"class": "tailwind-select"}),
@@ -611,13 +629,19 @@ class RecipeFormUpdate(forms.ModelForm):
     )
     description = forms.CharField(
         label="Beschreibung",
-        required=True,
+        required=False,
         widget=forms.Textarea(attrs={"class": "tailwind-textarea"}),
     )
     recipe_type = forms.ChoiceField(
         label="Rezept Typ",
         required=True,
         choices=RecipeType.choices,
+        widget=forms.Select(attrs={"class": "tailwind-select"}),
+    )
+    status = forms.ChoiceField(
+        label="Rezept Status",
+        required=True,
+        choices=RecipeStatus.choices,
         widget=forms.Select(attrs={"class": "tailwind-select"}),
     )
 
@@ -627,6 +651,7 @@ class RecipeFormUpdate(forms.ModelForm):
             "name",
             "description",
             "recipe_type",
+            "status",
         ]
 
 
@@ -783,6 +808,12 @@ class SearchRecipeForm(forms.Form):
         label="Rezept Typ",
         required=False,
         choices=[(None, "Alle")] + list(RecipeType.choices),
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+    status = forms.ChoiceField(
+        label="Status",
+        required=False,
+        choices=[(None, "Alle")] + list(RecipeStatus.choices),
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 

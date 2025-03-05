@@ -7,7 +7,7 @@
         </a>
     </td>
     {% if recipe_item.portion.name %}
-        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">{{ recipe_item.quantity }} x</td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">{{ recipe_item.quantity|floatformat:2 }} x</td>
     {% else %}
         <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white"></td>
     {% endif %}

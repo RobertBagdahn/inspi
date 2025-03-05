@@ -76,8 +76,6 @@ def mainView(request):
     famous_recipes = Recipe.objects.filter(~Q(status="simulator"))[0:3]
     famous_ingredients = Ingredient.objects.all()[0:8]
 
-    print(famous_recipes)
-
     context = {
         "famous_meal_events": famous_meal_events,
         "famous_recipes": famous_recipes,
@@ -748,12 +746,12 @@ def ingredient_create_choice(request):
     boxes = [
         {
             "header": "Komplett selbst",
-            "text":"""
+            "text": """
                 Mit dieser Option kannst du ein neues Lebensmittel komplett selbst erstellen und jedes Detail selbst bestimmen.
                 Eine Anlage dauert allerdings ein paar Minuten.
             """,
             "link": "ingredient-create",
-            "icon": "adjust"
+            "icon": "adjust",
         },
         {
             "header": "Auf Basis eines anderen Lebensmittels",
@@ -763,7 +761,7 @@ def ingredient_create_choice(request):
                 einem bereits existierenden Lebensmittel unterscheidet. z.B. Cocktail- und Rispentomate.
             """,
             "link": "ingredient-create-copy",
-            "icon": "copy"
+            "icon": "copy",
         },
         {
             "header": "Mit Hilfe eines KI Vorschlags",
@@ -772,13 +770,14 @@ def ingredient_create_choice(request):
                 Alle Daten werden von einer Sprach KI generiert und können dann von dir noch angepasst werden.
             """,
             "link": "ingredient-create-ai",
-            "icon": "brain"
+            "icon": "brain",
         },
     ]
     context = {
         "boxes": boxes,
     }
     return render(request, "ingredient/create/choice/main.html", context)
+
 
 @login_required
 def ingredient_create(request):
@@ -833,7 +832,12 @@ def ingredient_create(request):
             return HttpResponseRedirect("/food/ingredient-list/")
 
     form = IngredientForm()
-    return render(request, "general/_generic_form.html", {"form": form, "header": "Lebensmittel erstellen"})
+    return render(
+        request,
+        "general/_generic_form.html",
+        {"form": form, "header": "Lebensmittel erstellen"},
+    )
+
 
 @login_required
 def ingredient_create_copy(request):
@@ -846,7 +850,6 @@ def ingredient_create_copy(request):
 
             data_input = form.cleaned_data
 
-
             source_data = Ingredient.objects.get(id=data_input["ingredient_ref"].id)
             # deepcopy data
             data = deepcopy(source_data.__dict__)
@@ -856,7 +859,6 @@ def ingredient_create_copy(request):
             data.pop("created_at")
             data.pop("updated_at")
 
-
             # overwrite name, slug, description
             data["name"] = data_input["name"]
             data["slug"] = data_input["name"].replace(" ", "-").lower()
@@ -865,11 +867,12 @@ def ingredient_create_copy(request):
             if Ingredient.objects.filter(slug=data["slug"]).exists():
                 data["slug"] = f"{data['slug']}-{random.randint(1, 100)}"
             data["description"] = data_input["description"]
-            data['ingredient_ref'] = source_data
-
+            data["ingredient_ref"] = source_data
 
             valid_fields = {field.name for field in Ingredient._meta.get_fields()}
-            filtered_data = {key: value for key, value in data.items() if key in valid_fields}
+            filtered_data = {
+                key: value for key, value in data.items() if key in valid_fields
+            }
             ingredient = Ingredient(**filtered_data)
 
             ingredient.author = request.user
@@ -907,7 +910,11 @@ def ingredient_create_copy(request):
             return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/overview")
 
     form = IngredientFormCopy()
-    return render(request, "general/_generic_form.html", {"form": form, "header": "Lebensmittel erstellen mit Vorlage"})
+    return render(
+        request,
+        "general/_generic_form.html",
+        {"form": form, "header": "Lebensmittel erstellen mit Vorlage"},
+    )
 
 
 @login_required
@@ -922,7 +929,6 @@ def ingredient_create_ai(request):
             data = form.cleaned_data
 
             data["slug"] = data["name"].replace(" ", "-").lower()
-
 
             # create a new post
             ingredient = Ingredient(**data)
@@ -949,7 +955,11 @@ def ingredient_create_ai(request):
             return HttpResponseRedirect("/food/ingredient-list/")
 
     form = IngredientFormAi()
-    return render(request, "general/_generic_form.html", {"form": form, "header": "Lebensmittel mit KI erstellen"})
+    return render(
+        request,
+        "general/_generic_form.html",
+        {"form": form, "header": "Lebensmittel mit KI erstellen"},
+    )
 
 
 @login_required
@@ -957,9 +967,11 @@ def ingredients_autocomplete(request):
     if request.method == "GET":
         query = request.GET.get("query", "")
         ingredients = Ingredient.objects.filter(name__icontains=query)[:50]
-        results = [{"id": ingredient.id, "name": ingredient.name} for ingredient in ingredients]
+        results = [
+            {"id": ingredient.id, "name": ingredient.name} for ingredient in ingredients
+        ]
         return render(request, "ingredient/autocomplete.html", {"results": results})
-    return 
+    return
 
 
 @login_required
@@ -968,9 +980,7 @@ def ingredient_update_basic(request, slug):
     name = request.GET.get("name", None)
     description = request.GET.get("description", None)
     retail_section = request.GET.get("retail_section", None)
-
-    print("retail_section")
-    print(retail_section)
+    status = request.GET.get("status", None)
 
     ingredient = get_object_or_404(Ingredient, slug=slug)
 
@@ -983,9 +993,15 @@ def ingredient_update_basic(request, slug):
     if retail_section:
         ingredient.retail_section = RetailSection.objects.get(name=retail_section)
 
+    if status:
+        ingredient.status = status
+
     if request.method == "POST":
-        ingredient.save()
-        return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/overview")
+        form = IngredientFormUpdateBasic(request.POST, instance=ingredient)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f"/food/ingredient/{ingredient.slug}/overview")
     form = IngredientFormUpdateBasic(instance=ingredient)
 
     context = {
@@ -1162,6 +1178,7 @@ def ingredient_list(request):
             "query": "",
             "physical_viscosity": "",
             "retail_section": "",
+            "status": "",
         }
     )
 
@@ -1188,6 +1205,30 @@ def ingredient_list(request):
             ingredients = ingredients.filter(
                 retail_section=search_form.cleaned_data["retail_section"]
             )
+        if (
+            search_form.cleaned_data["status"]
+            and search_form.cleaned_data["status"] is not None
+        ):
+            if search_form.cleaned_data["status"] != "Alle":
+                ingredients = ingredients.filter(
+                    status=search_form.cleaned_data["status"]
+                )
+            else:
+                # When "Alle" is selected, show all statuses except "draft"
+                ingredients = ingredients.exclude(status="draft")
+        else:
+            # Default behavior when no status is selected: exclude draft
+            ingredients = ingredients.exclude(status="draft")
+
+    order_by = request.GET.get("order_by", "name")
+    if order_by == "alpha":
+        ingredients = ingredients.order_by("name")
+    elif order_by == "popularity":
+        ingredients = ingredients.order_by("-recipe_counts")
+    elif order_by == "price_asc":
+        ingredients = ingredients.order_by("meta_info__price_per_kg")
+    elif order_by == "price_desc":
+        ingredients = ingredients.order_by("-meta_info__price_per_kg")
 
     paginator = Paginator(ingredients, per_page=10)
     page_num = request.GET.get("page", 1)
@@ -1204,7 +1245,7 @@ def ingredient_list(request):
 
 @login_required
 def recipe_list(request):
-    recipes = Recipe.objects.filter(~Q(status="simulator"))
+    recipes = Recipe.objects.all()
     search_form = SearchRecipeForm(request.GET)
 
     if search_form.is_valid():
@@ -1213,6 +1254,27 @@ def recipe_list(request):
             and search_form.cleaned_data["query"] is not None
         ):
             recipes = recipes.filter(name__icontains=search_form.cleaned_data["query"])
+        # filter recipe_type
+        if (
+            search_form.cleaned_data["recipe_type"]
+            and search_form.cleaned_data["recipe_type"] is not None
+        ):
+            recipes = recipes.filter(
+                recipe_type=search_form.cleaned_data["recipe_type"]
+            )
+
+        if (
+            search_form.cleaned_data["status"]
+            and search_form.cleaned_data["status"] is not None
+        ):
+            if search_form.cleaned_data["status"] != "Alle":
+                recipes = recipes.filter(status=search_form.cleaned_data["status"])
+            else:
+                # When "Alle" is selected, show all statuses except "simulator"
+                ecipes = recipes.exclude(status="simulator")
+        else:
+            # Default behavior when no status is selected: exclude simulator
+            recipes = recipes.exclude(status="simulator")
 
     paginator = Paginator(recipes, per_page=10)
     page_num = request.GET.get("page", 1)
@@ -1258,7 +1320,7 @@ def recipe_update(request, slug):
         "recipe": instance,
         "form": form,
     }
-    return render(request, "recipe/update.html", context)
+    return render(request, "create_update_form.html", context)
 
 
 @login_required
@@ -1282,9 +1344,83 @@ def recipe_clone(request, slug):
         recipe_item.recipe = recipe
         recipe_item.save()
 
-    recipe.managed_by.add(CustomUser.objects.first())
+    # Clone the metadata
+    recipe.meta_info = MetaInfo.objects.create(
+        energy_kj=recipe_old.meta_info.energy_kj,
+        protein_g=recipe_old.meta_info.protein_g,
+        fat_g=recipe_old.meta_info.fat_g,
+        fat_sat_g=recipe_old.meta_info.fat_sat_g,
+        carbohydrate_g=recipe_old.meta_info.carbohydrate_g,
+        sugar_g=recipe_old.meta_info.sugar_g,
+        fibre_g=recipe_old.meta_info.fibre_g,
+        sodium_mg=recipe_old.meta_info.sodium_mg,
+        fruit_factor=recipe_old.meta_info.fruit_factor,
+        nutri_score=recipe_old.meta_info.nutri_score,
+        nutri_class=recipe_old.meta_info.nutri_class,
+        weight_g=recipe_old.meta_info.weight_g,
+        price_per_kg=recipe_old.meta_info.price_per_kg,
+        price_eur=recipe_old.meta_info.price_eur,
+    )
+    recipe.save()
+
+    # Update all recipe items with proper meta info
+    for recipe_item in recipe.recipe_items.all():
+        original_item = RecipeItem.objects.filter(
+            recipe=recipe_old, portion=recipe_item.portion
+        ).first()
+        if original_item:
+            recipe_item.meta_info = MetaInfo.objects.create(
+                weight_g=original_item.meta_info.weight_g,
+                price_per_kg=original_item.meta_info.price_per_kg,
+                price_eur=original_item.meta_info.price_eur,
+            )
+            recipe_item.save()
+
+    # Update recipe's total values
+    update_recipe(recipe)
 
     return HttpResponseRedirect(f"/food/recipe/{recipe.slug}/overview")
+
+
+@login_required
+def recipe_scale(request, slug):
+    if request.method == "POST":
+        recipe_old = Recipe.objects.get(slug=slug)
+
+        # Get the current total energy
+        current_total_energy = recipe_old.meta_info.energy_kj
+
+        # If there's energy to scale
+        if current_total_energy > 0 and recipe_old.recipe_type == "warm_lunch":
+            # Calculate the scaling factor
+            scaling_factor = 3000 / current_total_energy
+
+            # Update all recipe items
+            for recipe_item in recipe_old.recipe_items.all():
+                # Scale the quantity
+                recipe_item.quantity = round(recipe_item.quantity * scaling_factor, 1)
+                recipe_item.save()
+
+            # Update the recipe meta info
+            update_recipe(recipe_old)
+
+            messages.success(
+                request,
+                f"Rezept wurde auf 2466 kJ skaliert (Faktor: {scaling_factor:.2f})",
+            )
+        else:
+            messages.error(
+                request,
+                f"""
+                    Skalierung nicht möglich. {recipe_old.name} hat keine
+                    Energie oder ist kein warmes Gericht.
+                """,
+            )
+
+        return HttpResponseRedirect(f"/food/recipe/{slug}/overview")
+
+    # For GET requests, just redirect to recipe overview
+    return HttpResponseRedirect(f"/food/recipe/{slug}/overview")
 
 
 @login_required
@@ -1295,6 +1431,7 @@ def recipe_detail_overview(request, slug):
     kpi_weight = f"{recipe.meta_info.weight_g:.1f} g"
     kpi_nutri_class = recipe.meta_info.nutri_score_display
     kpi_popularity = 1
+    kpi_ingredient_count = recipe.recipe_items.count()
 
     # energy_kj, protein_g, sugar_g, fibre_g kpis
     kpi_energy_kj = f"{recipe.meta_info.energy_kj:.0f} kJ"
@@ -1322,6 +1459,7 @@ def recipe_detail_overview(request, slug):
         "kpi_weight": kpi_weight,
         "kpi_nutri_class": kpi_nutri_class,
         "kpi_popularity": kpi_popularity,
+        "kpi_ingredient_count": kpi_ingredient_count,
         "kpi_energy_kj": kpi_energy_kj,
         "kpi_protein_g": kpi_protein_g,
         "kpi_sugar_g": kpi_sugar_g,
@@ -1347,10 +1485,27 @@ def recipe_detail_analyse(request, slug):
 def recipe_detail_shopping(request, slug):
     recipe = Recipe.objects.get(slug=slug)
 
+    # Get the quantity parameter from the request, default to 1
+    quantity = request.GET.get("quantity", 1)
+    try:
+        quantity = float(quantity)
+    except (ValueError, TypeError):
+        quantity = 1
+
+    # Get recipe ingredients
+    recipe_ingredients = RecipeItem.objects.filter(recipe=recipe)
+
+    # Calculate aggregate values
+    total_weight_g = sum(item.meta_info.weight_g for item in recipe_ingredients)
+    total_price_eur = sum(item.meta_info.price_eur for item in recipe_ingredients)
+
     context = {
         "recipe": recipe,
         "module_name": "Einkauf",
-        "recipe_ingredients": RecipeItem.objects.filter(recipe=recipe),
+        "recipe_ingredients": recipe_ingredients,
+        "quantity": quantity,
+        "total_weight_g": total_weight_g,
+        "total_price_eur": total_price_eur,
     }
     return render(request, "recipe/detail/shopping/main.html", context)
 
@@ -1404,8 +1559,6 @@ def recipe_item_create(request, slug):
         )
 
         if form.is_valid():
-            print("form is valid")
-
             data = form.cleaned_data
 
             # create a new post
@@ -1635,7 +1788,7 @@ def ingredient_detail_recipe(request, slug):
     ingredient = Ingredient.objects.get(slug=slug)
     ingredients = Ingredient.objects.all().exclude(slug=slug).order_by("?")[0:5]
     recipes = Recipe.objects.filter(
-        recipe_items__portion__ingredient=ingredient
+        recipe_items__portion__ingredient=ingredient, status="verified"
     ).distinct()
 
     context = {
@@ -1645,6 +1798,12 @@ def ingredient_detail_recipe(request, slug):
         "module_name": "Rezepte",
     }
     return render(request, "ingredient/detail/recipe/main.html", context)
+
+
+def display_name(portion):
+    if portion.name:
+        return f"{portion.name} in {portion.measuring_unit.name}"
+    return f"{portion.ingredient.name} in {portion.measuring_unit.name}"
 
 
 @login_required
@@ -1666,7 +1825,7 @@ def get_portions_by_ingredient(request):
                 data["portions"].append(
                     {
                         "id": portion.id,
-                        "display_name": f"{portion.name} in {portion.measuring_unit.name}",
+                        "display_name": display_name(portion),
                     }
                 )
 
@@ -1839,7 +1998,6 @@ def admin_main(request):
 @login_required
 def search_results_view(request):
     query = request.GET.get("search", "")
-    print(f"{query = }")
 
     all_data = Ingredient.objects.all()
     if query and len(query) >= 3:

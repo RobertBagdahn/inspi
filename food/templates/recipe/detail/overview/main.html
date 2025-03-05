@@ -3,75 +3,69 @@
 {% load crispy_forms_tags %}
 {% load component_tags %}
 {% block detailcontent %}
-    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
-        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-            {% include "./modal-new-recipe-item.html" with recipe=recipe ingredients=ingredients %}
-            {% include "./modal-drawer-scale.html" with recipe=recipe %}
-            <div class="mx-auto max-w-screen-xl 2xl:px-0">
-                <div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:col-span-4">
-                    {% if recipe.name %}
-                        <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">
-                            {{ recipe.name }}
-                            <span class="font-light italic">{{ recipe.get_recipe_type_display }}</span>
-                            {% component 'icon-button' with icon='edit' url=recipe.get_update_url %}
-                        {% endcomponent %}
-                    </h2>
-                {% endif %}
-                {% if recipe.name %}
-                    <span>{{ recipe.get_status_display }}</span>
-                {% else %}
-                    <div class="text-xl font-semibold text-gray-900 sm:text-2xl">
-                        Neues Rezept im Simulator
-                        {% component 'icon-button' with icon='plus' url=recipe.get_update_url %}
-                    {% endcomponent %}
-                </div>
-            {% endif %}
-            <div class="relative mt-6 border-b border-gray-200 sm:mt-8">
-                <table class="w-full text-left text-base text-gray-900 md:table-fixed">
-                    <tbody class="divide-y divide-gray-200">
-                        {% if recipe.recipe_items.count %}
-                            {% for recipe_item in recipe.recipe_items.all %}
-                                {% include "./recipe_item.html" with recipe_item=recipe_item i=forloop.counter %}
-                            {% endfor %}
-                        {% else %}
-                            <tr>
-                                <td class="py-4 pr-4">Bisher noch keine Zutat vorhanden</td>
-                            </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
+  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+      {% include './modal-new-recipe-item.html' with recipe=recipe ingredients=ingredients %}
+      {% include './modal-drawer-scale.html' with recipe=recipe %}
+      <div class="mx-auto max-w-screen-xl 2xl:px-0">
+        <div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:col-span-4">
+          {% if recipe.name %}
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">
+              {{ recipe.name }}
+              <span class="font-light italic">{{ recipe.get_recipe_type_display }}</span>
+              {% component 'icon-button' with icon='edit' url="{% url 'recipe-update' recipe.slug %}" %}
+              {% endcomponent %}
+            </h2>
+          {% endif %}
+          {% if recipe.name %}
+            <span>{{ recipe.get_status_display }}</span>
+          {% else %}
+            <div class="text-xl font-semibold text-gray-900 sm:text-2xl">
+              Neues Rezept im Simulator{% component 'icon-button' with icon='plus' url=recipe.get_update_url %}
+              {% endcomponent %}
             </div>
-            <div class="flex justify-between mt-2">
-                <div class="grow"></div>
-                {% comment %} <button type="button" data-modal-target="modal-drawer-scale" data-modal-show="modal-drawer-scale" aria-controls="drawer-scale" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-yellow-300 hover:bg-yellow-400 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+          {% endif %}
+          <div class="relative mt-6 border-b border-gray-200 sm:mt-8">
+            <table class="w-full text-left text-base text-gray-900 md:table-fixed">
+              <tbody class="divide-y divide-gray-200">
+                {% if recipe.recipe_items.count %}
+                  {% for recipe_item in recipe.recipe_items.all %}
+                    {% include './recipe_item.html' with recipe_item=recipe_item i=forloop.counter %}
+                  {% endfor %}
+                {% else %}
+                  <tr>
+                    <td class="py-4 pr-4">Bisher noch keine Zutat vorhanden</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+          <div class="flex justify-between mt-2">
+            <div class="grow"></div>
+            <button type="button" data-modal-target="modal-drawer-scale" data-modal-show="modal-drawer-scale" aria-controls="drawer-scale" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-yellow-300 hover:bg-yellow-400 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
               <span class="sr-only">Skalieren</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m9 14.25 6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
               </svg>
-                </button> {% endcomment %}
-                <button type="button"
-                        data-modal-target="modal-new-recipe-item"
-                        data-modal-show="modal-new-recipe-item"
-                        aria-controls="modal-new-recipe-item"
-                        class="ml-2 mb-2 block rounded-lg p-2 text-white bg-green-500 hover:bg-green-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
-                    <span class="sr-only">Neue Zutat</span>
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         fill="none"
-                         viewBox="0 0 24 24"
-                         stroke-width="1.5"
-                         stroke="currentColor"
-                         class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                </button>
-            </div>
+            </button>
+
+            <a href="{% url 'recipe-clone' recipe.slug %}" type="button" class="ml-2 mb-2 block rounded-lg p-2 px-2.5 text-white bg-gray-400 hover:bg-gray-500 text-white font-bold">
+              <span class="sr-only">Skalieren</span>
+              {% component "icon" icon="clone" %}{% endcomponent %}
+            </a>
+
+            <button type="button" data-modal-target="modal-new-recipe-item" data-modal-show="modal-new-recipe-item" aria-controls="modal-new-recipe-item" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-green-500 hover:bg-green-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+              <span class="sr-only">Neue Zutat</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 my-4">{% include "./summary.html" with recipe=recipe %}</div>
-        {% comment %} <a href="{% url 'recipe-update' recipe.slug %}" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 my-4 rounded">Rezept Speichern</a>
-        <a href="{% url 'recipe-clone' recipe.slug %}"
-           type="button"
-           class="bg-yellow-300 hover:bg-yellow-500 text-white font-bold py-2 px-4 my-4 rounded mx-2">Rezept Simulieren</a> {% endcomment %}
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 my-4">
+          {% include './summary.html' with recipe=recipe %}
+        </div>
+      </div>
     </div>
-</div>
-</section>
+  </section>
 {% endblock %}

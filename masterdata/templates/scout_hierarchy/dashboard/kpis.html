@@ -1,0 +1,3 @@
+{% load component_tags %}
+{% component 'kpi-box' kpi_value=kpi_bund color='blue' kpi_description='Bünde' link="{% url 'master-data-scout-hierarchy-list' %}?level=Bund" link_text='Zu den Bünden' icon='users' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_stamm color='blue' kpi_description='Stämme' link="{% url 'master-data-scout-hierarchy-list' %}?level=Stamm" link_text='Zu den Stämmen' icon='command' %} {% endcomponent %}

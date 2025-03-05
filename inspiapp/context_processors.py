@@ -85,6 +85,18 @@ def header_app(request) -> dict:
             "icon": "images/logo.png",
             "is_visible": True,
         },
+        {
+            "display_name_short": "Daten",
+            "display_name": "Stammdaten",
+            "main_url": f"{base_url}/master-data/basic",
+            "icon_name": "plus",
+            "module_name": "master-data",
+            "description": "Hier kannst du Basis Daten einsehen und anpassen.",
+            "inspi_img": "inspi_teacher.webp",
+            "domain": "https://gruppenstunde.de/master-data/basic",
+            "icon": "images/logo.png",
+            "is_visible": True,
+        },
     ]
 
     try:

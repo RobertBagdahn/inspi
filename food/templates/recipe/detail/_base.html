@@ -107,7 +107,7 @@
                             Einkaufen
                         </a>
                     </li>
-                    <li>
+                    {% comment %} <li>
                         <a href="{% url 'recipe-detail-comment' recipe.slug %}"
                            class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/comment' in request.path %}!bg-blue-700 !text-white{% endif %} "
                            id="reviews-tab"
@@ -126,7 +126,7 @@
                             </svg>
                             Kommentare
                         </a>
-                    </li>
+                    </li> {% endcomment %}
                     <li>
                         <a href="{% url 'recipe-detail-manage' recipe.slug %}"
                            class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/manage' in request.path %}!bg-blue-700 !text-white{% endif %} "
