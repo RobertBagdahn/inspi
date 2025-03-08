@@ -51,7 +51,8 @@
 
             <a href="{% url 'recipe-clone' recipe.slug %}" type="button" class="ml-2 mb-2 block rounded-lg p-2 px-2.5 text-white bg-gray-400 hover:bg-gray-500 text-white font-bold">
               <span class="sr-only">Skalieren</span>
-              {% component "icon" icon="clone" %}{% endcomponent %}
+              {% component 'icon' icon='clone' %}
+              {% endcomponent %}
             </a>
 
             <button type="button" data-modal-target="modal-new-recipe-item" data-modal-show="modal-new-recipe-item" aria-controls="modal-new-recipe-item" class="ml-2 mb-2 block rounded-lg p-2 text-white bg-green-500 hover:bg-green-600 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">

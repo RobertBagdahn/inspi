@@ -79,13 +79,18 @@ class ScoutHierarchy(models.Model):
         
         now = timezone.now().date()
         if self.exist_from > now and self.exist_till is None:
+            print("upcoming")
             self.status = "upcoming"
         elif self.exist_from <= now and (self.exist_till is None or self.exist_till >= now):
+            print("active")
             self.status = "active"
         elif self.exist_till and self.exist_till < now:
+            print("inactive")
             self.status = "inactive"
         else:
+            print("unknown")
             self.status = "unknown"
+        print("fdsgd")
         super().save(*args, **kwargs)
 
     def __str__(self):

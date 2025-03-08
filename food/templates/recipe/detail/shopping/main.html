@@ -1,10 +1,10 @@
-{% extends "recipe/detail/_base.html" %}
+{% extends 'recipe/detail/_base.html' %}
 {% load main_extras %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
-    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {% include "./overview.html" with recipe_ingredients=recipe_ingredients %}
-        </div>
+  <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+      {% include './overview.html' with recipe_ingredients=recipe_ingredients %}
     </div>
-{% endblock detailcontent %}
+  </div>
+{% endblock %}

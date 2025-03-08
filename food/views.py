@@ -1422,6 +1422,30 @@ def recipe_scale(request, slug):
     # For GET requests, just redirect to recipe overview
     return HttpResponseRedirect(f"/food/recipe/{slug}/overview")
 
+@login_required
+def recipe_delete(request, slug):
+    recipe = get_object_or_404(Recipe, slug=slug)
+    
+    if request.method == "POST":
+        # Store the recipe name for confirmation message
+        recipe_name = recipe.name
+        
+        # Delete the recipe
+        recipe.delete()
+        
+        # Add success message
+        messages.success(request, f"Rezept '{recipe_name}' wurde erfolgreich gelöscht.")
+        
+        # Redirect to recipe list
+        return HttpResponseRedirect("/food/recipe-list/")
+    
+    # If GET request, show confirmation page
+    context = {
+        "recipe": recipe,
+        "module_name": "Löschen",
+    }
+    return render(request, "recipe/delete/confirm.html", context)
+
 
 @login_required
 def recipe_detail_overview(request, slug):

@@ -93,6 +93,7 @@ urlpatterns = [
     path("recipe-update/<slug>/", views.recipe_update, name="recipe-update"),
     path("recipe-clone/<slug>", views.recipe_clone, name="recipe-clone"),
     path("recipe-scale/<slug>", views.recipe_scale, name="recipe-scale"),
+    path("recipe-delete/<slug>", views.recipe_delete, name="recipe-delete"),
     path(
         "recipe-item-create/<slug>", views.recipe_item_create, name="recipe-item-create"
     ),
