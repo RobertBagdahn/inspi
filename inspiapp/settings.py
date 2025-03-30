@@ -124,6 +124,7 @@ INSTALLED_APPS = [
     "blog",
     "general.footer",
     "general.login",
+    "general.notification",
     "event.basic",
     "event.registration",
     "event.participant",

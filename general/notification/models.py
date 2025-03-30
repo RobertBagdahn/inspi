@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class NotificationTopic(models.Model):
     """
@@ -24,6 +27,9 @@ class NotificationMessage(models.Model):
     """
     topic = models.ForeignKey(NotificationTopic, on_delete=models.CASCADE, related_name="messages")
     message = models.TextField()
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="notification_message_user", null=True,
+    )
     url = models.URLField(max_length=200, blank=True, null=True)
     is_read = models.BooleanField(default=False)
     send_at = models.DateTimeField(auto_now_add=True)
