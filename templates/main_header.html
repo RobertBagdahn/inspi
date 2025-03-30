@@ -1,4 +1,4 @@
-{% load account %} {% load static %}
+{% load account %} {% load static %} {% load component_tags %}
 <header>
   <nav class="bg-gray-100 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
     <div
@@ -52,6 +52,7 @@
             />
           </svg>
         </button>
+        {% component "notification-dropdown" user=request.user %} {% endcomponent %}
         <button
           type="button"
           class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -235,7 +236,6 @@
         </ul>
       </div>
     </div>
-    {% include "components/search-modal.html" %} {% include
-    'main_header/notification_dropdown.html' %}
+    {% include "components/search-modal.html" %}
   </nav>
 </header>
