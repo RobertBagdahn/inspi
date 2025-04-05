@@ -1,0 +1,32 @@
+<div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">
+        {% if recipe_item.portion.ingredient.name %}
+            {{ recipe_item.portion.ingredient.name }}
+        {% else %}
+            {{ recipe_item.sub_recipe.name }}
+        {% endif %}
+    </h2>
+    <span class="block w-full mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Zutatenbesondernheit:</span>
+    {% if recipe_item.portion.ingredient.nutritional_tags.all %}
+        <div class="flex flex-wrap gap-2 mb-4">
+            {% for nutritional_tag in recipe_item.portion.ingredient.nutritional_tags.all %}
+                <span class="px-2.5 py-0.5 text-xs font-medium rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">{{ nutritional_tag.name }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="mb-4">
+            <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Keine Besonderheiten vorhanden</span>
+        </div>
+    {% endif %}
+    <span class="block w-full mb-2 text-base font-medium text-gray-700 dark:text-gray-300">Preise:</span>
+    <div class="flex flex-col mb-4 items-start">
+        <div class="flex justify-start w-full">
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400 mr-4">Preis der Portion:</span>
+            <span class="text-sm font-medium text-gray-900 dark:text-white">{{ recipe_item.meta_info.price_eur|floatformat:2 }} €</span>
+        </div>
+        <div class="flex justify-start w-full">
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400 mr-4">Preis pro kg:</span>
+            <span class="text-sm font-medium text-gray-900 dark:text-white">{{ recipe_item.meta_info.price_per_kg|floatformat:2 }} €</span>
+        </div>
+    </div>
+</div>

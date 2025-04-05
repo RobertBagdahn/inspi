@@ -135,7 +135,7 @@
     "model": "food.retailsection",
     "pk": 1,
     "fields": {
-      "name": "Sp",
+      "name": "Obst",
       "description": "Obst",
       "rank": 1
     }
@@ -265,7 +265,7 @@
       "description": "Nudeln und Reis",
       "rank": 15
     }
-  }, 
+  },
   {
     "model": "food.retailsection",
     "pk": 16,
@@ -393,84 +393,596 @@
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 26,
+    "model": "food.retailsection",
+    "pk": 30,
     "fields": {
-      "name": "Laktose",
-      "description": "Laktoseintoleranz",
+      "name": "Tiefkühl",
+      "description": "Tiefkühlprodukte",
+      "rank": 30
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 1,
+    "fields": {
+      "name": "Tierbestandteile (nicht Vegetarisch)",
+      "name_opposite": "Vegetarisch",
+      "description": "Mit Fleisch und Fisch",
       "rank": 1
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 27,
+    "model": "food.nutritionaltag",
+    "pk": 2,
     "fields": {
-      "name": "Gluten",
-      "description": "Glutenunverträglichkeit",
+      "name": "Tierische Produkte (nicht Vegan)",
+      "name_opposite": "Vegan",
+      "description": "Mit tierische Produkte",
       "rank": 2
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 28,
+    "model": "food.nutritionaltag",
+    "pk": 3,
     "fields": {
-      "name": "Fructose",
-      "description": "Fructoseintoleranz",
+      "name": "Gluten (Zöliakie)",
+      "name_opposite": "kein Gluten (Zöliakie)",
+      "description": "Glutenunverträglichkeit, die extrem auf Gluten reagiert",
       "rank": 3
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 29,
+    "model": "food.nutritionaltag",
+    "pk": 4,
     "fields": {
-      "name": "Histamin",
-      "description": "Histaminintoleranz",
+      "name": "Laktose",
+      "name_opposite": "keine Laktose",
+      "description": "Laktoseintoleranz",
       "rank": 4
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 30,
+    "model": "food.nutritionaltag",
+    "pk": 5,
     "fields": {
-      "name": "Nüsse",
+      "name": "Schalenfrüchte, Nüsse, Mandeln, Nußähnliches, ...",
+      "name_opposite": "keine Nüsse, Mandeln, Nußähnliches, Schalenfrüchte",
       "description": "Nussallergie",
       "rank": 5
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 32,
+    "model": "food.nutritionaltag",
+    "pk": 6,
     "fields": {
-      "name": "Soja",
-      "description": "Sojaallergie",
+      "name": "Halal",
+      "name_opposite": "kein Halal",
+      "description": "Entspricht islamischen Speisevorschriften",
       "rank": 6
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 33,
+    "model": "food.nutritionaltag",
+    "pk": 7,
     "fields": {
-      "name": "Sellerie",
-      "description": "Sellerieallergie",
+      "name": "Koscher",
+      "name_opposite": "kein Koscher",
+      "description": "Entspricht jüdischen Speisevorschriften",
       "rank": 7
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 34,
+    "model": "food.nutritionaltag",
+    "pk": 8,
     "fields": {
-      "name": "Sesam",
-      "description": "Sesamallergie",
+      "name": "Gluten (nicht zöliakie)",
+      "name_opposite": "kein Gluten (nicht zöliakie)",
+      "description": "Glutenunverträglichkeit",
       "rank": 8
     }
   },
   {
-    "model": "food.intolerance",
-    "pk": 35,
+    "model": "food.nutritionaltag",
+    "pk": 9,
+    "fields": {
+      "name": "Fisch",
+      "name_opposite": "kein Fisch",
+      "description": "Fischallergie",
+      "rank": 9
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 10,
+    "fields": {
+      "name": "Soja, Sojaerzeugnisse",
+      "name_opposite": "kein Soja, Sojaerzeugnisse",
+      "description": "Sojaallergie",
+      "rank": 10
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 11,
+    "fields": {
+      "name": "Erdnüsse",
+      "name_opposite": "keine Erdnüsse",
+      "description": "Erdnussallergie",
+      "rank": 11
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 12,
+    "fields": {
+      "name": "Hülsenfrüchte",
+      "name_opposite": "keine Hülsenfrüchte",
+      "description": "Hülsenfruchtallergie",
+      "rank": 12
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 13,
+    "fields": {
+      "name": "Fructose",
+      "name_opposite": "keine Fructose",
+      "description": "Fructoseintoleranz",
+      "rank": 13
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 14,
+    "fields": {
+      "name": "Histamin",
+      "name_opposite": "kein Histamin",
+      "description": "Histaminintoleranz",
+      "rank": 14
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 15,
+    "fields": {
+      "name": "Alkohol",
+      "name_opposite": "kein Alkohol",
+      "description": "Enthält Alkohol",
+      "rank": 15
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 18,
+    "fields": {
+      "name": "Scharf",
+      "name_opposite": "kein Scharf",
+      "description": "Scharfes Essen",
+      "rank": 18
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 19,
+    "fields": {
+      "name": "Knoblauch",
+      "name_opposite": "kein Knoblauch",
+      "description": "Enthält Knoblauch",
+      "rank": 19
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 20,
+    "fields": {
+      "name": "Sellerie, Sellerieerzeugnisse",
+      "name_opposite": "kein Sellerie, Sellerieerzeugnisse",
+      "description": "Sellerieallergie",
+      "rank": 20
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 21,
+    "fields": {
+      "name": "Sesam",
+      "name_opposite": "kein Sesam",
+      "description": "Sesamallergie",
+      "rank": 21
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 22,
     "fields": {
       "name": "Senf",
+      "name_opposite": "kein Senf",
       "description": "Senfallergie",
-      "rank": 9
+      "rank": 22
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 23,
+    "fields": {
+      "name": "Koffeinhaltig",
+      "name_opposite": "kein Koffeinhaltig",
+      "description": "Enthält Koffein",
+      "rank": 23
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 24,
+    "fields": {
+      "name": "Weizen",
+      "name_opposite": "kein Weizen",
+      "description": "Weizenallergie",
+      "rank": 24
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 25,
+    "fields": {
+      "name": "Roggen",
+      "name_opposite": "kein Roggen",
+      "description": "Roggenallergie",
+      "rank": 25
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 26,
+    "fields": {
+      "name": "Gerste",
+      "name_opposite": "keine Gerste",
+      "description": "Gerstenallergie",
+      "rank": 26
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 27,
+    "fields": {
+      "name": "Hafer",
+      "name_opposite": "kein Hafer",
+      "description": "Haferallergie",
+      "rank": 27
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 28,
+    "fields": {
+      "name": "Dinkel",
+      "name_opposite": "kein Dinkel",
+      "description": "Dinkelallergie",
+      "rank": 28
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 29,
+    "fields": {
+      "name": "Kamut",
+      "name_opposite": "kein Kamut",
+      "description": "Kamutallergie",
+      "rank": 29
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 38,
+    "fields": {
+      "name": "Schwefeldioxid und Sulfide",
+      "name_opposite": "kein Schwefeldioxid und Sulfide",
+      "description": "Sulfitallergie",
+      "rank": 38
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 39,
+    "fields": {
+      "name": "Lupinen",
+      "name_opposite": "keine Lupinen",
+      "description": "Lupinenallergie",
+      "rank": 39
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 1,
+    "fields": {
+      "created_at": "2022-08-29T15:06:38.730Z",
+      "updated_at": "2022-08-29T21:06:27.480Z",
+      "hint": "etwas weniger Energie",
+      "improvement": "",
+      "value": 3000.0,
+      "hint_level": "warn",
+      "min_max": "max",
+      "parameter": "energy_kj"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 2,
+    "fields": {
+      "created_at": "2022-08-29T15:06:38.730Z",
+      "updated_at": "2022-08-29T21:06:27.480Z",
+      "hint": "viel weniger Energie",
+      "improvement": "",
+      "value": 4000.0,
+      "hint_level": "error",
+      "min_max": "max",
+      "parameter": "energy_kj"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 3,
+    "fields": {
+      "created_at": "2022-08-29T15:06:38.730Z",
+      "updated_at": "2022-08-29T21:06:27.480Z",
+      "hint": "etwas mehr Energie",
+      "improvement": "",
+      "value": 1900.0,
+      "hint_level": "warn",
+      "min_max": "min",
+      "parameter": "energy_kj"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 4,
+    "fields": {
+      "created_at": "2022-08-29T15:06:38.730Z",
+      "updated_at": "2022-08-29T21:06:27.480Z",
+      "hint": "viel mehr Energie",
+      "improvement": "",
+      "value": 1500.0,
+      "hint_level": "error",
+      "min_max": "min",
+      "parameter": "energy_kj"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 5,
+    "fields": {
+      "created_at": "2022-08-29T15:10:21.312Z",
+      "updated_at": "2022-08-29T15:50:27.477Z",
+      "hint": "viel mehr Gewicht",
+      "improvement": "",
+      "value": 200.0,
+      "hint_level": "error",
+      "min_max": "min",
+      "parameter": "weight_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 6,
+    "fields": {
+      "created_at": "2022-08-29T15:10:21.312Z",
+      "updated_at": "2022-08-29T15:50:27.477Z",
+      "hint": "etwas mehr Gewicht",
+      "improvement": "",
+      "value": 300.0,
+      "hint_level": "warn",
+      "min_max": "min",
+      "parameter": "weight_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 7,
+    "fields": {
+      "created_at": "2022-08-29T15:52:30.547Z",
+      "updated_at": "2022-09-01T18:19:36.465Z",
+      "hint": "etwas weniger Gewicht",
+      "improvement": "",
+      "value": 650.0,
+      "hint_level": "warn",
+      "min_max": "max",
+      "parameter": "weight_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 8,
+    "fields": {
+      "created_at": "2022-08-29T15:52:30.547Z",
+      "updated_at": "2022-09-01T18:19:36.465Z",
+      "hint": "viel weniger Gewicht",
+      "improvement": "",
+      "value": 750.0,
+      "hint_level": "error",
+      "min_max": "max",
+      "parameter": "weight_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 9,
+    "fields": {
+      "created_at": "2022-08-29T21:19:12.561Z",
+      "updated_at": "2022-08-29T21:19:12.562Z",
+      "hint": "viel mehr Eiweiß",
+      "improvement": "",
+      "value": 10.0,
+      "hint_level": "error",
+      "min_max": "min",
+      "parameter": "protein_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 10,
+    "fields": {
+      "created_at": "2022-08-29T21:19:12.561Z",
+      "updated_at": "2022-08-29T21:19:12.562Z",
+      "hint": "mehr Eiweiß",
+      "improvement": "",
+      "value": 30.0,
+      "hint_level": "warn",
+      "min_max": "min",
+      "parameter": "protein_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 11,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "Nicht gesund",
+      "improvement": "",
+      "value": 2.0,
+      "hint_level": "warn",
+      "min_max": "max",
+      "parameter": "nutri_class"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 12,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "Nicht gesund genug",
+      "improvement": "",
+      "value": 3.0,
+      "hint_level": "error",
+      "min_max": "max",
+      "parameter": "nutri_class"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 13,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "Viel zuviel Zucker",
+      "improvement": "",
+      "value": 40.0,
+      "hint_level": "error",
+      "min_max": "max",
+      "parameter": "sugar_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 14,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "Viel Zucker",
+      "improvement": "",
+      "value": 20.0,
+      "hint_level": "warn",
+      "min_max": "max",
+      "parameter": "sugar_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 15,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "Viel zuviel gesät. Fettsäuren",
+      "improvement": "",
+      "value": 40.0,
+      "hint_level": "error",
+      "min_max": "max",
+      "parameter": "fat_sat_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 16,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "viel gesät. Fettsäuren",
+      "improvement": "",
+      "value": 20.0,
+      "hint_level": "warn",
+      "min_max": "max",
+      "parameter": "fat_sat_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 17,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "viel Natrium",
+      "improvement": "",
+      "value": 500.0,
+      "hint_level": "warn",
+      "min_max": "max",
+      "parameter": "sodium_mg"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 170,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "wenig Natrium",
+      "improvement": "",
+      "value": 300.0,
+      "hint_level": "warn",
+      "min_max": "min",
+      "parameter": "sodium_mg"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 18,
+    "fields": {
+      "created_at": "2022-08-29T21:20:25.463Z",
+      "updated_at": "2022-08-29T21:20:25.463Z",
+      "hint": "zu viel Natrium",
+      "improvement": "",
+      "value": 1000.0,
+      "hint_level": "error",
+      "min_max": "max",
+      "parameter": "sodium_mg"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 19,
+    "fields": {
+      "created_at": "2022-08-29T21:19:12.561Z",
+      "updated_at": "2022-08-29T21:19:12.562Z",
+      "hint": "viel mehr Ballaststoffe",
+      "improvement": "",
+      "value": 10.0,
+      "hint_level": "error",
+      "min_max": "min",
+      "parameter": "fibre_g"
+    }
+  },
+  {
+    "model": "food.recipehint",
+    "pk": 20,
+    "fields": {
+      "created_at": "2022-08-29T21:19:12.561Z",
+      "updated_at": "2022-08-29T21:19:12.562Z",
+      "hint": "mehr Ballaststoffe",
+      "improvement": "",
+      "value": 30.0,
+      "hint_level": "warn",
+      "min_max": "min",
+      "parameter": "fibre_g"
     }
   }
 ]

@@ -1,0 +1,57 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}{{ scout_hierarchy.name }} löschen{% endblock %}
+{% block content %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-lg mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-center justify-center mb-4 text-red-600">
+                    <svg class="w-12 h-12"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                        </path>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-center mb-4 dark:text-white">Gruppe löschen bestätigen</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-6 text-center">
+                    Bist du sicher, dass du <strong>{{ scout_hierarchy.name }}</strong> ({{ scout_hierarchy.level_choice }}) löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.
+                </p>
+                {% if scout_hierarchy.children.exists %}
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-yellow-400"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20"
+                                     fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-yellow-700">Diese Gruppe hat untergeordnete Elemente und kann nicht gelöscht werden.</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="flex justify-between">
+                    <a href="{% url 'master-data-scout-hierarchy-manage' scout_hierarchy.id %}"
+                       class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Abbrechen
+                    </a>
+                    {% if not scout_hierarchy.children.exists %}
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                Löschen bestätigen
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

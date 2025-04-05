@@ -1,14 +1,26 @@
-{% extends "recipe/detail/_base.html" %}
+{% extends 'recipe/detail/_base.html' %}
 {% load main_extras %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
     <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
         <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {% include "./overview.html" with meta_info=recipe.meta_info %}
-            {% include "./basis.html" with meta_info=recipe.meta_info %}
-            {% include "./nutri.html" with meta_info=recipe.meta_info %}
-            {% include "./recipe_items.html" with recipe_items=recipe_items %}
-            {% include "./recipe_items_nutri.html" with recipe_items=recipe_items %}
+            {% comment %} {% include './overview.html' with meta_info=recipe.meta_info %}
+            {% include './basis.html' with meta_info=recipe.meta_info %} {% endcomment %}
+            {% include './recipe_items.html' with recipe_items=recipe_items %}
+            {% comment %} {% include './nutri.html' with meta_info=recipe.meta_info %}  {% endcomment %}
+            {% include './recipe_items_nutri.html' with recipe_items=recipe_items %}
+        </div>
+        <h2 class="text-2xl font-bold my-4">Inhaltsanalyse</h2>
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 my-4">
+            {% for nutri_item in nutri_analysis %}
+                {% include './nutri_analyse.html' with nutri_item=nutri_item %}
+            {% endfor %}
+        </div>
+        <h2 class="text-2xl font-bold my-4">Zutatenanalyse</h2>
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 my-4">
+            {% for recipe_item in recipe_items %}
+                {% include './ingredient_analyse.html' with recipe_item=recipe_item %}
+            {% endfor %}
         </div>
     </div>
-{% endblock detailcontent %}
+{% endblock %}

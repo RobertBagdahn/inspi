@@ -2,6 +2,7 @@
 from django.urls import include, re_path, path
 from pictures.conf import get_settings
 
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [

@@ -11,13 +11,14 @@
             <ul class="mx-auto divide-y divide-gray-200 dark:divide-gray-700">
                 {% for item in shopping_list %}
                     {% include "plan/shopping-list/list-item.html" with item=item %}
+                    {{ item }}
                 {% endfor %}
             </ul>
             <div class="mt-4">
                 <h3 class="text-2xl font-bold dark:text-white">Gesamtsummen</h3>
                 <p class="text-lg text-gray-500">Gesamtpreis: {{ total_price|floatformat:2 }} €</p>
                 <p class="text-lg text-gray-500">Anzahl der Zutaten: {{ shopping_list|length }}</p>
-                <p class="text-lg text-gray-500">Gesamtgewicht: {{ total_weight|floatformat:2 }} Kg</p>
+                <p class="text-lg text-gray-500">Gesamtgewicht: {{ total_weight_g|floatformat:2 }} Kg</p>
             </div>
         </div>
     </section>

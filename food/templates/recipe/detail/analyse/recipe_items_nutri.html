@@ -1,29 +1,83 @@
 <div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
-    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Rezept Elemente</h2>
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Rezept Elemente Nutri</h2>
     <table class="min-w-full bg-white">
         <thead>
             <tr>
                 <th class="py-2 px-4 border-b text-center">Name der Zutat</th>
-                <th class="py-2 px-4 border-b text-center">Energie (kJ)</th>
-                <th class="py-2 px-4 border-b text-center">Protein (g)</th>
-                <th class="py-2 px-4 border-b text-center">Fett ges. (g)</th>
-                <th class="py-2 px-4 border-b text-center">Zucker (g)</th>
-                <th class="py-2 px-4 border-b text-center">Natrium (mg)</th>
-                <th class="py-2 px-4 border-b text-center">Ballaststoffe (g)</th>
+                <th class="py-2 px-4 border-b text-center">Energie</th>
+                <th class="py-2 px-4 border-b text-center">Protein</th>
+                <th class="py-2 px-4 border-b text-center">Fett ges.</th>
+                <th class="py-2 px-4 border-b text-center">Zucker</th>
+                <th class="py-2 px-4 border-b text-center">Natrium</th>
+                <th class="py-2 px-4 border-b text-center">Ballaststoffe</th>
+                <th class="py-2 px-4 border-b text-center">Fruchtgehalt</th>
+                <th class="py-2 px-4 border-b text-center">Nutri Points</th>
             </tr>
         </thead>
+        {% load mathfilters %}
         <tbody>
             {% for item in recipe_items %}
                 <tr>
-                    <td class="py-2 px-4 border-b font-bold text-center">{{ item.portion.ingredient.name }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_energy_kj|floatformat:2 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_protein_g|floatformat:2 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_fat_sat_g|floatformat:2 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_sugar_g|floatformat:2 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_sodium_mg|floatformat:2 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.weighted_nutri_points_fibre_g|floatformat:2 }}</td>
+                    <td class="py-2 px-4 border-b font-bold text-center">
+                        {% if item.portion.ingredient.name %}
+                            {{ item.portion.ingredient.name }}
+                        {% else %}
+                            {{ item.sub_recipe.name }}
+                        {% endif %}
+                    </td>
+                    <td class="py-2 px-4 border-b text-center {% if item.weighted_nutri_points_energy_kj < 0 %}    text-green-600    {% elif item.weighted_nutri_points_energy_kj > 0 %}    text-red-600    {% elif item.weighted_nutri_points_energy_kj == 0 %}    text-white     {% endif %}">
+                        {{ item.weighted_nutri_points_energy_kj|floatformat:2 }}
+                    </td>
+                    <td class="py-2 px-4 border-b text-center {% if item.weighted_nutri_points_protein_g < 0 %}    text-green-600    {% elif item.weighted_nutri_points_protein_g > 0 %}    text-red-600    {% elif item.weighted_nutri_points_protein_g == 0 %}    text-white    {% endif %}">
+                        {{ item.weighted_nutri_points_protein_g|floatformat:2 }}
+                    </td>
+                    <td class="py-2 px-4 border-b text-center {% if item.weighted_nutri_points_fat_sat_g < 0 %}    text-green-600    {% elif item.weighted_nutri_points_fat_sat_g > 0 %}    text-red-600    {% elif item.weighted_nutri_points_fat_sat_g == 0 %}    text-white    {% endif %}">
+                        {{ item.weighted_nutri_points_fat_sat_g|floatformat:2 }}
+                    </td>
+                    <td class="py-2 px-4 border-b text-center {% if item.weighted_nutri_points_sugar_g < 0 %}    text-green-600    {% elif item.weighted_nutri_points_sugar_g > 0 %}    text-red-600    {% elif item.weighted_nutri_points_sugar_g == 0 %}    text-white    {% endif %}">
+                        {{ item.weighted_nutri_points_sugar_g|floatformat:2 }}
+                    </td>
+                    <td class="py-2 px-4 border-b text-center {% if item.weighted_nutri_points_sodium_mg < 0 %}    text-green-600    {% elif item.weighted_nutri_points_sodium_mg > 0 %}    text-red-600    {% elif item.weighted_nutri_points_sodium_mg == 0 %}    text-white    {% endif %}">
+                        {{ item.weighted_nutri_points_sodium_mg|floatformat:2 }}
+                    </td>
+                    <td class="py-2 px-4 border-b text-center {% if item.weighted_nutri_points_fibre_g < 0 %}    text-green-600    {% elif item.weighted_nutri_points_fibre_g > 0 %}    text-red-600    {% elif item.weighted_nutri_points_fibre_g == 0 %}    text-white    {% endif %}">
+                        {{ item.weighted_nutri_points_fibre_g|floatformat:2 }}
+                    </td>
+                    <td class="py-2 px-4 border-b text-center {% if item.weighted_nutri_points_fruit_factor < 0 %}    text-green-600    {% elif item.weighted_nutri_points_fruit_factor > 0 %}    text-red-600    {% elif item.weighted_nutri_points_fruit_factor == 0 %}    text-white    {% endif %}">
+                        {{ item.weighted_nutri_points|floatformat:2 }}
+                    </td>
+                    <td class="py-2 px-4 border-b text-center {% if item.weighted_nutri_points < 0 %}    text-green-600    {% elif item.weighted_nutri_points > 0 %}    text-red-600 {% elif item.weighted_nutri_points == 0 %}    text-white    {% endif %}">
+                        {{ item.weighted_nutri_points|floatformat:2 }}
+                    </td>
                 </tr>
             {% endfor %}
+            <tr class="bg-gray-100 dark:bg-gray-700">
+                <td class="py-2 px-4 border-b font-bold text-center">Gesamt</td>
+                <td class="py-2 px-4 border-b text-center {% if recipe.meta_info.nutri_points_energy_kj < 0 %} text-green-600 {% elif recipe.meta_info.nutri_points_energy_kj > 0 %} text-red-600 {% endif %}">
+                    {{ recipe.meta_info.nutri_points_energy_kj|floatformat:2 }}
+                </td>
+                <td class="py-2 px-4 border-b text-center {% if recipe.meta_info.nutri_points_protein_g < 0 %} text-green-600 {% elif recipe.meta_info.nutri_points_protein_g > 0 %} text-red-600 {% endif %}">
+                    {{ recipe.meta_info.nutri_points_protein_g|floatformat:2 }}
+                </td>
+                <td class="py-2 px-4 border-b text-center {% if recipe.meta_info.nutri_points_fat_sat_g < 0 %} text-green-600 {% elif recipe.meta_info.nutri_points_fat_sat_g > 0 %} text-red-600 {% endif %}">
+                    {{ recipe.meta_info.nutri_points_fat_sat_g|floatformat:2 }}
+                </td>
+                <td class="py-2 px-4 border-b text-center {% if recipe.meta_info.nutri_points_sugar_g < 0 %} text-green-600 {% elif recipe.meta_info.nutri_points_sugar_g > 0 %} text-red-600 {% endif %}">
+                    {{ recipe.meta_info.nutri_points_sugar_g|floatformat:2 }}
+                </td>
+                <td class="py-2 px-4 border-b text-center {% if recipe.meta_info.nutri_points_sodium_mg < 0 %} text-green-600 {% elif recipe.meta_info.nutri_points_sodium_mg > 0 %} text-red-600 {% endif %}">
+                    {{ recipe.meta_info.nutri_points_sodium_mg|floatformat:2 }}
+                </td>
+                <td class="py-2 px-4 border-b text-center {% if recipe.meta_info.nutri_points_fibre_g < 0 %} text-green-600 {% elif recipe.meta_info.nutri_points_fibre_g > 0 %} text-red-600 {% endif %}">
+                    {{ recipe.meta_info.nutri_points_fibre_g|floatformat:2 }}
+                </td>
+                <td class="py-2 px-4 border-b text-center {% if recipe.meta_info.nutri_points_fruit_factor < 0 %} text-green-600 {% elif recipe.meta_info.nutri_points_fruit_factor > 0 %} text-red-600 {% endif %}">
+                    {{ recipe.meta_info.nutri_points_fruit_factor|floatformat:2 }}
+                </td>
+                <td class="py-2 px-4 border-b text-center {% if recipe.meta_info.nutri_points < 0 %} text-green-600 {% elif recipe.meta_info.nutri_points > 0 %} text-red-600 {% endif %}">
+                    {{ recipe.meta_info.nutri_points|floatformat:2 }}
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

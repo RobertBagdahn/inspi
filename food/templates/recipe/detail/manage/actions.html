@@ -1,3 +1,5 @@
 {% load component_tags %}
-{% component 'big-action-box' header='Zutaten aktualisieren' icon='key' color='green' description='Preise und Inhaltsstoffe der Zutaten aktualisieren.' button_text="Updaten" post_url="{% url 'recipe-update-meta-infos' recipe.slug %}" %}
+{% component 'big-action-box' header='Zutaten aktualisieren' icon='key' color='green' description='Preise und Inhaltsstoffe der Zutaten aktualisieren.' button_text='Updaten' post_url="{% url 'recipe-update-meta-infos' recipe.slug %}" %}
+{% endcomponent %}
+{% component 'big-action-box' header='Rezept löschen' icon='trash' color='red' description='Dieses Rezept unwiderruflich löschen.' button_text='Löschen' post_url="{% url 'recipe-delete' recipe.slug %}" %}
 {% endcomponent %}

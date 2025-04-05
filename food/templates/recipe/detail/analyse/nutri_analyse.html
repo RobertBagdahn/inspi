@@ -1,0 +1,30 @@
+<div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">{{ nutri_item.name_display }}</h2>
+    <p class="my-4">Summe: {{ nutri_item.sum|floatformat:1 }} {{ nutri_item.unit }}</p>
+    <div class="my-4">
+        <span class="block w-full mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Top 3 Zutaten:</span>
+        <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-gray-400">
+            {% if nutri_item.processed_top_3|length > 0 %}
+                {% for item in nutri_item.processed_top_3 %}
+                    <li>{{ item.ingredient_name }}: {{ item.value|floatformat:1 }} {{ nutri_item.unit }}</li>
+                {% endfor %}
+            {% else %}
+                <li>Keine Daten verfügbar</li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="mt-4">
+        <span class="block w-full mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Hinweise:</span>
+        <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-gray-400">
+            {% if nutri_item.hints|length > 0 %}
+                {% for hint in nutri_item.hints %}
+                    <li class=" {% if hint.hint_level == 'warn' %}  font-bold text-yellow-400  {% elif hint.hint_level == 'error' %}  font-bold text-red-500  {% endif %}">
+                        {{ hint.hint }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="font-bold text-green-500">Alles gut</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

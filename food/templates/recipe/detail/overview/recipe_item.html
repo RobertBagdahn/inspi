@@ -1,47 +1,120 @@
-<tr>
-    <td class="w-96 min-w-56 whitespace-nowrap py-4">
-        <a href="{% url 'ingredient-detail-overview' recipe_item.portion.ingredient.slug %}"
-           class="flex items-center gap-4 font-bold hover:underline">
-            {{ recipe_item.portion.ingredient.name }}
-            {% if recipe_item.portion.name %}({{ recipe_item.portion.name }}){% endif %}
-        </a>
-    </td>
-    {% if recipe_item.portion.name %}
-        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">{{ recipe_item.quantity }} x</td>
-    {% else %}
-        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white"></td>
-    {% endif %}
-    <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
-        {{ recipe_item.portion.ingredient.meta_info.nutri_score_display }}
-    </td>
-    <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
-        {{ recipe_item.meta_info.weight_g|floatformat:0 }} g
-    </td>
-    <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
-        {{ recipe_item.meta_info.price_eur|floatformat:2 }} €
-    </td>
-    <td class="py-4">
-        <button type="button"
-                data-drawer-target="drawer-update-{{ i }}"
-                data-drawer-show="drawer-update-{{ i }}"
-                aria-controls="drawer-update-{{ i }}"
-                class="ml-auto block rounded-lg p-2 text-white bg-blue-600 hover:bg-blue-700 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
-            <span class="sr-only">Edit</span>
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 fill="none"
-                 viewBox="0 0 24 24"
-                 stroke-width="1.5"
-                 stroke="currentColor"
-                 class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-            </svg>
-        </button>
-        <div id="remove-tooltip"
-             role="tooltip"
-             class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
-            Edit
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
-    </td>
-    {% include './drawer_update.html' with recipe_item=recipe_item update_form=update_form i=i %}
-</tr>
+{% if recipe_item.portion %}
+    <tr>
+        <td class="w-96 min-w-56 whitespace-nowrap py-4">
+            <a href="{% url 'ingredient-detail-overview' recipe_item.portion.ingredient.slug %}"
+               class="flex items-center gap-4 font-bold hover:underline">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="1.5"
+                     stroke="currentColor"
+                     class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                </svg>
+                {{ recipe_item.portion.ingredient.name }}
+                {% if recipe_item.portion.name %}({{ recipe_item.portion.name }}){% endif %}
+            </a>
+        </td>
+        {% if recipe_item.portion.name %}
+            <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+                {{ recipe_item.quantity|floatformat:2 }} x
+            </td>
+        {% else %}
+            <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+                {% if recipe_item.portion.measuring_unit.unit == 'ml' %}
+                    {{ recipe_item.quantity|floatformat:0 }} {{ recipe_item.portion.measuring_unit.unit }}
+                {% endif %}
+            </td>
+        {% endif %}
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+            {{ recipe_item.portion.ingredient.meta_info.nutri_score_display }}
+        </td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+            {{ recipe_item.meta_info.weight_g|floatformat:0 }} g
+        </td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+            {{ recipe_item.meta_info.price_eur|floatformat:2 }} €
+        </td>
+        <td class="py-4">
+            {% if can_edit %}
+                <button type="button"
+                        data-drawer-target="drawer-update-{{ i }}"
+                        data-drawer-show="drawer-update-{{ i }}"
+                        aria-controls="drawer-update-{{ i }}"
+                        class="ml-auto block rounded-lg p-2 text-white bg-blue-600 hover:bg-blue-700 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+                    <span class="sr-only">Edit</span>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke-width="1.5"
+                         stroke="currentColor"
+                         class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                    </svg>
+                </button>
+                <div id="remove-tooltip"
+                     role="tooltip"
+                     class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
+                    Edit
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+            {% endif %}
+        </td>
+        {% include './drawer_update.html' with recipe_item=recipe_item update_form=update_form i=i %}
+    </tr>
+{% else %}
+    <tr>
+        <td class="w-96 min-w-56 whitespace-nowrap py-4">
+            <a href="{% url 'recipe-detail-overview' recipe_item.sub_recipe.slug %}"
+               class="flex items-center gap-4 font-bold hover:underline">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="1.5"
+                     stroke="currentColor"
+                     class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                {{ recipe_item.sub_recipe.name }}
+            </a>
+        </td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+            {{ recipe_item.quantity|floatformat:2 }} x
+        </td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+            {{ recipe_item.meta_info.nutri_score_display }}
+        </td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+            {{ recipe_item.meta_info.weight_g|floatformat:0 }} g
+        </td>
+        <td class="p-4 text-end text-base font-medium text-gray-900 dark:text-white">
+            {{ recipe_item.meta_info.price_eur|floatformat:2 }} €
+        </td>
+        <td class="py-4">
+            {% if can_edit %}
+                <button type="button"
+                        data-drawer-target="drawer-update-{{ i }}"
+                        data-drawer-show="drawer-update-{{ i }}"
+                        aria-controls="drawer-update-{{ i }}"
+                        class="ml-auto block rounded-lg p-2 text-white bg-blue-600 hover:bg-blue-700 dark:hover:bg-gray-700 hover:text-gray-100 dark:text-gray-400">
+                    <span class="sr-only">Edit</span>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke-width="1.5"
+                         stroke="currentColor"
+                         class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                    </svg>
+                </button>
+                <div id="remove-tooltip"
+                     role="tooltip"
+                     class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
+                    Edit
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+            {% endif %}
+        </td>
+    </tr>
+    {% include './drawer_update_recipe.html' with recipe_item=recipe_item update_form=update_form i=i %}
+{% endif %}

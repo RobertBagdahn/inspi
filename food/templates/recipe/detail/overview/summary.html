@@ -1,9 +1,9 @@
 {% load component_tags %}
-{% component 'kpi-box' kpi_value=kpi_price color='blue' kpi_description='Kosten p.P.' link="{% url 'plan-dashboard' %}" link_text='Deine Pläne' icon='euro' %} {% endcomponent %}
-{% component 'kpi-box' kpi_value=kpi_weight color='blue' kpi_description='Gewicht p.P' link="{% url 'plan-dashboard' %}" link_text='Alle Pläne' icon='chart-up' %} {% endcomponent %}
-{% component 'kpi-box' kpi_value=kpi_nutri_class color='blue' kpi_description='Nutri Score.' link="{% url 'recipe-list' %}" link_text='Alle Rezepte' icon='key' %} {% endcomponent %}
-{% component 'kpi-box' kpi_value=kpi_popularity color='blue' kpi_description='Anzahl Zutaten.' link="{% url 'ingredient-list' %}" link_text='Alle Zutaten' icon='plus' %} {% endcomponent %}
-{% component 'kpi-box' kpi_value=kpi_energy_kj color='blue' kpi_description='Energie' link="{% url 'ingredient-list' %}" link_text='Alle Zutaten' icon='plus' %} {% endcomponent %}
-{% component 'kpi-box' kpi_value=kpi_sugar_g color='blue' kpi_description='Zucker' link="{% url 'ingredient-list' %}" link_text='Alle Zutaten' icon='plus' %} {% endcomponent %}
-{% component 'kpi-box' kpi_value=kpi_protein_g color='blue' kpi_description='Eiweiß' link="{% url 'ingredient-list' %}" link_text='Alle Zutaten' icon='plus' %} {% endcomponent %}
-{% component 'kpi-box' kpi_value=kpi_fibre_g color='blue' kpi_description='Ballaststoffe' link="{% url 'ingredient-list' %}" link_text='Alle Zutaten' icon='plus' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_price color='blue' kpi_description='Kosten p.P.' link="{% url 'recipe-detail-analyse' slug=recipe.slug %}" link_text='Details' icon='plus' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_weight color='blue' kpi_description='Gewicht p.P' link="{% url 'recipe-detail-analyse' slug=recipe.slug %}" link_text='Details' icon='plus' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_nutri_class color='blue' kpi_description='Nutri Score.' link="{% url 'recipe-detail-analyse' slug=recipe.slug %}" link_text='Details' icon='plus' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_ingredient_count color='blue' kpi_description='Anzahl Zutaten.' link="{% url 'recipe-detail-analyse' slug=recipe.slug %}" link_text='Details' icon='plus' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_energy_kj color='blue' kpi_description='Energie' link="{% url 'recipe-detail-analyse' slug=recipe.slug %}" link_text='Details' icon='plus' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_sugar_g color='blue' kpi_description='Zucker' link="{% url 'recipe-detail-analyse' slug=recipe.slug %}" link_text='Details' icon='plus' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_protein_g color='blue' kpi_description='Eiweiß' link="{% url 'recipe-detail-analyse' slug=recipe.slug %}" link_text='Details' icon='plus' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_fibre_g color='blue' kpi_description='Ballaststoffe' link="{% url 'recipe-detail-analyse' slug=recipe.slug %}" link_text='Details' icon='plus' %} {% endcomponent %}

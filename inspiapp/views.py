@@ -1,11 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-import json
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 
 from blog.models import Post
-from activity.activity.models import Activity, Topic
+from activity.activity.models import Activity
 
 from django.db.models import Q
 
