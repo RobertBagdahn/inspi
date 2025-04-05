@@ -8,8 +8,7 @@ class NotificationDropdownComponent(component.Component):
 
     def get_context_data(self, user):
         notifications = NotificationMessage.objects.filter(is_read=False).filter(user = user)
-        print(f"Nachrichten: {notifications}")
-
+        
         return {
             "notifications": notifications
         }

@@ -1,3 +1,31 @@
+<button
+  type="button"
+  data-dropdown-toggle="notification-dropdown"
+  class="relative p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+>
+  <span class="sr-only">View notifications</span>
+  <!-- Bell icon -->
+  <svg
+    class="w-5 h-5"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 14 20"
+  >
+    <path
+      d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"
+    />
+  </svg>
+  <!-- Badge -->
+  {% if notifications|length > 0 %}
+  <span
+    class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs text-white bg-red-500 rounded-full dark:bg-red-700"
+  >
+    {% if notifications|length > 9 %} +{{ notifications|length }} {% else %} {{
+    notifications|length }} {% endif %}
+  </span>
+  {% endif %}
+</button>
 <div
   class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700"
   id="notification-dropdown"
@@ -5,7 +33,7 @@
   <div
     class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
   >
-    Notifications ({{ notifications|length }})
+    Benachrichtigungen
   </div>
   <div>
     {% for notification in notifications %}
@@ -27,7 +55,7 @@
           {{ notification.message }}
         </div>
         <div class="text-xs font-medium text-primary-700 dark:text-primary-400">
-            {{ notification.send_at|date:"d.m.Y H:i" }} Uhr
+          {{ notification.send_at|date:"d.m.Y H:i" }} Uhr
         </div>
       </div>
     </a>
@@ -37,7 +65,7 @@
   </div>
   <a
     href="#"
-    class="block py-2 text-base font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:underline"
+    class="block px-8 py-2 text-base font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:underline"
   >
     <div class="inline-flex items-center">
       <svg
@@ -51,7 +79,7 @@
           d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"
         />
       </svg>
-      View all
+      Alle Benachrichtigungen
     </div>
   </a>
 </div>
