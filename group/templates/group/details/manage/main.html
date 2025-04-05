@@ -1,4 +1,4 @@
-{% extends 'group/details/_group_detail_base.html' %}
+{% extends "group/details/_group_detail_base.html" %}
 {% load component_tags %}
 {% block groupdetailcontent %}
     <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
@@ -8,40 +8,17 @@
             <div id="default-tab-content">
                 <div id="overview" role="tabpanel" aria-labelledby="overview-tab">
                     <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-                        {% component "action-box"
-                        description="Benutzer zur Gruppe hinzufügen"
-                        text="Mitglied hinzufügen"
-                        link="{% url 'add-user' group.slug %}"
-                        color="blue"
-                        icon="user-plus"
-                        %}
+                        {% component 'action-box' description='Benutzer zur Gruppe hinzufügen' text='Mitglied hinzufügen' link="{% url 'add-user' group.slug %}" color='blue' icon='user-plus' %}
                     {% endcomponent %}
-                    {% component "action-box"
-                    description="Du kannst die Gruppe bearbeiten"
-                    text="Gruppe bearbeiten"
-                    link="{% url 'edit-group' group.slug %}"
-                    color="blue"
-                    icon="edit"
-                    %}
+                    {% component 'action-box' description='Du kannst die Gruppe bearbeiten' text='Gruppe bearbeiten' link="{% url 'edit-group' group.slug %}" color='blue' icon='edit' %}
                 {% endcomponent %}
-                {% component "action-box"
-                description="Du kannst die Gruppe löschen"
-                text="Gruppe löschen"
-                link="{% url 'delete-group' group.slug %}"
-                color="red"
-                icon="trash"
-                %}
+                {% component 'action-box' description='Du kannst die Gruppe löschen' text='Gruppe löschen' link="{% url 'delete-group' group.slug %}" color='red' icon='trash' %}
             {% endcomponent %}
-            {% component "action-box"
-            description="Neue Verwaltungsgruppe hinzufügen"
-            text="Recht erstellen"
-            link="{% url 'create-permission' group.slug %}"
-            color="green"
-            %}
+            {% component 'action-box' description='Neue Verwaltungsgruppe hinzufügen' text='Recht erstellen' link="{% url 'create-permission' group.slug %}" color='green' %}
         {% endcomponent %}
     </div>
 </div>
 </div>
 </div>
 </section>
-{% endblock %}
+{% endblock groupdetailcontent %}

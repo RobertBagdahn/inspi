@@ -15,4 +15,9 @@
     {% endcomponent %}
 </form>
 </div>
+<div class="my-4 w-full border-t border-gray-300"></div>
+<div class="my-4 w-full flex justify-center">
+    {% component 'link-button' color='blue' text='DPV-Login' icon='open-door' url='/accounts/oidc/keycloak/login/' %}
+{% endcomponent %}
+</div>
 {% endblock %}

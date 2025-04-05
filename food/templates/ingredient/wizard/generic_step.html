@@ -1,0 +1,132 @@
+{% extends 'ingredient/wizard/layout.html' %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% block wizard_content %}
+    <div class="p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4 text-blue-600">{{ step_title }}</h2>
+        <p class="mb-6 text-gray-700">{{ step_description }}</p>
+        <form method="post" action="{% url 'ingredient-wizard' %}" id="wizard-form">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+            {{ form.media }}
+            {{ form|crispy }}
+            {{ form.non_field_errors }}
+            <div class="flex justify-between mt-6">
+                {% if wizard.steps.prev %}
+                    <button type="submit"
+                            name="wizard_goto_step"
+                            value="{{ wizard.steps.prev }}"
+                            class="px-4 py-2 bg-gray-200 text-gray-900 rounded-md hover:bg-gray-400"
+                            formnovalidate>Zurück</button>
+                {% else %}
+                    <a href="{% url 'ingredient-list' %}"
+                       class="px-4 py-2 bg-gray-200 text-gray-900 rounded-md hover:bg-gray-400">Abbrechen</a>
+                {% endif %}
+                <div>
+                    {% if wizard.steps.current != 'intro' and wizard.steps.current != 'management' %}
+                        <button type="button"
+                                id="ai-suggestion-btn"
+                                class="px-4 py-2 mr-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                            <i class="fas fa-robot mr-1"></i> KI-Vorschläge
+                        </button>
+                    {% endif %}
+                    <button type="submit"
+                            class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Weiter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if wizard.steps.current != 'intro' and wizard.steps.current != 'management' %}
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const aiSuggestionBtn = document.getElementById('ai-suggestion-btn');
+      const wizardForm = document.getElementById('wizard-form');
+      
+      // Get the current step name and slug from the form
+      const currentStep = "{{ wizard.steps.current }}";
+      const slug = "{{ ingredient_search_slug }}";
+
+      
+      aiSuggestionBtn.addEventListener('click', function() {
+        // Show loading state
+        aiSuggestionBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Lädt...';
+        aiSuggestionBtn.disabled = true;
+        
+        // Only make the request if we have a slug
+        if (slug) {
+          fetch(`/food/api/wizard-suggestions/${currentStep}/${slug}/`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json();
+            })
+            .then(data => {
+              // Fill the form fields with suggestions
+                Object.keys(data).forEach(key => {
+                  // Handle array values for checkboxes (like nutritional_tags)
+                  if (Array.isArray(data[key])) {
+                    // Get all checkboxes with the same name pattern
+                    const checkboxes = document.querySelectorAll(`[id^="id_${currentStep}-${key}_"]`);
+                    checkboxes.forEach(checkbox => {
+                      // Check if the checkbox value exists in our data array
+                      checkbox.checked = data[key].includes(parseInt(checkbox.value));
+                      // Trigger change event
+                      checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                    });
+                  } else {
+                    // Handle single fields
+                    const field = document.getElementById(`id_${currentStep}-${key}`);
+                    if (field) {
+                      // Handle different field types
+                      if (field.type === 'checkbox') {
+                        field.checked = data[key];
+                      } else if (field.tagName === 'SELECT' && field.multiple && Array.isArray(data[key])) {
+                        Array.from(field.options).forEach(option => {
+                          option.selected = data[key].includes(option.textContent.trim());
+                        });
+                      } else {
+                        field.value = data[key];
+                      }
+                      
+                      // Trigger change event to update any dependent fields
+                      field.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                  }
+                });
+              
+              // Reset button
+              aiSuggestionBtn.innerHTML = '<i class="fas fa-robot mr-1"></i> KI-Vorschläge';
+              aiSuggestionBtn.disabled = false;
+            })
+            .catch(error => {
+              console.error('Error fetching suggestions:', error);
+              aiSuggestionBtn.innerHTML = 'Fehler beim Laden';
+              setTimeout(() => {
+                aiSuggestionBtn.innerHTML = '<i class="fas fa-robot mr-1"></i> KI-Vorschläge';
+                aiSuggestionBtn.disabled = false;
+              }, 2000);
+            });
+        } else {
+          // If no slug, we can't make suggestions
+          aiSuggestionBtn.innerHTML = 'Kein Inhalt verfügbar';
+          setTimeout(() => {
+            aiSuggestionBtn.innerHTML = '<i class="fas fa-robot mr-1"></i> KI-Vorschläge';
+            aiSuggestionBtn.disabled = false;
+          }, 2000);
+        }
+      });
+      
+      // Save new slug to localStorage when moving to next step
+      wizardForm.addEventListener('submit', function() {
+        const nameField = document.getElementById('id_basic_info-name');
+        if (nameField && nameField.value) {
+          // Create a slug from the name field
+          const newSlug = nameField.value.toLowerCase().replace(/\s+/g, '-');
+          localStorage.setItem('ingredient_wizard_name', newSlug);
+        }
+      });
+    });
+        </script>
+    {% endif %}
+{% endblock %}

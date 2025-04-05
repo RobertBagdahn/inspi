@@ -20,11 +20,24 @@ from google.cloud import secretmanager
 
 from django.forms.renderers import TemplatesSetting
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import environ
+import os
 
-env = environ.Env(DEBUG=(bool, False))
+
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+DEBUG = env('DEBUG')
+LOCAL = env('LOCAL') == 'True'
+
+ 
+
 env_file = os.path.join(BASE_DIR, ".env")
 
 if os.path.isfile(env_file):
@@ -60,8 +73,6 @@ else:
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 SECRET_KEY = env("SECRET_KEY")
-
-DEBUG = env("DEBUG")
 
 if env.bool("NPM_BIN_PATH", default=False):
     NPM_BIN_PATH = f'r{env("NPM_BIN_PATH")}'
@@ -128,6 +139,7 @@ INSTALLED_APPS = [
     "event.registration",
     "event.participant",
     "group",
+    "masterdata",
 
 ]
 
@@ -165,6 +177,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'general/footer/templates'),
             os.path.join(BASE_DIR, 'general/login/templates'),
             os.path.join(BASE_DIR, 'event/basic/templates'),
+            os.path.join(BASE_DIR, 'master-data/basic/templates'),
             os.path.join(BASE_DIR, 'event/registration/templates'),
             os.path.join(BASE_DIR, 'event/participant/templates'),
             os.path.join(BASE_DIR, 'group/templates'),
@@ -177,6 +190,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "inspiapp.context_processors.header_app",
             ],
         },
     },
@@ -194,7 +208,7 @@ WSGI_APPLICATION = "inspiapp.wsgi.application"
 # Use django-environ to parse the connection string
 DATABASES = {"default": env.db()}
 
-if not env.bool("LOCAL"):
+if not LOCAL:
     if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
         DATABASES["default"]["HOST"] = "127.0.0.1"
         DATABASES["default"]["PORT"] = 5432
@@ -204,7 +218,7 @@ if not env.bool("LOCAL"):
 # Use a in-memory sqlite3 database when testing in CI systems
 # TODO(glasnt) CHECK IF THIS IS REQUIRED because we're setting a val above
 
-if env.bool("LOCAL"):
+if LOCAL:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -244,15 +258,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-# STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-#     "/var/www/static/",
-# ]
-
 
 STATIC_ROOT = "static"
 STATIC_URL = "/static/"

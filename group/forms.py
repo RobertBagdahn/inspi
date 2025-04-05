@@ -38,6 +38,18 @@ class InspiGroupForm(forms.ModelForm):
         label="Frei beitreten",
         help_text="Jeder kann der Gruppe beitreten, wenn sie gesehen werden kann.",
     )
+    editable_by_users = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        required=False,
+        label="Bearbeitbar von Benutzern",
+        help_text="Benutzer, die diese Gruppe bearbeiten dürfen",
+    )
+    editable_by_groups = forms.ModelMultipleChoiceField(
+        queryset=InspiGroup.objects.filter(is_deleted=False),
+        required=False,
+        label="Bearbeitbar von Gruppen",
+        help_text="Gruppen, deren Mitglieder diese Gruppe bearbeiten dürfen",
+    )
 
     class Meta:
         model = InspiGroup
@@ -47,8 +59,11 @@ class InspiGroupForm(forms.ModelForm):
             "join_code",
             "is_visible",
             "free_to_join",
+            "editable_by_users",
+            "editable_by_groups",
         ]
-        
+
+
 class InspiGroupNewsForm(forms.ModelForm):
     subject = forms.CharField(
         max_length=100,
@@ -100,6 +115,8 @@ class InspiGroupMembershipMemberForm(forms.ModelForm):
             "share_all_personal_data",
             "share_own_personal_data",
         ]
+
+
 class InspiGroupMembershipAdminForm(forms.ModelForm):
     read_access = forms.BooleanField(
         required=False,

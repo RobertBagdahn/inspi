@@ -7,11 +7,14 @@
          aria-labelledby="overview-tab"
          class="mx-auto max-w-screen-lg px-4 2xl:px-0">
         <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {% comment %} {% include './summary.html' with ingredient=ingredient %} {% endcomment %}
-            {% comment %} {% include './lists.html' with ingredient=ingredient %} {% endcomment %}
             {% include './basic.html' with ingredient=ingredient %}
             {% include './attribute.html' with ingredient=ingredient %}
+            {% include './score.html' with ingredient=ingredient %}
+            {% include './recipe_attribute.html' with ingredient=ingredient %}
+            {% include './nutritional_tags.html' with ingredient=ingredient %}
             {% include './references.html' with ingredient=ingredient %}
+            {% include './alias.html' with ingredient=ingredient %}
+            {% include './manage.html' with ingredient=ingredient %}
         </div>
     </div>
 {% endblock %}

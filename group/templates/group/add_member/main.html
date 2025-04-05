@@ -1,4 +1,4 @@
-{% extends "_base_group.html" %}
+{% extends '_base_group.html' %}
 {% load crispy_forms_tags %}
 {% block detailcontent %}
     <main class="max-w-3xl mx-auto px-4 py-8">
@@ -7,6 +7,8 @@
             <p class="mb-4 text-sm text-gray-600">
                 Wähle eine Person aus, die du zur Gruppe hinzufügen möchtest. Du kannst auch mehrere Personen hinzufügen.
             </p>
+            {{ form|crispy }}
+            {{ form.non_field_errors }}
             <!-- Button to open the modal -->
             <button type="button"
                     class="mt-4 inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150"
@@ -14,6 +16,6 @@
                     data-modal-toggle="modal-new-member">Benutzer hinzufügen</button>
         </article>
     </main>
-    {% include "./modal.html" %}
+    {% include './modal.html' %}
     <!-- Include the modal -->
-{% endblock detailcontent %}
+{% endblock %}

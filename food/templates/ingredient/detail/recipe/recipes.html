@@ -3,22 +3,10 @@
     {% if recipes %}
         {% for recipe in recipes %}
             <article>
-                <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">{{ recipe.name }}</h2>
-                <p>
-                    {% for recipe_item in recipe.recipe_items.all %}
-                        {% if forloop.last %}
-                            {{ recipe_item.portion.ingredient.name }}
-                        {% else %}
-                            {{ recipe_item.portion.ingredient.name }},
-                        {% endif %}
-                    {% endfor %}
-                </p>
-                {% if recipe.slug %}
-                    <a href="{% url 'recipe-detail-overview' recipe.slug %}"
-                       class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">Zum Rezept</a>
-                {% else %}
-                    <span class="inline-flex items-center font-medium underline underline-offset-4 text-gray-500 dark:text-gray-400">Slug not available</span>
-                {% endif %}
+                <a href="{% url 'recipe-detail-overview' recipe.slug %}"
+                   class="hover:underline">
+                    <h2 class="mb-2 text-md font-bold leading-tight text-blue-600 dark:text-blue-500">{{ recipe.name }}</h2>
+                </a>
             </article>
         {% endfor %}
     {% else %}

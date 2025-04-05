@@ -2,36 +2,41 @@
     <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Nutri Score</h2>
     <ul class="mt-5 space-y-4">
         <li class="flex justify-between border-b border-gray-200 pb-2">
-            <span>Nutri Punkte (Fibre g)</span>
-            <span class="text-green-500">+{{ meta_info.nutri_points_fibre_g }}</span>
+            <span>Nutri Punkte (Ballaststoffe)</span>
+            <span class="{% if meta_info.nutri_points_fibre_g != 0 %}text-green-500{% endif %}">{{ meta_info.nutri_points_fibre_g }}</span>
         </li>
         <li class="flex justify-between border-b border-gray-200 pb-2">
-            <span>Nutri Punkte (Protein g)</span>
-            <span class="text-green-500">+{{ meta_info.nutri_points_protein_g }}</span>
+            <span>Nutri Punkte (Eiweiß)</span>
+            <span class="{% if meta_info.nutri_points_protein_g != 0 %}text-green-500{% endif %}">{{ meta_info.nutri_points_protein_g }}</span>
         </li>
         <li class="flex justify-between border-b border-gray-200 pb-2">
-            <span>Nutri Punkte (Energy kJ)</span>
-            <span class="text-red-500">-{{ meta_info.nutri_points_energy_kj }}</span>
+            <span>Nutri Punkte (Energie)</span>
+            <span class="{% if meta_info.nutri_points_energy_kj != 0 %}text-red-500{% endif %}">{{ meta_info.nutri_points_energy_kj }}</span>
         </li>
         <li class="flex justify-between border-b border-gray-200 pb-2">
-            <span>Nutri Punkte (Saturated Fat g)</span>
-            <span class="text-red-500">-{{ meta_info.nutri_points_fat_sat_g }}</span>
+            <span>Nutri Punkte (Gesättigte Fettsäuren)</span>
+            <span class="{% if meta_info.nutri_points_fat_sat_g != 0 %}text-red-500{% endif %}">{{ meta_info.nutri_points_fat_sat_g }}</span>
         </li>
         <li class="flex justify-between border-b border-gray-200 pb-2">
-            <span>Nutri Punkte (Sugar g)</span>
-            <span class="text-red-500">-{{ meta_info.nutri_points_sugar_g }}</span>
+            <span>Nutri Punkte (Zucker)</span>
+            <span class="{% if meta_info.nutri_points_sugar_g != 0 %}text-red-500{% endif %}">{{ meta_info.nutri_points_sugar_g }}</span>
         </li>
         <li class="flex justify-between border-b border-gray-200 pb-2">
-            <span>Nutri Punkte (Sodium mg)</span>
-            <span class="text-red-500">-{{ meta_info.nutri_points_sodium_mg }}</span>
+            <span>Nutri Punkte (Natrium)</span>
+            <span class="{% if meta_info.nutri_points_sodium_mg != 0 %}text-red-500{% endif %}">{{ meta_info.nutri_points_sodium_mg }}</span>
         </li>
         <li class="flex justify-between border-b border-gray-200 pb-2">
-            <span>Nutri Punkte Summe</span>
-            <span>{{ meta_info.nutri_points }}</span>
-        </li>
-        <li class="flex justify-between">
-            <span>Nutri Class</span>
-            <span>{{ meta_info.nutri_score_display }}</span>
-        </li>
-    </ul>
-</div>
+            <span>Nutri Punkte (Obst/Gemüse Faktor)</span>
+            <span class="{% if meta_info.nutri_points_fruit_factor != 0 %}text-green-500{% endif %}">{{ meta_info.nutri_points_fruit_factor }}</span>
+            <li class="flex justify-between border-b border-gray-200 pb-2">
+                <span><strong>Nutri Punkte Summe</strong></span>
+                <span class="{% if meta_info.nutri_points > 0 %} text-red-500 {% elif meta_info.nutri_points < 0 %} text-green-500 {% endif %}">
+                    <strong>{{ meta_info.nutri_points }}</strong>
+                </span>
+            </li>
+            <li class="flex justify-between">
+                <span>Nutri Class</span>
+                <span>{{ meta_info.nutri_score_display }}</span>
+            </li>
+        </ul>
+    </div>

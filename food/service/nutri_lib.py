@@ -120,34 +120,6 @@ def get_nutri_table():
                 [900, 10000, 10],
             ],
         },
-        "salt_mg": {
-            "solid": [
-                [-10000, 90, 0],
-                [90, 180, 1],
-                [180, 270, 2],
-                [270, 360, 3],
-                [360, 450, 4],
-                [450, 540, 5],
-                [540, 630, 6],
-                [630, 720, 7],
-                [720, 810, 8],
-                [810, 900, 9],
-                [900, 10000, 10],
-            ],
-            "beverage": [
-                [-10000, 90, 0],
-                [90, 180, 1],
-                [180, 270, 2],
-                [270, 360, 3],
-                [360, 450, 4],
-                [450, 540, 5],
-                [540, 630, 6],
-                [630, 720, 7],
-                [720, 810, 8],
-                [810, 900, 9],
-                [900, 10000, 10],
-            ],
-        },
         "fruit_factor": {
             "solid": [
                 [-10000, 40, 0],
@@ -193,10 +165,10 @@ def get_nutri_table():
         "nutriClass": {
             "solid": [
                 [-10000, -1, 1],
-                [-1, 2, 2],
-                [2, 10, 3],
-                [10, 18, 4],
-                [18, 10000, 5],
+                [-1, 3, 2],
+                [3, 11, 3],
+                [11, 19, 4],
+                [19, 10000, 5],
             ],
             "beverage": [[-10000, 1, 2], [2, 5, 3], [5, 9, 4], [9, 10000, 5]],
         },
@@ -227,6 +199,8 @@ def get_points(item, physical_viscosity, value):
 
 
 def get_nutri_class(physical_viscosity, value):
+    if value is None:
+        return 0
     get_nutri_table_data = get_nutri_table()
     nutri_array = get_nutri_table_data["nutriClass"][physical_viscosity]
     for row in nutri_array:
@@ -242,12 +216,119 @@ def update_meta_info_nutri(recipe, recipe_items):
 
     fields = get_nutri_items()
 
-    meta_info = recipe.meta_info
+    for item in recipe_items:
+        meta_info = item.meta_info
+
+        # Only process if item.portion exists
+        if hasattr(item, 'portion') and item.portion:
+            ingredient_meta_info = item.portion.ingredient.meta_info
+
+            for field in fields:
+                points = getattr(ingredient_meta_info, f"nutri_points_{field}", 0)
+                setattr(meta_info, f"nutri_points_{field}", points)
+                
+                setattr(
+                    meta_info,
+                    "nutri_points",
+                    sum(getattr(meta_info, f"nutri_points_{field}") for field in fields),
+                )
+                setattr(
+                    meta_info,
+                    "nutri_class",
+                    get_nutri_class("solid", meta_info.nutri_points),
+                )
+        meta_info.save()
+
+    recipe_meta_info = recipe.meta_info
+    # Calculate weighted nutri points for the recipe
+    total_weight = sum(item.meta_info.weight_g for item in recipe_items if hasattr(item.meta_info, 'weight_g') and item.meta_info.weight_g)
+
+
+    if total_weight > 0:
+        # Initialize all fields to 0
+        for field in fields:
+            setattr(recipe_meta_info, f"nutri_points_{field}", 0)
+        
+        # Calculate weighted sum for each nutrient
+        for item in recipe_items:
+            if hasattr(item.meta_info, 'weight_g') and item.meta_info.weight_g:
+                weight_factor = item.meta_info.weight_g / total_weight
+                for field in fields:
+                    item_points = getattr(item.meta_info, f"nutri_points_{field}", 0) or 0
+                    current_points = getattr(recipe_meta_info, f"nutri_points_{field}", 0) or 0
+                    weighted_points = item_points * weight_factor
+                    setattr(recipe_meta_info, f"nutri_points_{field}", current_points + weighted_points)
+        
+        # Calculate total nutri points and class
+        recipe_meta_info.nutri_points = sum(getattr(recipe_meta_info, f"nutri_points_{field}", 0) or 0 for field in fields)
+        recipe_meta_info.nutri_class = get_nutri_class("solid", recipe_meta_info.nutri_points)
+        recipe_meta_info.save()
+
+def update_meta_info_nutri_portions(ingredient):
+    """
+    Update all portions connected to the ingredient.
+    """
+    fields = get_nutri_items()
+    
+    for portion in ingredient.portions.all():
+        meta_info = portion.meta_info
+
+        # Copy nutri score and nutri points from ingredient
+        for field in fields:
+            value = getattr(ingredient.meta_info, field)
+            points = get_points(field, "solid", value)
+            setattr(meta_info, f"nutri_points_{field}", points)
+        # set nutri points
+        setattr(
+            meta_info,
+            "nutri_points",
+            sum(getattr(meta_info, f"nutri_points_{field}") for field in fields),
+        )
+        setattr(
+            meta_info,
+            "nutri_class",
+            get_nutri_class("solid", meta_info.nutri_points),
+        )
+        meta_info.save()
+
+def update_portions_with_ingredient_data(ingredient):
+    """
+    Update all portions nutrients based on ingredient data (per 100g) and portion weight.
+    """
+    meta_info_ingredient = ingredient.meta_info
+    fields = get_nutri_items()
+    
+    for portion in ingredient.portions.all():
+        meta_info_portion = portion.meta_info
+        weight_factor = meta_info_portion.weight_g / 100.0  # Calculate factor (portion weight / 100g)
+        
+        for field in fields:
+            # Skip if field doesn't exist on the model
+            if not hasattr(meta_info_ingredient, field):
+                continue
+                
+            # Get value from ingredient (per 100g) and multiply by weight factor
+            ingredient_value = getattr(meta_info_ingredient, field, 0)
+            if ingredient_value is not None:
+                portion_value = ingredient_value * weight_factor
+                setattr(meta_info_portion, field, portion_value)
+        
+        meta_info_portion.save()
+
+
+
+def update_meta_info_nutri_ingredient(ingredient):
+    """
+    Update a recipe.
+    """
+
+    fields = get_nutri_items()
+
+    meta_info = ingredient.meta_info
     for field in fields:
         value = getattr(meta_info, field)
         points = get_points(field, "solid", value)
         setattr(meta_info, f"nutri_points_{field}", points)
-
 
     # set nutri points
     setattr(
@@ -263,23 +344,5 @@ def update_meta_info_nutri(recipe, recipe_items):
     )
     meta_info.save()
 
-    for item in recipe_items:
-        meta_info = item.meta_info
-        for field in fields:
-            value = getattr(meta_info, field)
-            points = get_points(field, "solid", value)
-            setattr(meta_info, f"nutri_points_{field}", points)
-
-        # set nutri points
-        setattr(
-            meta_info,
-            "nutri_points",
-            sum(getattr(meta_info, f"nutri_points_{field}") for field in fields),
-        )
-
-        setattr(
-            meta_info,
-            "nutri_class",
-            get_nutri_class("solid", meta_info.nutri_points),
-        )
-        meta_info.save()
+    update_portions_with_ingredient_data(ingredient)
+    update_meta_info_nutri_portions(ingredient)

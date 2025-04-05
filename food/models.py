@@ -1,20 +1,15 @@
 import datetime
 
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-from food.service.recipe_logic import RecipeModule
-from food.service.hint import HintModule
-from food.service.price_logic import PriceModule
-
 from .choices import (
     SuitLevel,
     WarmMeal,
-    AnimalProducts,
     MealTimeOptions,
     ChildFrendly,
     PhysicalViscosityChoices,
@@ -26,9 +21,16 @@ from .choices import (
     RecipeType,
     RecipeStatus,
     IngredientStatus,
+    HintLevel,
+    MinMaxLevel,
+    ParameterChoice,
+    RecipeObjective,
 )
 
 from general.login.models import CustomUser
+from group.models import InspiGroup
+from django.core.exceptions import ValidationError
+import uuid
 
 
 class TimeStampMixin(models.Model):
@@ -56,10 +58,22 @@ class MeasuringUnit(TimeStampMixin):
         return self.__str__()
 
 
-class Intolerance(TimeStampMixin):
-    name = models.CharField(max_length=255, blank=True)
-    description = models.CharField(max_length=255, blank=True)
+class NutritionalTag(TimeStampMixin):
+    name = models.CharField(
+        max_length=255,
+        help_text="Name of the tag. E.g. 'Fleisch', 'Alkohol', 'Nüsse', Scharf",
+    )
+    name_opposite = models.CharField(
+        max_length=255,
+        help_text="Name of the tag for human readable output. e.g. 'Vegan', 'Vegetarisch', 'Alkoholfrei'",
+    )
+    description = models.CharField(max_length=255)
+    description_human = models.CharField(max_length=255)
     rank = models.IntegerField(default=1)
+    is_dangerous = models.BooleanField(
+        default=False,
+        help_text="Indicates if this tag represents a potentially harmful or dangerous ingredient",
+    )
 
     def __str__(self):
         return self.name
@@ -86,9 +100,9 @@ class MetaInfo(TimeStampMixin):
     nutri_points_protein_g = models.FloatField(default=0)
     nutri_points_fat_sat_g = models.FloatField(default=0)
     nutri_points_sugar_g = models.FloatField(default=0)
-    nutri_points_salt_g = models.FloatField(default=0)
     nutri_points_sodium_mg = models.FloatField(default=0)
     nutri_points_fibre_g = models.FloatField(default=0)
+    nutri_points_fruit_factor = models.FloatField(default=0)
 
     nutri_points = models.FloatField(blank=True, null=True)
     nutri_class = models.FloatField(null=True, blank=True)
@@ -104,14 +118,13 @@ class MetaInfo(TimeStampMixin):
         if self.weight_g > 1000:
             return f"{round(self.weight_g/1000,1)} kg"
         return f"{round(self.weight_g, 0)} g"
-        
 
     @property
     def nutri_score_display(self):
         return {1: "A", 2: "B", 3: "C", 4: "D", 5: "E"}.get(self.nutri_class, "Unknown")
 
     def __str__(self):
-        return "MetaInfo"
+        return f"MetaInfo {self.id}" if self.id else "MetaInfo"
 
     def __repr__(self):
         return self.__str__()
@@ -139,10 +152,30 @@ class Ingredient(TimeStampMixin):
         choices=PhysicalViscosityChoices.choices,
         default=PhysicalViscosityChoices.SOLID,
     )
+    durability_in_days = models.IntegerField(
+        default=0,
+        help_text="Durability in days. 0 = unknown, 1-365 = days, >365 = years",
+        blank=True,
+        null=True,
+    )
+    max_storage_temperature = models.IntegerField(
+        default=20,
+        help_text="",
+        blank=True,
+        null=True,
+    )
+    nova_score = models.IntegerField(
+        default=1, validators=[MinValueValidator(1), MaxValueValidator(4)]
+    )
+    standard_recipe_weight_g = models.FloatField(
+        default=100,
+        help_text="Default weight in grams used in a standard recipe",
+        blank=True,
+        null=True,
+    )
     ingredient_ref = models.ForeignKey(
         "self", on_delete=models.PROTECT, null=True, blank=True
     )
-
     fdc_id = models.IntegerField(null=True, blank=True)
     nan_art_id_rewe = models.IntegerField(null=True, blank=True)
     ean = models.BigIntegerField(null=True, blank=True)
@@ -153,11 +186,14 @@ class Ingredient(TimeStampMixin):
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
     )
-    intolerances = models.ManyToManyField(Intolerance, blank=True)
+    nutritional_tags = models.ManyToManyField(NutritionalTag, blank=True)
     child_frendly_score = models.IntegerField(
         default=1, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     scout_frendly_score = models.IntegerField(
+        default=1, validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    environmental_influence_score = models.IntegerField(
         default=1, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     created_by = models.ForeignKey(
@@ -165,6 +201,27 @@ class Ingredient(TimeStampMixin):
     )
     status = models.CharField(
         max_length=11, choices=IngredientStatus.choices, default=IngredientStatus.DRAFT
+    )
+    recipe_counts = models.IntegerField(
+        help_text="Number of recipes using this ingredient",
+        default=0,
+    )
+    is_unprepaired_consumable = models.BooleanField(
+        default=False,
+        help_text="Indicates if this ingredient is as snack consumable without preparation",
+    )
+    managed_by = models.ManyToManyField(
+        CustomUser,
+        related_name="ingredients_managed",
+        blank=True,
+        default=None,
+    )
+    managed_by_group = models.ManyToManyField(
+        InspiGroup,
+        related_name="ingredients_managed_group",
+        blank=True,
+        help_text="Groups that manage this ingredient",
+        default=None,
     )
 
     @property
@@ -175,10 +232,34 @@ class Ingredient(TimeStampMixin):
             return False
 
     def __str__(self):
-        return f"{self.name} - {self.description}"
+        return f"{self.name}"
 
     def __repr__(self):
         return self.__str__()
+
+
+class IngredientAlias(TimeStampMixin):
+    ingredient = models.ForeignKey(
+        Ingredient, on_delete=models.CASCADE, related_name="aliases"
+    )
+    name = models.CharField(
+        max_length=100, help_text="Alternative name for the ingredient"
+    )
+    rank = models.IntegerField(default=1)
+    created_by = models.ForeignKey(CustomUser, on_delete=models.PROTECT, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Ingredient aliases"
+        ordering = ["-rank", "name"]
+        unique_together = ["ingredient", "rank"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["rank", "ingredient"], name="unique_ingredient_alias_rank"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.name} → {self.ingredient.name}"
 
 
 class Portion(TimeStampMixin):
@@ -206,7 +287,7 @@ class Portion(TimeStampMixin):
         if self.meta_info.weight_g and self.meta_info.price_per_kg:
             return self.meta_info.weight_g * self.meta_info.price_per_kg * 1000
         return 0.00
-    
+
     @property
     def prices(self):
         return Price.objects.filter(portion=self).order_by("price_eur")
@@ -215,32 +296,9 @@ class Portion(TimeStampMixin):
         ordering = ("name",)
 
 
-class Hint(TimeStampMixin):
-    class HintLevel(models.TextChoices):
-        INFO = "info", "Info"
-        WARNING = "warn", "Achtung"
-        ERROR = "error", "Fehler"
-
-    class MinMaxLevel(models.TextChoices):
-        MAX = "max", "Maximal"
-        MIN = "min", "Minimal"
-
-    class ParameterChoice(models.TextChoices):
-        weight_g = "weight_g", "weight_g"
-        energy_kj = "energy_kj", "energy_kj"
-        protein_g = "protein_g", "protein_g"
-        fat_g = "fat_g", "fat_g"
-        fat_sat_g = "fat_sat_g", "fat_sat_g"
-        sugar_g = "sugar_g", "sugar_g"
-        sodium_mg = "sodium_mg", "sodium_mg"
-        salt_g = "salt_g", "salt_g"
-        carbohydrate_g = "carbohydrate_g", "carbohydrate_g"
-        fibre_g = "fibre_g", "fibre_g"
-        nutri_points = "nutri_points", "nutri_points"
-        nutri_class = "nutri_class", "nutri_class"
-
-    name = models.CharField(max_length=50, blank=True)
-    description = models.CharField(max_length=1000, blank=True)
+class RecipeHint(TimeStampMixin):
+    hint = models.CharField(max_length=50, blank=True)
+    improvement = models.CharField(max_length=1000, blank=True)
     value = models.FloatField(default=1)
     hint_level = models.CharField(
         max_length=10,
@@ -257,12 +315,28 @@ class Hint(TimeStampMixin):
         choices=ParameterChoice.choices,
         default=ParameterChoice.weight_g,
     )
+    recipe_type = models.CharField(
+        max_length=11,
+        choices=RecipeType.choices,
+        default=RecipeType.WARN_LUNCH,
+        blank=True,
+        null=True,
+        help_text="Recipe type this hint applies to (if specific)",
+    )
+    recipe_objective = models.CharField(
+        max_length=20,
+        choices=RecipeObjective.choices,
+        default=RecipeObjective.health,
+        blank=True,
+        null=True,
+        help_text="Recipe objective this hint applies to (if specific)",
+    )
 
     def __str__(self):
-        return self.name
+        return f"{self.hint} - {self.value}"
 
     def __repr__(self):
-        return self.__str__()
+        return super().__repr__()
 
 
 class Recipe(TimeStampMixin):
@@ -275,13 +349,41 @@ class Recipe(TimeStampMixin):
     status = models.CharField(
         max_length=11, choices=RecipeStatus.choices, default=RecipeStatus.SIMULATOR
     )
-    hints = models.ManyToManyField(Hint, blank=True)
+    hints = models.ManyToManyField(RecipeHint, blank=True)
     managed_by = models.ManyToManyField(
         CustomUser, related_name="recipe_created_by", blank=True
     )
     meta_info = models.ForeignKey(
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
     )
+    created_by = models.ForeignKey(
+        CustomUser, on_delete=models.PROTECT, null=True, blank=True
+    )
+    recipe_ref = models.ForeignKey(
+        "self",
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        help_text="Reference to the orgignal recipe if this is a modified version",
+    )
+
+    @property
+    def is_public(self):
+        """
+        Determines if a recipe can be viewed based on status
+        Public recipes can always be viewed
+        """
+
+        is_public = self.status in [RecipeStatus.PUBLIC, RecipeStatus.APPROVED]
+
+        return is_public
+    
+    @property
+    def get_update_url(self):
+        """
+        Returns the URL for updating this recipe
+        """
+        return f"/food/recipe/{self.slug}/update" if self.slug else None
 
     def __str__(self):
         return str(self.name)
@@ -299,7 +401,18 @@ class RecipeItem(TimeStampMixin):
         related_name="recipe_items",
     )
     portion = models.ForeignKey(
-        Portion, on_delete=models.PROTECT, related_name="recipe_items"
+        Portion,
+        on_delete=models.PROTECT,
+        related_name="recipe_items",
+        blank=True,
+        null=True,
+    )
+    sub_recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True,
+        related_name="used_in_recipes",
     )
     quantity = models.FloatField(default=1)
 
@@ -307,11 +420,23 @@ class RecipeItem(TimeStampMixin):
         MetaInfo, on_delete=models.PROTECT, null=True, blank=True
     )
 
+    def clean(self):
+        # Ensure that exactly one of portion or sub_recipe is provided
+        if (self.portion is None and self.sub_recipe is None) or (
+            self.portion is not None and self.sub_recipe is not None
+        ):
+            raise ValidationError(
+                "Either portion OR sub_recipe must be provided, not both or neither."
+            )
+
     @property
     def weight_quote(self):
         return round(
-            float(self.meta_info.weight_g) / float(self.recipe.meta_info.weight_g) * 100.0, 0
-        ) 
+            float(self.meta_info.weight_g)
+            / float(self.recipe.meta_info.weight_g)
+            * 100.0,
+            2,
+        )
 
     @property
     def weighted_nutri_points_energy_kj(self):
@@ -330,16 +455,16 @@ class RecipeItem(TimeStampMixin):
         return self.meta_info.nutri_points_sugar_g * self.weight_quote / 100
 
     @property
-    def weighted_nutri_points_salt_g(self):
-        return self.meta_info.nutri_points_salt_g * self.weight_quote / 100
-
-    @property
     def weighted_nutri_points_sodium_mg(self):
         return self.meta_info.nutri_points_sodium_mg * self.weight_quote / 100
 
     @property
     def weighted_nutri_points_fibre_g(self):
         return self.meta_info.nutri_points_fibre_g * self.weight_quote / 100
+    
+    @property
+    def weighted_nutri_points_fruit_factor(self):
+        return self.meta_info.nutri_points_fruit_factor * self.weight_quote / 100
     
     @property
     def weighted_nutri_points(self):
@@ -350,6 +475,42 @@ class RecipeItem(TimeStampMixin):
 
     def __repr__(self):
         return self.__str__()
+
+
+@receiver(post_save, sender=RecipeItem)
+def update_ingredient_recipe_count(sender, instance, **kwargs):
+    """Update recipe_counts for each ingredient when a RecipeItem is saved"""
+    if instance.portion and instance.portion.ingredient:
+        # Get the ingredient
+        ingredient = instance.portion.ingredient
+        # Count unique recipes using this ingredient
+        recipe_count = (
+            RecipeItem.objects.filter(portion__ingredient=ingredient)
+            .values("recipe")
+            .distinct()
+            .count()
+        )
+        # Update the count
+        ingredient.recipe_counts = recipe_count
+        ingredient.save()
+
+
+@receiver(models.signals.post_delete, sender=RecipeItem)
+def update_ingredient_recipe_count_on_delete(sender, instance, **kwargs):
+    """Update recipe_counts when a RecipeItem is deleted"""
+    if instance.portion and instance.portion.ingredient:
+        # Get the ingredient
+        ingredient = instance.portion.ingredient
+        # Count unique recipes using this ingredient
+        recipe_count = (
+            RecipeItem.objects.filter(portion__ingredient=ingredient)
+            .values("recipe")
+            .distinct()
+            .count()
+        )
+        # Update the count
+        ingredient.recipe_counts = recipe_count
+        ingredient.save()
 
 
 class Price(TimeStampMixin):
@@ -428,7 +589,7 @@ class MealEventTemplate(TimeStampMixin):
         choices=ChildFrendly.choices,
         default=ChildFrendly.CHILD_AND_ADULT,
     )
-    intolerances = models.ManyToManyField(Intolerance, blank=True)
+    nutritional_tags = models.ManyToManyField(NutritionalTag, blank=True)
     template_options = models.ManyToManyField(TemplateOption, blank=True)
     created_by = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, null=True, blank=True
