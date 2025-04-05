@@ -46,7 +46,7 @@
                     {% if is_member %}
                         <li>
                             <a href="{% url 'group-detail-news' group.slug %}"
-                               class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'news' in request.path %}!bg-blue-700 !text-white{% endif %} "
+                               class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if '/news' in request.path %}!bg-blue-700 !text-white{% endif %} "
                                id="overview-tab"
                                type="button"
                                role="tab">

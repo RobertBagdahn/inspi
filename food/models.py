@@ -143,8 +143,8 @@ class RetailSection(TimeStampMixin):
 
 
 class Ingredient(TimeStampMixin):
-    name = models.CharField(max_length=40)
-    slug = models.SlugField(max_length=40, unique=True, blank=True, null=True)
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     physical_density = models.FloatField(default=1)
     physical_viscosity = models.CharField(

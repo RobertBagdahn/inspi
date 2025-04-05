@@ -144,7 +144,11 @@ class InspiGroupPermissionForm(forms.ModelForm):
 
 
 class JoinGroupByCodeForm(forms.Form):
-    join_code = forms.CharField(max_length=20)
+    join_code = forms.CharField(
+        max_length=20,
+        label="Zugangscode",
+        required=True
+    )
 
 
 class ManageMembershipForm(forms.ModelForm):
