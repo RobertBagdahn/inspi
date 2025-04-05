@@ -8,7 +8,17 @@ from django.contrib.auth.decorators import login_required
 
 from group.models import InspiGroup, InspiGroupMembership, InspiGroupJoinRequest, InspiGroupPermission
 from django.core.paginator import Paginator
-
+from formtools.wizard.views import SessionWizardView
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.utils.decorators import method_decorator
+from .forms import (
+    PersonWizardIntroForm, 
+    PersonWizardBasicInfoForm, 
+    PersonWizardContactForm, 
+    PersonWizardPreferencesForm
+)
+from .models import Person
 
 def randomword(length):
    letters = string.ascii_lowercase
@@ -97,7 +107,9 @@ def user_detail_overview(request, username):
             {"title": "Vorname", "value": user.person.first_name},
             {"title": "Nachname", "value": user.person.last_name},
             {"title": "Geburtstag", "value": user.person.birthday},
-            {"title": "Handynummer", "value": user.mobile},
+            {"title": "Handynummer", "value": user.person.mobile},
+            {"title": "Pfadfindergruppe", "value": user.person.scout_group},
+            {"title": "Pfadfindername", "value": user.person.scout_name},
             {"title": "Adresse", "value": user.person.address},
             {"title": "Adresszusatz", "value": user.person.address_supplement},
             {"title": "Postleitzahl", "value": user.person.zip_code},
@@ -217,3 +229,158 @@ def user_detail_my_requests_user(request, username):
             "form": form,
         },
     )
+
+# Define wizard steps
+PERSON_WIZARD_FORMS = [
+    ('intro', PersonWizardIntroForm),
+    ('basic_info', PersonWizardBasicInfoForm),
+    ('contact', PersonWizardContactForm),
+    ('preferences', PersonWizardPreferencesForm),
+]
+
+# Define step titles and descriptions
+PERSON_WIZARD_TEMPLATES = {
+    'intro': {
+        'template': 'person/wizard/0-intro-step.html',
+        'title': 'Willkommen zum Profil-Wizard',
+        'description': 'Mit diesem Wizard kannst du deine persönlichen Daten einfach und strukturiert eingeben.',
+    },
+    'basic_info': {
+        'template': 'person/wizard/generic_step.html',
+        'title': 'Grundlegende Informationen',
+        'description': 'Hier kannst du deine grundlegenden persönlichen Daten eingeben.',
+    },
+    'contact': {
+        'template': 'person/wizard/generic_step.html',
+        'title': 'Kontaktinformationen',
+        'description': 'Hier kannst du deine Kontaktdaten eingeben.',
+    },
+    'preferences': {
+        'template': 'person/wizard/generic_step.html',
+        'title': 'Präferenzen & weitere Informationen',
+        'description': 'Hier kannst du weitere Informationen zu deinen Präferenzen eingeben.',
+    },
+}
+
+@method_decorator(login_required, name='dispatch')
+class PersonWizardView(SessionWizardView):
+    form_list = PERSON_WIZARD_FORMS
+    
+    def get_template_names(self):
+        return [PERSON_WIZARD_TEMPLATES[self.steps.current]['template']]
+    
+    def get_context_data(self, form, **kwargs):
+        context = super().get_context_data(form=form, **kwargs)
+        current_step = self.steps.current
+        
+        # Add step title and description to context
+        context.update({
+            'step_title': PERSON_WIZARD_TEMPLATES[current_step]['title'],
+            'step_description': PERSON_WIZARD_TEMPLATES[current_step]['description'],
+            'total_steps': len(self.form_list),
+        })
+        
+        # Add user data if editing existing Person
+        if hasattr(self, 'person_instance') and self.person_instance:
+            context['person'] = self.person_instance
+        
+        return context
+    
+    def get_form_initial(self, step):
+        initial = self.initial_dict.get(step, {})
+        
+        # If editing an existing Person, pre-fill form fields
+        if hasattr(self, 'person_instance') and self.person_instance:
+            person = self.person_instance
+            
+            if step == 'basic_info':
+                initial.update({
+                    'first_name': person.first_name,
+                    'last_name': person.last_name,
+                    'scout_name': person.scout_name,
+                    'gender': person.gender,
+                    'birthday': person.birthday,
+                })
+            elif step == 'contact':
+                initial.update({
+                    'address': person.address,
+                    'address_supplement': person.address_supplement,
+                    'zip_code': person.zip_code,
+                    'city': person.city,
+                    'mobile': person.mobile,
+                })
+            elif step == 'preferences':
+                initial.update({
+                    'eat_habits': person.eat_habits,
+                    'scout_group': person.scout_group,
+                    'about_me': person.about_me,
+                })
+        
+        return initial
+    
+    def dispatch(self, request, *args, **kwargs):
+        # If editing an existing person, get the instance
+        username = kwargs.get('username')
+        if username:
+            user = CustomUser.objects.get(username=username)
+            # Get or create person instance
+            if user.person:
+                self.person_instance = user.person
+            else:
+                # Create a new Person if user doesn't have one yet
+                self.person_instance = None
+        
+        return super().dispatch(request, *args, **kwargs)
+    
+    def done(self, form_list, **kwargs):
+        # Process the completed forms and save the data
+        form_data = self.get_all_cleaned_data()
+        
+        # Get or create person instance
+        username = kwargs.get('username', self.request.user.username)
+        user = CustomUser.objects.get(username=username)
+        
+        if user.person:
+            person = user.person
+        else:
+            person = Person()
+            
+        # Update person fields from form data
+        person.first_name = form_data.get('first_name', '')
+        person.last_name = form_data.get('last_name', '')
+        person.scout_name = form_data.get('scout_name')
+        person.gender = form_data.get('gender')
+        person.birthday = form_data.get('birthday')
+        person.address = form_data.get('address')
+        person.address_supplement = form_data.get('address_supplement')
+        person.zip_code = form_data.get('zip_code')
+        person.city = form_data.get('city')
+        person.mobile = form_data.get('mobile')
+        person.eat_habits = form_data.get('eat_habits')
+        person.scout_group = form_data.get('scout_group')
+        person.about_me = form_data.get('about_me')
+        
+        # Save the person
+        person.save()
+        
+        # Link to user if needed
+        if not user.person:
+            user.person = person
+            user.save()
+        
+        messages.success(self.request, "Deine persönlichen Daten wurden erfolgreich gespeichert!")
+        return redirect('user-detail-overview', username=username)
+
+@login_required
+def start_person_wizard(request, username=None):
+    # Validate the user has permission to edit this profile
+    if username and username != request.user.username:
+        if not request.user.is_staff and not request.user.is_superuser:
+            return render(request, "403.html")
+    
+    # If no username provided, use the current user
+    if not username:
+        username = request.user.username
+    
+    # Redirect to the wizard view
+    return redirect('person-wizard', username=username)

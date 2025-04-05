@@ -8,7 +8,7 @@ def header_app(request) -> dict:
     # get string before first /
     module_name: str = current_path.split("/")[1]
 
-    local_env: bool = os.getenv("LOCAL", "False") == "True"
+    local_env: bool = os.getenv("LOCAL_DB", "False") == "True"
 
     base_url: str = "http://localhost:8000"
 

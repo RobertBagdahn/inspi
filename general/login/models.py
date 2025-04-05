@@ -5,6 +5,8 @@ from image_cropping import ImageRatioField
 import uuid
 
 from event.basic import choices as event_basic_choices
+from masterdata.models import ScoutHierarchy, ZipCode
+from general.login.choices import AUTH_LEVEL_CHOICES
 
 
 class Person(models.Model):
@@ -20,7 +22,13 @@ class Person(models.Model):
     last_name = models.CharField(max_length=100, default="")
     address = models.CharField(max_length=200, blank=True, null=True)
     address_supplement = models.CharField(max_length=100, blank=True, null=True)
-    zip_code = models.CharField(max_length=5, blank=True, null=True)
+    zip_code = models.ForeignKey(
+        ZipCode,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name="person_zip_code",
+    )
     city = models.CharField(max_length=100, blank=True, null=True)
     gender = models.CharField(
         max_length=1,
@@ -34,8 +42,8 @@ class Person(models.Model):
         default=event_basic_choices.EatHabit.ALL,
     )
     about_me = models.TextField(blank=True, null=True, max_length=500)
-    stamm = models.CharField(blank=True, null=True, max_length=50)
-    bund = models.CharField(blank=True, null=True, max_length=50)
+    scout_group = models.ForeignKey(ScoutHierarchy, on_delete=models.SET_NULL, blank=True, null=True)
+    mobile = models.CharField(blank=True, null=True, max_length=50)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -46,8 +54,8 @@ class CustomUser(AbstractUser):
         blank=True, upload_to="static/profile/uploaded_images", null=True
     )
     profile_cropping = ImageRatioField("profile_picture", "400x400")
-    mobile = models.CharField(blank=True, null=True, max_length=50)
     person = models.ForeignKey(Person, on_delete=models.CASCADE, blank=True, null=True)
+    auth_level = models.IntegerField(choices=AUTH_LEVEL_CHOICES, default=1)
 
     def __str__(self):
         return self.email

@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
 import io
 import os
 import environ
@@ -18,26 +17,25 @@ from urllib.parse import urlparse
 from easy_thumbnails.conf import Settings as thumbnail_settings
 from google.cloud import secretmanager
 
-from django.forms.renderers import TemplatesSetting
-
-import environ
-import os
 
 
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    LOCAL_DB=(bool, False)
 )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 DEBUG = env('DEBUG')
-LOCAL = env('LOCAL') == 'True'
+LOCAL_DB = env('LOCAL_DB')
 
- 
-
+# Print all items in env object
+print(f"env: {env}")
+for key, value in env.ENVIRON.items():
+    print(f"{key}: {value}")
 env_file = os.path.join(BASE_DIR, ".env")
 
 if os.path.isfile(env_file):
@@ -128,6 +126,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     "tracking",
     'django_components',
+    "autocomplete",
     # modules
     "food",
     "activity.activity",
@@ -208,8 +207,11 @@ WSGI_APPLICATION = "inspiapp.wsgi.application"
 # Use django-environ to parse the connection string
 DATABASES = {"default": env.db()}
 
-if not LOCAL:
+print(f"LOCAL_DB: {LOCAL_DB}")
+
+if not LOCAL_DB:
     if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
+        print("Using Cloud SQL Auth Proxy")
         DATABASES["default"]["HOST"] = "127.0.0.1"
         DATABASES["default"]["PORT"] = 5432
 
@@ -218,13 +220,15 @@ if not LOCAL:
 # Use a in-memory sqlite3 database when testing in CI systems
 # TODO(glasnt) CHECK IF THIS IS REQUIRED because we're setting a val above
 
-if LOCAL:
+if LOCAL_DB:
+    print("Using SQLite3 database")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
+print(f"Database: {DATABASES['default']}")
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

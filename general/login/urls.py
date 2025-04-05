@@ -39,7 +39,21 @@ urlpatterns = [
         views.user_dashboard,
         name="user-dashboard",
     ),
-
+    path(
+        "user-detail-person-wizard/<username>/",
+        views.PersonWizardView.as_view(), 
+        name="person-wizard"
+    ),
+    path(
+        "user-detail-person-wizard/",
+        views.start_person_wizard, 
+        name="start-person-wizard"
+    ),
+    path(
+        "user-detail-person-wizard-start/<username>/",
+        views.start_person_wizard, 
+        name="start-person-wizard-with-username"
+    ),
     # user-list
     path("user-list/", views.user_list, name="user-list"),
 ]
