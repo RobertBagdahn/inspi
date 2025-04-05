@@ -1,81 +1,105 @@
 <div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
-  <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Gruppendetails</h2>
-  <!-- Liste -->
-  <dl class="list-inside text-gray-500 dark:text-gray-400">
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Name</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.name }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Abkürzung</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.abbreviation|default_if_none:'' }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Vollständiger Name</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.full_name|default_if_none:'' }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Ebene</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.level_choice }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Postleitzahl</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.zip_code|default_if_none:'' }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Übergeordnete Gruppe</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.parent|default_if_none:'' }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Erstellt am</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.created_at|default_if_none:'' }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Aktualisiert am</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.updated_at|default_if_none:'' }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Bundesland</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.zip_code.get_state_display|default_if_none:'' }}</dd>
-    </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Existiert seit</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.exist_from|default_if_none:'' }}</dd>
-    </div>
-    <div class="py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Existiert bis</dt>
-      <dd class="sm:text-end">{{ scout_hierarchy.exist_till|default_if_none:'' }}</dd>
-    </div>
-  </dl>
-</div>
-
-{% if scout_hierarchy.description %}
-  <div class="col-span-1 mt-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:col-span-4">
-    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Beschreibung</h2>
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Gruppendetails</h2>
     <!-- Liste -->
     <dl class="list-inside text-gray-500 dark:text-gray-400">
-      <div class="py-4 sm:flex sm:items-center sm:justify-between">{{ scout_hierarchy.description|safe }}</div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Name</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.name }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Abkürzung</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.abbreviation|default_if_none:'' }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Vollständiger Name</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.full_name|default_if_none:'' }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Ebene</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.level_choice }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Postleitzahl</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.zip_code|default_if_none:'' }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Übergeordnete Gruppe</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.parent|default_if_none:'' }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Erstellt am</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.created_at|default_if_none:'' }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Aktualisiert am</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.updated_at|default_if_none:'' }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Bundesland</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.zip_code.get_state_display|default_if_none:'' }}
+            </dd>
+        </div>
+        <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Existiert seit</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.exist_from|default_if_none:'' }}
+            </dd>
+        </div>
+        <div class="py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+            <dt class="font-semibold text-gray-900 dark:text-white">Existiert bis</dt>
+            <dd class="sm:text-end">
+                {{ scout_hierarchy.exist_till|default_if_none:'' }}
+            </dd>
+        </div>
     </dl>
-  </div>
+</div>
+{% if scout_hierarchy.description %}
+    <div class="col-span-1 mt-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:col-span-4">
+        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Beschreibung</h2>
+        <!-- Liste -->
+        <dl class="list-inside text-gray-500 dark:text-gray-400">
+            <div class="py-4 sm:flex sm:items-center sm:justify-between">{{ scout_hierarchy.description|safe }}</div>
+        </dl>
+    </div>
 {% endif %}
-
 <div class="col-span-1 mt-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:col-span-4">
-  <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Untergeordnete Gruppen</h2>
-
-  {% if scout_hierarchy.children %}
-    <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-      {% for child in scout_hierarchy.children %}
-        <li class="py-3">
-          <a href="{% url 'master-data-scout-hierarchy-overview' child.id %}" class="flex items-center justify-between hover:underline text-gray-700 dark:text-gray-300">
-            <span>{{ child.name }}</span>
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-            </svg>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p class="text-gray-500 dark:text-gray-400">Keine untergeordneten Gruppen vorhanden.</p>
-  {% endif %}
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Untergeordnete Gruppen</h2>
+    {% if scout_hierarchy.children %}
+        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+            {% for child in scout_hierarchy.children %}
+                <li class="py-3">
+                    <a href="{% url 'master-data-scout-hierarchy-overview' child.id %}"
+                       class="flex items-center justify-between hover:underline text-gray-700 dark:text-gray-300">
+                        <span>{{ child.name }}</span>
+                        <svg class="w-4 h-4"
+                             fill="currentColor"
+                             viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd">
+                            </path>
+                        </svg>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-gray-500 dark:text-gray-400">Keine untergeordneten Gruppen vorhanden.</p>
+    {% endif %}
 </div>

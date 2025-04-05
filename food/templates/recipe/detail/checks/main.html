@@ -1,0 +1,13 @@
+{% extends 'recipe/detail/_base.html' %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% block detailcontent %}
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+            {% include './hungriness.html' with recipe=recipe module_name=module_name recipe_items=recipe_items hungriness_obj=hungriness_obj %}
+            {% include './health.html' with recipe=recipe module_name=module_name recipe_items=recipe_items can_edit=can_edit health_obj=health_obj %}
+            {% include './price.html' with recipe=recipe module_name=module_name recipe_items=recipe_items price_obj=price_obj %}
+            {% include './taste.html' with recipe=recipe module_name=module_name recipe_items=recipe_items taste_obj=taste_obj %}
+        </div>
+    </div>
+{% endblock %}

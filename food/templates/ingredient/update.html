@@ -8,29 +8,12 @@
             <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">
                 {{ ingredient.name }} bearbeiten
             </h1>
-            <form method="post">
+            <form method="post" id="wizard-form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit"
-                        class="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
-                    <svg class="w-6 h-6 text-white mr-1"
-                         aria-hidden="true"
-                         xmlns="http://www.w3.org/2000/svg"
-                         width="24"
-                         height="24"
-                         fill="none"
-                         viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 0 1 1-1h11.586a1 1 0 0 1 .707.293l2.414 2.414a1 1 0 0 1 .293.707V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Z" />
-                        <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M8 4h8v4H8V4Zm7 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    </svg>
-                    Speichern
-                </button>
-            </form>
-            {% if url_variable %}
-                {% with url_variable=url_variable %}
-                    <button hx-post="{% url url_variable ingredient.slug %}"
-                            hx-target="#ingredient-suggestions"
-                            class="mt-4 inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150">
+                <div class="flex space-x-4 mt-4">
+                    <button type="submit"
+                            class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
                         <svg class="w-6 h-6 text-white mr-1"
                              aria-hidden="true"
                              xmlns="http://www.w3.org/2000/svg"
@@ -38,13 +21,132 @@
                              height="24"
                              fill="none"
                              viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18.5A2.493 2.493 0 0 1 7.51 20H7.5a2.468 2.468 0 0 1-2.4-3.154 2.98 2.98 0 0 1-.85-5.274 2.468 2.468 0 0 1 .92-3.182 2.477 2.477 0 0 1 1.876-3.344 2.5 2.5 0 0 1 3.41-1.856A2.5 2.5 0 0 1 12 5.5m0 13v-13m0 13a2.493 2.493 0 0 0 4.49 1.5h.01a2.468 2.468 0 0 0 2.403-3.154 2.98 2.98 0 0 0 .847-5.274 2.468 2.468 0 0 0-.921-3.182 2.477 2.477 0 0 0-1.875-3.344A2.5 2.5 0 0 0 14.5 3 2.5 2.5 0 0 0 12 5.5m-8 5a2.5 2.5 0 0 1 3.48-2.3m-.28 8.551a3 3 0 0 1-2.953-5.185M20 10.5a2.5 2.5 0 0 0-3.481-2.3m.28 8.551a3 3 0 0 0 2.954-5.185" />
+                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 0 1 1-1h11.586a1 1 0 0 1 .707.293l2.414 2.414a1 1 0 0 1 .293.707V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Z" />
+                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M8 4h8v4H8V4Zm7 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg>
-                        KI Vorschläge
+                        Speichern
                     </button>
-                {% endwith %}
-                <div id="ingredient-suggestions"></div>
-            {% endif %}
+                    {% if ingredient_form %}
+                        <button type="button"
+                                id="ai-suggestion-btn"
+                                class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150">
+                            <svg class="w-6 h-6 text-white mr-1"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6h0m3 4.5a3 3 0 1 0-6 0v1.5a3 3 0 0 0 6 0V12m0 0a3 3 0 1 0 6 0v-1.5a3 3 0 1 0-6 0V12H9v-1.5a3 3 0 0 0-6 0V12a3 3 0 0 0 6 0M6 18h12m-9-5v3m6-3v3" />
+                            </svg>
+                            KI-Vorschläge
+                        </button>
+                    {% endif %}
+                </div>
+            </form>
         </article>
     </main>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const aiSuggestionBtn = document.getElementById('ai-suggestion-btn')
+      const wizardForm = document.getElementById('wizard-form')
+    
+      // Get the current step name and slug from the form
+      const slug = "{{ ingredient_search_slug }}";
+      const currentStep = "{{ currentStep }}";
+    
+    
+      aiSuggestionBtn.addEventListener('click', function () {
+        // Show loading state
+        aiSuggestionBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Lädt...'
+        aiSuggestionBtn.disabled = true
+    
+        // Only make the request if we have a slug
+        if (slug) {
+          fetch(`/food/api/wizard-suggestions/${currentStep}/${slug}/`)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok')
+              }
+              return response.json()
+            })
+            .then((data) => {
+              // Fill the form fields with suggestions
+              Object.keys(data).forEach((key) => {
+                // Handle array values for checkboxes (like nutritional_tags)
+                if (Array.isArray(data[key])) {
+                  // Handle nutritional_tags specifically
+                  if (key === 'nutritional_tags') {
+                    const checkboxes = document.querySelectorAll(`input[name="${key}"]`)
+                    checkboxes.forEach((checkbox) => {
+                      // Convert the checkbox value to a number for comparison
+                      const checkboxValue = parseInt(checkbox.value)
+                      // Check if this value exists in the data array
+                      checkbox.checked = data[key].includes(checkboxValue)
+                      // Trigger change event
+                      checkbox.dispatchEvent(new Event('change', { bubbles: true }))
+                    })
+                  }
+                } else {
+                  // Handle single fields
+                  // Try with current step prefix first, then without prefix as fallback
+                  let field = document.getElementById(`id_${currentStep}-${key}`)
+                  if (!field) {
+                    field = document.getElementById(`id_${key}`)
+                  }
+    
+                  if (field) {
+                    // Handle different field types
+                    if (field.type === 'checkbox') {
+                      field.checked = data[key]
+                    } else if (field.tagName === 'SELECT' && field.multiple && Array.isArray(data[key])) {
+                      Array.from(field.options).forEach((option) => {
+                        option.selected = data[key].includes(option.textContent.trim())
+                      })
+                    } else if (field.type === 'number') {
+                      // Handle number fields like standard_recipe_weight_g
+                      field.value = parseFloat(data[key])
+                    } else {
+                      field.value = data[key]
+                    }
+    
+                    // Trigger change event to update any dependent fields
+                    field.dispatchEvent(new Event('change', { bubbles: true }))
+                  }
+                }
+              })
+    
+              // Reset button
+              aiSuggestionBtn.innerHTML = '<i class="fas fa-robot mr-1"></i> KI-Vorschläge'
+              aiSuggestionBtn.disabled = false
+            })
+            .catch((error) => {
+              console.error('Error fetching suggestions:', error)
+              aiSuggestionBtn.innerHTML = 'Fehler beim Laden'
+              setTimeout(() => {
+                aiSuggestionBtn.innerHTML = '<i class="fas fa-robot mr-1"></i> KI-Vorschläge'
+                aiSuggestionBtn.disabled = false
+              }, 2000)
+            })
+        } else {
+          // If no slug, we can't make suggestions
+          aiSuggestionBtn.innerHTML = 'Kein Inhalt verfügbar'
+          setTimeout(() => {
+            aiSuggestionBtn.innerHTML = '<i class="fas fa-robot mr-1"></i> KI-Vorschläge'
+            aiSuggestionBtn.disabled = false
+          }, 2000)
+        }
+      })
+    
+      // Save new slug to localStorage when moving to next step
+      wizardForm.addEventListener('submit', function () {
+        const nameField = document.getElementById('id_basic_info-name')
+        if (nameField && nameField.value) {
+          // Create a slug from the name field
+          const newSlug = nameField.value.toLowerCase().replace(/\s+/g, '-')
+          localStorage.setItem('ingredient_wizard_slug', newSlug)
+        }
+      })
+    })
+    </script>
 {% endblock %}

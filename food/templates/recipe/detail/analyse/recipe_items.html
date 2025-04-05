@@ -3,29 +3,45 @@
     <table class="min-w-full bg-white">
         <thead>
             <tr>
-                <th class="py-2 px-4 border-b text-center">Name der Zutat</th>
+                <th class="py-2 px-4 border-b text-center"></th>
                 <th class="py-2 px-4 border-b text-center">Gewicht</th>
-                <th class="py-2 px-4 border-b text-center">Gewichtsanteil</th>
                 <th class="py-2 px-4 border-b text-center">Energie (kJ)</th>
                 <th class="py-2 px-4 border-b text-center">Protein (g)</th>
                 <th class="py-2 px-4 border-b text-center">Zucker (g)</th>
                 <th class="py-2 px-4 border-b text-center">Natrium (mg)</th>
-                <th class="py-2 px-4 border-b text-center">Ballaststoffe (g)</th>
+                <th class="py-2 px-4 border-b text-center">Ballastst. (g)</th>
+                <th class="py-2 px-4 border-b text-center">Preis (€)</th>
             </tr>
         </thead>
         <tbody>
             {% for item in recipe_items %}
                 <tr>
-                    <td class="py-2 px-4 border-b font-bold text-center">{{ item.portion.ingredient.name }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.meta_info.weight_g|floatformat:0 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.weight_quote|floatformat:0 }} %</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.meta_info.energy_kj|floatformat:0 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.meta_info.protein_g|floatformat:0 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.meta_info.sugar_g|floatformat:0 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.meta_info.sodium_mg|floatformat:0 }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ item.meta_info.fibre_g|floatformat:1 }}</td>
+                    <td class="py-2 px-2 border-b font-bold text-center">
+                        {% if item.portion.ingredient.name %}
+                            {{ item.portion.ingredient.name }}
+                        {% else %}
+                            {{ item.sub_recipe.name }}
+                        {% endif %}
+                    </td>
+                    <td class="py-2 px-2 border-b text-center">{{ item.meta_info.weight_g|floatformat:0 }}g ({{ item.weight_quote|floatformat:0 }}%) </td>
+                    <td class="py-2 px-2 border-b text-center">{{ item.meta_info.energy_kj|floatformat:0 }}</td>
+                    <td class="py-2 px-2 border-b text-center">{{ item.meta_info.protein_g|floatformat:0 }}</td>
+                    <td class="py-2 px-2 border-b text-center">{{ item.meta_info.sugar_g|floatformat:0 }}</td>
+                    <td class="py-2 px-2 border-b text-center">{{ item.meta_info.sodium_mg|floatformat:0 }}</td>
+                    <td class="py-2 px-2 border-b text-center">{{ item.meta_info.fibre_g|floatformat:1 }}</td>
+                    <td class="py-2 px-2 border-b text-center">{{ item.meta_info.price_eur|floatformat:2 }}</td>
                 </tr>
             {% endfor %}
+            <tr class="bg-gray-100 dark:bg-gray-700">
+                <td class="py-2 px-2 border-b font-bold text-center">Gesamt</td>
+                <td class="py-2 px-2 border-b text-center">{{ recipe.meta_info.weight_g|floatformat:0 }}</td>
+                <td class="py-2 px-2 border-b text-center">{{ recipe.meta_info.energy_kj|floatformat:0 }}</td>
+                <td class="py-2 px-2 border-b text-center">{{ recipe.meta_info.protein_g|floatformat:0 }}</td>
+                <td class="py-2 px-2 border-b text-center">{{ recipe.meta_info.sugar_g|floatformat:0 }}</td>
+                <td class="py-2 px-2 border-b text-center">{{ recipe.meta_info.sodium_mg|floatformat:0 }}</td>
+                <td class="py-2 px-2 border-b text-center">{{ recipe.meta_info.fibre_g|floatformat:1 }}</td>
+                <td class="py-2 px-2 border-b text-center">{{ recipe.meta_info.price_eur|floatformat:2 }}</td>
+            </tr>
         </tbody>
     </table>
 </div>

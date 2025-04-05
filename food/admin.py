@@ -7,7 +7,7 @@ from .models import (
     Recipe,
     Portion,
     RecipeItem,
-    Hint,
+    RecipeHint,
     MealEvent,
     Meal,
     MealDay,
@@ -15,7 +15,7 @@ from .models import (
     MealEventTemplate,
     MetaInfo,
     Portion,
-    Intolerance,
+    NutritionalTag,
     TemplateOption,
     RetailSection,
 )
@@ -23,12 +23,20 @@ from .models import (
 admin.site.register(MeasuringUnit)
 admin.site.register(Price)
 admin.site.register(Portion)
-admin.site.register(Ingredient)
+
+
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+    search_fields = ["name"]
+    list_display = ("name",)
+
+
 admin.site.register(RecipeItem)
 
 
 class RecipeItemInline(admin.TabularInline):
     model = RecipeItem
+    fk_name = 'recipe'  # Specify which ForeignKey to use
 
 
 @admin.register(Recipe)
@@ -49,29 +57,34 @@ class RecipeAdmin(admin.ModelAdmin):
     ]
 
 
-
-@admin.register(Hint)
-class EventModuleAdmin(admin.ModelAdmin):
+@admin.register(RecipeHint)
+class RecipeHintAdmin(admin.ModelAdmin):
     search_fields = [
-        "name",
-        "description",
+        "hint",
+        "improvement",
     ]
     list_display = (
-        "name",
-        "description",
+        "hint",
         "parameter",
         "min_max",
         "value",
         "hint_level",
+        "recipe_type",
+        "recipe_objective",
     )
-    list_filter = ("parameter",)
+    list_filter = (
+        "parameter",
+        "hint_level",
+        "min_max",
+        "recipe_type",
+        "recipe_objective",
+    )
 
 
 admin.site.register(MealEvent)
 admin.site.register(MealDay)
-admin.site.register(Intolerance)
+admin.site.register(NutritionalTag)
 admin.site.register(TemplateOption)
-
 
 
 @admin.register(Meal)
@@ -87,5 +100,8 @@ class MealAdmin(admin.ModelAdmin):
 admin.site.register(MealItem)
 admin.site.register(MealEventTemplate)
 
-admin.site.register(MetaInfo)
+@admin.register(MetaInfo)
+class MetaInfoAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+    list_display = ("id",)
 admin.site.register(RetailSection)

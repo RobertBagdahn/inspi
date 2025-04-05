@@ -15,30 +15,6 @@ class WarmMeal(models.TextChoices):
     JustEvening = "J", _("nur Abends")
     Both = "B", _("Mittags und Abends")
 
-
-class AnimalProducts(models.TextChoices):
-    Vegan = "VEGAN", _("Vegan")
-    Vegetarian = "VEG", _("Vegetarisch")
-    Meat = "M", _("Fleisch")
-
-
-class IntoleranceChoices(models.TextChoices):
-    Gluten = "GLUTEN", _("Gluten")
-    Lactose = "LACTOSE", _("Laktose")
-    Fructose = "FRUCTOSE", _("Fructose")
-    Nuts = "NUTS", _("Nüsse")
-    Soy = "SOY", _("Soja")
-    Legumes = "LEGUMES", _("Hülsenfrüchte")
-    Alcohol = "ALCOHOL", _("Alkohol")
-    Histamine = "HISTAMINE", _("Histamin")
-    Egg = "EGG", _("Ei")
-    Fish = "FISH", _("Fisch")
-    Shellfish = "SHELLFISH", _("Meeresfrüchte")
-    Pork = "PORK", _("Schwein")
-    Beef = "BEEF", _("Rind")
-    Chicken = "CHICKEN", _("Huhn")
-
-
 class MealEventTemplateOptionsChoices(models.TextChoices):
     FIRST_DINNER = "FD", _("Erstes Abendessen")
     LUNCHPACK = "LP", _("Lunchpaket")
@@ -62,7 +38,6 @@ class ChildFrendly(models.TextChoices):
     ADULT = "AD", _("Nur Erwachsene")
 
 
-
 class PhysicalViscosityChoices(models.TextChoices):
     SOLID = "solid", "Essen"
     BEVERAGE = "beverage", "Getränk"
@@ -72,11 +47,13 @@ class Units(models.TextChoices):
     VOLUME = "ml", "Millilitter"
     MASS = "g", "Gramm"
 
+
 class BrandQualityChoises(models.TextChoices):
     OWN = "own", "Eigenmarke"
     BRAND = "brand", "Marke"
     PREMIUM = "premium", "Premium"
-    
+
+
 class RetailerTypeChoise(models.TextChoices):
     SUPERMARKET = "supermarket", "Supermarkt"
     DISCOUNTER = "discounter", "Discounter"
@@ -102,6 +79,7 @@ class RecipeType(models.TextChoices):
     SNACK = "snack", "Snack"
     DRINK = "drink", "Getränk"
     INGREDIENT = "ingredient", "Zutat"
+    SUB_RECIPE = "sub_recipe", "Unter Rezept"
 
 
 class MealType(models.TextChoices):
@@ -124,3 +102,54 @@ class IngredientStatus(models.TextChoices):
     USER_CONENT = "user_conent", "Benutzer erstellt"
     USER_CONENT_PUBLIC = "user_public", "Benutzer Öffentlich"
     DRAFT = "draft", "Entwurf"
+
+
+class HintLevel(models.TextChoices):
+    INFO = "info", "Info"
+    WARNING = "warn", "Achtung"
+    ERROR = "error", "Fehler"
+
+
+class MinMaxLevel(models.TextChoices):
+    MAX = "max", "Maximal"
+    MIN = "min", "Minimal"
+
+
+class ParameterChoice(models.TextChoices):
+    weight_g = "weight_g", "Gewicht (g)"
+    energy_kj = "energy_kj", "Energie (kJ)"
+    protein_g = "protein_g", "Eiweiß (g)"
+    fat_g = "fat_g", "Fett (g)"
+    fat_sat_g = "fat_sat_g", "Gesättigte Fettsäuren (g)"
+    sugar_g = "sugar_g", "Zucker (g)"
+    sodium_mg = "sodium_mg", "Natrium (mg)"
+    salt_g = "salt_g", "Salz (g)"
+    carbohydrate_g = "carbohydrate_g", "Kohlenhydrate (g)"
+    fibre_g = "fibre_g", "Ballaststoffe (g)"
+    nutri_points = "nutri_points", "Nutri-Score Punkte"
+    nutri_class = "nutri_class", "Nutri-Score Klasse"
+
+
+class RecipeObjective(models.TextChoices):
+    health = "health", "Gesundheit"
+    taste = "taste", "Geschmack"
+    cost = "cost", "Kosten"
+    fullfillment = "fullfillment", "Sättigung"
+    # time = "time", "Zeit"
+    # sustainability = "sustainability", "Nachhaltigkeit"
+    # fun = "fun", "Spaß"
+    # creativity = "creativity", "Kreativität"
+    # tradition = "tradition", "Tradition"
+    # regionality = "regionality", "Regionalität"
+    # seasonality = "seasonality", "Saisonalität"
+    # variety = "variety", "Vielfalt"
+    # convenience = "convenience", "Bequemlichkeit"
+    # portion_size = "portion_size", "Portionsgröße"
+    # leftovers = "leftovers", "Resteverwertung"
+    # storage = "storage", "Lagerung"
+    # preparation = "preparation", "Vorbereitung"
+    # presentation = "presentation", "Präsentation"
+    # temperature = "temperature", "Temperatur"
+    # texture = "texture", "Konsistenz"
+    # colour = "colour", "Farbe"
+    # smell = "smell", "Geruch"

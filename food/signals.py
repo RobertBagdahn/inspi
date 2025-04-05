@@ -3,7 +3,6 @@ from django.dispatch import receiver
 from .models import Price, MetaInfo, Ingredient, Portion, Recipe, RecipeItem
 
 def calculate_recipe_price(recipe):
-    print("calculate_recipe_price")
     recipe_items = RecipeItem.objects.filter(recipe=recipe)
     meta_info = MetaInfo.objects.filter(id=recipe.meta_info.id).first()
     price = 0
@@ -13,7 +12,6 @@ def calculate_recipe_price(recipe):
     meta_info.save()
 
 def calculate_recipe_values(recipe):
-    print("calculate_recipe_values")
     recipe_items = RecipeItem.objects.filter(recipe=recipe)
     meta_info = MetaInfo.objects.filter(id=recipe.meta_info.id).first()
     weight_g = 0
@@ -52,21 +50,25 @@ def create_customer_profile(sender, instance, created, **kwargs):
 
 
 @receiver(post_save, sender=RecipeItem)
-def create_customer_profile(sender, instance, created, **kwargs):
+def update_recipe_item_meta_info(sender, instance, created, **kwargs):
     # set the price for recipe item
-    meta_info_ingredient = MetaInfo.objects.get(id=instance.portion.ingredient.meta_info.id)
-    meta_info = MetaInfo.objects.get(id=instance.meta_info.id)
-    meta_info.weight_g = instance.quantity * instance.portion.meta_info.weight_g
-    meta_info.price_per_kg = meta_info_ingredient.price_per_kg
-    meta_info.price_eur = instance.portion.meta_info.price_per_kg * (instance.quantity * instance.portion.meta_info.weight_g / 1000)
+    if instance.portion:
+        meta_info_ingredient = MetaInfo.objects.get(id=instance.portion.ingredient.meta_info.id)
+        meta_info = MetaInfo.objects.get(id=instance.meta_info.id)
+        meta_info.weight_g = instance.quantity * instance.portion.meta_info.weight_g
+        meta_info.price_per_kg = meta_info_ingredient.price_per_kg
+        meta_info.price_eur = instance.portion.meta_info.price_per_kg * (instance.quantity * instance.portion.meta_info.weight_g / 1000)
+        meta_info.save()
 
-    print(instance.portion.meta_info.price_per_kg * (instance.quantity * instance.portion.meta_info.weight_g / 1000))
-    print(instance.portion.meta_info.price_per_kg)
-    print(instance.quantity)
-    print(instance.portion.meta_info.weight_g)
+        calculate_recipe_price(instance.recipe)
+        calculate_recipe_values(instance.recipe)
+    else:
+        # set the price for recipe item
+        meta_info = MetaInfo.objects.get(id=instance.meta_info.id)
+        meta_info.weight_g = instance.quantity * instance.sub_recipe.meta_info.weight_g
+        meta_info.price_per_kg = instance.sub_recipe.meta_info.price_per_kg
+        meta_info.price_eur = instance.sub_recipe.meta_info.price_eur
+        meta_info.save()
 
-    meta_info.save()
-
-    calculate_recipe_price(instance.recipe)
-    calculate_recipe_values(instance.recipe)
-    print("RecipeItem created")
+        calculate_recipe_price(instance.recipe)
+        calculate_recipe_values(instance.recipe)

@@ -1,10 +1,11 @@
 <div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
-  <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Ähnliche Zutaten</h2>
-  {% for ingredient in ingredients %}
-    <article>
-      <p>
-        <a href="{% url 'ingredient-detail-overview' ingredient.slug %}" class="inline-flex items-center font-medium text-blue-600 hover:no-underline">{{ ingredient.name }}</a>
-      </p>
-    </article>
-  {% endfor %}
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Ähnliche Zutaten</h2>
+    {% for ingredient in ingredients %}
+        <article>
+            <p>
+                <a href="{% url 'ingredient-detail-overview' ingredient.slug %}"
+                   class="inline-flex items-center font-medium text-blue-600 hover:no-underline">{{ ingredient.name }}</a>
+            </p>
+        </article>
+    {% endfor %}
 </div>

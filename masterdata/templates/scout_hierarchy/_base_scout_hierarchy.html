@@ -1,54 +1,52 @@
 {% extends '_base.html' %}
 {% block content %}
-  <header class="flex flex-col antialiased">
-    <nav class="bg-white border-gray-200 block lg:hidden px-4 lg:px-6 py-2.5 dark:bg-gray-900 dark:border-gray-800 order-1 border-b">
-      <div class="flex justify-between items-center">
-        <div class="flex flex-shrink-0 justify-start items-center">
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gruppen</span>
-        </div>
-        <div class="flex flex-shrink-0 justify-between items-center ml-4 lg:order-2">
-          <div class="z-50 my-4 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown"></div>
-          <button type="button" id="toggleMobileMenuButton" data-collapse-toggle="toggleMobileMenu" class="items-center p-2 text-gray-500 rounded-lg md:ml-2 md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-            <span class="sr-only">Open menu</span>
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6H6m12 4H6m12 4H6m12 4H6" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </nav>
-    <nav id="toggleMobileMenu" class="hidden order-3 bg-white border-b border-gray-200 shadow-sm dark:bg-gray-900 md:block dark:border-gray-800 md:order-2">
-      <div class="py-3 px-4 lg:px-6">
-        <div class="flex flex-col justify-between items-center md:flex-row">
-          <ul class="flex flex-col order-2 mt-0 w-full text-sm font-medium rounded-lg border border-gray-200 md:flex-row md:order-1 md:bg-white dark:bg-gray-800 dark:border-gray-700 dark:md:bg-gray-900 md:rounded-none md:border-0">
-            <li>
-              <a href="{% url 'master-data-scout-hierarchy-dashboard' %}"
-                class="block py-3 px-4 rounded-lg {% if '/dashboard' in request.path %}
-                   text-blue-600 hover:text-blue-700 focus:ring-blue-200
-                {% else %}
-                   text-gray-500  hover:bg-gray-50  focus:ring-gray-200
-                {% endif %}  hover:bg-gray-50 focus:ring-4"
-                aria-current="page">
-                Dashboard
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'master-data-scout-hierarchy-list' %}"
-                class="block py-3 px-4 rounded-lg {% if 'scout-hierarchy/list' in request.path %}
-                   text-blue-600 hover:text-blue-700 focus:ring-blue-200
-                {% else %}
-                   text-gray-500  hover:bg-gray-50  focus:ring-gray-200
-                {% endif %}  hover:bg-gray-50 focus:ring-4"
-                aria-current="page">
-                Gruppen
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  {% block detailcontent %}
-
-  {% endblock detailcontent %}
+    <header class="flex flex-col antialiased">
+        <nav class="bg-white border-gray-200 block lg:hidden px-4 lg:px-6 py-2.5 dark:bg-gray-900 dark:border-gray-800 order-1 border-b">
+            <div class="flex justify-between items-center">
+                <div class="flex flex-shrink-0 justify-start items-center">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gruppen</span>
+                </div>
+                <div class="flex flex-shrink-0 justify-between items-center ml-4 lg:order-2">
+                    <div class="z-50 my-4 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                         id="dropdown"></div>
+                    <button type="button"
+                            id="toggleMobileMenuButton"
+                            data-collapse-toggle="toggleMobileMenu"
+                            class="items-center p-2 text-gray-500 rounded-lg md:ml-2 md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <span class="sr-only">Open menu</span>
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             fill="none"
+                             viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6H6m12 4H6m12 4H6m12 4H6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <nav id="toggleMobileMenu"
+             class="hidden order-3 bg-white border-b border-gray-200 shadow-sm dark:bg-gray-900 md:block dark:border-gray-800 md:order-2">
+            <div class="py-3 px-4 lg:px-6">
+                <div class="flex flex-col justify-between items-center md:flex-row">
+                    <ul class="flex flex-col order-2 mt-0 w-full text-sm font-medium rounded-lg border border-gray-200 md:flex-row md:order-1 md:bg-white dark:bg-gray-800 dark:border-gray-700 dark:md:bg-gray-900 md:rounded-none md:border-0">
+                        <li>
+                            <a href="{% url 'master-data-scout-hierarchy-dashboard' %}"
+                               class="block py-3 px-4 rounded-lg {% if '/dashboard' in request.path %} text-blue-600 hover:text-blue-700 focus:ring-blue-200 {% else %} text-gray-500  hover:bg-gray-50  focus:ring-gray-200 {% endif %}  hover:bg-gray-50 focus:ring-4"
+                               aria-current="page">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'master-data-scout-hierarchy-list' %}"
+                               class="block py-3 px-4 rounded-lg {% if 'scout-hierarchy/list' in request.path %} text-blue-600 hover:text-blue-700 focus:ring-blue-200 {% else %} text-gray-500  hover:bg-gray-50  focus:ring-gray-200 {% endif %}  hover:bg-gray-50 focus:ring-4"
+                               aria-current="page">Gruppen</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% block detailcontent %}
+    {% endblock detailcontent %}
 {% endblock content %}

@@ -1,0 +1,57 @@
+<div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">
+        Management
+        <a href="{% url 'ingredient-update-manage' ingredient.slug %}"
+           class="ml-2 text-sm text-blue-500 hover:underline">
+            <svg class="inline h-8 w-8 pb-2"
+                 aria-hidden="true"
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+            </svg>
+        </a>
+    </h2>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+        <dt class="font-semibold text-gray-900 dark:text-white">Erstellt von / am</dt>
+        <dd class="sm:text-end">
+            <a href="{% url 'user-detail-overview' ingredient.created_by.username %}"
+               class="text-blue-500 hover:underline">{{ ingredient.created_by }}</a> am {{ ingredient.created_at|date:'d.m.Y' }}
+        </dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+        <dt class="font-semibold text-gray-900 dark:text-white">Veröffentlichungs Status</dt>
+        <dd class="sm:text-end">
+            {{ ingredient.get_status_display }}
+        </dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+        <dt class="font-semibold text-gray-900 dark:text-white">Verwaltet von</dt>
+        <dd class="sm:text-end">
+            {% if ingredient.managed_by.all %}
+                <div>
+                    {% for manager in ingredient.managed_by.all %}
+                        <a href="{% url 'user-detail-overview' manager.username %}"
+                           class="text-blue-500 hover:underline">{{ manager }}</a>
+                        {% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                -
+            {% endif %}
+        </dd>
+    </div>
+    <div class="border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+        <dt class="font-semibold text-gray-900 dark:text-white">Verwaltet von Gruppe</dt>
+        <dd class="sm:text-end">
+            {% if ingredient.managed_by_group and ingredient.managed_by_group.slug %}
+                <a href="{% url 'group-detail-overview' ingredient.managed_by_group.slug %}"
+                   class="text-blue-500 hover:underline">{{ ingredient.managed_by_group.name }}</a>
+            {% else %}
+                -
+            {% endif %}
+        </dd>
+    </div>
+</div>

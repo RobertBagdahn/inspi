@@ -1,33 +1,56 @@
 <!-- drawer component -->
-<div id="drawer-add" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label-add">
-  <h5 id="drawer-label-add" class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
-    <svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-    </svg>
-    {{ recipe_item.recipe.name }}
-  </h5>
-  <form method="POST" action="{% url 'recipe-item-create' recipe.slug %}">
-    {% csrf_token %}
-    <div class="mb-4">
-      <label for="ingredient-drawer-add" class="block mb-2 text-sm font-medium text-gray-700">Zutat</label>
-      <select name="ingredient-drawer-add" id="ingredient-drawer-add" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-        {% for ingredient in ingredients %}
-          <option value="{{ ingredient.slug }}">{{ ingredient }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="mb-4">
-      <label for="portion_create" class="block mb-2 text-sm font-medium text-gray-700">Portion</label>
-      <select name="portion_create" id="portion_create" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required disabled>
-        <option value="empty">empty</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label for="quantity" class="block mb-2 text-sm font-medium text-gray-700">Quantity</label>
-      <input type="number" name="quantity" id="quantity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required value="1" />
-    </div>
-    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Create</button>
-  </form>
+<div id="drawer-add"
+     class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+     tabindex="-1"
+     aria-labelledby="drawer-label-add">
+    <h5 id="drawer-label-add"
+        class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
+        <svg class="w-4 h-4 me-2.5"
+             aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg"
+             fill="currentColor"
+             viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+        </svg>
+        {{ recipe_item.recipe.name }}
+    </h5>
+    <form method="POST" action="{% url 'recipe-item-create' recipe.slug %}">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="ingredient-drawer-add"
+                   class="block mb-2 text-sm font-medium text-gray-700">Zutat</label>
+            <select name="ingredient-drawer-add"
+                    id="ingredient-drawer-add"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required>
+                {% for ingredient in ingredients %}<option value="{{ ingredient.slug }}">{{ ingredient }}</option>{% endfor %}
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="portion_create"
+                   class="block mb-2 text-sm font-medium text-gray-700">Portion</label>
+            <select name="portion_create"
+                    id="portion_create"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                    disabled>
+                <option value="empty">empty</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="quantity" class="block mb-2 text-sm font-medium text-gray-700">Quantity</label>
+            <input type="number"
+                   name="quantity"
+                   id="quantity"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                   required
+                   value="1" />
+        </div>
+        <button type="submit"
+                class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+            Create
+        </button>
+    </form>
 </div>
 <script>
   function getCookie(name) {

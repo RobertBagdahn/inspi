@@ -1,12 +1,15 @@
 <div class="col-span-2 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
-  <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Rezepte mit der Zutat</h2>
-  {% if recipes %}
-    {% for recipe in recipes %}
-      <article>
-        <a href="{% url 'recipe-detail-overview' recipe.slug %}" class="hover:underline"><h2 class="mb-2 text-md font-bold leading-tight text-blue-600 dark:text-blue-500">{{ recipe.name }}</h2></a>
-          </article>
-    {% endfor %}
-  {% else %}
-    <p>Noch kein Rezept mit dieser Zutat</p>
-  {% endif %}
+    <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white md:mb-6">Rezepte mit der Zutat</h2>
+    {% if recipes %}
+        {% for recipe in recipes %}
+            <article>
+                <a href="{% url 'recipe-detail-overview' recipe.slug %}"
+                   class="hover:underline">
+                    <h2 class="mb-2 text-md font-bold leading-tight text-blue-600 dark:text-blue-500">{{ recipe.name }}</h2>
+                </a>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p>Noch kein Rezept mit dieser Zutat</p>
+    {% endif %}
 </div>

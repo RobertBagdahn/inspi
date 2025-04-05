@@ -1,0 +1,16 @@
+<!-- Search Results Section -->
+<ul class="divide-y divide-gray-200 dark:divide-gray-700">
+    {% if data %}
+        {% for item in data %}
+            {% include './list_element.html' with item=item %}
+        {% endfor %}
+    {% else %}
+        <li class="pb-3 sm:pb-4">
+            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">Keine Zutaten gefunden.</p>
+                </div>
+            </div>
+        </li>
+    {% endif %}
+</ul>

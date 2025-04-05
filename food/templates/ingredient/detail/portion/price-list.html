@@ -69,6 +69,19 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
                             </svg>
                         </a>
+                        <button type="button"
+                                onclick="openDeleteModal('{{ price.pk }}', '{{ price.name }}')"
+                                class="inline-flex items-center mx-2 px-2 py-2 text-sm">
+                            <svg class="w-8 h-8 text-red-500 bg-white rounded-full p-1"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                            </svg>
+                        </button>
                     </div>
                 {% endfor %}
             {% else %}
@@ -83,3 +96,50 @@
         </div>
     </div>
 </div>
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal"
+     class="fixed inset-0 z-50 hidden items-center justify-center">
+    <div class="fixed inset-0 bg-black opacity-50"></div>
+    <div class="relative z-10 w-full max-w-md rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
+        <div class="text-center">
+            <svg class="mx-auto mb-4 h-12 w-12 text-red-500"
+                 aria-hidden="true"
+                 xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+            </svg>
+            <h3 class="mb-5 text-lg font-semibold text-gray-900 dark:text-white">Preis löschen</h3>
+            <p class="mb-5 text-gray-700 dark:text-gray-300">
+                Möchtest du den Preis "<span id="priceNameToDelete" class="font-medium"></span>" wirklich löschen?
+            </p>
+            <form id="deleteForm" method="POST" action="">
+                {% csrf_token %}
+                <div class="flex justify-center">
+                    <button type="button"
+                            onclick="closeDeleteModal()"
+                            class="mr-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
+                        Abbrechen
+                    </button>
+                    <button type="submit"
+                            class="rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                        Löschen
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function openDeleteModal(priceId, priceName) {
+        document.getElementById('deleteModal').classList.remove('hidden');
+        document.getElementById('deleteModal').classList.add('flex');
+        document.getElementById('priceNameToDelete').textContent = priceName;
+        document.getElementById('deleteForm').action = "{% url 'ingredient-price-delete' ingredient.slug 0 %}".replace('0', priceId);
+    }
+    
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').classList.add('hidden');
+        document.getElementById('deleteModal').classList.remove('flex');
+    }
+</script>
