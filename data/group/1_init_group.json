@@ -1,0 +1,198 @@
+[
+    {
+        "model": "group.inspigroup",
+        "pk": 1,
+        "fields": {
+            "name": "VIA24 Planungsteam",
+            "slug": "via24-planungsteam",
+            "description": "Eine tolle Gruppe VIA24 Planungsteam",
+            "created_by": 1,
+            "is_visible": true,
+            "free_to_join": false,
+            "join_code": "VIA24",
+            "is_deleted": false,
+            "date_deleted": null,
+            "delete_requested_by": null,
+            "editable_by_users": [
+                1
+            ],
+            "editable_by_groups": []
+        }
+    },
+    {
+        "model": "group.inspigroup",
+        "pk": 2,
+        "fields": {
+            "name": "DPV Info Kanal",
+            "slug": "dpv-info-kanal",
+            "description": "Alle Infos direkt vom DPV",
+            "created_by": 1,
+            "is_visible": true,
+            "free_to_join": true,
+            "join_code": "DPV",
+            "is_deleted": false,
+            "date_deleted": null,
+            "delete_requested_by": null,
+            "editable_by_users": [
+                1
+            ],
+            "editable_by_groups": []
+        }
+    },
+    {
+        "model": "group.inspigroup",
+        "pk": 3,
+        "fields": {
+            "name": "Geheimgruppe Robert",
+            "slug": "geheimgruppe-robert",
+            "description": "Die Gruppe ist Geheim von Robert",
+            "created_by": 1,
+            "is_visible": false,
+            "free_to_join": false,
+            "join_code": "Robert",
+            "is_deleted": false,
+            "date_deleted": null,
+            "delete_requested_by": null,
+            "editable_by_users": [
+                1
+            ],
+            "editable_by_groups": []
+        }
+    },
+    {
+        "model": "group.inspigroupmembership",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "group": 1,
+            "date_joined": "2025-03-09T17:57:07.920Z",
+            "read_access": false,
+            "full_access": true,
+            "share_all_personal_data": true,
+            "share_own_personal_data": true,
+            "is_cancelled": false,
+            "date_cancelled": null,
+            "cancel_by": null
+        }
+    },
+    {
+        "model": "group.inspigroupmembership",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "group": 1,
+            "date_joined": "2025-03-09T18:02:04.611Z",
+            "read_access": false,
+            "full_access": false,
+            "share_all_personal_data": true,
+            "share_own_personal_data": true,
+            "is_cancelled": false,
+            "date_cancelled": null,
+            "cancel_by": null
+        }
+    },
+    {
+        "model": "group.inspigroupmembership",
+        "pk": 3,
+        "fields": {
+            "user": 6,
+            "group": 1,
+            "date_joined": "2025-03-09T18:39:13.351Z",
+            "read_access": false,
+            "full_access": false,
+            "share_all_personal_data": true,
+            "share_own_personal_data": true,
+            "is_cancelled": false,
+            "date_cancelled": null,
+            "cancel_by": null
+        }
+    },
+    {
+        "model": "group.inspigroupmembership",
+        "pk": 4,
+        "fields": {
+            "user": 3,
+            "group": 1,
+            "date_joined": "2025-03-09T19:11:05.570Z",
+            "read_access": false,
+            "full_access": false,
+            "share_all_personal_data": true,
+            "share_own_personal_data": true,
+            "is_cancelled": false,
+            "date_cancelled": null,
+            "cancel_by": null
+        }
+    },
+    {
+        "model": "group.inspigroupmembership",
+        "pk": 5,
+        "fields": {
+            "user": 1,
+            "group": 2,
+            "date_joined": "2025-03-09T19:13:59.624Z",
+            "read_access": false,
+            "full_access": true,
+            "share_all_personal_data": true,
+            "share_own_personal_data": true,
+            "is_cancelled": false,
+            "date_cancelled": null,
+            "cancel_by": null
+        }
+    },
+    {
+        "model": "group.inspigroupmembership",
+        "pk": 6,
+        "fields": {
+            "user": 1,
+            "group": 3,
+            "date_joined": "2025-03-09T19:22:52.512Z",
+            "read_access": false,
+            "full_access": true,
+            "share_all_personal_data": true,
+            "share_own_personal_data": true,
+            "is_cancelled": false,
+            "date_cancelled": null,
+            "cancel_by": null
+        }
+    },
+    {
+        "model": "group.inspigroupmembership",
+        "pk": 7,
+        "fields": {
+            "user": 5,
+            "group": 3,
+            "date_joined": "2025-03-09T19:23:34.558Z",
+            "read_access": false,
+            "full_access": false,
+            "share_all_personal_data": true,
+            "share_own_personal_data": true,
+            "is_cancelled": false,
+            "date_cancelled": null,
+            "cancel_by": null
+        }
+    },
+    {
+        "model": "group.inspigroupnews",
+        "pk": 1,
+        "fields": {
+            "group": 1,
+            "subject": "Willkommen zum Info Kanal des VIA Planungstreffen",
+            "message": "<p>D&ouml;ner sind mega <strong>lecker.</strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Hallo</strong></p>",
+            "created_at": "2025-03-09T19:11:41.007Z",
+            "created_by": 1,
+            "is_visible": true
+        }
+    },
+    {
+        "model": "group.inspigroupnews",
+        "pk": 2,
+        "fields": {
+            "group": 2,
+            "subject": "DPV übernimmt DPSG",
+            "message": "<p>Nach vielen Jahren der Gespr&auml;che nimmt der DPV die DPSG auf.</p>",
+            "created_at": "2025-03-09T19:22:10.387Z",
+            "created_by": 1,
+            "is_visible": true
+        }
+    }
+]

@@ -1,0 +1,2452 @@
+[
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 2,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.125Z",
+      "level_choice": "Bund",
+      "name": "DPBM",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "DPBM",
+      "full_name": "Deutscher Pfadfinder*innenbund Mosaik"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 3,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.129Z",
+      "level_choice": "Bund",
+      "name": "PB-Nordlicht",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "PBNL",
+      "full_name": "Pfadfinder & Pfadfinderinnenbund Nordlicht"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 4,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.132Z",
+      "level_choice": "Bund",
+      "name": "PBN",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "PBN",
+      "full_name": "Pfadfinder*innenbund Nord"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 5,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.134Z",
+      "level_choice": "Bund",
+      "name": "PB-Horizonte",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "PBH",
+      "full_name": "Pfadfinderbund Horizonte"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 6,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.138Z",
+      "level_choice": "Bund",
+      "name": "DPBH",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "DPH",
+      "full_name": "Deutscher Pfadfinderbund Hamburg"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 7,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.140Z",
+      "level_choice": "Bund",
+      "name": "PSD",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "PSD",
+      "full_name": "Pfadfinderschaft Süddeutschland"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 8,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.143Z",
+      "level_choice": "Bund",
+      "name": "BEP",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "BEP",
+      "full_name": "Bund Europäischer Pfadfinder"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 9,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.146Z",
+      "level_choice": "Bund",
+      "name": "PB Boreas",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "PBB",
+      "full_name": "Pfadfinderbund Boreas"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 10,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.149Z",
+      "level_choice": "Bund",
+      "name": "PBMV",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "PBMV",
+      "full_name": "Pfadfinderbund Mecklenburg-Vorpommern"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 11,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.152Z",
+      "level_choice": "Bund",
+      "name": "Jomsburg",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "JOMS",
+      "full_name": "Jomsburg - Freier Pfadfinderbund"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 12,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.155Z",
+      "level_choice": "Bund",
+      "name": "PBW",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "PBW",
+      "full_name": "Pfadfinderbund Weltenbummler"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 13,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.158Z",
+      "level_choice": "Bund",
+      "name": "FPS",
+      "zip_code": null,
+      "parent": 493,
+      "abbreviation": "FP",
+      "full_name": "Freie Pfadfinderschaft"
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 20,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.162Z",
+      "level_choice": "Ring",
+      "name": "Ring Rhein Lippe",
+      "zip_code": null,
+      "parent": 2,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 21,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.164Z",
+      "level_choice": "Ring",
+      "name": "Ring Kölner Bucht",
+      "zip_code": null,
+      "parent": 2,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 22,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.167Z",
+      "level_choice": "Ring",
+      "name": "Ring Bergisches Land",
+      "zip_code": null,
+      "parent": 2,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 23,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.170Z",
+      "level_choice": "Ring",
+      "name": "Ring Köln",
+      "zip_code": null,
+      "parent": 2,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 24,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.173Z",
+      "level_choice": "Ring",
+      "name": "Ring Bayern",
+      "zip_code": null,
+      "parent": 2,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 25,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.176Z",
+      "level_choice": "Ring",
+      "name": "Ring Nord",
+      "zip_code": null,
+      "parent": 2,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 26,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.179Z",
+      "level_choice": "Ring",
+      "name": "Ring Nord-Ost",
+      "zip_code": null,
+      "parent": 2,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 27,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.182Z",
+      "level_choice": "Ring",
+      "name": "Aufbauring Waterkant",
+      "zip_code": null,
+      "parent": 2,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 339,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.185Z",
+      "level_choice": "Stamm",
+      "name": "Adler",
+      "zip_code": 11762,
+      "parent": 20,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 340,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.188Z",
+      "level_choice": "Stamm",
+      "name": "Kirkias",
+      "zip_code": 9632,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 341,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.191Z",
+      "level_choice": "Stamm",
+      "name": "Apollo",
+      "zip_code": 2695,
+      "parent": 20,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 342,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.194Z",
+      "level_choice": "Stamm",
+      "name": "Argonauten",
+      "zip_code": 6238,
+      "parent": 23,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 343,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.196Z",
+      "level_choice": "Stamm",
+      "name": "Condor",
+      "zip_code": 1819,
+      "parent": 21,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 344,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.200Z",
+      "level_choice": "Stamm",
+      "name": "Deutschritter",
+      "zip_code": 6238,
+      "parent": 23,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 345,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.203Z",
+      "level_choice": "Stamm",
+      "name": "Draconis",
+      "zip_code": 6202,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 346,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.205Z",
+      "level_choice": "Stamm",
+      "name": "Dumeklemmer",
+      "zip_code": 9414,
+      "parent": 20,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 347,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.208Z",
+      "level_choice": "Stamm",
+      "name": "Eulen",
+      "zip_code": 11032,
+      "parent": 25,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 348,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.212Z",
+      "level_choice": "Stamm",
+      "name": "Galaxias",
+      "zip_code": 6245,
+      "parent": 21,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 349,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.214Z",
+      "level_choice": "Stamm",
+      "name": "Graf Luckner",
+      "zip_code": 12691,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 350,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.217Z",
+      "level_choice": "Stamm",
+      "name": "Hagazussa",
+      "zip_code": 8956,
+      "parent": 25,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 351,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.220Z",
+      "level_choice": "Stamm",
+      "name": "Hellas",
+      "zip_code": 6221,
+      "parent": 23,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 352,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.224Z",
+      "level_choice": "Stamm",
+      "name": "Hratuga",
+      "zip_code": 9416,
+      "parent": 20,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 353,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.227Z",
+      "level_choice": "Stamm",
+      "name": "Iltis",
+      "zip_code": 130,
+      "parent": 26,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 354,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.230Z",
+      "level_choice": "Stamm",
+      "name": "Karthago-Persepolis",
+      "zip_code": 6214,
+      "parent": 23,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 355,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.233Z",
+      "level_choice": "Stamm",
+      "name": "Kliffkieker",
+      "zip_code": 7061,
+      "parent": 26,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 356,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.237Z",
+      "level_choice": "Stamm",
+      "name": "König Artus",
+      "zip_code": 6480,
+      "parent": 24,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 357,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.240Z",
+      "level_choice": "Stamm",
+      "name": "Landesritter",
+      "zip_code": 3046,
+      "parent": 21,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 358,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.243Z",
+      "level_choice": "Stamm",
+      "name": "Landgraf Ludwig IX",
+      "zip_code": 9125,
+      "parent": 27,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 359,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.246Z",
+      "level_choice": "Stamm",
+      "name": "Landgräfin Caroline",
+      "zip_code": 9125,
+      "parent": 27,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 360,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.249Z",
+      "level_choice": "Stamm",
+      "name": "Maximilian Bayer",
+      "zip_code": 10065,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 361,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.252Z",
+      "level_choice": "Stamm",
+      "name": "Mittelerde",
+      "zip_code": 640,
+      "parent": 20,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 362,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.255Z",
+      "level_choice": "Stamm",
+      "name": "Möhrenköppe",
+      "zip_code": 402,
+      "parent": 26,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 363,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.258Z",
+      "level_choice": "Stamm",
+      "name": "Crismeke",
+      "zip_code": 3300,
+      "parent": 20,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 364,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.261Z",
+      "level_choice": "Stamm",
+      "name": "Pegasus",
+      "zip_code": 11988,
+      "parent": 26,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 365,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.264Z",
+      "level_choice": "Stamm",
+      "name": "Raubvögel",
+      "zip_code": 45,
+      "parent": 24,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 366,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.267Z",
+      "level_choice": "Stamm",
+      "name": "Rheinfranken",
+      "zip_code": 569,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 367,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.270Z",
+      "level_choice": "Stamm",
+      "name": "Rote Corsaren",
+      "zip_code": 10065,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 368,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.273Z",
+      "level_choice": "Stamm",
+      "name": "Roter Milan",
+      "zip_code": 8185,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 369,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.276Z",
+      "level_choice": "Stamm",
+      "name": "Schwarze Löwen",
+      "zip_code": 7854,
+      "parent": 24,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 370,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.279Z",
+      "level_choice": "Stamm",
+      "name": "Seeadler",
+      "zip_code": 749,
+      "parent": 26,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 371,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.281Z",
+      "level_choice": "Stamm",
+      "name": "Silberfüchse",
+      "zip_code": 3076,
+      "parent": 24,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 372,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.284Z",
+      "level_choice": "Stamm",
+      "name": "﻿Sperber",
+      "zip_code": 1819,
+      "parent": 21,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 373,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.287Z",
+      "level_choice": "Stamm",
+      "name": "St. Willigis",
+      "zip_code": 7216,
+      "parent": 21,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 374,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.290Z",
+      "level_choice": "Stamm",
+      "name": "Steppenwölfe",
+      "zip_code": 11498,
+      "parent": 21,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 375,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.294Z",
+      "level_choice": "Stamm",
+      "name": "Sterk Helmes",
+      "zip_code": 11841,
+      "parent": 20,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 376,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.297Z",
+      "level_choice": "Stamm",
+      "name": "Troja Toscana",
+      "zip_code": 6212,
+      "parent": 23,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 377,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.300Z",
+      "level_choice": "Stamm",
+      "name": "Monte Verita",
+      "zip_code": 4,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 378,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.302Z",
+      "level_choice": "Stamm",
+      "name": "Waldläufer",
+      "zip_code": 4071,
+      "parent": 24,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 379,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.305Z",
+      "level_choice": "Stamm",
+      "name": "Welfen",
+      "zip_code": 2103,
+      "parent": 25,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 380,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.308Z",
+      "level_choice": "Stamm",
+      "name": "Wikinger",
+      "zip_code": 8301,
+      "parent": 21,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 381,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.311Z",
+      "level_choice": "Stamm",
+      "name": "Wildgänse",
+      "zip_code": 3155,
+      "parent": 22,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 382,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.314Z",
+      "level_choice": "Stamm",
+      "name": "Wildkatzen",
+      "zip_code": 1819,
+      "parent": 21,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 383,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.317Z",
+      "level_choice": "Stamm",
+      "name": "SALZIG",
+      "zip_code": 10038,
+      "parent": 25,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 384,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.321Z",
+      "level_choice": "Stamm",
+      "name": "Zugvögel",
+      "zip_code": 6221,
+      "parent": 23,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 385,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.324Z",
+      "level_choice": "Stamm",
+      "name": "Ekkaia",
+      "zip_code": 7132,
+      "parent": 3,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 386,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.327Z",
+      "level_choice": "Stamm",
+      "name": "Faro",
+      "zip_code": 4612,
+      "parent": 3,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 387,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.330Z",
+      "level_choice": "Stamm",
+      "name": "Caradhras",
+      "zip_code": 4620,
+      "parent": 3,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 388,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.332Z",
+      "level_choice": "Stamm",
+      "name": "Ynys Avilion",
+      "zip_code": 4593,
+      "parent": 3,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 389,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.335Z",
+      "level_choice": "Stamm",
+      "name": "Walter von Aquitanien",
+      "zip_code": 4593,
+      "parent": 3,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 390,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.338Z",
+      "level_choice": "Stamm",
+      "name": "Ambronen",
+      "zip_code": 4620,
+      "parent": 3,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 391,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.341Z",
+      "level_choice": "Stamm",
+      "name": "Dragon",
+      "zip_code": 4257,
+      "parent": 3,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 392,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.344Z",
+      "level_choice": "Stamm",
+      "name": "Jungenschaft Goten",
+      "zip_code": 8415,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 393,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.347Z",
+      "level_choice": "Stamm",
+      "name": "Ambronen",
+      "zip_code": 4620,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 394,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.349Z",
+      "level_choice": "Stamm",
+      "name": "Langobarden",
+      "zip_code": 4600,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 395,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.352Z",
+      "level_choice": "Stamm",
+      "name": "Camelot",
+      "zip_code": 8415,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 396,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.355Z",
+      "level_choice": "Stamm",
+      "name": "Albis",
+      "zip_code": 8415,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 397,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.358Z",
+      "level_choice": "Stamm",
+      "name": "Taragona",
+      "zip_code": 8415,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 398,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.361Z",
+      "level_choice": "Stamm",
+      "name": "Mädelschaft Solaris",
+      "zip_code": 8415,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 399,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.364Z",
+      "level_choice": "Stamm",
+      "name": "Hag Eichhörnchen",
+      "zip_code": 4620,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 400,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.366Z",
+      "level_choice": "Stamm",
+      "name": "Hag Dea Dia",
+      "zip_code": 4600,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 401,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.368Z",
+      "level_choice": "Stamm",
+      "name": "Hag Nocturis",
+      "zip_code": 8415,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 402,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.371Z",
+      "level_choice": "Stamm",
+      "name": "Hag Arboris",
+      "zip_code": 8415,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 403,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.374Z",
+      "level_choice": "Stamm",
+      "name": "Hansischer Orden",
+      "zip_code": 1,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 404,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.377Z",
+      "level_choice": "Stamm",
+      "name": "Meute Norderstedt",
+      "zip_code": 8415,
+      "parent": 6,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 405,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.379Z",
+      "level_choice": "Stamm",
+      "name": "Calapallo ",
+      "zip_code": 5816,
+      "parent": 5,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 406,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.382Z",
+      "level_choice": "Stamm",
+      "name": "Edelweißpiraten ",
+      "zip_code": 9443,
+      "parent": 5,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 407,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.385Z",
+      "level_choice": "Stamm",
+      "name": "Schwarzkittel ",
+      "zip_code": 10966,
+      "parent": 5,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 408,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.388Z",
+      "level_choice": "Stamm",
+      "name": "Steppenwolf ",
+      "zip_code": 2009,
+      "parent": 5,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 409,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.391Z",
+      "level_choice": "Stamm",
+      "name": "Greif",
+      "zip_code": 1802,
+      "parent": 7,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 410,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.394Z",
+      "level_choice": "Stamm",
+      "name": "Kondor",
+      "zip_code": 5827,
+      "parent": 7,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 411,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.396Z",
+      "level_choice": "Stamm",
+      "name": "Jörg von Schauenburg",
+      "zip_code": 8591,
+      "parent": 7,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 412,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.399Z",
+      "level_choice": "Stamm",
+      "name": "Schwarzer Adler ",
+      "zip_code": 603,
+      "parent": 7,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 413,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.402Z",
+      "level_choice": "Stamm",
+      "name": "Treverer",
+      "zip_code": 151,
+      "parent": 7,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 414,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.405Z",
+      "level_choice": "Stamm",
+      "name": "Goten ",
+      "zip_code": 7274,
+      "parent": 8,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 415,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.407Z",
+      "level_choice": "Stamm",
+      "name": "Lichtstafette ",
+      "zip_code": 12698,
+      "parent": 8,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 416,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.410Z",
+      "level_choice": "Stamm",
+      "name": "Mauritius ",
+      "zip_code": 6238,
+      "parent": 8,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 417,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.413Z",
+      "level_choice": "Stamm",
+      "name": "der Ritter",
+      "zip_code": 6530,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 418,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.416Z",
+      "level_choice": "Stamm",
+      "name": "Franken",
+      "zip_code": 10466,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 419,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.419Z",
+      "level_choice": "Stamm",
+      "name": "Seeadler",
+      "zip_code": 4514,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 420,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.422Z",
+      "level_choice": "Stamm",
+      "name": "Königstiger",
+      "zip_code": 307,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 421,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.425Z",
+      "level_choice": "Stamm",
+      "name": "Walhall",
+      "zip_code": 1724,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 422,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.428Z",
+      "level_choice": "Stamm",
+      "name": "Zugvögel",
+      "zip_code": 69,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 423,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.431Z",
+      "level_choice": "Stamm",
+      "name": "Excalibur",
+      "zip_code": 3128,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 424,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.434Z",
+      "level_choice": "Stamm",
+      "name": "Chawrusen",
+      "zip_code": 4043,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 425,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.437Z",
+      "level_choice": "Stamm",
+      "name": "Welfen",
+      "zip_code": 3868,
+      "parent": 9,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 426,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.440Z",
+      "level_choice": "Stamm",
+      "name": "Alouris",
+      "zip_code": 4561,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 427,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.443Z",
+      "level_choice": "Stamm",
+      "name": "Amarganth",
+      "zip_code": 4593,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 428,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.446Z",
+      "level_choice": "Stamm",
+      "name": "Andwaranaut",
+      "zip_code": 4590,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 429,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.449Z",
+      "level_choice": "Stamm",
+      "name": "Chersonisos",
+      "zip_code": 4591,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 430,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.452Z",
+      "level_choice": "Stamm",
+      "name": "Dietrich von Bern",
+      "zip_code": 4598,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 431,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.454Z",
+      "level_choice": "Stamm",
+      "name": "Lykàmedas",
+      "zip_code": 4602,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 432,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.457Z",
+      "level_choice": "Stamm",
+      "name": "Minas Tirith",
+      "zip_code": 4590,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 433,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.461Z",
+      "level_choice": "Stamm",
+      "name": "Mizar Alkor",
+      "zip_code": 4561,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 434,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.464Z",
+      "level_choice": "Stamm",
+      "name": "Orion",
+      "zip_code": 4553,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 435,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.467Z",
+      "level_choice": "Stamm",
+      "name": "Orithya",
+      "zip_code": 4591,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 436,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.470Z",
+      "level_choice": "Stamm",
+      "name": "Pleione",
+      "zip_code": 4553,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 437,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.472Z",
+      "level_choice": "Stamm",
+      "name": "Saliskiaron",
+      "zip_code": 4588,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 438,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.476Z",
+      "level_choice": "Stamm",
+      "name": "Thadesia",
+      "zip_code": 4591,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 439,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.479Z",
+      "level_choice": "Stamm",
+      "name": "Thyreatis",
+      "zip_code": 4588,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 440,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.482Z",
+      "level_choice": "Stamm",
+      "name": "Xephalonia",
+      "zip_code": 4565,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 441,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.485Z",
+      "level_choice": "Stamm",
+      "name": "Yggdrasil",
+      "zip_code": 4611,
+      "parent": 4,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 442,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.488Z",
+      "level_choice": "Stamm",
+      "name": "Teutates Avalon",
+      "zip_code": 8978,
+      "parent": 10,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 443,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.491Z",
+      "level_choice": "Stamm",
+      "name": "Stadtpiraten",
+      "zip_code": 11069,
+      "parent": 10,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 444,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.494Z",
+      "level_choice": "Stamm",
+      "name": "Samarkand",
+      "zip_code": 1388,
+      "parent": 10,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 445,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.497Z",
+      "level_choice": "Stamm",
+      "name": "Aruba",
+      "zip_code": 324,
+      "parent": 10,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 446,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.500Z",
+      "level_choice": "Stamm",
+      "name": "Enontekiö",
+      "zip_code": 4113,
+      "parent": 10,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 447,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.503Z",
+      "level_choice": "Stamm",
+      "name": "Eldunarí",
+      "zip_code": 8049,
+      "parent": 10,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 448,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.506Z",
+      "level_choice": "Stamm",
+      "name": "Ranen",
+      "zip_code": 913,
+      "parent": 10,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 449,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.509Z",
+      "level_choice": "Stamm",
+      "name": "Goten",
+      "zip_code": 5963,
+      "parent": 11,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 450,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.512Z",
+      "level_choice": "Stamm",
+      "name": "Styrbjørn",
+      "zip_code": 217,
+      "parent": 11,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 451,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.514Z",
+      "level_choice": "Stamm",
+      "name": "Vaganten",
+      "zip_code": 2175,
+      "parent": 11,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 452,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.517Z",
+      "level_choice": "Stamm",
+      "name": "Bravehearts",
+      "zip_code": 5669,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 453,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.520Z",
+      "level_choice": "Stamm",
+      "name": "Graufüchse",
+      "zip_code": 10295,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 454,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.523Z",
+      "level_choice": "Stamm",
+      "name": "Nebelläufer",
+      "zip_code": 2397,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 455,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.525Z",
+      "level_choice": "Stamm",
+      "name": "Aar",
+      "zip_code": 2446,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 456,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.528Z",
+      "level_choice": "Stamm",
+      "name": "Adventure",
+      "zip_code": 2034,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 457,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.531Z",
+      "level_choice": "Stamm",
+      "name": "Bienen",
+      "zip_code": 9089,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 458,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.534Z",
+      "level_choice": "Stamm",
+      "name": "Dietrich von Bern",
+      "zip_code": 7304,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 459,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.537Z",
+      "level_choice": "Stamm",
+      "name": "Dompfaff",
+      "zip_code": 9087,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 460,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.540Z",
+      "level_choice": "Stamm",
+      "name": "Eulen",
+      "zip_code": 11179,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 461,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.543Z",
+      "level_choice": "Stamm",
+      "name": "Falken",
+      "zip_code": 10930,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 462,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.545Z",
+      "level_choice": "Stamm",
+      "name": "Goldene Horde",
+      "zip_code": 704,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 463,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.548Z",
+      "level_choice": "Stamm",
+      "name": "Goten",
+      "zip_code": 6145,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 464,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.551Z",
+      "level_choice": "Stamm",
+      "name": "Graf Wolff von Eberstein",
+      "zip_code": 3811,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 465,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.554Z",
+      "level_choice": "Stamm",
+      "name": "Grafen von Andechs",
+      "zip_code": 2070,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 466,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.557Z",
+      "level_choice": "Stamm",
+      "name": "Gralsritter",
+      "zip_code": 5772,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 467,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.560Z",
+      "level_choice": "Stamm",
+      "name": "Greif",
+      "zip_code": 12187,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 468,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.563Z",
+      "level_choice": "Stamm",
+      "name": "Herzöge von Meranien",
+      "zip_code": 794,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 469,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.566Z",
+      "level_choice": "Stamm",
+      "name": "Himmelsstürmer",
+      "zip_code": 10792,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 470,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.568Z",
+      "level_choice": "Stamm",
+      "name": "Huskies",
+      "zip_code": 12567,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 471,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.572Z",
+      "level_choice": "Stamm",
+      "name": "Karakal",
+      "zip_code": 8474,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 472,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.575Z",
+      "level_choice": "Stamm",
+      "name": "Kojoten",
+      "zip_code": 2747,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 473,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.578Z",
+      "level_choice": "Stamm",
+      "name": "Korsar",
+      "zip_code": 9751,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 474,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.581Z",
+      "level_choice": "Stamm",
+      "name": "Lindl-Ritter",
+      "zip_code": 11444,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 475,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.584Z",
+      "level_choice": "Stamm",
+      "name": "Milan",
+      "zip_code": 4507,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 476,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.587Z",
+      "level_choice": "Stamm",
+      "name": "Nordfüchse",
+      "zip_code": 2747,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 477,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.590Z",
+      "level_choice": "Stamm",
+      "name": "Reineke",
+      "zip_code": 2456,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 478,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.593Z",
+      "level_choice": "Stamm",
+      "name": "Roter Milan (PBW)",
+      "zip_code": 10974,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 479,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.596Z",
+      "level_choice": "Stamm",
+      "name": "Rupilo",
+      "zip_code": 9429,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 480,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.598Z",
+      "level_choice": "Stamm",
+      "name": "Sandfüchse",
+      "zip_code": 5043,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 481,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.601Z",
+      "level_choice": "Stamm",
+      "name": "Schwarzer Adler",
+      "zip_code": 1137,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 482,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.604Z",
+      "level_choice": "Stamm",
+      "name": "Sechurafüchse",
+      "zip_code": 2456,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 483,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.606Z",
+      "level_choice": "Stamm",
+      "name": "Sturmvaganten",
+      "zip_code": 3613,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 484,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.610Z",
+      "level_choice": "Stamm",
+      "name": "Weißer Schwan",
+      "zip_code": 4363,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 485,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.613Z",
+      "level_choice": "Stamm",
+      "name": "Wilde Gesellen",
+      "zip_code": 2070,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 486,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.617Z",
+      "level_choice": "Stamm",
+      "name": "Wilde Waschbären",
+      "zip_code": 3168,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 487,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.620Z",
+      "level_choice": "Stamm",
+      "name": "Wilde Isar",
+      "zip_code": 7819,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 488,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.623Z",
+      "level_choice": "Stamm",
+      "name": "Wildkatzen",
+      "zip_code": 1681,
+      "parent": 12,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 489,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.626Z",
+      "level_choice": "Stamm",
+      "name": "Turmschwalbe",
+      "zip_code": 636,
+      "parent": 13,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 490,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.630Z",
+      "level_choice": "Stamm",
+      "name": "Turmfalke",
+      "zip_code": 636,
+      "parent": 13,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 491,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.632Z",
+      "level_choice": "Stamm",
+      "name": "Schwarzer Milan",
+      "zip_code": 635,
+      "parent": 13,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 492,
+    "fields": {
+      "created_at": null,
+      "updated_at": "2022-11-23T14:47:04.635Z",
+      "level_choice": "Stamm",
+      "name": "Lübscher Adler",
+      "zip_code": 635,
+      "parent": 13,
+      "abbreviation": null,
+      "full_name": null
+    }
+  },
+  {
+    "model": "masterdata.scouthierarchy",
+    "pk": 493,
+    "fields": {
+      "created_at": "2022-02-26T11:01:53.763Z",
+      "updated_at": "2023-06-07T15:03:25.082Z",
+      "level_choice": "Verband",
+      "name": "DPV",
+      "zip_code": null,
+      "parent": null,
+      "abbreviation": "DPV",
+      "full_name": "Deutscher Pfadfinder*innenverband"
+    }
+  }
+]
