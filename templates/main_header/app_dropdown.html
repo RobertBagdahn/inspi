@@ -8,7 +8,7 @@
             <a href="{% if is_local %}{{ app.main_url }}{% else %}{{ app.domain }}{% endif %}"
                class="block p-4 text-center rounded-lg hover:bg-gray-100 group center">
                 {% component 'icon' icon=app.icon_name color='gray' size='md' align='center' %} {% endcomponent %}
-                <div class="text-sm font-medium text-gray-900 m-2">{{ app.display_name_short }}</div>
+                <div class="text-xs font- text-gray-900 m-2">{{ app.display_name_short }}</div>
             </a>
         {% endfor %}
     </div>
