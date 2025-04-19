@@ -463,16 +463,6 @@
   },
   {
     "model": "food.nutritionaltag",
-    "pk": 7,
-    "fields": {
-      "name": "Koscher",
-      "name_opposite": "kein Koscher",
-      "description": "Entspricht jüdischen Speisevorschriften",
-      "rank": 7
-    }
-  },
-  {
-    "model": "food.nutritionaltag",
     "pk": 8,
     "fields": {
       "name": "Gluten (nicht zöliakie)",
@@ -689,6 +679,26 @@
       "name_opposite": "keine Lupinen",
       "description": "Lupinenallergie",
       "rank": 39
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 40,
+    "fields": {
+      "name": "Keine",
+      "name_opposite": "Allesesser",
+      "description": "Für Allesesser, die alles essen",
+      "rank": 1
+    }
+  },
+  {
+    "model": "food.nutritionaltag",
+    "pk": 41,
+    "fields": {
+      "name": "Flexitarisch",
+      "name_opposite": "Flexitarisch",
+      "description": "Für Flexitarier, die gelegentlich Fleisch essen",
+      "rank": 2
     }
   },
   {

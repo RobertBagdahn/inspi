@@ -1,0 +1,41 @@
+[
+  {
+    "model": "registration.registration",
+    "pk": 1,
+    "fields": {
+      "created_at": "2023-05-05T06:20:09.490Z",
+      "updated_at": "2023-05-05T06:20:09.490Z",
+      "scout_organisation": 369,
+      "is_confirmed": false,
+      "event": 1,
+      "responsible_persons": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "registration.registrationparticipant",
+    "pk": 1,
+    "fields": {
+      "created_at": "2023-05-05T06:20:09.605Z",
+      "updated_at": "2023-05-05T06:20:09.605Z",
+      "scout_name": "nvhj",
+      "first_name": "nvhj",
+      "last_name": "jvnv",
+      "zip_code": 7829,
+      "age": null,
+      "scout_group": null,
+      "phone_number": "",
+      "email": null,
+      "birthday": null,
+      "registration":  1,
+      "booking_option": 28,
+      "gender": "D",
+      "generated": false,
+      "leader": "N",
+      "scout_level": "N",
+      "eat_habit": [
+      ]
+    }
+  }
+]

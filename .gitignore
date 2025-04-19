@@ -209,6 +209,5 @@ zappa_settings.json
 /backend/backend/.env.dev
 
 /data/data
-/data/
 /script/
 /static/analyse

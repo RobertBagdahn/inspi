@@ -1,0 +1,326 @@
+[
+  {
+    "model": "attributes.attributemodule",
+    "pk": 1,
+    "fields": {
+      "title": "Anzahl Kothen",
+      "text": "Wie viele Kothen bringt ihr mit?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 30
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 2,
+    "fields": {
+      "title": "Anzahl Kothenstangen",
+      "text": "Wie viele Stangen für Kothen benötigt ihr?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 30
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 3,
+    "fields": {
+      "title": "Anzahl Jurten",
+      "text": "Wie viele Jurten bringt ihr mit?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 30
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 4,
+    "fields": {
+      "title": "Anzahl Jurtenstangen",
+      "text": "Wie viele Stangen für eure Jurten benötigt ihr?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 30
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 5,
+    "fields": {
+      "title": "Anreise",
+      "text": "Wann und womit werdet ihr anreisen?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "TrA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 26
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 6,
+    "fields": {
+      "title": "Abreise",
+      "text": "Wann und womit werdet ihr abreisen?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "TrA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 27
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 7,
+    "fields": {
+      "title": "Zusätzliche Anmerkungen",
+      "text": "Hier ist Platz für eine Nachricht an die Lagerleitung.",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "StA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 17
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 8,
+    "fields": {
+      "title": "Bestätigung",
+      "text": "Ich habe meine Daten überprüft und melde meinen Stamm verbindlich zur Fahrt an.",
+      "is_required": true,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "BoA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 15
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 9,
+    "fields": {
+      "title": "T-Shirt XS",
+      "text": "Wie viele T-Shirts braucht ihr in der Größe XS?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 28
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 10,
+    "fields": {
+      "title": "T-Shirt S",
+      "text": "Wie viele T-Shirts braucht ihr in der Größe S?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 28
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 11,
+    "fields": {
+      "title": "T-Shirt M",
+      "text": "Wie viele T-Shirts braucht ihr in der Größe M?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 28
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 12,
+    "fields": {
+      "title": "T-Shirt L",
+      "text": "Wie viele T-Shirts braucht ihr in der Größe L?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 28
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 13,
+    "fields": {
+      "title": "T-Shirt XL",
+      "text": "Wie viele T-Shirts braucht ihr in der Größe XL?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 28
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 14,
+    "fields": {
+      "title": "T-Shirts XXL",
+      "text": "Wie viele T-Shirts braucht ihr in der Größe XL?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 28
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 15,
+    "fields": {
+      "title": "Lunch Pakete",
+      "text": "Wie viele Lunch Pakete braucht ihr?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 29
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 16,
+    "fields": {
+      "title": "Fahrzeuge",
+      "text": "Mit wie vielen Autos reist ihr an?",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "InA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 26
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 17,
+    "fields": {
+      "title": "Datenschutzhinweis",
+      "text": "Hiermit bestätige ich, dass alle Teilnehmer_innen, die ich auf diesem Wege anmelde, die Datenschutzhinweise und Bildrechte zur Kenntnis genommen und diesen zugestimmt haben.",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "BoA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 14
+    }
+  },
+  {
+    "model": "attributes.attributemodule",
+    "pk": 18,
+    "fields": {
+      "title": "Veranstaltungsbedingungen",
+      "text": "Ich stimme den Bedingungen zu und möchte mit der Anmeldung beginnen.",
+      "is_required": false,
+      "min_length": 0,
+      "max_length": 0,
+      "tooltip": null,
+      "default_value": null,
+      "field_type": "BoA",
+      "icon": null,
+      "max_entries": 1,
+      "standard": true,
+      "event_module": 14
+    }
+  }
+]
