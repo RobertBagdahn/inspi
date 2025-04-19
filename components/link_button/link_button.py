@@ -11,12 +11,14 @@ class LinkButtonComponent(component.Component):
         text="",
         icon="",
         url="",
+        css_class="",
     ):
         return {
             "color": color,
             "text": text,
             "icon": icon,
             "url": url,
+            "css_class": css_class,
         }
 
     class Media:

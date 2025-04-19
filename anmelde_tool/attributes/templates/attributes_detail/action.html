@@ -1,0 +1,9 @@
+{% load component_tags %}
+<div id="overview" role="tabpanel" aria-labelledby="overview-tab" class="mt-4">
+  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+    {% component 'action-box' description='Attribute bearbeiten' text='editieren' link="{% url 'attributes-update' attribute.id %}" color='blue' icon='edit' %}
+    {% endcomponent %}
+    {% component 'action-box' description='Attribute löschen' text='entfernen' link="{% url 'attributes-delete' attribute.id %}" color='red' icon='trash' %}
+    {% endcomponent %}
+  </div>
+</div>

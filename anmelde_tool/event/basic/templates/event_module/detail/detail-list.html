@@ -1,0 +1,49 @@
+<h2 class="text-2xl font-bold my-4">Basisdaten des Modules</h2>
+<p class="text-md font-medium text-gray-600 dark:text-gray-400 mb-4">
+  Hier sind die Basisdaten des Moduls aufgelistet. Diese Daten sind wichtig für die
+  Konfiguration des Moduls und sollten sorgfältig überprüft werden.
+  <br>
+  <span class="text-red-500 font-semibold">Bitte beachte, dass Änderungen an diesen Daten Auswirkungen auf die
+    Funktionsweise des Moduls haben können.</span>
+  <br>
+</p>
+<div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+  <!-- Liste -->
+  <dl class="list-inside text-gray-500 dark:text-gray-400">
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Überschrift</dt>
+      <dd class="sm:text-end">{{ module.header }}</dd>
+    </div>
+    {% comment %} <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Intern</dt>
+      <dd class="sm:text-end">{{ module.internal|yesno:"Ja,Nein" }}</dd>
+    </div> {% endcomment %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Reihenfolge</dt>
+      <dd class="sm:text-end">{{ module.ordering }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Erforderlich</dt>
+      <dd class="sm:text-end">{{ module.required|yesno:"Ja,Nein" }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Standard</dt>
+      <dd class="sm:text-end">{{ module.standard|yesno:"Ja,Nein" }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Selbst erstellt?</dt>
+      <dd class="sm:text-end">{{ module.is_custom|yesno:"Ja,Nein" }}</dd>
+    </div>
+    <div class="border-b py-4 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Erstellt von</dt>
+      <dd class="sm:text-end">{{ module.created_by|default:"Nicht angegeben" }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700">
+      <dt class="font-semibold text-gray-900 dark:text-white mb-2">Ausführliche Beschreibung</dt>
+      <dd class="mt-2 p-4 rounded-md bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
+        {{ module.description|safe }}
+      </dd>
+    </div>
+  </dl>
+</div>
+

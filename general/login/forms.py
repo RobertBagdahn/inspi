@@ -5,20 +5,24 @@ from .models import CustomUser
 from group.models import InspiGroupMembership
 from django.forms import ModelForm
 from .models import Person
+from food.models import NutritionalTag
 from masterdata.models import ScoutHierarchy, ZipCode
-from event.basic import choices as event_basic_choices
+from anmelde_tool.event.basic import choices as event_basic_choices
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Div, HTML
-from autocomplete import ModelAutocomplete, AutocompleteWidget
+from django.forms import formset_factory, BaseFormSet
 
+class DynamicModuleForm(forms.Form):
+    """
+    Base form for dynamic modules
+    """
+    def __init__(self, *args, **kwargs):
+        self.event_module = kwargs.pop("event_module", None)
+        super(DynamicModuleForm, self).__init__(*args, **kwargs)
+        
+        self.helper = FormHelper()
+        self.helper.form_tag = False
 
-class ZipCodeAutocomplete(ModelAutocomplete):
-    model = ZipCode
-    search_attrs = ['zip_code', 'city']
-    route_name = 'zipcode-autocomplete'
-    
-    def get_label(self, instance):
-        return f"{instance.zip_code} {instance.city}"
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -155,14 +159,10 @@ class PersonWizardContactForm(forms.Form):
         help_text="z.B. Apartment, Gebäude, etc."
     )
     zip_code = forms.ModelChoiceField(
-        queryset=ZipCode.objects.all(), 
+        queryset=ZipCode.objects.all(),
         label="Postleitzahl",
         required=False,
-        help_text="Deine Postleitzahl",
-        widget=AutocompleteWidget(
-            ac_class=ZipCodeAutocomplete,
-            options={"placeholder": "Suche nach PLZ oder Ort..."}
-        )
+        help_text="Deine Postleitzahl"
     )
     city = forms.CharField(
         max_length=100, 
@@ -187,11 +187,12 @@ class PersonWizardPreferencesForm(forms.Form):
     """
     Preferences form for the person wizard
     """
-    eat_habits = forms.ChoiceField(
-        choices=event_basic_choices.EatHabit.choices,
+    eat_habits = forms.ModelMultipleChoiceField(
+        queryset=NutritionalTag.objects.all(),
         label="Essgewohnheiten",
-        required=True,
-        help_text="Deine Essgewohnheiten"
+        required=False,
+        help_text="Deine Essgewohnheiten",
+        widget=forms.CheckboxSelectMultiple,
     )
     scout_group = forms.ModelChoiceField(
         queryset=ScoutHierarchy.objects.all(),
@@ -206,3 +207,72 @@ class PersonWizardPreferencesForm(forms.Form):
         required=False,
         help_text="Kurze Beschreibung über dich"
     )
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+
+
+
+class PersonSearchFilterForm(forms.ModelForm):
+    search = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={"placeholder": "Suche nach Gruppen"}),
+        required=False,
+        label="",
+    )
+
+    class Meta:
+        model = Person
+        fields = [
+            "search",
+        ]
+
+
+class PersonForm(DynamicModuleForm):
+    """
+    Form to create or update a person
+    """
+
+    first_name = forms.CharField(
+        max_length=100, 
+        label="Vorname", 
+        required=True,
+        help_text="Dein Vorname"
+    )
+    last_name = forms.CharField(
+        max_length=100, 
+        label="Nachname", 
+        required=True,
+        help_text="Dein Nachname"
+    )
+    scout_name = forms.CharField(
+        max_length=100, 
+        label="Pfadfindername", 
+        required=False,
+        help_text="Dein Pfadfindername (falls vorhanden)"
+    )
+    eat_habits = forms.ModelMultipleChoiceField(
+        queryset=NutritionalTag.objects.all(),
+        label="Essgewohnheiten",
+        required=False,
+        help_text="Deine Essgewohnheiten",
+        widget=forms.CheckboxSelectMultiple,
+    )
+    scout_group = forms.ModelChoiceField(
+        queryset=ScoutHierarchy.objects.all(),
+        label="Pfadfindergruppe",
+        required=False,
+        help_text="Deine Pfadfindergruppe"
+    )
+
+    class Meta:
+        model = Person
+        fields = [
+            "first_name",
+            "last_name",
+            "scout_name",
+            "eat_habits",
+            "scout_group",
+        ]

@@ -1,0 +1,40 @@
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 my-4">
+    {% for booking_type in booking_options %}
+      <div class="bg-white p-4 rounded-lg shadow dark:bg-gray-800">
+        <h3 class="text-xl font-semibold mb-2">{{ booking_type.name }}</h3>
+        {% if booking_type.description %}
+          <p class="text-gray-600 dark:text-gray-300 mb-3">{{ booking_type.description }}</p>
+        {% endif %}
+        <div class="space-y-2">
+          <p class="font-medium">Price: <span class="font-normal">{{ booking_type.price }} €</span></p>
+          
+          {% if booking_type.bookable_from and booking_type.bookable_till %}
+            <p class="font-medium">Booking period: 
+              <span class="font-normal">
+                {{ booking_type.bookable_from|date:"d.m.Y H:i" }} - {{ booking_type.bookable_till|date:"d.m.Y H:i" }}
+              </span>
+            </p>
+          {% endif %}
+          
+          {% if booking_type.max_participants > 0 %}
+            <p class="font-medium">Max participants: <span class="font-normal">{{ booking_type.max_participants }}</span></p>
+          {% endif %}
+          
+          {% if booking_type.start_date and booking_type.end_date %}
+            <p class="font-medium">Event period: 
+              <span class="font-normal">
+                {{ booking_type.start_date|date:"d.m.Y H:i" }} - {{ booking_type.end_date|date:"d.m.Y H:i" }}
+              </span>
+            </p>
+          {% endif %}
+        </div>
+        <div class="mt-4">
+          <a href="{% url 'event-booking-type-detail' booking_type.id %}" class="text-blue-600 hover:underline dark:text-blue-400">Details</a>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-span-full bg-white p-4 rounded-lg shadow dark:bg-gray-800">
+        <p>No booking types available for this event.</p>
+      </div>
+    {% endfor %}
+  </div>

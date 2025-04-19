@@ -1,7 +1,7 @@
 {% load component_tags %}
 <div>
     <a href="{{ url }}"
-       class="inline-flex items-center justify-center rounded-lg bg-{{ color  }}-600 px-5 py-3 text-center text-base font-medium text-white hover:bg-{{ button_color  }}-700 focus:ring-4 focus:ring-{{ button_color  }}-300 dark:focus:ring-{{ button_color  }}-900">
+       class="inline-flex items-center justify-center rounded-lg bg-{{ color }}-600 px-5 py-2 text-center text-base font-medium text-white hover:bg-{{ color }}-700 focus:ring-4 focus:ring-{{ color }}-300 dark:focus:ring-{{ color }}-900 {{ css_class }}">
         <span class="mr-2">{% component "icon" icon=icon %} {% endcomponent %}</span>
         {{ text }}
     </a>

@@ -38,6 +38,7 @@ easy-thumbnails = "^2.10"
 django-tracking2 = "^0.5.1"
 djlint = "^1.36.3"
 django-components = "^0.123"
+jwt = "^1.3.1"
 
 
 [build-system]

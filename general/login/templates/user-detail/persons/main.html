@@ -1,0 +1,17 @@
+{% extends 'user-detail/_user_detail_base.html' %}
+{% load component_tags %}
+{% block groupdetailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 mb-6">
+                {% component 'action-box' description='Benutzer zur Gruppe hinzufügen' text='Person hinzufügen' link="{% url 'start-person-wizard' %}"  color='blue' icon='user-plus' %}
+                {% endcomponent %}
+                {% component 'action-box' description='Personen per Excel-Datei importieren' text='Excel Import' link="{% url 'start-person-wizard-with-username' user.username %}"  color='green' icon='table' %}
+                {% endcomponent %}
+            </div>
+            <h2 class="text-2xl font-bold mb-1">Personen von {{ user.username }}</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">Hier siehst du alle Personen, die mit diesem Benutzer verknüpft sind.</p>
+            {% include "./table.html" with page_obj=page_obj search_filter_form=search_filter_form %}
+        </div>
+    </section>
+{% endblock groupdetailcontent %}

@@ -24,6 +24,11 @@ urlpatterns = [
         name="user-details-my-requests-user",
     ),
     path(
+        "user-detail-persons/<username>/",
+        views.user_detail_persons,
+        name="user-detail-persons",  # Fixed the name to be unique
+    ),
+    path(
         "profile-edit/<username>/",
         views.profile_edit,
         name="login-profile-edit",

@@ -115,6 +115,9 @@ INSTALLED_APPS = [
     "inspitheme",
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.openid_connect',
     "crispy_forms",
     "crispy_bootstrap4",
     "widget_tweaks",
@@ -126,7 +129,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     "tracking",
     'django_components',
-    "autocomplete",
     # modules
     "food",
     "activity.activity",
@@ -134,9 +136,15 @@ INSTALLED_APPS = [
     "blog",
     "general.footer",
     "general.login",
-    "event.basic",
-    "event.registration",
-    "event.participant",
+    'anmelde_tool.email_services',
+    'anmelde_tool.event',
+    'anmelde_tool.event.summary',
+    'anmelde_tool.registration',
+    'anmelde_tool.event.basic',
+    'anmelde_tool.event.cash',
+    'anmelde_tool.event.file_generator',
+    'anmelde_tool.event.email',
+    'anmelde_tool.attributes',
     "group",
     "masterdata",
 
@@ -180,6 +188,14 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'event/registration/templates'),
             os.path.join(BASE_DIR, 'event/participant/templates'),
             os.path.join(BASE_DIR, 'group/templates'),
+            os.path.join(BASE_DIR, 'anmelde_tool/event/basic/templates'),
+            os.path.join(BASE_DIR, 'anmelde_tool/event/cash/templates'),
+            os.path.join(BASE_DIR, 'anmelde_tool/event/email/templates'),
+            os.path.join(BASE_DIR, 'anmelde_tool/event/file_generator/templates'),
+            os.path.join(BASE_DIR, 'anmelde_tool/event/summary/templates'),
+            os.path.join(BASE_DIR, 'anmelde_tool/registration/templates'),
+            os.path.join(BASE_DIR, 'anmelde_tool/email_services/templates'),
+            os.path.join(BASE_DIR, 'anmelde_tool/attributes/templates'),
             os.path.join(BASE_DIR, 'components'),
         ],
         "APP_DIRS": True,
@@ -368,4 +384,25 @@ TRACK_IGNORE_URLS = [r'/admin/', r'tracking.*', r'__reload__.*', r'sitemap.xml',
 if not DEBUG:
     INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'django_browser_reload']
     MIDDLEWARE = [m for m in MIDDLEWARE if m != 'django_browser_reload.middleware.BrowserReloadMiddleware']
+
+# Keycloak OIDC Configuration
+SOCIALACCOUNT_PROVIDERS = {
+    'openid_connect': {
+        'APPS': [
+            {
+                "provider_id": "keycloak",
+                "name": "DPV",
+                "client_id": "inspi",
+                "secret": "blub",
+                "settings": {
+                    "server_url": "https://auth.dpvonline.de/realms/dpv/.well-known/openid-configuration",
+                },
+            }
+        ],
+    },
+}
+
+# Enable social account login
+SOCIALACCOUNT_STORE_TOKENS = True
+SOCIALACCOUNT_LOGIN_ON_GET = True
 

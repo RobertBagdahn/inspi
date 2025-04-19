@@ -1,0 +1,40 @@
+{% load component_tags %}
+<h2 class="text-2xl font-bold mb-4 mt-4">Alle Rechte</h2>
+{% component 'table' page_obj=page_obj form=form %}
+{% fill 'table_heads' %}
+<tr>
+  <th scope="col" class="px-4 py-3">Gruppe/Benutzer</th>
+  <th scope="col" class="px-4 py-3">Berechtigungstyp</th>
+  <th scope="col" class="px-4 py-3">Untergruppen einbeziehen</th>
+  <th scope="col" class="px-4 py-3">Erstellt am</th>
+  <th scope="col" class="px-4 py-3">Erstellt von</th>
+  <th scope="col" class="px-4 py-3">Details</th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+  <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 {% if item.is_canceled %}bg-red-600{% endif %}">
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+      {% if item.is_group %}
+      <a href="{% url 'group-detail-overview' item.group.slug %}" class="text-blue-600 hover:text-blue-800">{{ item.group }}</a>
+      {% else %}
+      <a href="{% url 'user-detail-overview' item.user.username %}" class="text-blue-600 hover:text-blue-800">{{ item.user }}</a>
+      {% endif %}
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.get_permission_type_display }}</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+      {% if item.is_group %}
+        {% if item.include_subgroups %}Ja{% else %}Nein{% endif %}
+      {% else %}
+        -
+      {% endif %}
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.created_at }}</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.created_by }}</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm">
+      <a href="{% url 'event-permission-detail' item.id %}" class="text-blue-600 hover:text-blue-800">Details</a>
+    </td>
+  </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

@@ -1,0 +1,77 @@
+{% extends 'registration_detail/_reg_detail_base.html' %}
+{% load component_tags %}
+{% load main_extras %}
+
+{% block eventdetailcontent %}
+  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+      <h2 class="text-2xl font-bold mb-4">Event {{ event.name }}</h2>
+    </div>
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+      {% for module_data in modules_data %}
+        <div class="mb-6 p-6 bg-white rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+          <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">{{ module_data.module.header }}</h3>
+
+          {% if module_data.attributes %}
+            <div class="space-y-4">
+              {% for attr in module_data.attributes %}
+                <div class="p-4 bg-gray-50 rounded-lg dark:bg-gray-700">
+                  <div class="flex justify-between items-start">
+                    <h4 class="text-md font-medium text-gray-700 dark:text-gray-200">{{ attr.attribute_module.text }}</h4>
+                    <div class="flex items-center gap-2">
+                      {% if attr.id %}
+                        <a href="{% url 'attributes-edit' attr.id %}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                          </svg>
+                        </a>
+                      {% else %}
+                        <a href="{% url 'attributes-create' registration_id=reg.id attribute_module_id=attr.attribute_module.id %}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                          </svg>
+                        </a>
+                      {% endif %}
+                      <span class="px-2 py-1 text-xs font-medium rounded-full {% if attr.type == 'BoA' %}
+                          bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300
+                        {% elif attr.type == 'TrA' %}
+                          bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300
+                        {% elif attr.type == 'InA' %}
+                          bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300
+                        {% elif attr.type == 'StA' %}
+                          bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300
+                        {% endif %}">
+                        {{ attr.type }}
+                      </span>
+                    </div>
+                  </div>
+                  <p class="mt-2 text-gray-600 dark:text-gray-400">
+                    {% if attr.value %}
+                      {% if attr.value|typename == 'dict' %}
+                      {% for key, value in attr.value.items %}
+                        <div class="mb-1">
+                        <span class="font-medium">{{ key }}:</span> {{ value }}
+                        </div>
+                      {% endfor %}
+                      {% else %}
+                      {{ attr.value }}
+                      {% endif %}
+                    {% else %}
+                      kein Wert
+                    {% endif %}
+                  </p>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            {% if module_data.module.name == 'Participants' %}
+              <a href="{% url 'reg-detail-participant' reg.id %}" class="text-blue-600 hover:underline">Link zu allen Teilnehmenden</a>
+            {% else %}
+              <p class="text-gray-500 dark:text-gray-400 italic">No attributes for this module</p>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

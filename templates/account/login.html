@@ -1,23 +1,82 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
 {% load component_tags %}
-{% block title %}Einloggen{% endblock %}
+{% block title %}
+  Einloggen
+{% endblock %}
 {% block content %}
-    <div class="mx-auto flex flex-col items-center justify-center">
-        <h2 class="my-2">Anmelden</h2>
-        <form method="post">
+  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8 px-5">
+    <div class="max-w-screen-xl px-4 py-8 mx-auto lg:grid lg:gap-20 lg:py-16 lg:grid-cols-2">
+      <div class="flex-col justify-between hidden mr-auto lg:flex xl:mb-0">
+        <div>
+          <div class="mt-4 mb-6 mx-4">
+        <div class="flex">
+          <svg class="w-5 h-5 mr-2 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-bold leading-none text-gray-900 dark:text-white">DPV-Account Nutzung</h3>
+            <p class="mb-2 font-light text-gray-500 dark:text-gray-400">Logge dich mit deinem zentralen DPV-Account ein, der für alle DPV-Tools gültig ist.</p>
+          </div>
+        </div>
+        <div class="flex pt-8">
+          <svg class="w-5 h-5 mr-2 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-bold leading-none text-gray-900 dark:text-white">Flexible Registrierung</h3>
+            <p class="mb-2 font-light text-gray-500 dark:text-gray-400">Registriere dich für einen DPV-Account oder erstelle einen lokalen Account nur für diese Plattform.</p>
+          </div>
+        </div>
+        <div class="flex pt-8">
+          <svg class="w-5 h-5 mr-2 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-bold leading-none text-gray-900 dark:text-white">Datenschutz</h3>
+            <p class="mb-2 font-light text-gray-500 dark:text-gray-400">Deine Daten werden gemäß DSGVO geschützt und nur für die notwendigen Funktionen dieser Plattform verwendet.</p>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full mx-auto bg-white rounded-lg shadow md:mt-0 sm:max-w-lg xl:p-0">
+        <div class="p-6 space-y-4 lg:space-y-6 sm:p-8">
+          <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 sm:text-2xl dark:text-white">Willkommen</h1>
+          <div class="my-4 w-full flex justify-center">
+            {% component 'link-button' color='blue' text='DPV-Account' icon='open-door' url='/accounts/oidc/keycloak/login/' css_class='w-full inline-flex items-center justify-center py-1.5 px-4' %}
+            {% endcomponent %}
+          </div>
+          <div class="flex items-center">
+            <div class="w-full h-0.5 bg-gray-200 dark:bg-gray-700"></div>
+            <div class="px-5 text-center text-gray-500 dark:text-gray-400">oder</div>
+            <div class="w-full h-0.5 bg-gray-200 dark:bg-gray-700"></div>
+          </div>
+          <form method="post" class="space-y-4 lg:space-y-6">
             {% csrf_token %}
             {{ form|crispy }}
-            {% component 'submit-button' color='green' text='Anmelden' icon='key' %}
-        {% endcomponent %}
-        <div class="my-4 w-full border-t border-gray-300"></div>
-        {% component 'link-button' color='blue' text='Registrieren' icon='user-plus' url="{% url 'account_signup' %}?next={{ request.GET.next|default:'' }}" %}
-    {% endcomponent %}
-</form>
-</div>
-<div class="my-4 w-full border-t border-gray-300"></div>
-<div class="my-4 w-full flex justify-center">
-    {% component 'link-button' color='blue' text='DPV-Login' icon='open-door' url='/accounts/oidc/keycloak/login/' %}
-{% endcomponent %}
-</div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-start">
+                <div class="flex items-center h-5">
+                  <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
+                </div>
+                <div class="ml-3 text-sm">
+                  <label for="remember" class="text-gray-500 dark:text-gray-300">Angemeldet bleiben</label>
+                </div>
+              </div>
+              <a href="{% url 'account_reset_password' %}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Passwort vergessen?</a>
+            </div>
+            <div class="flex justify-center">
+              {% component 'submit-button' color='green' text='Anmelden' icon='key' css_class='w-full text-white' %}
+              {% endcomponent %}
+            </div>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              Noch kein Konto?
+              <a href="{% url 'account_signup' %}?next={{ request.GET.next|default:'' }}" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Hier direkt registrieren</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

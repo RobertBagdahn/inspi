@@ -37,7 +37,7 @@ urlpatterns = [
     path("activity/", include("activity.urls")),
     path('', RedirectView.as_view(url=reverse_lazy('activity-main'))),
     path("general/", include("general.urls")),
-    path("event/", include("event.urls")),
+    path('event/', include('anmelde_tool.urls')),
     path("food/", include("food.urls")),
     path("blog/", include("blog.urls")),
     path("group/", include("group.urls")),

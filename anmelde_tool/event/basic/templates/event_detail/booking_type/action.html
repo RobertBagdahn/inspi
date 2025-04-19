@@ -1,0 +1,7 @@
+{% load component_tags %}
+<div id="overview" role="tabpanel" aria-labelledby="overview-tab" class="my-4">
+  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+    {% component 'action-box' description='Buchungoption' text=' erstellen' link='{% url "event-booking-type-create" event.slug %}' color='blue' icon='plus' %}
+    {% endcomponent %}
+  </div>
+</div>

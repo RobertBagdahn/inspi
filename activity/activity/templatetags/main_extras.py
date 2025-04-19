@@ -134,3 +134,14 @@ def get_item_by_index(list_object, index):
         return list_object[index]
     except (IndexError, TypeError, ValueError):
         return None
+    
+
+
+@register.filter
+def typename(value):
+    """
+    Returns the type name of the given value.
+    """
+    return type(value).__name__
+
+

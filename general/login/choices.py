@@ -1,6 +1,7 @@
 AUTH_LEVEL_CHOICES = [
-    (1, 'Basic - Username Only'),
-    (2, 'Standard - With Person Details'),
-    (3, 'Extended - With Contact Info'),
-    (4, 'Complete - With Full Address'),
+    (1, 'Basic - Nur Benutzername'),
+    (2, 'Standard - Mit Personendetails'),
+    (3, 'Erweitert - Mit Kontaktinformationen'),
+    (4, 'Komplett - Mit vollständiger Adresse'),
+    (5, 'Admin - Vollzugriff'),
 ]

@@ -1,0 +1,47 @@
+{% load component_tags %}
+{% component 'table' page_obj=page_obj form=search_filter_form %}
+{% fill 'table_heads' %}
+<tr>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Name</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Beigetreten</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Gruppe</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">User</th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+    <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {{ item.scout_name }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {{ item.created_at|date:"d.m.Y" }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {% if item.scout_group %}
+                {{ item.scout_group.name }}
+            {% else %}
+                -
+            {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {% if item.user %}
+                {{ item.user.username }}
+            {% else %}
+                -
+            {% endif %}
+        </td>
+    </tr>
+{% empty %}
+    <tr class="bg-white dark:bg-gray-800">
+        <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
+            Keine Personen gefunden
+        </td>
+    </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

@@ -1,0 +1,28 @@
+{% load component_tags %}
+<h2 class="text-2xl font-bold mb-4 mt-4">Alle Anmeldungen</h2>
+{% component 'table' page_obj=page_obj form=form %}
+{% fill 'table_heads' %}
+<tr>
+  <th scope="col" class="px-4 py-3">Gruppe</th>
+  <th scope="col" class="px-4 py-3">Verantwortlich</th>
+  <th scope="col" class="px-4 py-3">Anzahl Personen</th>
+  <th scope="col" class="px-4 py-3"></th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.scout_organisation }}</td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+    {% for person in item.responsible_persons.all %}
+      {{ person }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.participant_count }}</td>
+  <td class="px-4 py-3">
+    <a href="{% url 'reg-detail-overview' item.id %}" class="text-blue-600 hover:underline dark:text-blue-500">
+      View Details
+    </a>
+  </td>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

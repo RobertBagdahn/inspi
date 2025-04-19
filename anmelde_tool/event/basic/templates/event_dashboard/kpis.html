@@ -1,0 +1,7 @@
+{% load component_tags %}
+{% component 'kpi-box' kpi_value=responsible_events color='blue' kpi_description='Events für die du verantwortlich bist' link="{% url 'event-list' %}?is_responsible=True" link_text='Meine Events' icon="calendar" %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=public_events color='blue' kpi_description='öffentliche Events' link="{% url 'event-list' %}?is_public=True" link_text='Öffentliche Events' icon="globe" %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=upcoming_events color='green' kpi_description='kommende Events' link="{% url 'event-list' %}?upcoming=True" link_text='Kommende Events' icon="calendar-plus" %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=recent_events color='yellow' kpi_description='kürzlich stattgefundene Events' link="{% url 'event-list' %}?recent=True" link_text='Vergangene Events' icon="calendar-check" %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=total_events color='red' kpi_description='Events insgesamt' link="{% url 'event-list' %}" link_text='Alle Events' icon="calendar-alt" %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=active_events color='purple' kpi_description='aktive Events' link="{% url 'event-list' %}?is_active=True" link_text='Aktive Events' icon="calendar-day" %} {% endcomponent %}

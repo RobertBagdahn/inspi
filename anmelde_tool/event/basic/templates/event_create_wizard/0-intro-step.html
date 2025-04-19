@@ -1,0 +1,42 @@
+{% extends "event_create_wizard/layout.html" %}
+{% load crispy_forms_tags %}
+{% block wizard_content %}
+    <div class="p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4 text-blue-600">{{ step_title }}</h2>
+        <p class="mb-6 text-gray-700">{{ step_description }}</p>
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-2">Wie funktioniert der Wizard?</h3>
+            <p class="text-gray-700">Der Wizard führt Sie durch 7 einfache Schritte zur Erstellung einer neuen Veranstaltung:</p>
+            <ol class="list-decimal ml-6 mt-2 space-y-1">
+                <li>Einführung (hier)</li>
+                <li>Grundlegende Informationen</li>
+                <li>Veranstaltungsort</li>
+                <li>Zeitplanung</li>
+                <li>Teilnehmer</li>
+                <li>Berechtigungen</li>
+                <li>Zusammenfassung</li>
+            </ol>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-2">Tipps</h3>
+            <ul class="list-disc ml-6 mt-2 space-y-1">
+                <li>Sie können zwischen den Schritten hin und her navigieren</li>
+                <li>Pflichtfelder sind mit einem * gekennzeichnet</li>
+                <li>Halten Sie die Maus über ein Infoicon (i), um weitere Informationen zu erhalten</li>
+                <li>Nach dem letzten Schritt wird die Veranstaltung erstellt</li>
+            </ul>
+        </div>
+        <form method="post" action="{% url 'event-wizard' %}">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+            {{ form|crispy }}
+            {{ form.non_field_errors }}
+            <div class="flex justify-between mt-6">
+                <a href="{% url 'event-list' %}"
+                   class="px-4 py-2 bg-gray-400 text-gray-100 rounded-md hover:bg-gray-400">Abbrechen</a>
+                <button type="submit"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Weiter</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

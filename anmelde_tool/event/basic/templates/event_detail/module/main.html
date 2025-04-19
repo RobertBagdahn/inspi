@@ -1,0 +1,92 @@
+{% extends 'event_detail/_event_detail_base.html' %}
+{% load component_tags %}
+{% block eventdetailcontent %}
+  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+      <h2 class="text-2xl font-bold mb-4">Event: {{ event.name }}</h2>
+      {% if modules %}
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {% for module in modules %}
+            <div class="overflow-hidden rounded-lg bg-white shadow dark:bg-gray-800">
+              <div class="p-5 h-full flex flex-col">
+                <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">{{ module.ordering }} - {{ module.header }}</h3>
+
+                <p class="mb-4 text-gray-600 dark:text-gray-400">{{ module.description }}</p>
+
+                <div class="mb-4 space-y-2">
+                  {% if module.start_date and module.end_date %}
+                    <p class="text-sm">
+                      <span class="font-semibold">Duration:</span> {{ module.start_date|date:'d.m.Y H:i' }} - {{ module.end_date|date:'d.m.Y H:i' }}
+                    </p>
+                  {% endif %}
+
+                  {% if module.max_participants > 0 %}
+                    <p class="text-sm">
+                      <span class="font-semibold">Capacity:</span> {{ module.max_participants }} participants
+                    </p>
+                  {% endif %}
+
+                  {% if module.bookable_from and module.bookable_till %}
+                    <p class="text-sm">
+                      <span class="font-semibold">Bookable:</span> {{ module.bookable_from|date:'d.m.Y' }} - {{ module.bookable_till|date:'d.m.Y' }}
+                    </p>
+                  {% endif %}
+
+                  {% if module.required %}
+                    <p class="text-sm font-semibold text-red-600">Pflicht</p>
+                  {% endif %}
+                </div>
+
+                <div class="mb-4">
+                  {% if module.attributemodule_set.all %}
+                    <div class="space-y-1 my-4">
+                      <h4 class="text-sm font-semibold">Attributes:</h4>
+                      {% for attribute in module.attributemodule_set.all %}
+                        <div class="flex items-center text-sm">
+                          <span class="font-medium mr-1">{{ attribute.title }} ({{ attribute.get_field_type_display }})</span>
+                        </div>
+                        <p>
+                          <span class="text-gray-500 text-sm dark:text-gray-400">{{ attribute.text }}</span>
+                        </p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+
+                <!-- Spacer to push content to top and bottom -->
+                <div class="flex-grow"></div>
+
+                <div class="flex justify-end">
+                  <a href="{% url 'event-module-detail' module.id %}" class="inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300">
+                    Mehr Infos<svg class="ml-2 h-3.5 w-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          <div class="overflow-hidden rounded-lg bg-white shadow dark:bg-gray-800">
+            <div class="p-5 h-full flex flex-col">
+              <div class="flex items-center justify-center my-4">
+                <a href="{% url 'event-module-create' event.slug %}" class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 transition-colors duration-300 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span class="sr-only">Add new</span>
+                </a>
+              </div>
+              <div class="flex items-center justify-center my-4">
+                <p class="ml-4 text-lg font-semibold text-gray-900 dark:text-white">Neues Module einfügen</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div class="rounded-lg bg-white p-6 shadow dark:bg-gray-800">
+          <p class="text-gray-600 dark:text-gray-400">No modules available for this event.</p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}
