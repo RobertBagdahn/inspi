@@ -1,0 +1,88 @@
+
+
+[
+    {
+        "model": "basic.eventregistrationtype",
+        "pk": 1,
+        "fields": {
+            "name": "Einzelanmeldung mit Stamm",
+            "description": "Anmeldung für Einzelpersonen mit Stammzugehörigkeit",
+            "level_choice": "Stamm",
+            "allowed_multiple_participants": false,
+            "need_scout_group": true,
+            "force_single_scout_group": false
+        }
+    },
+    {
+        "model": "basic.eventregistrationtype",
+        "pk": 2,
+        "fields": {
+            "name": "Einzelanmeldung ohne Stamm",
+            "description": "Anmeldung für Einzelpersonen ohne Stammzugehörigkeit",
+            "level_choice": "Stamm",
+            "allowed_multiple_participants": false,
+            "need_scout_group": false,
+            "force_single_scout_group": false
+        }
+    },
+    {
+        "model": "basic.eventregistrationtype",
+        "pk": 3,
+        "fields": {
+            "name": "Gruppenanmeldung mit Stamm",
+            "description": "Anmeldung für eine Pfadfindergruppe mit Stammzugehörigkeit",
+            "level_choice": "Stamm",
+            "allowed_multiple_participants": true,
+            "need_scout_group": true,
+            "force_single_scout_group": false
+        }
+    },
+    {
+        "model": "basic.eventregistrationtype",
+        "pk": 4,
+        "fields": {
+            "name": "Gruppenanmeldung ohne Stamm",
+            "description": "Gruppe ohne Stammzugehörigkeit",
+            "level_choice": "Stamm",
+            "allowed_multiple_participants": true,
+            "need_scout_group": false,
+            "force_single_scout_group": false
+        }
+    },
+    {
+        "model": "basic.eventregistrationtype",
+        "pk": 5,
+        "fields": {
+            "name": "Stammesanmeldung",
+            "description": "Diese Anmeldung ist für Stämme gedacht.",
+            "level_choice": "Stamm",
+            "allowed_multiple_participants": true,
+            "need_scout_group": true,
+            "force_single_scout_group": true
+        }
+    },
+    {
+        "model": "basic.eventregistrationtype",
+        "pk": 6,
+        "fields": {
+            "name": "Regionalanmeldung",
+            "description": "Anmeldung auf der Ebene der Regionen/Ringe/Bezirke.",
+            "level_choice": "Regional",
+            "allowed_multiple_participants": true,
+            "need_scout_group": true,
+            "force_single_scout_group": true
+        }
+    },
+    {
+        "model": "basic.eventregistrationtype",
+        "pk": 7,
+        "fields": {
+            "name": "Bundesanmeldung",
+            "description": "Anmeldung auf der Ebene der Bünde.",
+            "level_choice": "Bund",
+            "allowed_multiple_participants": true,
+            "need_scout_group": true,
+            "force_single_scout_group": true
+        }
+    }
+]
