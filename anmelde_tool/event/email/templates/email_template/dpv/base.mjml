@@ -1,0 +1,86 @@
+  <mjml>
+    <mj-head>
+      <mj-title>2Discount Light</mj-title>
+      <mj-preview>Pre-header Text</mj-preview>
+      <mj-attributes>
+        <mj-all font-family="Open Sans, Helvetica, Arial, sans-serif"></mj-all>
+        <mj-text font-weight="400" font-size="16px" color="#000000" line-height="24px" font-family="Open Sans, Helvetica, Arial, sans-serif"></mj-text>
+      </mj-attributes>
+      <mj-style inline="inline"> .body-section { -webkit-box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15); -moz-box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15); box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15); } </mj-style>
+      <mj-style inline="inline"> .text-link { color: #5e6ebf } </mj-style>
+      <mj-style inline="inline"> .footer-link { color: #888888 } </mj-style>
+    </mj-head>
+    <mj-body background-color="#e8edf2" width="600px">
+      <mj-section full-width="full-width" background-color="#1A4B7E" padding-bottom="10">
+        <mj-column width="100%">
+          <mj-image src="https://dpvonline.de/wp-content/uploads/2025/01/DPV-breit-weiss.svg" alt="" align="right" width="200px" />
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#e8edf2"> </mj-section>
+      <mj-section background-color="#1A4B7E">
+        <mj-text color="#FFFFFF" font-size="30px" padding-left="30px" padding-right="30px" font-weight="bold" align="center"> Sippenaktion 2025 </mj-text>
+      </mj-section>
+      <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section">
+        <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px">
+          <mj-column width="100%">
+            <mj-text color="#212b35" font-weight="bold" font-size="20px"> Anmelde Bestätigung </mj-text>
+            <mj-text color="#637381" font-size="16px"> Hi Many, </mj-text>
+            <mj-text color="#637381" font-size="16px">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia a assumenda nulla in quisquam optio quibusdam fugiat perspiciatis nobis, ad tempora culpa porro labore. Repudiandae accusamus obcaecati voluptatibus accusantium
+              perspiciatis.
+            </mj-text>
+            <mj-text color="#637381" font-size="16px" padding-bottom="30px">
+              Lorem ipsum dolor <a class="text-link" href="https://google.com">sit amet consectetur</a> adipisicing elit. Earum eaque sunt nulla in, id eveniet quae unde ad ipsam ut, harum autem porro reiciendis minus libero illo. Vero,
+              fugiat reprehenderit.
+            </mj-text>
+            <mj-button background-color="#1A4B7E" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="https://google.com" width="300px"> Anmeldung bearbeiten </mj-button>
+            <mj-button background-color="#1A4B7E" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="https://google.com" width="300px"> Alle Infos </mj-button>
+            <mj-text color="#637381" font-size="16px" padding-top="30px">
+              Lorem ipsum dolor <a class="text-link" href="https://google.com">sit amet consectetur</a> adipisicing elit. Earum eaque sunt nulla in, id eveniet quae unde ad ipsam ut, harum autem porro reiciendis minus libero illo. Vero,
+              fugiat reprehenderit.
+            </mj-text>
+          </mj-column>
+        </mj-section>
+
+        <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" padding-top="0">
+          <mj-column width="100%">
+            <mj-divider border-color="#DFE3E8" border-width="1px" />
+          </mj-column>
+        </mj-section>
+        <mj-section background-color="#ffffff" padding="0 15px 0 15px">
+          <mj-column width="100%">
+            <mj-text color="#212b35" font-weight="bold" font-size="20px" padding-bottom="0"> Kontaktiere uns. </mj-text>
+            <mj-text color="#637381" font-size="16px"> Wir beantworten gerne deine Fragen </mj-text>
+          </mj-column>
+        </mj-section>
+        <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px">
+          <mj-column width="50%">
+            <mj-text color="#212b35" font-size="12px" text-transform="uppercase" font-weight="bold" padding-bottom="0"> E-Mail </mj-text>
+            <mj-text color="#637381" font-size="14px" padding-top="0"> anmeldung@dpvonline.de </mj-text>
+          </mj-column>
+        </mj-section>
+      </mj-wrapper>
+
+      <mj-wrapper full-width="full-width">
+        <mj-section>
+          <mj-column width="100%" padding="0">
+            <mj-social font-size="15px" icon-size="30px" mode="horizontal" padding="0" align="center">
+              <mj-social-element name="web" href="https://mjml.io/" background-color="#1A4B7E"> </mj-social-element>
+              <mj-social-element name="instagram" href="https://mjml.io/" background-color="#1A4B7E"> </mj-social-element>
+            </mj-social>
+            <mj-text color="#000000" font-size="11px" align="center" line-height="16px"> Du bekommst diese E-Mail, weil du dich bei DPV Anmelde-Tool angemeldet hast und dort deine E-Mail hinterlegt hast. </mj-text>
+            <mj-text color="#000000" font-size="11px" align="center" line-height="16px"> &copy; Deutscher Pfadfinder*innenverband e.V. 2025 </mj-text>
+          </mj-column>
+        </mj-section>
+        <mj-section padding-top="0">
+          <mj-group>
+            <mj-column width="100%" padding-right="0">
+              <mj-text color="" font-size="11px" align="center" line-height="16px" font-weight="bold">
+                <a class="footer-link" href="https://www.google.com">Datenschutz</a>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<a class="footer-link" href="https://www.google.com">E-Mail Einstellungen</a>
+              </mj-text>
+            </mj-column>
+          </mj-group>
+        </mj-section>
+      </mj-wrapper>
+    </mj-body>
+  </mjml>

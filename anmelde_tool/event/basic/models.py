@@ -1,10 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.db import models
+from django.utils import timezone
 
 from anmelde_tool.email_services import models as email_services_model
 
 from masterdata import models as basic_models
+from masterdata.choices import ScoutOrganisationLevelChoices
 
 from general.login.models import CustomUser
 from group.models import InspiGroup
@@ -18,33 +20,48 @@ class TimeStampMixin(models.Model):
         abstract = True
 
 
-class EventLocation(TimeStampMixin):
-    name = models.CharField(max_length=60)
-    description = models.CharField(max_length=200, blank=True)
-    zip_code = models.ForeignKey(
-        basic_models.ZipCode, on_delete=models.PROTECT, null=True, blank=True
-    )
-    address = models.CharField(max_length=60, blank=True)
-    contact_name = models.CharField(max_length=30, blank=True)
-    contact_email = models.CharField(max_length=30, blank=True)
-    contact_phone = models.CharField(max_length=30, blank=True)
-    per_person_fee = models.FloatField(blank=True, null=True)
-    fix_fee = models.FloatField(blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.name}: ({self.address}, {self.zip_code})"
-
-    class Meta:
-        verbose_name = "Event Location"
-        verbose_name_plural = "Event Locations"
-        ordering = ["name"]
-
 
 class EventPermissionType(models.TextChoices):
-    VIEW = "view", "Veranstaltungseinladung"
+    VIEW = "invite", "Veranstaltungseinladung"
     VIEW_NON_PRIVACY = "view_non_privacy", "Daten (nur nicht Datenschutzrelvante)"
     VIEW_ALL = "view_all", "Alle Daten anzeigen (auch Datenschutzrelvante)"
     EDIT = "edit", "Veranstaltung bearbeiten"
+
+
+class EventRegistrationType(models.Model):
+    """
+    Model to define the registration level for an event.
+    """
+
+    id = models.AutoField(auto_created=True, primary_key=True)
+    name = models.CharField(max_length=20, unique=True)
+    description = models.CharField(max_length=100, blank=True)
+    level_choice = models.CharField(
+        max_length=10,
+        choices=ScoutOrganisationLevelChoices.choices,
+        default=ScoutOrganisationLevelChoices.STAMM,
+        help_text="Art der Anmeldung für die Veranstaltung",
+    )
+    allowed_multiple_participants = models.BooleanField(
+        default=False,
+        help_text="Erlaubt die Anmeldung mehrerer Teilnehmer für diese Anmeldestufe",
+    )
+    need_scout_group = models.BooleanField(
+        default=False,
+        help_text="Erfordert eine Pfadfindergruppe für diese Anmeldestufe",
+    )
+    force_single_scout_group = models.BooleanField(
+        default=False,
+        help_text="Erzwinge, dass nur eine Pfadfindergruppe für jede Gruppe erstellt werden kann.",
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Anmeldestufe"
+        verbose_name_plural = "Anmeldestufen"
+        ordering = ["name"]
 
 
 class Event(TimeStampMixin):
@@ -56,7 +73,7 @@ class Event(TimeStampMixin):
     event_url = models.CharField(max_length=200, blank=True, null=True)
     icon = models.CharField(max_length=20, blank=True, null=True)
     location = models.ForeignKey(
-        EventLocation, on_delete=models.PROTECT, null=True, blank=True
+        basic_models.EventLocation, on_delete=models.PROTECT, null=True, blank=True
     )
     start_date = models.DateTimeField(
         auto_now=False, auto_now_add=False, null=True, blank=True
@@ -73,6 +90,13 @@ class Event(TimeStampMixin):
     last_possible_update = models.DateTimeField(
         auto_now=False, auto_now_add=False, null=True, blank=True
     )
+    registration_type = models.ForeignKey(
+        EventRegistrationType,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name="event_registration_type",
+    )
     is_public = models.BooleanField(default=False)
     created_by = models.ForeignKey(
         CustomUser,
@@ -84,6 +108,87 @@ class Event(TimeStampMixin):
 
     def __str__(self):
         return f"{self.name}"
+
+    @property
+    def is_future(self):
+        return self.start_date > timezone.now()
+
+    @property
+    def total_registrations(self):
+        """
+        Returns the total number of registrations for the event.
+        """
+        return self.registrations.count()
+
+    @property
+    def total_participants(self):
+        """
+        Returns the total number of participants for the event.
+        """
+        return sum(
+            registration.participants.count()
+            for registration in self.registrations.all()
+        )
+
+    @property
+    def status(self):
+        """
+        Returns the status of the event based on the current date and registration deadline.
+        """
+        now = timezone.now()
+        if not self.is_public:
+            return "Nicht öffentlich"
+        elif self.registration_start and now < self.registration_start:
+            return "Vor der Anmeldephase"
+        elif (self.registration_deadline and now <= self.registration_deadline) or (
+            not self.registration_deadline and self.start_date and now < self.start_date
+        ):
+            return "Anmeldephase"
+        elif self.start_date and now < self.start_date:
+            return "Anmeldephase vorbei"
+        elif self.end_date and now <= self.end_date:
+            return "Veranstaltung findet statt"
+        else:
+            return "Veranstaltung ist beendet"
+
+    @property
+    def role(self):
+        """
+        Returns the role of the user in relation to the event.
+        """
+        if self.created_by == self.created_by:
+            return "Ersteller"
+        else:
+            return "Eingeladene"
+        
+    @property
+    def days_until_event(self):
+        """
+        Returns the number of days until the event starts.
+        If the event has already started or there's no start date, returns 0.
+        """
+        if not self.start_date:
+            return 0
+        
+        now = timezone.now()
+        if self.start_date <= now:
+            return 0
+        
+        delta = self.start_date - now
+        return delta.days
+
+    def get_absolute_url(self):
+        """
+        Returns the absolute URL for the event.
+        """
+        return f"/events/detail/{self.slug}/"
+
+    class Meta:
+        verbose_name = "Veranstaltung"
+        verbose_name_plural = "Veranstaltungen"
+        ordering = ["start_date"]
+
+
 
 class EventPermission(TimeStampMixin):
     event = models.ForeignKey(
@@ -124,12 +229,34 @@ class EventPermission(TimeStampMixin):
         null=True,
         blank=True,
     )
-        
+
     @property
     def is_group(self):
         return True if self.group else False
 
-        
+    @property
+    def can_edit_event(self):
+        return True if self.permission_type == EventPermissionType.EDIT else False
+
+    @property
+    def can_view_privacy_event(self):
+        return (
+            True
+            if self.permission_type == EventPermissionType.VIEW_ALL
+            or self.permission_type == EventPermissionType.EDIT
+            else False
+        )
+
+    @property
+    def can_view_event(self):
+        return (
+            True
+            if self.permission_type == EventPermissionType.EDIT
+            or self.permission_type == EventPermissionType.VIEW_ALL
+            or self.permission_type == EventPermissionType.VIEW_NON_PRIVACY
+            else False
+        )
+
     def group_user_link(self):
         if self.group:
             return self.group.get_absolute_url()
@@ -159,7 +286,7 @@ class EventModule(models.Model):
     name = models.CharField(max_length=100, default="", blank=True)
     header = models.CharField(max_length=100, default="Default Header")
     description = models.TextField(default="")
-    internal = models.BooleanField(default=False)
+    allow_multiply = models.BooleanField(default=False)
     ordering = models.IntegerField(default=999, auto_created=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
     required = models.BooleanField(default=False)
@@ -199,9 +326,23 @@ class BookingOption(models.Model):
     end_date = models.DateTimeField(
         auto_now=False, auto_now_add=False, null=True, blank=True
     )
+    is_public = models.BooleanField(default=False)
+    created_by = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="booking_options_created_by",
+        null=True,
+        blank=True,
+    )
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.price} ({self.event})"
+
+    class Meta:
+        verbose_name = "Buchungsoption"
+        verbose_name_plural = "Buchungsoptionen"
+        ordering = ["name"]
 
 
 class StandardEventTemplate(models.Model):

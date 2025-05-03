@@ -1,7 +1,7 @@
 {% load component_tags %}
 <div id="overview" role="tabpanel" aria-labelledby="overview-tab" class="mt-4">
   <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-    {% component 'action-box' description='' text='Recht hinzufügen' link="" color='green' icon='plus' %}
+    {% component 'action-box' description='Neue Person' text='berechtigen' link="{% url 'add-responsible-person' reg.id %}" color='green' icon='plus' %}
     {% endcomponent %}
   </div>
 </div>

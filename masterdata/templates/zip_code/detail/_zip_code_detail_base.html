@@ -1,0 +1,50 @@
+{% extends 'zip_code/_base_zip_code.html' %}
+{% load static %}
+{% block detailcontent %}
+    <header class="antialiased bg-gray-50 dark:bg-gray-900">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0 py-8">
+            <div class="mb-8">
+                <h1 class="mb-1 text-xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">{{ zip_code.zip_code }} {{ zip_code.city }}</h1>
+                <p class="text-gray-500 dark:text-gray-400">{{ zip_code.get_state_display }}</p>
+            </div>
+            <div class="border-b border-gray-200 dark:border-gray-700">
+                <ul class="flex -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                    <li class="mr-2">
+                        <a href="{% url 'master-data-zip-code-overview' zip_code.id %}"
+                           class="inline-flex items-center justify-center p-4 border-b-2 {% if 'overview' in request.path %}border-blue-600 text-blue-600 dark:text-blue-500 dark:border-blue-500 group {% else %}border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300{% endif %} rounded-t-lg">
+                            <svg class="w-4 h-4 mr-2 {% if 'overview' in request.path %}text-blue-600 dark:text-blue-500{% else %}text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300{% endif %}"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path d="M9 7V2.13a2.98 2.98 0 0 0-1.293.749L4.879 5.707A2.98 2.98 0 0 0 4.13 7H9Z" />
+                                <path d="M18.066 2H9.829a.5.5 0 0 0-.5.5V7a2 2 0 0 1-2 2H2.034a.5.5 0 0 0-.5.5v10.5a2 2 0 0 0 2 2h14.532a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM14 18.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-6.5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
+                            </svg>
+                            Übersicht
+                        </a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="{% url 'master-data-zip-code-manage' zip_code.id %}"
+                           class="inline-flex items-center justify-center p-4 border-b-2 {% if 'manage' in request.path %}border-blue-600 text-blue-600 dark:text-blue-500 dark:border-blue-500 group {% else %}border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300{% endif %} rounded-t-lg"
+                           aria-current="page">
+                            <svg class="w-4 h-4 mr-2 {% if 'manage' in request.path %}text-blue-600 dark:text-blue-500{% else %}text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300{% endif %}"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path d="M5 21q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h7v2H5v14h14v-7h2v7q0 .825-.588 1.413T19 21H5ZM17 9V7h-2V5h2V3h2v2h2v2h-2v2h-2ZM7 17h10q0-2.075-1.463-3.538T12 12q-2.075 0-3.538 1.463T7 17Z" />
+                            </svg>
+                            Verwalten
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    {% block zipcodeddetailcontent %}
+    {% endblock zipcodeddetailcontent %}
+{% endblock detailcontent %}

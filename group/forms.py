@@ -6,8 +6,9 @@ from .models import (
     InspiGroupJoinRequest,
     InspiGroupMembership,
     InspiGroupPermission,
-    User,
 )
+
+from general.login.models import CustomUser as User
 
 from ckeditor.widgets import CKEditorWidget
 

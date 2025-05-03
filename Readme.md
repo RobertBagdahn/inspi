@@ -25,6 +25,7 @@ Mac, Linux:
 4) `poetry run python manage.py loaddata data/blog/*.json`
 5) `poetry run python manage.py loaddata data/masterdata/*.json`
 6) `poetry run python manage.py loaddata data/group/*.json`
+7) `poetry run python manage.py loaddata data/anmelde_tool/*.json`
 
 
 all together in one shell script

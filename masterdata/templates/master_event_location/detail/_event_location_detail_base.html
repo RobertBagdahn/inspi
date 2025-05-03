@@ -1,0 +1,38 @@
+{% extends '_base_bread.html' %}
+{% load main_extras %}
+{% block contentbread %}
+    <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                <li class="mr-2">
+                    <a href="{% url 'master-data-event-location-overview' event_location.id %}"
+                       class="inline-flex items-center justify-center p-4 border-b-2 {% if 'overview' in request.path %} text-blue-600 border-blue-600 dark:text-blue-500 dark:border-blue-500 {% else %} border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 {% endif %} rounded-t-lg">
+                        <svg class="w-5 h-5 mr-2 {% if 'overview' in request.path %} text-blue-600 dark:text-blue-500 {% else %} text-gray-400 dark:text-gray-500 {% endif %}"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="currentColor"
+                             viewBox="0 0 20 20">
+                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8Z" />
+                            <path d="M10 12.5a1 1 0 0 0-1 1V14a1 1 0 0 0 2 0v-.5a1 1 0 0 0-1-1Zm0-1a1 1 0 0 0 1-1v-3a1 1 0 0 0-2 0v3a1 1 0 0 0 1 1Z" />
+                        </svg>
+                        Details
+                    </a>
+                </li>
+                <li class="mr-2">
+                    <a href="{% url 'master-data-event-location-manage' event_location.id %}"
+                       class="inline-flex items-center justify-center p-4 border-b-2 {% if 'manage' in request.path %} text-blue-600 border-blue-600 dark:text-blue-500 dark:border-blue-500 {% else %} border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 {% endif %} rounded-t-lg">
+                        <svg class="w-5 h-5 mr-2 {% if 'manage' in request.path %} text-blue-600 dark:text-blue-500 {% else %} text-gray-400 dark:text-gray-500 {% endif %}"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="currentColor"
+                             viewBox="0 0 20 20">
+                            <path d="M5 11.424V1a1 1 0 0 0-2 0v10.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.228 3.228 0 0 0 0-6.152ZM19.25 14.5A3.243 3.243 0 0 0 17 11.424V1a1 1 0 0 0-2 0v10.424a3.227 3.227 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.243 3.243 0 0 0 2.25-3.076Zm-6-9A3.243 3.243 0 0 0 11 2.424V1a1 1 0 0 0-2 0v1.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0V8.576A3.243 3.243 0 0 0 13.25 5.5Z" />
+                        </svg>
+                        Verwalten
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% block eventlocationdetailcontent %}{% endblock %}
+{% endblock %}

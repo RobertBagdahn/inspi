@@ -10,6 +10,8 @@ from general.login.models import CustomUser, Person
 from masterdata import models as basic_models
 
 
+from anmelde_tool.registration.choices import DELETION_REASONS
+
 class TimeStampMixin(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
@@ -30,12 +32,25 @@ class Registration(TimeStampMixin):
         basic_models.ScoutHierarchy, null=True, on_delete=models.PROTECT
     )
     responsible_persons = models.ManyToManyField(CustomUser, blank=True)
-    is_confirmed = models.BooleanField(default=False)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True, related_name="registrations")
+    deleted_at = models.DateTimeField(null=True, blank=True)
+    deleted_by = models.ForeignKey(
+        CustomUser,
+        null=True, 
+        blank=True, 
+        on_delete=models.SET_NULL,
+        related_name='deleted_registrations'
+    )
+    deleted_reason = models.CharField(
+        max_length=20,
+        choices=DELETION_REASONS,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return f"{self.event.name}: {self.scout_organisation}"
-    
+
     class Meta:
         verbose_name = "Registration"
         verbose_name_plural = "Registrations"
@@ -43,7 +58,21 @@ class Registration(TimeStampMixin):
 
     @property
     def participant_count(self):
-        return 5
+        return self.participants.count()
+    
+    @property
+    def name_creator(self):
+        if self.scout_organisation:
+            return f"{self.scout_organisation.name} ({self.scout_organisation.abbreviation})"
+        else:
+            if self.responsible_persons.exists():
+                responsible_list = ", ".join([f"{person.username}" for person in self.responsible_persons.all()])
+                return f"Angemeldet von: {responsible_list}"
+        return "Unbekannt"
+    
+
+    def get_absolute_url(self):
+        return f"event/register-detail-overview/{self.id}/"
 
 
 class RegistrationParticipant(TimeStampMixin):
@@ -54,7 +83,6 @@ class RegistrationParticipant(TimeStampMixin):
     zip_code = models.ForeignKey(
         basic_models.ZipCode, on_delete=models.PROTECT, null=True, blank=True
     )
-    age = models.IntegerField(null=True, blank=True)
     scout_group = models.ForeignKey(
         basic_models.ScoutHierarchy, on_delete=models.PROTECT, null=True, blank=True
     )
@@ -62,7 +90,7 @@ class RegistrationParticipant(TimeStampMixin):
     email = models.EmailField(null=True, blank=True)
     birthday = models.DateTimeField(null=True, blank=True)
     registration = models.ForeignKey(
-        Registration, on_delete=models.CASCADE, null=True, blank=True
+        Registration, on_delete=models.CASCADE, null=True, blank=True, related_name="participants"
     )
     booking_option = models.ForeignKey(
         BookingOption, on_delete=models.SET_NULL, blank=True, null=True
@@ -74,6 +102,9 @@ class RegistrationParticipant(TimeStampMixin):
     )
     generated = models.BooleanField(default=False)
     eat_habit = models.ManyToManyField(basic_models.EatHabit, blank=True)
+    nutritional_tags = models.ManyToManyField(
+        basic_models.NutritionalTag, blank=True
+    )
     leader = models.CharField(
         max_length=6,
         choices=event_choices.LeaderTypes.choices,
@@ -87,6 +118,20 @@ class RegistrationParticipant(TimeStampMixin):
     person = models.ForeignKey(
         Person, on_delete=models.PROTECT, null=True, blank=True
     )
+    deleted_at = models.DateTimeField(null=True, blank=True)
+    deleted_by = models.ForeignKey(
+        CustomUser,
+        null=True, 
+        blank=True, 
+        on_delete=models.SET_NULL,
+        related_name='deleted_registrations_participants'
+    )
+    deleted_reason = models.CharField(
+        max_length=20,
+        choices=DELETION_REASONS,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return f"{self.registration}: {self.last_name}, {self.first_name}"
@@ -96,6 +141,18 @@ class RegistrationParticipant(TimeStampMixin):
         verbose_name_plural = "Registration Participants"
         ordering = ["-created_at"]
 
+    @property
+    def display_name(self):
+        if self.scout_name:
+            return f"{self.first_name} '{self.scout_name}' {self.last_name}"
+        return f"{self.first_name} {self.last_name}"
+    
+    @property
+    def age(self):
+        if self.birthday:
+            return (self.registration.event.start_date - self.birthday).days // 365
+        return None
+    
 
 class RegistrationRating(TimeStampMixin):
     id = models.AutoField(auto_created=True, primary_key=True)

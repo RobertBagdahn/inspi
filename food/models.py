@@ -74,6 +74,10 @@ class NutritionalTag(TimeStampMixin):
         default=False,
         help_text="Indicates if this tag represents a potentially harmful or dangerous ingredient",
     )
+    default_in_event = models.BooleanField(
+        default=False,
+        help_text="Indicates if this tag is automatically included in the event",
+    )
 
     def __str__(self):
         return self.name

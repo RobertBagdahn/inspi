@@ -5,12 +5,13 @@
 {% block eventdetailcontent %}
   <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
     <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-      <h2 class="text-2xl font-bold mb-4">Event {{ event.name }}</h2>
+      <h2 class="text-2xl font-bold mb-4">Veranstaltung {{ event.name }}</h2>
     </div>
     <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
       {% for module_data in modules_data %}
         <div class="mb-6 p-6 bg-white rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
           <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">{{ module_data.module.header }}</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">{{ module_data.module.description|safe }}</p>
 
           {% if module_data.attributes %}
             <div class="space-y-4">
@@ -33,13 +34,21 @@
                         </a>
                       {% endif %}
                       <span class="px-2 py-1 text-xs font-medium rounded-full {% if attr.type == 'BoA' %}
+                          
                           bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300
+
                         {% elif attr.type == 'TrA' %}
+                          
                           bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300
+
                         {% elif attr.type == 'InA' %}
+                          
                           bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300
+
                         {% elif attr.type == 'StA' %}
+                          
                           bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300
+
                         {% endif %}">
                         {{ attr.type }}
                       </span>
@@ -48,13 +57,19 @@
                   <p class="mt-2 text-gray-600 dark:text-gray-400">
                     {% if attr.value %}
                       {% if attr.value|typename == 'dict' %}
-                      {% for key, value in attr.value.items %}
-                        <div class="mb-1">
-                        <span class="font-medium">{{ key }}:</span> {{ value }}
-                        </div>
-                      {% endfor %}
-                      {% else %}
-                      {{ attr.value }}
+                        {% for key, value in attr.value.items %}
+                          <div class="mb-1">
+                            <span class="font-medium">{{ key }}:</span> {{ value }}
+                          </div>
+                        {% endfor %}
+                        {% else %}
+                        {% if attr.value == True %}
+                          Ja
+                        {% elif attr.value == False %}
+                          Nein
+                        {% else %}
+                          {{ attr.value }}
+                        {% endif %}
                       {% endif %}
                     {% else %}
                       kein Wert
@@ -67,7 +82,7 @@
             {% if module_data.module.name == 'Participants' %}
               <a href="{% url 'reg-detail-participant' reg.id %}" class="text-blue-600 hover:underline">Link zu allen Teilnehmenden</a>
             {% else %}
-              <p class="text-gray-500 dark:text-gray-400 italic">No attributes for this module</p>
+              <p class="text-gray-500 dark:text-gray-400 italic">Keine Attribute für dieses Modul</p>
             {% endif %}
           {% endif %}
         </div>

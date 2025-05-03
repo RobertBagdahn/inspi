@@ -1,16 +1,16 @@
 {% extends 'user-detail/_user_detail_base.html' %}
 {% load component_tags %}
-{% block groupdetailcontent %}
+{% block userdetailcontent %}
     <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
         <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
             <h2 class="text-2xl font-bold mb-1">{{ user.username }} verwalten</h2>
             <p class="text-gray-500 dark:text-gray-400 mb-4">Hier siehst du alle Informationen zu diesem Benutzer</p>
             <div id="default-tab-content">
                 <div id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                    {% comment %} <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {% component 'action-box' description='Benutzer zur Gruppe hinzufügen' text='Mitglied hinzufügen' link='' color='blue' icon='user-plus' %}
-            {% endcomponent %}
-                    </div> {% endcomment %}
+                    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+                        {% component 'action-box' description='Alle Daten von DPV IDM übernehmen' text='starten' link="{% url 'user-keycloak-sync' user.username %}" color='blue' icon='user-plus' %}
+                        {% endcomponent %}
+                    </div>
                 </div>
             </div>
         </div>

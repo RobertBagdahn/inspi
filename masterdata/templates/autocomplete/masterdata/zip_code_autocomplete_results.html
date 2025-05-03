@@ -1,0 +1,13 @@
+{% if results %}
+<ul class="border border-gray-300 rounded-md divide-y divide-gray-200">
+    {% for result in results %}
+    <li class="p-2 hover:bg-gray-100 cursor-pointer" 
+        hx-on:click="
+            const id = this.parentElement.parentElement.parentElement.getElementsByTagName('input')[0].id
+            document.getElementById(id).value='{{ result.zip_code }}';
+            this.parentElement.style.display='none';">
+        <strong>{{ result.zip_code }}</strong> - {{ result.city }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}

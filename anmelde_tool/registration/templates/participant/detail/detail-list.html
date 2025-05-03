@@ -1,0 +1,79 @@
+<h2 class="text-2xl font-bold my-4">Basis</h2>
+<div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+  <!-- Liste -->
+  <dl class="list-inside text-gray-500 dark:text-gray-400">
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Vorname</dt>
+      <dd class="sm:text-end">{{ participant.first_name }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Nachname</dt>
+      <dd class="sm:text-end">{{ participant.last_name }}</dd>
+    </div>
+    {% if participant.scout_name %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Pfadiname</dt>
+      <dd class="sm:text-end">{{ participant.scout_name }}</dd>
+    </div>
+    {% endif %}
+    {% if participant.address %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Adresse</dt>
+      <dd class="sm:text-end">{{ participant.address }}</dd>
+    </div>
+    {% endif %}
+    {% if participant.zip_code %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">PLZ/Ort</dt>
+      <dd class="sm:text-end">{{ participant.zip_code }}</dd>
+    </div>
+    {% endif %}
+    {% if participant.birthday %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Geburtsdatum</dt>
+      <dd class="sm:text-end">{{ participant.birthday|date:"d.m.Y" }} ({{ participant.age }} Jahre)</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Geschlecht</dt>
+      <dd class="sm:text-end">{{ participant.get_gender_display }}</dd>
+    </div>
+    {% endif %}
+    {% if participant.phone_number %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Telefonnummer</dt>
+      <dd class="sm:text-end">{{ participant.phone_number }}</dd>
+    </div>
+    {% endif %}
+    {% if participant.email %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">E-Mail</dt>
+      <dd class="sm:text-end">{{ participant.email }}</dd>
+    </div>
+    {% endif %}
+    {% if participant.scout_group %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Pfadigruppe</dt>
+      <dd class="sm:text-end">{{ participant.scout_group }}</dd>
+    </div>
+    {% endif %}
+    {% if participant.booking_option %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Buchungsoption</dt>
+      <dd class="sm:text-end">{{ participant.booking_option.name }}</dd>
+    </div>
+    {% endif %}
+    {% if participant.eat_habit.all %}
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700">
+      <dt class="font-semibold text-gray-900 dark:text-white mb-2">Essgewohnheiten</dt>
+      <dd class="mt-2 p-4 rounded-md bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
+      <ul class="list-disc pl-5">
+        {% for habit in participant.eat_habit.all %}
+        <li>{{ habit }}</li>
+        {% endfor %}
+      </ul>
+      </dd>
+    </div>
+    {% endif %}
+  </dl>
+</div>
+

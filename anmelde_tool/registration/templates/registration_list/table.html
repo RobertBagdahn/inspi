@@ -2,8 +2,9 @@
 {% component 'table' page_obj=page_obj form=form %}
 {% fill 'table_heads' %}
 <tr>
-  <th scope="col" class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Event</th>
-  <th scope="col" class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Organisation</th>
+    <th scope="col" class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Veranstaltung</th>
+    <th scope="col" class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Organisation</th>
+    <th scope="col" class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Personen</th>
 </tr>
 {% endfill %}
 {% fill 'table_row' %}
@@ -14,6 +15,9 @@
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
       <a href="{% url 'reg-detail-overview' item.id %}" class="text-blue-600 hover:text-blue-700">{{ item.scout_organisation.name }}</a>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+      {{ item.participant_count }}
     </td>
   </tr>
 {% endfor %}

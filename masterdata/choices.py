@@ -22,19 +22,21 @@ class StateChoices(models.TextChoices):
 class ScoutOrganisationLevelChoices(models.TextChoices):
     VERBAND = 'Verband', _('Verband')
     BUND = 'Bund', _('Bund')
-    RING = 'Ring', _('Regional')
+    REGIONAL = 'Regional', _('Regional')
     STAMM = 'Stamm', _('Stamm')
     GRUPPE = 'Gruppe', _('Gruppe')
+    PERSON = 'Person', _('Person')
+
 
     @staticmethod
     def get_level_choice_plural(choice: str) -> str:
         plural_dict = {
             'Verband': 'Verbände',
             'Bund': 'Bünde',
-            'Ring': 'Ringe',
+            'Regional': 'Regional',
             'Stamm': 'Stämme',
             'Gruppe': 'Gruppe',
-            'Scout': 'Pfadfinder*innen'
+            'Person': 'Personen',
         }
         if choice in plural_dict:
             return plural_dict[choice]

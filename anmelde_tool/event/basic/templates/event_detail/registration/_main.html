@@ -3,30 +3,24 @@
 {% block eventdetailcontent %}
   <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
     <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-      <h2 class="text-2xl font-bold mb-4">Event: {{ event.name }}</h2>
+      <h2 class="text-2xl font-bold mb-4">Veranstaltung: {{ event.name }}</h2>
 
-      {% if event.registration_set.all %}
+      {% if event.registrations.all %}
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm">
             <thead class="bg-gray-100 dark:bg-gray-700">
               <tr>
-                <th scope="col" class="px-4 py-3">Organization</th>
-                <th scope="col" class="px-4 py-3">Responsible Persons</th>
+                <th scope="col" class="px-4 py-3">Organisation</th>
+                <th scope="col" class="px-4 py-3">Verantwortliche Personen</th>
                 <th scope="col" class="px-4 py-3">Status</th>
-                <th scope="col" class="px-4 py-3">Actions</th>
+                <th scope="col" class="px-4 py-3">Aktionen</th>
               </tr>
             </thead>
             <tbody>
-              {% for registration in event.registration_set.all %}
+              {% for registration in event.registrations.all %}
                 <tr class="border-b dark:border-gray-700">
                   <td class="px-4 py-3">{{ registration.scout_organisation.name }}</td>
-                  <td class="px-4 py-3">
-                    {% if registration.is_confirmed %}
-                      <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Confirmed</span>
-                    {% else %}
-                      <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Pending</span>
-                    {% endif %}
-                  </td>
+
                   <td class="px-4 py-3">
                     <a href="{% url 'reg-detail-overview' registration.id %}" class="text-blue-600 hover:underline dark:text-blue-500">
                       View Details

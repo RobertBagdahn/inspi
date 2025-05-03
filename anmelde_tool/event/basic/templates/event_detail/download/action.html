@@ -1,0 +1,12 @@
+{% load component_tags %}
+<h2 class="text-2xl font-bold mb-4">Veranstaltung: {{ event.name }}</h2>
+<div id="overview" role="tabpanel" aria-labelledby="overview-tab" class="mt-4">
+  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+    {% component 'action-box' description='Anmeldungen als Excel' text='laden' link="{% url 'event-download-registrations' event.slug %}" color='blue' icon='file-chart' %}
+    {% endcomponent %}
+    {% component 'action-box' description='Personen als Excel' text='laden' link="{% url 'event-download-participants' event.slug %}" color='blue' icon='file-chart' %}
+    {% endcomponent %}
+    {% component 'action-box' description='Beispiel listen' text='laden' link="{% url 'event-download-participants-example' event.slug %}" color='blue' icon='file-chart' %}
+    {% endcomponent %}
+  </div>
+</div>

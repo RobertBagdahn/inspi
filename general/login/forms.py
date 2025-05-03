@@ -8,9 +8,11 @@ from .models import Person
 from food.models import NutritionalTag
 from masterdata.models import ScoutHierarchy, ZipCode
 from anmelde_tool.event.basic import choices as event_basic_choices
+from django.utils.translation import gettext as _
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Div, HTML
 from django.forms import formset_factory, BaseFormSet
+from masterdata.widgets import HtmxAutocompleteWidget
 
 class DynamicModuleForm(forms.Form):
     """
@@ -18,6 +20,7 @@ class DynamicModuleForm(forms.Form):
     """
     def __init__(self, *args, **kwargs):
         self.event_module = kwargs.pop("event_module", None)
+        self.event = kwargs.pop("event", None)
         super(DynamicModuleForm, self).__init__(*args, **kwargs)
         
         self.helper = FormHelper()
@@ -158,17 +161,15 @@ class PersonWizardContactForm(forms.Form):
         required=False,
         help_text="z.B. Apartment, Gebäude, etc."
     )
-    zip_code = forms.ModelChoiceField(
-        queryset=ZipCode.objects.all(),
-        label="Postleitzahl",
+    zip_code = forms.CharField(
+        label=_("PLZ"),
+        max_length=10,
         required=False,
-        help_text="Deine Postleitzahl"
-    )
-    city = forms.CharField(
-        max_length=100, 
-        label="Stadt", 
-        required=False,
-        help_text="Deine Stadt"
+        widget=HtmxAutocompleteWidget(
+            url="/master-data/zip-code-autocomplete",
+            min_chars=2,
+            attrs={"class": "tailwind-input", "placeholder": _("PLZ eingeben")}
+        ),
     )
     mobile = forms.CharField(
         max_length=50, 
@@ -258,7 +259,11 @@ class PersonForm(DynamicModuleForm):
         label="Essgewohnheiten",
         required=False,
         help_text="Deine Essgewohnheiten",
-        widget=forms.CheckboxSelectMultiple,
+        widget=forms.CheckboxSelectMultiple(
+            attrs={
+                'data-display': 'name_opposite'
+            }
+        )
     )
     scout_group = forms.ModelChoiceField(
         queryset=ScoutHierarchy.objects.all(),
@@ -275,4 +280,19 @@ class PersonForm(DynamicModuleForm):
             "scout_name",
             "eat_habits",
             "scout_group",
+        ]
+
+
+class UserSearchFilterForm(forms.ModelForm):
+    search = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={"placeholder": "Suche in Benutzernamen, E-Mail oder Anzeigename"}),
+        required=False,
+        label="",
+    )
+
+    class Meta:
+        model = CustomUser
+        fields = [
+            "search",
         ]

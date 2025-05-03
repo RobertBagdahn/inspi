@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Verwalten: {{ event_location.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include 'partials/breadcrumbs.html' %}
+    
+    <h1>Verwalten: {{ event_location.name }}</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Verwaltungsoptionen</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-edit fa-3x mb-3 text-primary"></i>
+                                    <h5 class="card-title">Bearbeiten</h5>
+                                    <p class="card-text">Informationen zu diesem Veranstaltungsort aktualisieren.</p>
+                                    <a href="{% url 'master-data-event-location-update' event_location.id %}" class="btn btn-primary">Bearbeiten</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-trash fa-3x mb-3 text-danger"></i>
+                                    <h5 class="card-title">Löschen</h5>
+                                    <p class="card-text">Diesen Veranstaltungsort aus dem System entfernen.</p>
+                                    <a href="{% url 'master-data-event-location-delete' event_location.id %}" class="btn btn-danger">Löschen</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-eye fa-3x mb-3 text-info"></i>
+                                    <h5 class="card-title">Übersicht</h5>
+                                    <p class="card-text">Zurück zur Übersichtsseite des Veranstaltungsortes.</p>
+                                    <a href="{% url 'master-data-event-location-overview' event_location.id %}" class="btn btn-info">Zur Übersicht</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Systemdaten</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Erstellt am</dt>
+                                <dd class="col-sm-8">{{ event_location.created_at|date:"d.m.Y, H:i" }}</dd>
+                                
+                                <dt class="col-sm-4">Zuletzt aktualisiert</dt>
+                                <dd class="col-sm-8">{{ event_location.updated_at|date:"d.m.Y, H:i" }}</dd>
+                                
+                                <dt class="col-sm-4">ID</dt>
+                                <dd class="col-sm-8">{{ event_location.id }}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

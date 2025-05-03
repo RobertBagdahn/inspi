@@ -1,0 +1,28 @@
+{% extends 'zip_code/_base_zip_code.html' %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% block header %}{% endblock %}
+{% block detailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-4">Postleitzahlen-Verwaltung</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-6">
+                Hier kannst du alle Postleitzahlen verwalten. Wähle aus den Optionen im Navigationsmenü, um fortzufahren.
+            </p>
+            <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+                <a href="{% url 'master-data-zip-code-dashboard' %}" class="p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Dashboard</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">Übersicht über alle Postleitzahlen und Statistiken.</p>
+                </a>
+                <a href="{% url 'master-data-zip-code-list' %}" class="p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">PLZ-Liste</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">Alle verfügbaren Postleitzahlen anzeigen und durchsuchen.</p>
+                </a>
+                <a href="{% url 'master-data-zip-code-create' %}" class="p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Neue PLZ erstellen</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">Füge eine neue Postleitzahl zum System hinzu.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock detailcontent %}

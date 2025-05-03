@@ -1,6 +1,6 @@
 {% extends 'user-detail/_user_detail_base.html' %}
 {% load component_tags %}
-{% block groupdetailcontent %}
+{% block userdetailcontent %}
     <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
         <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
             <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 mb-6">
@@ -14,4 +14,4 @@
             {% include "./table.html" with page_obj=page_obj search_filter_form=search_filter_form %}
         </div>
     </section>
-{% endblock groupdetailcontent %}
+{% endblock %}

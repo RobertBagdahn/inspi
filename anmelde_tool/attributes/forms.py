@@ -75,13 +75,13 @@ class GeneralAttributeForm(forms.ModelForm):
         choices=AttributeType.choices,
         widget=forms.Select(),
         required=True,
-        label="Attribute Type"
+        label="Attributtyp"
     )
-    title = forms.CharField(max_length=1000, required=False)
-    text = forms.CharField(widget=forms.Textarea, max_length=10000, required=False)
-    is_required = forms.BooleanField(required=False, initial=False)
-    default_value = forms.CharField(max_length=1000, required=False)
-    max_entries = forms.IntegerField(min_value=1, initial=1)
+    title = forms.CharField(max_length=1000, required=False, label="Titel")
+    text = forms.CharField(widget=forms.Textarea, max_length=10000, required=False, label="Text")
+    is_required = forms.BooleanField(required=False, initial=False, label="Pflichtfeld")
+    default_value = forms.CharField(max_length=1000, required=False, label="Standardwert")
+    max_entries = forms.IntegerField(min_value=1, initial=1, label="Maximale Einträge")
 
     
     class Meta:

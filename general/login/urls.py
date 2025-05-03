@@ -45,6 +45,11 @@ urlpatterns = [
         name="user-dashboard",
     ),
     path(
+        "user-keycloak-sync/<username>/",
+        views.user_keycloak_sync,
+        name="user-keycloak-sync",
+    ),
+    path(
         "user-detail-person-wizard/<username>/",
         views.PersonWizardView.as_view(), 
         name="person-wizard"
@@ -61,4 +66,11 @@ urlpatterns = [
     ),
     # user-list
     path("user-list/", views.user_list, name="user-list"),
+
+    path(
+        "person/detail/overview/<uuid:pk>/",
+        views.person_detail_overview,
+        name="person-detail-overview",
+    ),
+
 ]

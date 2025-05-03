@@ -37,7 +37,7 @@ urlpatterns = [
     path("activity/", include("activity.urls")),
     path('', RedirectView.as_view(url=reverse_lazy('activity-main'))),
     path("general/", include("general.urls")),
-    path('event/', include('anmelde_tool.urls')),
+    path('event/', include(('anmelde_tool.urls'))),
     path("food/", include("food.urls")),
     path("blog/", include("blog.urls")),
     path("group/", include("group.urls")),
@@ -57,6 +57,8 @@ urlpatterns = [
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
     ),
+    # short URL for events e.g. /e/hagi-2023
+    re_path(r'^e/(?P<slug>[-\w]+)', RedirectView.as_view(pattern_name='event-detail-overview'), name='event-short-url'),
     re_path(r'^tracking/', include('tracking.urls')),
     
 

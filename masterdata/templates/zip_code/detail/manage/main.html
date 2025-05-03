@@ -1,0 +1,20 @@
+{% extends 'zip_code/detail/_zip_code_detail_base.html' %}
+{% load component_tags %}
+{% block zipcodeddetailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Aktionen</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">Hier kannst du die Postleitzahl verwalten</p>
+            <div id="default-tab-content">
+                <div id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+                        {% component 'action-box' description='Daten dieser Postleitzahl ändern' text='PLZ ändern' link="{% url 'master-data-zip-code-update' zip_code.id %}" color='blue' icon='edit' %}
+                        {% endcomponent %}
+                        {% component 'action-box' description='Diese Postleitzahl löschen' text='PLZ löschen' link="{% url 'master-data-zip-code-delete' zip_code.id %}" color='red' icon='trash' %}
+                        {% endcomponent %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,34 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-lg dark:bg-gray-800">
+    <div class="border-t border-gray-200 dark:border-gray-700">
+        <dl>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-700">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Postleitzahl</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ zip_code.zip_code }}</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-800">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Stadt</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ zip_code.city }}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-700">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Bundesland</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ zip_code.get_state_display }}</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-800">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Breitengrad</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ zip_code.lat }}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-700">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Längengrad</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ zip_code.lon }}</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-800">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Erstellt am</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ zip_code.created_at|date:"d.m.Y H:i" }}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-700">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Aktualisiert am</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ zip_code.updated_at|date:"d.m.Y H:i" }}</dd>
+            </div>
+        </dl>
+    </div>
+</div>

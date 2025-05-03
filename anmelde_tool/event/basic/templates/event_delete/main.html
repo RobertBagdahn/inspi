@@ -1,0 +1,43 @@
+{% extends '_base_event.html' %}
+{% load crispy_forms_tags %}
+{% block detailcontent %}
+    <main class="max-w-3xl mx-auto px-4 py-8">
+        <article class="prose lg:prose-xl">
+            <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">Veranstaltung löschen</h3>
+            
+            {% if has_registrations %}
+                <div class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50">
+                    <p class="font-medium">{{ error_message }}</p>
+                </div>
+                <p class="mb-4 text-sm text-gray-600">Diese Veranstaltung kann nicht gelöscht werden, da sie bereits Anmeldungen hat.</p>
+                <a href="javascript:history.back()"
+                   class="mt-4 inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                    Zurück
+                </a>
+            {% else %}
+                <p class="mb-4 text-sm text-gray-600">Möchtest du die Veranstaltung "{{ event.name }}" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if form %}{{ form|crispy }}{% endif %}
+                    <button type="submit"
+                            class="mt-4 inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring ring-red-300 disabled:opacity-25 transition ease-in-out duration-150">
+                        <svg class="w-6 h-6 text-white mr-1"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             fill="none"
+                             viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                        </svg>
+                        Löschen
+                    </button>
+                    <a href="javascript:history.back()"
+                       class="mt-4 inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                        Abbrechen
+                    </a>
+                </form>
+            {% endif %}
+        </article>
+    </main>
+{% endblock detailcontent %}

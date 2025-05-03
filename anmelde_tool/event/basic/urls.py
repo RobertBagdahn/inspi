@@ -7,30 +7,30 @@ from anmelde_tool.event.basic import views
 # from . import views
 
 
-EVENT_WIZARD_TEMPLATES = {
-    "intro": "event/wizard/generic_step.html",
-    "basic_info": "event/wizard/generic_step.html",
-    "location": "event/wizard/generic_step.html",
-    "schedule": "event/wizard/generic_step.html",
-    "invite": "event/wizard/generic_step.html",
-    "summary": "event/wizard/generic_step.html",
-}
-
 from anmelde_tool.event.basic.forms import (
     EventIntroForm,
     EventBasicInfoForm,
     EventLocationForm,
+    EventLocationCreationForm,
     EventScheduleForm,
     EventPermissionFormSet,
+    EventModuleForm,
     EventSummaryForm,
+    EventPermissionForm,
+    BookingOptionForm,  # Make sure this is imported
+    EventRegistrationTypeForm,
 )
 
 form_list = [
     ("intro", EventIntroForm),
     ("basic_info", EventBasicInfoForm),
     ("location", EventLocationForm),
+    ("location_create", EventLocationCreationForm),
     ("schedule", EventScheduleForm),
     ("invite", EventPermissionFormSet),
+    ("booking_option", BookingOptionForm),
+    ("module", EventModuleForm),
+    ("registration_type", EventRegistrationTypeForm),
     ("summary", EventSummaryForm),
 ]
 
@@ -38,6 +38,8 @@ urlpatterns = [
     path('dashboard/', views.event_dashboard, name='event-dashboard'),
     path('list/', views.event_list, name='event-list'),
     path('create/', views.event_create, name='event-create'),
+    path('update/<str:slug>/', views.event_update, name='event-update'),
+    path('delete/<str:slug>/', views.event_delete, name='event-delete'),
     path('detail/<slug:slug>/overview', views.event_detail_overview, name='event-detail-overview'),
     path(
         "detail/<str:slug>/permission",
@@ -60,6 +62,17 @@ urlpatterns = [
         "detail/<str:slug>/registration",
         views.event_detail_registration,
         name="event-detail-registration"
+    ),
+    #download
+    path(
+        "detail/<str:slug>/download",
+        views.event_detail_download,
+        name="event-detail-download"
+    ),
+    path(
+        "detail/<str:slug>/invitees",
+        views.event_detail_invitees,
+        name="event-detail-invitees"
     ),
     path(
         "event-wizard/", 
@@ -87,6 +100,11 @@ urlpatterns = [
         name="event-permission-detail"
     ),
     path(
+        "detail/permission/<int:pk>/delete",
+        views.event_permission_delete,
+        name="event-permission-delete"
+    ),
+    path(
         "detail/<str:slug>/booking-type/create",
         views.event_booking_type_create,
         name="event-booking-type-create"
@@ -112,6 +130,11 @@ urlpatterns = [
         name="event-module-create"
     ),
     path(
+        "detail/<str:event_slug>/module/add",
+        views.event_module_add,
+        name="event-module-add"
+    ),
+    path(
         "detail/module/<int:pk>",
         views.event_module_detail,
         name="event-module-detail"
@@ -130,5 +153,20 @@ urlpatterns = [
         "detail/module/<int:pk>/attribute/create",
         views.event_module_attribute_create,
         name="event-module-attribute-create"
+    ),
+    path(
+        "detail/<str:event_slug>/download/participants",
+        views.download_participants,
+        name="event-download-participants"
+    ),
+    path(
+        "detail/<str:event_slug>/download/registrations",
+        views.download_registrations,
+        name="event-download-registrations"
+    ),
+    path(
+        "detail/<str:event_slug>/download/participants-example",
+        views.download_participants_example,
+        name="event-download-participants-example"
     ),
 ]

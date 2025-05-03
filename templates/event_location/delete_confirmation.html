@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event_location.name }} löschen{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include 'partials/breadcrumbs.html' %}
+    
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h1 class="h3 mb-0">Veranstaltungsort löschen</h1>
+        </div>
+        <div class="card-body">
+            <p class="lead">Sind Sie sicher, dass Sie den Veranstaltungsort "{{ event_location.name }}" unwiderruflich löschen möchten?</p>
+            
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i> Achtung: Diese Aktion kann nicht rückgängig gemacht werden.
+            </div>
+            
+            <div class="mt-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Endgültig löschen
+                        </button>
+                        <a href="{% url 'master-data-event-location-overview' event_location.id %}" class="btn btn-secondary">
+                            Abbrechen
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

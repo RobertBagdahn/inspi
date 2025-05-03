@@ -1,5 +1,5 @@
-{% extends '_base_user.html' %}
-{% block detailcontent %}
+{% extends '_base_bread.html' %}
+{% block contentbread %}
     <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
         <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
             <div class="mb-2 rounded-lg border border-gray-200 p-4 shadow-sm dark:border-gray-700 bg-white dark:bg-gray-800">
@@ -74,7 +74,7 @@
                             Personen
                         </a>
                     </li>
-                    {% comment %} <li>
+                    <li>
                         <a href="{% url 'user-detail-manage' user.username %}"
                            class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'user-detail-manage' in request.path %}!bg-blue-700 !text-white{% endif %} "
                            id="reviews-tab"
@@ -93,10 +93,10 @@
                             </svg>
                             Verwalten
                         </a>
-                    </li> {% endcomment %}
+                    </li>
                 </ul>
             </div>
         </div>
-        {% block groupdetailcontent %}{% endblock %}
+        {% block userdetailcontent %}{% endblock %}
     </section>
 {% endblock %}

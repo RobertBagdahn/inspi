@@ -1,14 +1,11 @@
 # models.py
 from django.db import models
-from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.utils import timezone
+from general.login.models import CustomUser
 
 from ckeditor.fields import RichTextField
 import os
-
-
-User = get_user_model()
 
 
 class InspiGroup(models.Model):
@@ -16,12 +13,12 @@ class InspiGroup(models.Model):
     slug = models.SlugField(unique=True)
     description = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="created_groups"
+        CustomUser, on_delete=models.CASCADE, related_name="created_groups"
     )
     is_visible = models.BooleanField(default=True)
     free_to_join = models.BooleanField(default=True)
     join_code = models.CharField(max_length=20, blank=True, null=True, unique=True)
-    editable_by_users = models.ManyToManyField(User, related_name="editable_groups")
+    editable_by_users = models.ManyToManyField(CustomUser, related_name="editable_groups")
     editable_by_groups = models.ManyToManyField(
         "self",
         symmetrical=False,
@@ -32,12 +29,13 @@ class InspiGroup(models.Model):
     is_deleted = models.BooleanField(default=False)
     date_deleted = models.DateTimeField(blank=True, null=True)
     delete_requested_by = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name="group_cancellation_requests",
         blank=True,
         null=True,
     )
+    is_keycloak_group = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -45,7 +43,7 @@ class InspiGroup(models.Model):
 
         super().save(*args, **kwargs)
 
-        if self.created_by not in self.editable_by_users.all():
+        if self.created_by not in self.editable_by_users.all() and not self.is_keycloak_group:
             self.editable_by_users.add(self.created_by)
 
     def __str__(self):
@@ -94,17 +92,24 @@ class InspiGroup(models.Model):
 
 
 class InspiGroupMembership(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     group = models.ForeignKey(InspiGroup, on_delete=models.CASCADE)
     date_joined = models.DateTimeField(auto_now_add=True)
-    read_access = models.BooleanField(default=False)
+    read_access = models.BooleanField(default=True)
     full_access = models.BooleanField(default=False)
-    share_all_personal_data = models.BooleanField(default=True)
+    share_all_personal_data = models.BooleanField(default=False)
     share_own_personal_data = models.BooleanField(default=True)
     is_cancelled = models.BooleanField(default=False)
+    created_by = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="created_memberships",
+        blank=True,
+        null=True,
+    )
     date_cancelled = models.DateTimeField(blank=True, null=True)
     cancel_by = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name="cancellation_requests",
         blank=True,
@@ -133,13 +138,13 @@ class InspiGroupMembership(models.Model):
 
 
 class InspiGroupJoinRequest(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     group = models.ForeignKey(InspiGroup, on_delete=models.CASCADE)
     date_requested = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=None, blank=True, null=True)
     date_checked = models.DateTimeField(blank=True, null=True)
     user_checked_by = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name="checked_requests",
         blank=True,
@@ -169,7 +174,7 @@ class InspiGroupPermission(models.Model):
     read_access = models.BooleanField(default=False)
     full_access = models.BooleanField(default=False)
     created_by = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name="created_permissions",
         blank=True,
@@ -188,6 +193,6 @@ class InspiGroupNews(models.Model):
     message = RichTextField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="created_group_news"
+        CustomUser, on_delete=models.CASCADE, related_name="created_group_news"
     )
     is_visible = models.BooleanField(default=True)

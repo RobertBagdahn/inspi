@@ -9,15 +9,26 @@ from general.login.choices import AUTH_LEVEL_CHOICES
 
 
 class CustomUser(AbstractUser):
-    scout_display_name = models.CharField(max_length=50, default="", unique=True)
+    scout_display_name = models.CharField(max_length=50, default="")
     profile_picture = models.ImageField(
         blank=True, upload_to="static/profile/uploaded_images", null=True
     )
     profile_cropping = ImageRatioField("profile_picture", "400x400")
     auth_level = models.IntegerField(choices=AUTH_LEVEL_CHOICES, default=1)
+    person = models.OneToOneField(
+        "Person",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name="user_profile_person",
+    )
+    is_dpv_idm = models.BooleanField(
+        default=False,
+        help_text="True if the user is a member of the DPV ID Management group",
+    )
 
     def __str__(self):
-        return self.email
+        return self.username
 
     # read access
     def is_allowed_to_view_full(self, user):
@@ -39,6 +50,14 @@ class CustomUser(AbstractUser):
 
     def written_activities(self):
         return self.activity_set.all()
+    
+    def display_name(self):
+        if self.scout_display_name:
+            return self.scout_display_name
+        elif self.first_name and self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        else:
+            return self.username
 
 
 class Person(models.Model):
@@ -75,7 +94,7 @@ class Person(models.Model):
         help_text="Food restrictions and preferences"
     )
     about_me = models.TextField(blank=True, null=True, max_length=500)
-    scout_group = models.ForeignKey(ScoutHierarchy, on_delete=models.SET_NULL, blank=True, null=True)
+    scout_group = models.ForeignKey(ScoutHierarchy, on_delete=models.SET_NULL, blank=True, null=True, related_name="persons")
     mobile = models.CharField(blank=True, null=True, max_length=50)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -95,10 +114,23 @@ class Person(models.Model):
         help_text="Groups that manage this person",
         default=None,
     )
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         CustomUser,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="person",
+        related_name="person_user",
+        help_text="User that is linked to this person",
     )
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} ({self.scout_name})"
+    
+    @property
+    def display_name(self):
+        if self.scout_name:
+            return self.scout_name
+        elif self.first_name and self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        else:
+            return "Unbekannt"

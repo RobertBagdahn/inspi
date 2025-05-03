@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Veranstaltungsorte Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include 'partials/breadcrumbs.html' %}
+    
+    <h1>Veranstaltungsorte Dashboard</h1>
+    
+    <div class="row mt-4">
+        <!-- KPI Cards -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gesamtanzahl</h5>
+                    <p class="card-text display-4">{{ total_event_locations }}</p>
+                    <p class="card-text text-muted">Veranstaltungsorte</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Distribution by State -->
+        <div class="col-md-8 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Verteilung nach Bundesländern</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Bundesland</th>
+                                    <th>Anzahl</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for state in states_distribution %}
+                                <tr>
+                                    <td>{{ state.zip_code__state }}</td>
+                                    <td>{{ state.count }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="2">Keine Daten verfügbar</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <a href="{% url 'master-data-event-location-list' %}" class="btn btn-primary mr-2">
+                <i class="fas fa-list"></i> Alle Veranstaltungsorte
+            </a>
+            <a href="{% url 'master-data-event-location-create' %}" class="btn btn-success mr-2">
+                <i class="fas fa-plus"></i> Neuen Veranstaltungsort erstellen
+            </a>
+            <a href="{% url 'master-data-event-location-download-csv' %}" class="btn btn-info">
+                <i class="fas fa-download"></i> Als CSV exportieren
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

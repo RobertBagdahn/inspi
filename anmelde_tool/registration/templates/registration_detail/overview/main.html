@@ -3,10 +3,23 @@
 {% block eventdetailcontent %}
   <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
     <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-      <h2 class="text-2xl font-bold mb-4">Event {{ event.name }}</h2>
-    </div>
-    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-      <p> Hallo </p>
+      <h2 class="text-2xl font-bold mb-4">Die Anmeldung von {{ reg.name_creator }}</h2>
+      <h4 class="text-lg font-bold mb-4">Zusammenfassung der Veranstaltung</h4>
+      <div class="mb-4">
+        <a href="{% url 'event-detail-overview' event.slug %}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium flex items-center">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          Zur Veranstaltung {{ event.name }}
+        </a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+        {% include './summary.html' %}
+      </div>
+      <h2 class="text-lg font-bold my-6">Zusammenfassung deiner Anmeldung</h2>
+      <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+        {% include './kpis.html' %}
+      </div>
     </div>
   </section>
 {% endblock %}

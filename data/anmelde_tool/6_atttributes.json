@@ -585,24 +585,6 @@
     }
   },
   {
-    "model": "attributes.booleanattribute",
-    "pk": 2,
-    "fields": {
-      "registration": 1,
-      "attribute_module": 45,
-      "boolean_field": true
-    }
-  },
-  {
-    "model": "attributes.booleanattribute",
-    "pk": 3,
-    "fields": {
-      "registration": 1,
-      "attribute_module": 45,
-      "boolean_field": false
-    }
-  },
-  {
     "model": "attributes.stringattribute",
     "pk": 1,
     "fields": {

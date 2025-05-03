@@ -1,0 +1,32 @@
+{% extends '_base_bread.html' %}
+{% block contentbread %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <div class="mb-2 rounded-lg border border-gray-200 p-4 shadow-sm dark:border-gray-700 bg-white dark:bg-gray-800">
+                <ul class="-mb-px grid grid-cols-2 flex-wrap gap-4 text-center text-sm font-medium md:grid-cols-4"
+                    id="default-tab">
+                    <li>
+                        <a href="{% url 'person-detail-overview' person.id %}"
+                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'person/detail/overview/' in request.path %}!bg-blue-700 !text-white{% endif %} "
+                           id="overview-tab"
+                           type="button"
+                           role="tab">
+                            <svg class="me-2 h-5 w-5"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+                            </svg>
+                            Übersicht
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        {% block persondetailcontent %}{% endblock %}
+    </section>
+{% endblock %}

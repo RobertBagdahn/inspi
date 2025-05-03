@@ -1,0 +1,38 @@
+{% extends '_base_bread.html' %}
+{% load main_extras %}
+{% block contentbread %}
+    <div class="bg-white dark:bg-gray-900">
+        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+            <div class="mx-auto max-w-3xl">
+                <header class="text-center">
+                    <h1 class="text-xl font-bold text-gray-900 dark:text-white sm:text-3xl">{{ nutritional_tag.name }}</h1>
+                </header>
+
+                <div class="mt-8">
+                    <ul class="flex border-b border-gray-100 text-center">
+                        <li class="flex-1">
+                            <a class="relative block border-e border-s border-t border-gray-100 p-4 text-sm font-medium {% if 'overview' in request.path %}text-blue-700{% else %}text-gray-500 hover:text-gray-700{% endif %}"
+                               href="{% url 'nutritional-tag-detail-overview' nutritional_tag.id %}">
+                                <span class="absolute inset-x-0 -bottom-px h-px w-full {% if 'overview' in request.path %}bg-blue-600{% endif %}"></span>
+                                Übersicht
+                            </a>
+                        </li>
+
+                        <li class="flex-1">
+                            <a class="relative block border-e border-t border-gray-100 p-4 text-sm font-medium {% if 'manage' in request.path %}text-blue-700{% else %}text-gray-500 hover:text-gray-700{% endif %}"
+                               href="{% url 'nutritional-tag-detail-manage' nutritional_tag.id %}">
+                                <span class="absolute inset-x-0 -bottom-px h-px w-full {% if 'manage' in request.path %}bg-blue-600{% endif %}"></span>
+                                Verwalten
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="mt-8">
+                        {% block nutritionaltagdetailcontent %}
+                        {% endblock nutritionaltagdetailcontent %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

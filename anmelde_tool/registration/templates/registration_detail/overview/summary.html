@@ -1,0 +1,31 @@
+<div class="col-span-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+    <div class="grid gap-4 rounded-lg bg-white dark:border-gray-700 dark:bg-gray-800 sm:grid-cols-2 md:p-6 xl:grid-cols-4">
+        <dl>
+            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Status der Anmeldung</dt>
+            <dd class="text-gray-500 dark:text-gray-400">
+                {{ event.status }}
+            </dd>
+            <dd>
+            </dd>
+        </dl>
+        <dl>
+            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tage bis zur Veranstaltung</dt>
+            <dd class="text-gray-500 dark:text-gray-400">
+                {{ event.days_until_event }} Tage
+            </dd>
+            <dd>
+        </dl>
+        <dl>
+            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Anmeldungen</dt>
+            <dd class="text-gray-500 dark:text-gray-400">
+                {{ event.total_registrations }}
+            </dd>
+        </dl>
+        <dl>
+            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Teilnehmer</dt>
+            <dd class="text-gray-500 dark:text-gray-400">
+                {{ event.total_participants }}
+            </dd>
+        </dl>
+    </div>
+</div>

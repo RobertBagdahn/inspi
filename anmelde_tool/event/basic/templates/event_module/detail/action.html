@@ -1,10 +1,10 @@
 {% load component_tags %}
-<h2 class="text-2xl font-bold mb-4">Event: {{ event.name }}</h2>
+<h2 class="text-2xl font-bold mb-4">Veranstaltung: {{ event.name }}</h2>
 <div id="overview" role="tabpanel" aria-labelledby="overview-tab" class="mt-4">
   <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-    {% component 'action-box' description='Dieses Modul editieren' text='bearbeiten' link="{% url 'event-module-update' module.id %}" color='blue' icon='edit' %}
+    {% component 'action-box' description='Dieses Modul' text='bearbeiten' link="{% url 'event-module-update' module.id %}" color='blue' icon='edit' %}
     {% endcomponent %}
-    {% component 'action-box' description='Dieses Modul löschen' text='bearbeiten' link="{% url 'event-module-delete' module.id %}" color='red' icon='trash' %}
+    {% component 'action-box' description='Dieses Modul' text='löschen' link="{% url 'event-module-delete' module.id %}" color='red' icon='trash' %}
     {% endcomponent %}
     {% component 'action-box' description='Attribute hinzufügen' text='erstellen' link="{% url 'event-module-attribute-create' module.id %}" color='green' icon='plus' %}
     {% endcomponent %}

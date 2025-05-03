@@ -1,0 +1,10 @@
+{% extends 'nutritional_tag/detail/_nutritional_tag_detail_base.html' %}
+{% load component_tags %}
+{% block nutritionaltagdetailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-4">Ernährungstag: {{ nutritional_tag.name }}</h2>
+            {% include './detail-list.html' %}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends '_base_bread.html' %}
+{% load crispy_forms_tags %}
+{% block contentbread %}
+  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+      <div class="mt-3">
+        <button class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            hx-post="{% url 'email_send_confirmation' %}"
+            hx-target="#confirmation-result"
+            hx-indicator="#loading-indicator">
+        {% translate "Send Confirmation Email" %}
+        </button>
+        <div id="loading-indicator" class="htmx-indicator inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+        <span class="sr-only">Loading...</span>
+        </div>
+        <div id="confirmation-result" class="mt-2"></div>
+      </div>
+    </div>
+  </section>
+{% endblock contentbread %}

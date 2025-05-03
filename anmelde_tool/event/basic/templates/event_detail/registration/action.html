@@ -1,0 +1,8 @@
+{% load component_tags %}
+<h2 class="text-2xl font-bold mb-4">Veranstaltung: {{ event.name }}</h2>
+<div id="overview" role="tabpanel" aria-labelledby="overview-tab" class="mt-4">
+  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+    {% component 'action-box' description='Weitere Anmeldung hinzufügen' text='anmelden' link="{% url 'registration-wizard' event.slug %}" color='green' icon='plus' %}
+    {% endcomponent %}
+  </div>
+</div>

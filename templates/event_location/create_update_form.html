@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {% if event_location %}
+        {{ event_location.name }} bearbeiten
+    {% else %}
+        Neuen Veranstaltungsort erstellen
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include 'partials/breadcrumbs.html' %}
+    
+    <h1>
+        {% if event_location %}
+            {{ event_location.name }} bearbeiten
+        {% else %}
+            Neuen Veranstaltungsort erstellen
+        {% endif %}
+    </h1>
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        {{ form.description|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Adressinformationen</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form.address|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form.zip_code|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Kontaktinformationen</h4>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        {{ form.contact_name|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.contact_email|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.contact_phone|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Gebühreninformationen</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form.per_person_fee|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form.fix_fee|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        {% if event_location %}
+                            Änderungen speichern
+                        {% else %}
+                            Veranstaltungsort erstellen
+                        {% endif %}
+                    </button>
+                    <a href="{% if event_location %}{% url 'master-data-event-location-overview' event_location.id %}{% else %}{% url 'master-data-event-location-list' %}{% endif %}" class="btn btn-secondary">
+                        Abbrechen
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

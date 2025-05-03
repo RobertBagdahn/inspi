@@ -1,112 +1,10 @@
 [
   {
-    "model": "basic.eventlocation",
-    "pk": 1,
-    "fields": {
-      "created_at": "2022-03-10T11:35:03.875Z",
-      "updated_at": "2022-03-16T21:31:56.913Z",
-      "name": "Jugendburg Ludwigstein",
-      "description": "Die Burg Ludwigstein ist eine frühere spätmittelalterliche Burg und heutige Jugendburg bei Werleshausen im Werra-Meißner-Kreis in Hessen",
-      "zip_code": 12582,
-      "address": "Burg Ludwigstein",
-      "contact_name": "Many",
-      "contact_email": "test@test.de",
-      "contact_phone": "",
-      "per_person_fee": null,
-      "fix_fee": null
-    }
-  },
-  {
-    "model": "basic.eventlocation",
-    "pk": 2,
-    "fields": {
-      "created_at": "2022-03-10T11:35:46.170Z",
-      "updated_at": "2022-03-16T21:32:00.133Z",
-      "name": "Gut Steimke",
-      "description": "",
-      "zip_code": 11674,
-      "address": "",
-      "contact_name": "Inja",
-      "contact_email": "p@p.de",
-      "contact_phone": "",
-      "per_person_fee": null,
-      "fix_fee": null
-    }
-  },
-  {
-    "model": "basic.eventlocation",
-    "pk": 3,
-    "fields": {
-      "created_at": "2022-03-22T21:30:51.525Z",
-      "updated_at": "2022-04-23T19:15:53.569Z",
-      "name": "Pfadfinderzeltplatz",
-      "description": "",
-      "zip_code": 2778,
-      "address": "Tüdal 1",
-      "contact_name": "",
-      "contact_email": "",
-      "contact_phone": "",
-      "per_person_fee": null,
-      "fix_fee": null
-    }
-  },
-  {
-    "model": "basic.eventlocation",
-    "pk": 4,
-    "fields": {
-      "created_at": "2022-04-25T08:48:18.883Z",
-      "updated_at": "2022-04-25T08:48:29.414Z",
-      "name": "Max' Hof",
-      "description": "Zeltplatz von Max in Wachtendonk",
-      "zip_code": 11841,
-      "address": "Meerendonker Str. 5",
-      "contact_name": "Max Korff",
-      "contact_email": "",
-      "contact_phone": "",
-      "per_person_fee": null,
-      "fix_fee": null
-    }
-  },
-  {
-    "model": "basic.eventlocation",
-    "pk": 5,
-    "fields": {
-      "created_at": "2022-06-10T12:07:50.982Z",
-      "updated_at": "2022-06-10T12:07:50.982Z",
-      "name": "Pfadfinderheim Sternwarte",
-      "description": "",
-      "zip_code": 6245,
-      "address": "Linder Höhe 2",
-      "contact_name": "",
-      "contact_email": "",
-      "contact_phone": "",
-      "per_person_fee": null,
-      "fix_fee": null
-    }
-  },
-  {
-    "model": "basic.eventlocation",
-    "pk": 6,
-    "fields": {
-      "created_at": "2023-04-23T15:18:24.654Z",
-      "updated_at": "2023-04-23T15:18:24.654Z",
-      "name": "Hagis Heim",
-      "description": "Coolstes Heim ever",
-      "zip_code": 7829,
-      "address": "Meine Adresse 1",
-      "contact_name": "Hagi",
-      "contact_email": "test@test.de",
-      "contact_phone": "",
-      "per_person_fee": null,
-      "fix_fee": null
-    }
-  },
-  {
     "model": "basic.event",
     "pk": 1,
     "fields": {
-      "created_at": "2023-05-04T22:47:27.538Z",
-      "updated_at": "2023-05-05T06:16:23.196Z",
+      "created_at": "2026-05-04T22:47:27.538Z",
+      "updated_at": "2026-05-05T06:16:23.196Z",
       "name": "Hagis Lager",
       "slug": "hagis-lager",
       "short_description": "Das beste Lager überhaupt",
@@ -115,15 +13,26 @@
       "event_url": null,
       "icon": "party-popper",
       "location": 6,
-      "start_date": "2023-06-28T16:00:00Z",
-      "end_date": "2023-06-30T11:00:00Z",
-      "registration_deadline": "2023-06-27T23:00:00Z",
-      "registration_start": "2023-06-20T23:00:00Z",
-      "last_possible_update": "2023-06-28T15:00:00Z",
+      "start_date": "2026-06-28T16:00:00Z",
+      "end_date": "2026-06-30T11:00:00Z",
+      "registration_deadline": "2026-06-27T23:00:00Z",
+      "registration_start": "2026-06-20T23:00:00Z",
+      "last_possible_update": "2026-06-28T15:00:00Z",
       "is_public": true,
-      "responsible_persons": [
-        1
-      ]
+      "created_by": 1,
+      "registration_type": 3
+    }
+  },
+  {
+    "model": "basic.eventmodule",
+    "pk": 13,
+    "fields": {
+      "ordering": -1,
+      "name": "ScoutGroup",
+      "header": "Pfadfindergruppe",
+      "event": null,
+      "required": true,
+      "standard": true
     }
   },
   {
@@ -133,7 +42,6 @@
       "ordering": 0,
       "name": "Introduction",
       "header": "Einverständnis",
-      "internal": false,
       "event": null,
       "required": true,
       "standard": true
@@ -146,7 +54,6 @@
       "ordering": 8,
       "name": "Summary",
       "header": "Zusammenfassung und Bestätigung",
-      "internal": false,
       "event": null,
       "required": true,
       "standard": true
@@ -159,7 +66,6 @@
       "ordering": 1,
       "name": "Participants",
       "header": "Teilnehmende",
-      "internal": false,
       "event": null,
       "required": true,
       "standard": true
@@ -172,7 +78,6 @@
       "ordering": 6,
       "name": "Letter",
       "header": "Zusätzliche Anmerkungen",
-      "internal": false,
       "event": null,
       "required": true,
       "standard": true
@@ -185,7 +90,6 @@
       "ordering": 2,
       "name": "Travel",
       "header": "Anreise",
-      "internal": false,
       "event": null,
       "required": false,
       "standard": true
@@ -198,7 +102,6 @@
       "ordering": 3,
       "name": "TravelBack",
       "header": "Rückreise",
-      "internal": false,
       "event": null,
       "required": false,
       "standard": true
@@ -211,7 +114,6 @@
       "ordering": 5,
       "name": "Tshirts",
       "header": "T-Shirts",
-      "internal": false,
       "event": null,
       "required": false,
       "standard": true
@@ -224,7 +126,6 @@
       "ordering": 6,
       "name": "LunchMeals",
       "header": "Lunch Pakete",
-      "internal": false,
       "event": null,
       "required": false,
       "standard": true
@@ -237,7 +138,6 @@
       "ordering": 7,
       "name": "Tent",
       "header": "Zelte",
-      "internal": false,
       "event": null,
       "required": false,
       "standard": true
@@ -250,7 +150,6 @@
       "ordering": 0,
       "name": "Introduction",
       "header": "Einverständnis",
-      "internal": false,
       "event": 1,
       "required": true,
       "standard": false
@@ -263,7 +162,6 @@
       "ordering": 1,
       "name": "Participants",
       "header": "Teilnehmende",
-      "internal": false,
       "event": 1,
       "required": true,
       "standard": false
@@ -276,7 +174,6 @@
       "ordering": 6,
       "name": "Letter",
       "header": "Zusätzliche Anmerkungen",
-      "internal": false,
       "event": 1,
       "required": true,
       "standard": false
@@ -289,7 +186,6 @@
       "ordering": 8,
       "name": "Summary",
       "header": "Zusammenfassung und Bestätigung",
-      "internal": false,
       "event": 1,
       "required": true,
       "standard": false
@@ -302,7 +198,6 @@
       "ordering": 2,
       "name": "Travel",
       "header": "Anreise",
-      "internal": false,
       "event": 1,
       "required": false,
       "standard": false
@@ -315,7 +210,6 @@
       "ordering": 3,
       "name": "TravelBack",
       "header": "Rückreise",
-      "internal": false,
       "event": 1,
       "required": false,
       "standard": false
@@ -328,7 +222,6 @@
       "ordering": 5,
       "name": "Tshirts",
       "header": "T-Shirts",
-      "internal": false,
       "event": 1,
       "required": false,
       "standard": false
@@ -341,7 +234,6 @@
       "ordering": 6,
       "name": "LunchMeals",
       "header": "Lunch Pakete",
-      "internal": false,
       "event": 1,
       "required": false,
       "standard": false
@@ -372,6 +264,7 @@
       "participants": 16,
       "letter": 17,
       "other_required_modules": [
+        13,
         26,
         27,
         28,

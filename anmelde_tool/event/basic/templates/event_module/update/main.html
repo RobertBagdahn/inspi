@@ -3,8 +3,8 @@
 {% block detailcontent %}
     <main class="max-w-3xl mx-auto px-4 py-8">
         <article class="prose lg:prose-xl">
-            <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">Erstelle ein neues Event</h3>
-            <p class="mb-4 text-sm text-gray-600">Mehr Einstellungen zum Event können später vorgenommen werden.</p>
+            <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">Ändere das Modul</h3>
+            <p class="mb-4 text-sm text-gray-600">Mehr Einstellungen zur Veranstaltung können später vorgenommen werden.</p>
             <form method="post">
                 {% csrf_token %}
                 {{ form|crispy }}

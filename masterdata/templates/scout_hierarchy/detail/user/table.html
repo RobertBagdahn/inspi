@@ -1,0 +1,42 @@
+{% load component_tags %}
+{% component 'table' page_obj=page_obj form=form %}
+{% fill 'table_heads' %}
+<tr>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Anzeigename</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Rang</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Person</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">DPV IDM</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Aktionen</th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 {% if item.is_canceled %}bg-red-600{% endif %}">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.display_name }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.display_rank }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+            {% if item.person %}
+                {{ item.person }}
+            {% else %}
+                <span class="text-gray-400">-</span>
+            {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+            {% if item.is_dpv_idm %}
+                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Ja</span>
+            {% else %}
+                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/20">Nein</span>
+            {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+            <a href="{% url 'user-detail-overview' item.username %}" class="text-blue-600 hover:text-blue-900">Details</a>
+        </td>
+    </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

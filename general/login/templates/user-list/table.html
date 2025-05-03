@@ -7,6 +7,18 @@
         Benutzername
     </th>
     <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
+        Scout Name
+    </th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
+        Auth Level
+    </th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
+        DPV IDM
+    </th>
+    <th scope="col"
         class="whitespace-normal p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
         Beitrittsdatum
     </th>
@@ -21,14 +33,23 @@
             <a href="{% url 'user-detail-overview' item.username %}"
                class="text-blue-500 hover:underline">{{ item.username }}</a>
         </td>
-    </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ item.date_joined }}</td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-        {% if item.is_active %}
-            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100">Aktiv</span>
-        {% else %}
-            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100">Inaktiv</span>
-        {% endif %}
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ item.scout_display_name }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ item.auth_level }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {% if item.is_dpv_idm %}
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100">Ja</span>
+            {% else %}
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100">Nein</span>
+            {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ item.date_joined|date:"d.m.Y" }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            {% if item.is_active %}
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100">Aktiv</span>
+            {% else %}
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100">Inaktiv</span>
+            {% endif %}
+        </td>
     </tr>
 {% endfor %}
 {% endfill %}

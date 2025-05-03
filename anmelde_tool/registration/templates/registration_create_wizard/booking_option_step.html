@@ -1,0 +1,217 @@
+{% extends 'event_create_wizard/layout.html' %}
+{% load main_extras %}
+{% load crispy_forms_tags %}
+{% block wizard_content %}
+    <div class="p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4 text-blue-600">{{ step_title }}</h2>
+        <p class="mb-6 text-gray-700">{{ step_description }}</p>
+        <form method="post" action="{% url 'event-wizard' %}" id="event-wizard-form">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+            {{ management_form }}
+        
+        <div id="participant-formset" class="participant-formset space-y-8">
+            {% for form in forms %}
+                <div class="participant-form border p-4 rounded-lg relative" id="form-{{ forloop.counter0 }}">
+                    {% if forloop.first %}
+                        <h3 class="font-bold text-lg mb-3">Teilnehmer {{ forloop.counter }}</h3>
+                    {% else %}
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-bold text-lg">Teilnehmer {{ forloop.counter }}</h3>
+                            <button type="button" 
+                                    class="delete-form text-red-500 hover:text-red-700"
+                                    hx-target="#form-{{ forloop.counter0 }}" 
+                                    hx-swap="outerHTML" 
+                                    hx-delete="#">
+                                Entfernen
+                            </button>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            {{ form.user|as_crispy_field }}
+                        </div>
+                        <div class="text-center">oder</div>
+                        <div>
+                            {{ form.group|as_crispy_field }}
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        {{ form.permission_type|as_crispy_field }}
+                    </div>
+                    
+                    <div class="mt-4">
+                        {{ form.include_subgroups|as_crispy_field }}
+                    </div>
+                    
+                    {% if form.non_field_errors %}
+                        <div class="mt-2">
+                            <p class="text-red-500">{{ form.non_field_errors }}</p>
+                        </div>
+                    {% endif %}
+                    
+                        </label>
+                        {% if form.include_subgroups.errors %}
+                            <p class="text-red-500 text-xs italic">{{ form.include_subgroups.errors }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    {% if form.non_field_errors %}
+                        <div class="mt-2">
+                            <p class="text-red-500">{{ form.non_field_errors }}</p>
+                        </div>
+                    {% endif %}
+                    
+                    {% for hidden_field in form.hidden_fields %}
+                        {{ hidden_field }}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="mx-6 my-3">
+            <button type="button" id="add-participant" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                Weiteren Teilnehmer hinzufügen
+            </button>
+        </div>
+        
+        <div class="flex justify-between mt-6">
+            {% if wizard.steps.prev %}
+                <button type="submit"
+                        name="wizard_goto_step"
+                        value="{{ wizard.steps.prev }}"
+                        class="px-4 py-2 bg-gray-200 text-gray-900 rounded-md hover:bg-gray-400"
+                        formnovalidate>Zurück</button>
+            {% else %}
+                <a href="{% url 'event-list' %}"
+                   class="px-4 py-2 bg-gray-200 text-gray-900 rounded-md hover:bg-gray-400">Abbrechen</a>
+            {% endif %}
+            <div>
+                <button type="submit"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">Weiter</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const formsetContainer = document.querySelector('.participant-formset');
+    const addButton = document.getElementById('add-participant');
+    
+    // Get management form elements
+    const formPrefix = document.querySelector('input[name$="-TOTAL_FORMS"]').name.split('-')[0];
+    const totalForms = document.getElementById(`id_${formPrefix}-TOTAL_FORMS`);
+    const formCount = parseInt(totalForms.value);
+    
+    addButton.addEventListener('click', function() {
+        // Clone the first form
+        const newForm = formsetContainer.querySelector('.participant-form').cloneNode(true);
+        
+        // Update form index
+        const newIndex = formCount;
+        const formInputs = newForm.querySelectorAll('input, select');
+        
+        // Update the title
+        const title = newForm.querySelector('h3');
+        title.textContent = `Teilnehmer ${newIndex + 1}`;
+        
+        // Add delete button if not present
+        if (!newForm.querySelector('.delete-form')) {
+            const titleDiv = document.createElement('div');
+            titleDiv.className = 'flex justify-between items-center mb-3';
+            
+            const newTitle = document.createElement('h3');
+            newTitle.className = 'font-bold text-lg';
+            newTitle.textContent = `Teilnehmer ${newIndex + 1}`;
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.className = 'delete-form text-red-500 hover:text-red-700';
+            deleteButton.textContent = 'Entfernen';
+            
+            titleDiv.appendChild(newTitle);
+            titleDiv.appendChild(deleteButton);
+            
+            // Replace the original h3 with our new div
+            newForm.replaceChild(titleDiv, title);
+        }
+        
+        // Update IDs and names for all inputs
+        formInputs.forEach(input => {
+            const name = input.getAttribute('name');
+            if (name) {
+                // Replace index in name attribute
+                const newName = name.replace(/participants-\d+/, `participants-${newIndex}`);
+                input.setAttribute('name', newName);
+            }
+            
+            const id = input.getAttribute('id');
+            if (id) {
+                // Replace index in id attribute
+                const newId = id.replace(/participants-\d+/, `participants-${newIndex}`);
+                input.setAttribute('id', newId);
+            }
+            
+            // Clear values
+            if (input.type !== 'hidden' && input.type !== 'checkbox') {
+                input.value = '';
+            } else if (input.type === 'checkbox') {
+                input.checked = false;
+            }
+        });
+        
+        // Update labels
+        const labels = newForm.querySelectorAll('label');
+        labels.forEach(label => {
+            const forAttr = label.getAttribute('for');
+            if (forAttr) {
+                const newForAttr = forAttr.replace(/participants-\d+/, `participants-${newIndex}`);
+                label.setAttribute('for', newForAttr);
+            }
+        });
+        
+        // Add the new form to the container
+        formsetContainer.appendChild(newForm);
+        
+        // Update the total number of forms
+        totalForms.value = newIndex + 1;
+        
+        // Add event listener to delete button
+        newForm.querySelector('.delete-form').addEventListener('click', function() {
+            newForm.remove();
+            
+            // Update form count and re-index remaining forms
+            updateFormIndices();
+        });
+    });
+    
+    // Add delete functionality to existing delete buttons
+    document.querySelectorAll('.delete-form').forEach(button => {
+        button.addEventListener('click', function() {
+            this.closest('.participant-form').remove();
+            updateFormIndices();
+        });
+    });
+    
+    function updateFormIndices() {
+        // Update total forms count
+        const forms = document.querySelectorAll('.participant-form');
+        totalForms.value = forms.length;
+        
+        // Update form titles and indices
+        forms.forEach((form, index) => {
+            const title = form.querySelector('h3');
+            if (title) {
+                title.textContent = `Teilnehmer ${index + 1}`;
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

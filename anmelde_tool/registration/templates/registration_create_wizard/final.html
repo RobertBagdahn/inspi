@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-{% block title %}Veranstaltung erfolgreich erstellt{% endblock %}
+{% block title %}Anmeldung erfolgreich erstellt{% endblock %}
 {% block content %}
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto p-3">
@@ -11,26 +11,20 @@
                      xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                <h1 class="text-3xl font-bold text-gray-800 mt-4">Veranstaltung erfolgreich erstellt!</h1>
-            </div>
-            <div class="mb-8">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <h2 class="text-xl font-semibold text-gray-700 mb-2">{{ event.name }}</h2>
-                    <p class="text-gray-600">{{ event.short_description }}</p>
-                    <div class="mt-4 grid grid-cols-2 gap-4">
-                        <div>
-                            <p class="text-sm text-gray-500">Status</p>
-                            <p class="font-medium">{{ event.get_status_display }}</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500">Zeitraum</p>
-                            <p class="font-medium">{{ event.start_date|date:"d.m.Y" }} - {{ event.end_date|date:"d.m.Y" }}</p>
-                        </div>
+                <h1 class="text-3xl font-bold text-gray-800 mt-4">Du hast dich erfolgreich angemeldet!!!</h1>
+                <h3 class="text-lg font-semibold text-gray-600 mt-2">Du hast eine E-Mail mit den Anmeldedaten erhalten.</h3>
+                <p class="text-sm text-gray-500 mt-2">Bitte überprüfe deinen Spam-Ordner, falls du die E-Mail nicht in deinem Posteingang findest.</p>
+                <div class="mt-6 mb-8 text-left">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-red-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v4a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <p class="text-md text-gray-700 font-medium">Du kannst deine Anmeldung jederzeit bearbeiten oder anpassen. Nutze dafür einfach den Link in deiner Bestätigungs-E-Mail oder klicke auf den Button unten.</p>
                     </div>
                 </div>
             </div>
             <div class="flex flex-col space-y-4">
-                <a href="{% url 'event-detail-overview' event.slug %}"
+                <a href="{% url 'reg-detail-overview' reg.id %}"
                    class="inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <svg class="w-5 h-5 mr-2"
                          fill="none"
@@ -41,9 +35,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
                         </path>
                     </svg>
-                    Deine neue Veranstaltung anzeigen
+                    Details deiner Anmeldung anzeigen
                 </a>
-                <a href="{% url 'event-list' %}"
+                <a href="{% url 'event-detail-overview' event.slug %}"
                    class="inline-flex justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 font-medium rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     <svg class="w-5 h-5 mr-2"
                          fill="none"
@@ -52,18 +46,7 @@
                          xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                     </svg>
-                    Zurück zur Veranstaltungsliste
-                </a>
-                <a href="{% url 'event-wizard' %}"
-                   class="inline-flex justify-center items-center px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    <svg class="w-5 h-5 mr-2"
-                         fill="none"
-                         stroke="currentColor"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    Weitere Veranstaltung erstellen
+                    Zurück zur Veranstaltung
                 </a>
             </div>
         </div>

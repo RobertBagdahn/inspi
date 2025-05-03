@@ -1,8 +1,8 @@
 {% extends "_base.html" %}
-{% block title %}Event-Wizard - Schritt {{ wizard.steps.step1 }} von {{ total_steps }}{% endblock %}
+{% load event_extras %}
 {% block content %}
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-6">Event erstellen</h1>
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+        <h1 class="text-3xl font-bold mb-6">Veranstaltung erstellen </h1>
         <div class="space-y-6 sm:space-y-8">
             <ol class="flex flex-col md:gap-4 gap-2 rounded-lg border border-gray-200 bg-gray-50 p-4">
                 {% for i in wizard.steps.all %}
@@ -20,21 +20,7 @@
                             {% endif %}
                         </svg>
                         <p class="text-sm font-medium leading-tight {% if forloop.counter0 < wizard.steps.step0 %} text-green-500 dark:text-green-400 {% elif forloop.counter0 == wizard.steps.step0 %} text-blue-500 dark:text-blue-400 {% else %} text-gray-500 dark:text-gray-400 {% endif %}">
-                            {% if forloop.counter0 == 0 %}
-                                Intro
-                            {% elif forloop.counter0 == 1 %}
-                                Basis-Informationen
-                            {% elif forloop.counter0 == 2 %}
-                                Standort
-                            {% elif forloop.counter0 == 3 %}
-                                Zeitplan 
-                            {% elif forloop.counter0 == 4 %}
-                                Teilnehmer  {{ forloop.counter0 }}
-                            {% elif forloop.counter0 == 5 %}
-                                Berechtigungen  {{ forloop.counter0 }}
-                            {% elif forloop.counter0 == 6 %}
-                                Zusammenfassung  {{ forloop.counter0 }}
-                            {% endif %}
+                           {{ step_titles|get_item:i }}
                         </p>
                     </li>
                     {% if not forloop.last %}

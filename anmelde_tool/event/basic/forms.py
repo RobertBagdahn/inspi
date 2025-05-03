@@ -1,13 +1,15 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
-from .models import Event, EventLocation
+from .models import Event
 from .models import EventPermission
 from django.forms import formset_factory, BaseFormSet
 from django.contrib.auth import get_user_model
 from group.models import InspiGroup
 from general.login.models import CustomUser
-from .models import EventPermissionType, BookingOption, EventModule
+from .models import EventPermissionType, BookingOption, EventModule, EventRegistrationType
+from masterdata.models import ZipCode, EventLocation
+from masterdata.widgets import HtmxAutocompleteWidget
 
 
 class EventListFilter(forms.Form):
@@ -16,25 +18,12 @@ class EventListFilter(forms.Form):
     """
 
     name = forms.CharField(
-        label=_("Name"),
+        label='Suche',
         required=False,
         widget=forms.TextInput(attrs={"placeholder": _("Nach Namen suchen")}),
     )
-
-    start_date = forms.DateField(
-        label=_("Startdatum"),
-        required=False,
-        widget=forms.DateInput(attrs={"type": "date"}),
-    )
-
-    end_date = forms.DateField(
-        label=_("Enddatum"),
-        required=False,
-        widget=forms.DateInput(attrs={"type": "date"}),
-    )
-
-    active = forms.BooleanField(
-        label=_("Nur aktive Veranstaltungen"), required=False, initial=True
+    is_future = forms.BooleanField(
+        label=_("Nur zukünftige Veranstaltungen"), required=False, initial=True
     )
 
     def filter_queryset(self, queryset):
@@ -60,29 +49,129 @@ class EventListFilter(forms.Form):
 
 
 class EventCreateForm(forms.ModelForm):
+    """Form for creating events."""
+
     name = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={"placeholder": _("Veranstaltungsnamen eingeben")}
+        ),
+        label=_("Name der Veranstaltung"),
+    )
+
+    slug = forms.CharField(
+        max_length=20,
+        required=False,
+        widget=forms.TextInput(attrs={"placeholder": _("Kurz-URL eingeben")}),
+        label=_("Kurz-URL"),
+        help_text=_("Einzigartiger Bezeichner für die URL der Veranstaltung"),
+    )
+
+    short_description = forms.CharField(
         max_length=100,
-        widget=forms.TextInput(attrs={"placeholder": _("Gruppennamen eingeben")}),
-        label=_("Name deiner Gruppe"),
+        required=False,
+        widget=forms.TextInput(attrs={"placeholder": _("Kurze Beschreibung eingeben")}),
+        label=_("Kurzbeschreibung"),
+    )
+
+    long_description = forms.CharField(
+        max_length=10000,
+        required=False,
+        widget=forms.Textarea(
+            attrs={"rows": 5, "placeholder": _("Ausführliche Beschreibung eingeben")}
+        ),
+        label=_("Ausführliche Beschreibung"),
+    )
+
+    location = forms.ModelChoiceField(
+        queryset=EventLocation.objects.all(),
+        required=False,
+        label=_("Veranstaltungsort"),
+    )
+
+    registration_type = forms.ModelChoiceField(
+        queryset=EventRegistrationType.objects.all(),
+        required=False,
+        label=_("Anmeldetyp"),
+        help_text=_("Wählen Sie den Anmeldetyp für die Veranstaltung aus"),
+    )
+
+    start_date = forms.DateTimeField(
+        required=False,
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M"
+        ),
+        label=_("Startdatum"),
+    )
+
+    end_date = forms.DateTimeField(
+        required=False,
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M"
+        ),
+        label=_("Enddatum"),
+    )
+
+    registration_start = forms.DateTimeField(
+        required=False,
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M"
+        ),
+        label=_("Anmeldebeginn"),
+    )
+
+    registration_deadline = forms.DateTimeField(
+        required=False,
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M"
+        ),
+        label=_("Anmeldefrist"),
+    )
+
+    last_possible_update = forms.DateTimeField(
+        required=False,
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M"
+        ),
+        label=_("Letzte Änderungsmöglichkeit"),
+    )
+
+    is_public = forms.BooleanField(
+        required=False,
+        initial=False,
+        label=_("Öffentliche Veranstaltung"),
+        help_text=_("Aktivieren, um die Veranstaltung öffentlich sichtbar zu machen"),
     )
 
     class Meta:
         model = Event
         fields = [
             "name",
+            "slug",
+            "short_description",
+            "long_description",
+            "is_public",
+            "location",
+            "registration_type",
+            "start_date",
+            "end_date",
+            "registration_start",
+            "registration_deadline",
+            "last_possible_update",
+            "is_public",
         ]
 
 
 class EventIntroForm(forms.Form):
     """Introduction step for the event creation wizard."""
 
-    xxx = forms.CharField(
-        label=_("Einleitung"),
-        max_length=100,
-        required=False,
-        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
-        help_text=_("Gib eine kurze Einleitung zur Veranstaltung ein"),
-    )
+    # xxx = forms.CharField(
+    #     label=_("Einleitung"),
+    #     max_length=100,
+    #     required=False,
+    #     widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+    #     help_text=_("Gib eine kurze Einleitung zur Veranstaltung ein"),
+    # )
 
 
 class EventBasicInfoForm(forms.Form):
@@ -119,10 +208,97 @@ class EventLocationForm(forms.Form):
     location = forms.ModelChoiceField(
         label=_("Veranstaltungsort"),
         queryset=EventLocation.objects.all(),
-        required=True,
+        required=False,
         widget=forms.Select(attrs={"class": "tailwind-input"}),
         help_text=_("Wähle einen vorhandenen Veranstaltungsort aus"),
     )
+    add_new_location = forms.BooleanField(
+        label=_("Neuen Veranstaltungsort hinzufügen"),
+        required=False,
+        widget=forms.CheckboxInput(attrs={"class": "tailwind-checkbox"}),
+        help_text=_(
+            "Aktiviere dieses Feld, um einen neuen Veranstaltungsort hinzuzufügen"
+        ),
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        location = cleaned_data.get("location")
+        add_new_location = cleaned_data.get("add_new_location")
+
+        if location and add_new_location:
+            raise forms.ValidationError(
+                _(
+                    "Entweder einen vorhandenen Veranstaltungsort auswählen oder einen neuen erstellen."
+                )
+            )
+
+        # Check that either a location is selected or add_new_location is true
+        if not location and not add_new_location:
+            raise forms.ValidationError(
+                _(
+                    "Bitte wähle entweder einen vorhandenen Veranstaltungsort aus oder erstelle einen neuen."
+                )
+            )
+
+        return cleaned_data
+
+
+class EventLocationCreationForm(forms.Form):
+    """Form for creating a new event location."""
+
+    name = forms.CharField(
+        label=_("Name des Veranstaltungsortes"),
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+        help_text=_("Gib den Namen des neuen Veranstaltungsortes ein"),
+    )
+
+    street = forms.CharField(
+        label=_("Straße"),
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+        help_text=_("Straße und Hausnummer"),
+    )
+
+    zip_code = forms.CharField(
+        label=_("PLZ113"),
+        max_length=10,
+        required=False,
+        widget=HtmxAutocompleteWidget(
+            url="/master-data/zip-code-autocomplete",
+            min_chars=2,
+            attrs={"class": "tailwind-input", "placeholder": _("PLZ eingeben")}
+        ),
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        zip_code = cleaned_data.get("zip_code")
+
+        # If zip_code is provided, you can add validation logic here
+        if zip_code:
+            # Example: Check if zip_code is numeric
+            if not zip_code.isdigit():
+                self.add_error(
+                    "zip_code", _("Die Postleitzahl darf nur Zahlen enthalten.")
+                )
+
+            # Example: Check length for German zip codes
+            if len(zip_code) != 5:
+                self.add_error(
+                    "zip_code", _("Die Postleitzahl muss aus 5 Ziffern bestehen.")
+                )
+
+            # Check if zip_code exists in the master data
+            if not ZipCode.objects.filter(zip_code=zip_code).exists():
+                self.add_error(
+                    "zip_code", _("Die angegebene Postleitzahl ist nicht gültig.")
+                )
+
+        return cleaned_data
 
 
 class EventScheduleForm(forms.Form):
@@ -314,7 +490,7 @@ class EventSummaryForm(forms.Form):
     )
 
 
-class BookingOptionForm(forms.ModelForm):
+class BookingOptionForm(forms.Form):
     """Form for creating and updating booking options."""
 
     name = forms.CharField(
@@ -326,11 +502,11 @@ class BookingOptionForm(forms.ModelForm):
     )
 
     description = forms.CharField(
-        label=_("Beschreibung"),
+        label=_("Erklärung"),
         max_length=100,
         required=False,
         widget=forms.TextInput(attrs={"class": "tailwind-input"}),
-        help_text=_("Beschreibe diese Buchungsoption"),
+        help_text=_("Erkläre diese Buchungsoption"),
     )
 
     price = forms.DecimalField(
@@ -351,12 +527,12 @@ class BookingOptionForm(forms.ModelForm):
         widget=forms.NumberInput(attrs={"class": "tailwind-input"}),
         help_text=_("Maximale Anzahl an möglichen Teilnehmern (0 = unbegrenzt)"),
     )
-
     bookable_from = forms.DateTimeField(
         label=_("Buchbar ab"),
         required=False,
         widget=forms.DateTimeInput(
-            attrs={"type": "datetime-local", "class": "tailwind-input"}
+            attrs={"type": "datetime-local", "class": "tailwind-input"},
+            format="%Y-%m-%dT%H:%M",
         ),
         help_text=_("Ab wann die Option buchbar ist"),
     )
@@ -365,7 +541,8 @@ class BookingOptionForm(forms.ModelForm):
         label=_("Buchbar bis"),
         required=False,
         widget=forms.DateTimeInput(
-            attrs={"type": "datetime-local", "class": "tailwind-input"}
+            attrs={"type": "datetime-local", "class": "tailwind-input"},
+            format="%Y-%m-%dT%H:%M",
         ),
         help_text=_("Bis wann die Option buchbar ist"),
     )
@@ -374,32 +551,29 @@ class BookingOptionForm(forms.ModelForm):
         label=_("Startdatum"),
         required=False,
         widget=forms.DateTimeInput(
-            attrs={"type": "datetime-local", "class": "tailwind-input"}
+            attrs={"type": "datetime-local", "class": "tailwind-input"},
+            format="%Y-%m-%dT%H:%M",
         ),
-        help_text=_("Wann die Option beginnt"),
+        help_text=_("Die Veranstaltung beginnt für Personen mit dieser Option zu diesem Zeitpunkt"),
     )
 
     end_date = forms.DateTimeField(
         label=_("Enddatum"),
         required=False,
         widget=forms.DateTimeInput(
-            attrs={"type": "datetime-local", "class": "tailwind-input"}
+            attrs={"type": "datetime-local", "class": "tailwind-input"},
+            format="%Y-%m-%dT%H:%M",
         ),
         help_text=_("Wann die Option endet"),
     )
+    is_public = forms.BooleanField(
+        label=_("Öffentlich"),
+        required=False,
+        initial=False,
+        widget=forms.CheckboxInput(attrs={"class": "tailwind-checkbox"}),
+        help_text=_("Aktivieren, um die Buchungsoption öffentlich sichtbar zu machen"),
+    )
 
-    class Meta:
-        model = BookingOption
-        fields = [
-            "name",
-            "description",
-            "price",
-            "max_participants",
-            "bookable_from",
-            "bookable_till",
-            "start_date",
-            "end_date",
-        ]
 
 
 class EventFormModelForm(forms.ModelForm):
@@ -436,3 +610,134 @@ class EventFormModelForm(forms.ModelForm):
             "description",
             "ordering",
         ]
+
+
+class EventModuleForm(forms.Form):
+    """Modules step for the event creation wizard."""
+
+    # queryset = EventModule.objects.all()
+    modules = forms.ModelMultipleChoiceField(
+        queryset=EventModule.objects.filter(id__in=[26, 27, 28, 29, 30]),
+        required=False,
+        label=_("Veranstaltungs-Module"),
+        widget=forms.CheckboxSelectMultiple(
+            attrs={"class": "tailwind-checkbox"},
+        ),
+        help_text=_("Wählen Sie die Module aus, die für diese Veranstaltung verwendet werden sollen"),
+    )
+
+
+class EventPermissionForm(forms.ModelForm):
+    """Form for creating and updating event permissions."""
+
+    user = forms.ModelChoiceField(
+        queryset=CustomUser.objects.all(),
+        required=False,
+        label=_("Benutzer"),
+        widget=forms.Select(attrs={"class": "tailwind-input"}),
+        help_text=_("Wähle einen Benutzer für diese Berechtigung aus"),
+    )
+
+    group = forms.ModelChoiceField(
+        queryset=InspiGroup.objects.all(),
+        required=False,
+        label=_("Gruppe"),
+        widget=forms.Select(attrs={"class": "tailwind-input"}),
+        help_text=_("Wähle eine Gruppe für diese Berechtigung aus"),
+    )
+
+    permission_type = forms.ChoiceField(
+        choices=EventPermissionType.choices,
+        initial=EventPermissionType.VIEW,
+        widget=forms.Select(attrs={"class": "tailwind-input"}),
+        label=_("Berechtigungstyp"),
+        help_text=_("Art der Berechtigung für den Benutzer oder die Gruppe"),
+    )
+
+    include_subgroups = forms.BooleanField(
+        label=_("Untergruppen einbeziehen"),
+        initial=True,
+        required=False,
+        widget=forms.CheckboxInput(attrs={"class": "tailwind-checkbox"}),
+        help_text=_(
+            "Falls aktiviert, erhalten auch alle Untergruppen diese Berechtigung"
+        ),
+    )
+
+    class Meta:
+        model = EventPermission
+        fields = ["user", "group", "permission_type", "include_subgroups"]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        user = cleaned_data.get("user")
+        group = cleaned_data.get("group")
+
+        if not user and not group:
+            raise forms.ValidationError(
+                _("Entweder ein Benutzer oder eine Gruppe muss angegeben werden")
+            )
+        if user and group:
+            raise forms.ValidationError(
+                _(
+                    "Es kann nicht gleichzeitig ein Benutzer und eine Gruppe angegeben werden"
+                )
+            )
+
+        return cleaned_data
+
+
+class EventPermissionFilter(forms.Form):
+    """Filter form for event permissions."""
+    search = forms.CharField(
+        label=_("Suche"),
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input", "placeholder": _("Benutzer oder Gruppe suchen")}),
+        help_text=_("Gib den Namen des Benutzers oder der Gruppe ein"),
+    )
+    permission_type = forms.ChoiceField(
+        choices=[('', '---------')] + list(EventPermissionType.choices),
+        initial='',
+        widget=forms.Select(attrs={"class": "tailwind-input"}),
+        label="Berechtigungstyp",
+        help_text=_("Wählen Sie den Berechtigungstyp aus"),
+        required=False,
+    )
+
+
+class EventRegistrationTypeForm(forms.Form):
+    """Form for selecting the event registration type."""
+    event_registration_type = forms.ModelChoiceField(
+        queryset=EventRegistrationType.objects.all(),
+        required=False,
+        label=_("Anmeldetyp"),
+        widget=forms.Select(attrs={"class": "tailwind-input"}),
+        help_text=_("Wählen Sie den Anmeldetyp für die Veranstaltung aus"),
+    )
+
+
+class EventRegistrationSearchFilterForm(forms.Form):
+    """Filter form for searching events."""
+    name = forms.CharField(
+        label=_("Veranstaltungsname"),
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "tailwind-input"}),
+        help_text=_("Gib den Namen der Veranstaltung ein"),
+    )
+    start_date = forms.DateTimeField(
+        label=_("Startdatum"),
+        required=False,
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local", "class": "tailwind-input"}
+        ),
+        help_text=_("Gib das Startdatum der Veranstaltung ein"),
+    )
+    is_not_registered = forms.BooleanField(
+        label=_("Noch nicht angemeldet"),
+        required=False,
+        initial=False,
+        widget=forms.CheckboxInput(attrs={"class": "tailwind-checkbox"}),
+        help_text=_("Nur Veranstaltungen anzeigen, bei denen du noch nicht angemeldet bist"),
+    )

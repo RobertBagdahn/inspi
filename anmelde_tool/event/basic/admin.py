@@ -1,19 +1,15 @@
 from django.contrib import admin
 
 from anmelde_tool.event.basic.models import (
-    EventLocation,
     Event,
     BookingOption,
     EventModule,
     StandardEventTemplate,
     EventPermission,
+    EventRegistrationType,
 )
 
 
-@admin.register(EventLocation)
-class EventLocationAdmin(admin.ModelAdmin):
-    list_display = ("name", "zip_code", "address", "contact_name")
-    search_fields = ("name", "address", "contact_name", "contact_email")
 
 
 @admin.register(Event)
@@ -27,7 +23,7 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(EventModule)
 class EventModuleAdmin(admin.ModelAdmin):
     list_display = ("name", "header", "event", "ordering", "required", "standard")
-    list_filter = ("required", "standard", "internal", "event")
+    list_filter = ("required", "standard", "allow_multiply", "event")
     search_fields = ("name", "header", "description")
 
 
@@ -61,3 +57,9 @@ class StandardEventTemplateAdmin(admin.ModelAdmin):
             "created_by",
         )
         list_filter = ("permission_type", "include_subgroups")
+
+
+@admin.register(EventRegistrationType)
+class EventRegistrationTypeAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    search_fields = ("name", "description")

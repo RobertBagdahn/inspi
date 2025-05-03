@@ -1,106 +1,81 @@
-{% extends '_base_event.html' %}
+{% extends '_base.html' %}
 {% load component_tags %}
-{% block detailcontent %}
-    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
-        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
-            <div class="mb-2 rounded-lg border border-gray-200 p-4 shadow-sm dark:border-gray-700 bg-white dark:bg-gray-800">
-                <ul class="-mb-px grid grid-cols-2 flex-wrap gap-4 text-center text-sm font-medium md:grid-cols-4"
-                    id="default-tab">
-                    <li>
-                        <a href="{% url 'reg-detail-overview' reg.id %}"
-                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'overview' in request.path %}!bg-blue-700 !text-white{% endif %} "
-                           id="overview-tab"
-                           type="button"
-                           role="tab">
-                            <svg class="me-2 h-5 w-5"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 fill="none"
-                                 viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
-                            </svg>
-                            Übersicht
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'reg-detail-attribute' reg.id %}"
-                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'attribute' in request.path %}!bg-blue-700 !text-white{% endif %} "
-                           id="attribute-tab"
-                           type="button"
-                           role="tab">
-                            <svg class="me-2 h-5 w-5"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 fill="none"
-                                 viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
-                            </svg>
-                            Attribute
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'reg-detail-participant' reg.id %}"
-                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'participant' in request.path %}!bg-blue-700 !text-white{% endif %} "
-                           id="overview-tab"
-                           type="button"
-                           role="tab">
-                            <svg class="me-2 h-5 w-5"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 fill="none"
-                                 viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
-                            </svg>
-                            Teilnehmdende
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'reg-detail-permission' reg.id %}"
-                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'permission' in request.path %}!bg-blue-700 !text-white{% endif %} "
-                           id="overview-tab"
-                           type="button"
-                           role="tab">
-                            <svg class="me-2 h-5 w-5"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 fill="none"
-                                 viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
-                            </svg>
-                            Zugriffsrechte
-                        </a>
-                    </li>
-                   
-                    <li>
-                        <a href="{% url 'reg-detail-privacy' reg.id %}"
-                           class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'privacy' in request.path %}!bg-blue-700 !text-white{% endif %} "
-                           id="overview-tab"
-                           type="button"
-                           role="tab">
-                            <svg class="me-2 h-5 w-5"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 fill="none"
-                                 viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
-                            </svg>
-                            Datenschutz
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        {% block eventdetailcontent %}
-        {% endblock %}
-    </section>
+{% block content %}
+  <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+      <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          {% for crumb in breadcrumbs %}
+            {% if forloop.last %}
+              <li aria-current="page">
+                <div class="flex items-center">
+                  <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">{{ crumb.name }}</span>
+                </div>
+              </li>
+            {% else %}
+              <li>
+                <div class="flex items-center">
+                  <a href="{{ crumb.url }}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">{{ crumb.name }}</a>
+                  <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 ml-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                  </svg>
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ol>
+      </nav>
+      <div class="mb-2 rounded-lg border border-gray-200 p-4 shadow-sm dark:border-gray-700 bg-white dark:bg-gray-800">
+        <ul class="-mb-px grid grid-cols-2 flex-wrap gap-4 text-center text-sm font-medium md:grid-cols-4" id="default-tab">
+          <li>
+            <a href="{% url 'reg-detail-overview' reg.id %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'overview' in request.path %}!bg-blue-700 !text-white{% endif %} " id="overview-tab" type="button" role="tab">
+              <svg class="me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+              </svg>Übersicht
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'reg-detail-attribute' reg.id %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'attribute' in request.path %}!bg-blue-700 !text-white{% endif %} " id="attribute-tab" type="button" role="tab">
+              <svg class="me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+              </svg>Attribute
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'reg-detail-participant' reg.id %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'participant' in request.path %}!bg-blue-700 !text-white{% endif %} " id="overview-tab" type="button" role="tab">
+              <svg class="me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+              </svg>Teilnehmdende
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'reg-detail-permission' reg.id %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'permission' in request.path %}!bg-blue-700 !text-white{% endif %} " id="overview-tab" type="button" role="tab">
+              <svg class="me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+              </svg>Zugriffsrechte
+            </a>
+          </li>
+
+          {% comment %} <li>
+            <a href="{% url 'reg-detail-privacy' reg.id %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'privacy' in request.path %}!bg-blue-700 !text-white{% endif %} " id="overview-tab" type="button" role="tab">
+              <svg class="me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+              </svg>Datenschutz
+            </a>
+          </li> {% endcomment %}
+
+          <li>
+            <a href="{% url 'reg-detail-manage' reg.id %}" class="inline-flex w-full items-center justify-center rounded-lg py-3 bg-gray-100 text-gray-500 hover:bg-gray-200 {% if 'manage' in request.path %}!bg-blue-700 !text-white{% endif %} " id="overview-tab" type="button" role="tab">
+              <svg class="me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+              </svg>Verwalten
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% block eventdetailcontent %}
+
+    {% endblock %}
+  </section>
 {% endblock %}

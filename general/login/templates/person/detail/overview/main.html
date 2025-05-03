@@ -1,0 +1,12 @@
+{% extends 'person/detail/_person_detail_base.html' %}
+{% load component_tags %}
+{% block persondetailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Person: {{  person.display_name }}</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">Hier siehst du alle Informationen zu diesem Benutzer</p>
+            <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 my-4">
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% load component_tags %}
+{% component 'kpi-box' kpi_value=kpi_participants color='blue' kpi_description='Teilnehmer' link="{% url 'event-list' %}" link_text='Teilnehmerliste' icon='users' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_cost color='green' kpi_description='Kosten (€)' link="{% url 'event-list' %}" link_text='Finanzübersicht' icon='euro-sign' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_responsible_persons color='red' kpi_description='Verantwortliche Personen' link="{% url 'event-list' %}" link_text='Verantwortliche' icon='user-check' %} {% endcomponent %}
+{% component 'kpi-box' kpi_value=kpi_attributes color='yellow' kpi_description='Attribute' link="{% url 'event-list' %}" link_text='Attribute' icon='tag' %} {% endcomponent %}

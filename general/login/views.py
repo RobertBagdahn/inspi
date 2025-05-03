@@ -5,13 +5,14 @@ from group.forms import MyRequestsFilterForm
 import random, string
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
-
+from .models import ZipCode
 from group.models import (
     InspiGroup,
     InspiGroupMembership,
     InspiGroupJoinRequest,
     InspiGroupPermission,
 )
+from django.db.models import Q
 from django.core.paginator import Paginator
 from formtools.wizard.views import SessionWizardView
 from django.shortcuts import redirect
@@ -22,9 +23,11 @@ from .forms import (
     PersonWizardBasicInfoForm,
     PersonWizardContactForm,
     PersonWizardPreferencesForm,
+    UserSearchFilterForm,
 )
 from .models import Person
 from general.login.choices import AUTH_LEVEL_CHOICES
+from .service import update_person_user_from_keycloak, update_groups_from_keycloak
 
 
 def randomword(length):
@@ -107,21 +110,21 @@ def user_detail_overview(request, username):
         user=user, is_cancelled=False
     ).count()
 
-    try:
-        person = Person.objects.get(user=user)
-    except Person.DoesNotExist:
-        person = None
-
     items_basic = [
         {"title": "Anzeigename", "value": user.scout_display_name},
         {"title": "E-Mail", "value": user.email},
         {"title": "Registrierungsdatum", "value": user.date_joined},
         {"title": "Letzter Login", "value": user.last_login},
         {
-            "title": "Auth Level",
+            "title": "Authentifizierungsebene",
             "value": dict(AUTH_LEVEL_CHOICES).get(user.auth_level, "Unknown"),
         },
     ]
+    if user.is_dpv_idm:
+        items_basic.append(
+            {"title": "Ist ein DPV IDM Account?", "value": "Ja" if user.is_dpv_idm else "Nein"}
+        )
+
     if user.is_staff:
         items_basic.append(
             {"title": "Ist Admin", "value": "Ja" if user.is_staff else "Nein"}
@@ -132,35 +135,35 @@ def user_detail_overview(request, username):
             {"title": "Ist Superuser", "value": "Ja" if user.is_superuser else "Nein"}
         )
 
-    if person:
+    if user.person:
         items_personal_1 = [
-            {"title": "Pfadfindername", "value": person.scout_name},
-            {"title": "Vorname", "value": person.first_name},
-            {"title": "Nachname", "value": person.last_name},
-            {"title": "Geburtstag", "value": person.birthday},
-            {"title": "Geschlecht", "value": person.get_gender_display()},
+            {"title": "Pfadfindername", "value": user.person.scout_name},
+            {"title": "Vorname", "value": user.person.first_name},
+            {"title": "Nachname", "value": user.person.last_name},
+            {"title": "Geburtstag", "value": user.person.birthday},
+            {"title": "Geschlecht", "value": user.person.get_gender_display()},
         ]
         items_personal_2 = [
-            {"title": "Handynummer", "value": person.mobile},
-            {"title": "Pfadfindergruppe", "value": person.scout_group},
-            {"title": "Über mich", "value": person.about_me},
+            {"title": "Handynummer", "value": user.person.mobile},
+            {"title": "Pfadfindergruppe", "value": user.person.scout_group},
+            {"title": "Über mich", "value": user.person.about_me},
         ]
         items_personal_3 = [
-            {"title": "Adresse", "value": person.address},
-            {"title": "Adresszusatz", "value": person.address_supplement},
-            {"title": "Postleitzahl", "value": person.zip_code},
-            {"title": "Stadt", "value": person.city},
+            {"title": "Adresse", "value": user.person.address},
+            {"title": "Adresszusatz", "value": user.person.address_supplement},
+            {"title": "Postleitzahl", "value": user.person.zip_code},
+            {"title": "Stadt", "value": user.person.city},
         ]
         items_personal_4 = [
             {
                 "title": "Essgewohnheiten",
                 "value": (
-                    ", ".join([habit.name for habit in person.eat_habits.all()])
-                    if person.eat_habits.all()
+                    ", ".join([habit.name for habit in user.person.nutritional_tag.all()])
+                    if user.person.eat_habits.all()
                     else "Keine Bekannt"
                 ),
             },
-            {"title": "Über mich", "value": person.about_me},
+            {"title": "Über mich", "value": user.person.about_me},
         ]
     else:
         items_personal_1 = []
@@ -189,6 +192,11 @@ def user_detail_overview(request, username):
             "kpi_persons": Person.objects.count(),
             "editable": editable,
             "search_filter_form": search_filter_form,
+            "breadcrumbs": [
+                {"name": "Benutzer", "url": "/general/auth/user-list"},
+                {"name": user.display_name, "active": True},
+                {"name": "Übersicht", "active": True},
+            ],
         },
     )
 
@@ -202,6 +210,11 @@ def user_detail_manage(request, username):
         {
             "user": user,
             "deleted": False,
+            "breadcrumbs": [
+                {"name": "Benutzer", "url": "/general/auth/user-list"},
+                {"name": user.display_name, "active": True},
+                {"name": "Verwalten", "active": True},
+            ],
         },
     )
 
@@ -220,6 +233,11 @@ def user_detail_memberships(request, username):
         "deleted": False,
         "page_obj": page_obj,
         "search_filter_form": search_filter_form,
+        "breadcrumbs": [
+            {"name": "Benutzer", "url": "/general/auth/user-list"},
+            {"name": user.display_name, "active": True},
+            {"name": "Mitgliedschaften", "active": True},
+        ],
     }
 
     return render(request, "user-detail/memberships/main.html", context)
@@ -234,6 +252,11 @@ def user_detail_person(request, username):
         {
             "user": user,
             "deleted": False,
+            "breadcrumbs": [
+                {"name": "Benutzer", "url": "/general/auth/user-list"},
+                {"name": user.display_name, "active": True},
+                {"name": "Personen", "active": True},
+            ],
         },
     )
 
@@ -250,9 +273,37 @@ def user_dashboard(request):
         },
     )
 
+@login_required
+def user_keycloak_sync(request, username):
+    user = CustomUser.objects.get(username=username)
+
+    try:
+        # Assuming you have a function to get user data from Keycloak
+        update_person_user_from_keycloak(user)
+        update_groups_from_keycloak(user)
+    except Exception as e:
+        messages.error(request, f"Fehler beim Abrufen der Benutzerdaten: {str(e)}")
+        return redirect("user-detail-overview", username=username)
+
+    messages.success(request, "Benutzer erfolgreich mit Keycloak synchronisiert.")
+    return redirect("user-detail-overview", username=username)
+
+
 
 def user_list(request):
     users = CustomUser.objects.all()
+
+    form = UserSearchFilterForm(request.GET)
+    
+    # Apply search filter if form is valid
+    if form.is_valid():
+        search_term = form.cleaned_data.get("search", "")
+        if search_term:
+            users = users.filter(
+                Q(username__icontains=search_term) | 
+                Q(email__icontains=search_term) | 
+                Q(scout_display_name__icontains=search_term)
+            )
 
     paginator = Paginator(users, 10)  # Show 10 users per page
     page_number = request.GET.get("page")
@@ -263,7 +314,12 @@ def user_list(request):
         "user-list/main.html",
         {
             "page_obj": page_obj,
+            "form": form,
             "users": users,
+            "breadcrumbs": [
+                {"name": "Benutzer", "url": ""},
+                {"name": "Übersicht", "active": True},
+            ],
         },
     )
 
@@ -286,6 +342,11 @@ def user_detail_persons(request, username):
         "deleted": False,
         "page_obj": page_obj,
         "search_filter_form": search_filter_form,
+        "breadcrumbs": [
+            {"name": "Benutzer", "url": "/general/auth/user-list"},
+            {"name": user.display_name, "active": True},
+            {"name": "Personen", "active": True},
+        ],
     }
     return render(request, "user-detail/persons/main.html", context)
 
@@ -322,6 +383,11 @@ def user_detail_my_requests_user(request, username):
         {
             "page_obj": page_obj,
             "form": form,
+            "breadcrumbs": [
+                {"name": "Benutzer", "url": "/general/auth/user-list"},
+                {"name": user.display_name, "active": True},
+                {"name": "Anfragen", "active": True},
+            ],
         },
     )
 
@@ -433,7 +499,7 @@ class PersonWizardView(SessionWizardView):
             user = CustomUser.objects.get(username=username)
             # Get or create person instance
             try:
-                self.person_instance = Person.objects.get(user=user)
+                self.person_instance = CustomUser.objects.get(username=username).person
             except Person.DoesNotExist:
                 self.person_instance = None
         else:
@@ -454,8 +520,31 @@ class PersonWizardView(SessionWizardView):
             # If no username is provided, use the logged-in user
             user = self.request.user
 
-        # Extract eat_habits before creating/updating the Person
+        # Extract eat_habits and zip_code before creating/updating the Person
         eat_habits_data = form_data.pop('eat_habits', None)
+        zip_code_data = form_data.pop('zip_code', None)
+        
+        # If zip_code is provided, get or create the ZipCode instance
+
+        if zip_code_data:
+            # Try to find the ZipCode object or create a shortened version if it's too long
+            try:
+                zip_code = ZipCode.objects.get(zip_code=zip_code_data)
+            except ZipCode.DoesNotExist:
+                # If zip code is longer than 5 chars, use only the first 5
+                if len(zip_code_data) > 5:
+                    shortened_zip = zip_code_data[:5]
+                    try:
+                        zip_code = ZipCode.objects.get(zip_code=shortened_zip)
+                    except ZipCode.DoesNotExist:
+                        # If we can't find the shortened zip code either, create it
+                        zip_code = ZipCode.objects.create(zip_code=shortened_zip)
+                else:
+                    # Create a new ZipCode
+                    zip_code = ZipCode.objects.create(zip_code=zip_code_data)
+
+
+            form_data['zip_code'] = zip_code
         
         if self.person_instance:
             # Update existing person
@@ -465,12 +554,17 @@ class PersonWizardView(SessionWizardView):
                     setattr(person, key, value)
             person.save()
         else:
+            
             # Create new person
             person = Person.objects.create(
-                user=user, 
+                user=user,
                 created_by=self.request.user,
                 **{k: v for k, v in form_data.items() if k != 'eat_habits'}
             )
+
+        # update person field in CustomUser
+        user.person = person
+        user.save()
 
         # Handle eat_habits separately after the person is saved
         if eat_habits_data:
@@ -500,3 +594,22 @@ def start_person_wizard(request, username=None):
     if username:
         return redirect("person-wizard", username=username)
     return redirect("person-wizard", None)
+
+
+@login_required
+def person_detail_overview(request, pk):
+    try:
+        person = Person.objects.get(pk=pk)
+    except Person.DoesNotExist:
+        return render(request, "404.html")
+    
+    context = {
+        "person": person,
+        "breadcrumbs": [
+            {"name": "Personen", "url": f"/general/auth/user-detail-persons/{request.user.username}/"},
+            {"name": person.display_name, "active": True},
+            {"name": "Übersicht", "active": True},
+        ],
+    }
+    
+    return render(request, "person/detail/overview/main.html", context)

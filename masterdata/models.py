@@ -97,10 +97,70 @@ class ScoutHierarchy(models.Model):
         return f"{self.level_choice} - {self.name} - {self.bund}"
 
 
-class EatHabit(models.Model):
-    id = models.AutoField(auto_created=True, primary_key=True)
-    name = models.CharField(max_length=100)
-    public = models.BooleanField(default=False)
+class NutritionalTag(models.Model):
+    name = models.CharField(
+        max_length=255,
+        help_text="Name of the tag. E.g. 'Fleisch', 'Alkohol', 'Nüsse', Scharf",
+    )
+    name_opposite = models.CharField(
+        max_length=255,
+        help_text="Name of the tag for human readable output. e.g. 'Vegan', 'Vegetarisch', 'Alkoholfrei'",
+    )
+    description = models.CharField(max_length=255)
+    description_human = models.CharField(max_length=255)
+    rank = models.IntegerField(default=1)
+    is_dangerous = models.BooleanField(
+        default=False,
+        help_text="Indicates if this tag represents a potentially harmful or dangerous ingredient",
+    )
+    default_in_event = models.BooleanField(
+        default=False,
+        help_text="Indicates if this tag is automatically included in the event",
+    )
+    created_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+    def __repr__(self):
+        return self.__str__()
+    
+
+class EventLocation(models.Model):
+    name = models.CharField(max_length=60)
+    description = models.CharField(max_length=200, blank=True)
+    zip_code = models.ForeignKey(
+        ZipCode, on_delete=models.PROTECT, null=True, blank=True
+    )
+    address = models.CharField(max_length=60, blank=True)
+    contact_name = models.CharField(max_length=30, blank=True)
+    contact_email = models.CharField(max_length=30, blank=True)
+    contact_phone = models.CharField(max_length=30, blank=True)
+    per_person_fee = models.FloatField(blank=True, null=True)
+    fix_fee = models.FloatField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.name}: ({self.address}, {self.zip_code})"
+
+    class Meta:
+        verbose_name = "Veranstaltungsort"
+        verbose_name_plural = "Veranstaltungsorte"
+        ordering = ["name"]
+
+
+class EatHabit(models.Model):
+    name = models.CharField(max_length=60, blank=True)
+    description = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Ernährungsgewohnheit"
+        verbose_name_plural = "Ernährungsgewohnheiten"
+        ordering = ["name"]

@@ -1,5 +1,19 @@
 {% load component_tags %}
-<h2 class="text-2xl font-bold mb-4 mt-4">Alle Anmeldungen</h2>
+<h2 class="text-2xl font-bold mb-4 mt-4">
+  Alle Anmeldungen
+  <a href="{% url 'registration-wizard' event.slug %}"
+  class="ml-2 text-md text-blue-500 hover:underline">
+   <svg class="inline h-8 w-8 pb-2 text-green-500"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24">
+       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h14m-7 7V5" />
+   </svg>
+</a>
+</h2>
 {% component 'table' page_obj=page_obj form=form %}
 {% fill 'table_heads' %}
 <tr>
@@ -11,18 +25,30 @@
 {% endfill %}
 {% fill 'table_row' %}
 {% for item in page_obj %}
-  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.scout_organisation }}</td>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-    {% for person in item.responsible_persons.all %}
-      {{ person }}{% if not forloop.last %}, {% endif %}
+    {% if item.scout_organisation %}
+    <a href="{% url 'master-data-scout-hierarchy-overview' item.scout_organisation.id %}" class="text-blue-600 hover:underline dark:text-blue-500">
+      {{ item.scout_organisation }}
+    </a>
+    {% else %}
+    keine Gruppe
+    {% endif %}
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+    {% for user in item.responsible_persons.all %}
+      <a href="{% url 'user-detail-overview' user.username %}" class="text-blue-600 hover:underline dark:text-blue-500">
+      {{ user.scout_display_name }}
+      </a>{% if not forloop.last %}, {% endif %}
     {% endfor %}
   </td>
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.participant_count }}</td>
   <td class="px-4 py-3">
     <a href="{% url 'reg-detail-overview' item.id %}" class="text-blue-600 hover:underline dark:text-blue-500">
-      View Details
+      Details
     </a>
   </td>
+</tr>
 {% endfor %}
 {% endfill %}
 {% endcomponent %}

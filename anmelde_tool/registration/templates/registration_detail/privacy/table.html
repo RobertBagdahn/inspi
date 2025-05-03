@@ -1,9 +1,9 @@
 {% load component_tags %}
-<h2 class="text-2xl font-bold mb-4 mt-4">Alle Rechte</h2>
+<h2 class="text-lg font-bold mb-4 mt-4">Alle Personen die Zugang zu meinen persönlichen Daten haben</h2>
 {% component 'table' page_obj=page_obj form=form %}
 {% fill 'table_heads' %}
 <tr>
-  <th scope="col" class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">name</th>
+  <th scope="col" class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Name</th>
 </tr>
 {% endfill %}
 {% fill 'table_row' %}

@@ -4,7 +4,7 @@
     <div class="space-y-4 p-4">
         <div class="flex flex-col justify-between md:flex-row space-10 flex-1 items-center">
             <form class="w-full">
-                <div class="flex items-start space-x-8">
+                <div class="flex flex-col md:flex-row items-start space-x-8 space-y-4 md:space-y-0">
                     {{ form|crispy }}
                     <div class="">
                         {% component 'submit-button' text="Suchen" color="blue" icon="search" %}

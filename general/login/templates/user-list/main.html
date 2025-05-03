@@ -1,4 +1,4 @@
-{% extends "user-detail/_user_detail_base.html" %}
+{% extends "_base_user.html" %}
 {% block detailcontent %}
     <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
         <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
@@ -9,4 +9,4 @@
             {% include "./table.html" with page_obj=page_obj %}
         </div>
     </section>
-{% endblock detailcontent %}
+{% endblock %}

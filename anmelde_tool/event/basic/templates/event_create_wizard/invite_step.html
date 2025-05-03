@@ -14,10 +14,10 @@
             {% for form in forms %}
                 <div class="participant-form border p-4 rounded-lg relative" id="form-{{ forloop.counter0 }}">
                     {% if forloop.first %}
-                        <h3 class="font-bold text-lg mb-3">Teilnehmer {{ forloop.counter }}</h3>
+                        <h3 class="font-bold text-lg mb-3">Einladung {{ forloop.counter }}</h3>
                     {% else %}
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="font-bold text-lg">Teilnehmer {{ forloop.counter }}</h3>
+                            <h3 class="font-bold text-lg">Einladung {{ forloop.counter }}</h3>
                             <button type="button" 
                                     class="delete-form text-red-500 hover:text-red-700"
                                     hx-target="#form-{{ forloop.counter0 }}" 

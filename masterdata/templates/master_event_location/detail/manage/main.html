@@ -1,0 +1,20 @@
+{% extends 'master_event_location/detail/_event_location_detail_base.html' %}
+{% load component_tags %}
+{% block eventlocationdetailcontent %}
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
+        <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+            <h2 class="text-2xl font-bold mb-1">Aktionen</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-4">Hier kannst du diesen Veranstaltungsort verwalten</p>
+            <div id="default-tab-content">
+                <div id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+                        {% component 'action-box' description='Daten dieses Veranstaltungsortes ändern' text='Ort ändern' link="{% url 'master-data-event-location-update' event_location.id %}" color='blue' icon='edit' %}
+                        {% endcomponent %}
+                        {% component 'action-box' description='Diesen Veranstaltungsort löschen' text='Ort löschen' link="{% url 'master-data-event-location-delete' event_location.id %}" color='red' icon='trash' %}
+                        {% endcomponent %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

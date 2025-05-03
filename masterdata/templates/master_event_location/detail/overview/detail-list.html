@@ -1,0 +1,47 @@
+<div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Details</h3>
+        <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Name</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ event_location.name }}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Beschreibung</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ event_location.description }}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Adresse</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ event_location.address }}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">PLZ/Ort</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ event_location.zip_code.zip_code }} {{ event_location.zip_code.city }}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Bundesland</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ event_location.zip_code.get_state_display }}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Kontaktperson</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ event_location.contact_name }}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">E-Mail</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ event_location.contact_email }}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Telefon</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ event_location.contact_phone }}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Gebühr pro Person</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{% if event_location.per_person_fee %}{{ event_location.per_person_fee }} €{% else %}-{% endif %}</dd>
+            </div>
+            <div>
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Fixgebühr</dt>
+                <dd class="mt-1 text-sm text-gray-900 dark:text-white">{% if event_location.fix_fee %}{{ event_location.fix_fee }} €{% else %}-{% endif %}</dd>
+            </div>
+        </dl>
+    </div>
+</div>

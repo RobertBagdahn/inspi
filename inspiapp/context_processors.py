@@ -86,6 +86,18 @@ def header_app(request) -> dict:
             "is_visible": True,
         },
         {
+            "display_name_short": "User",
+            "display_name": "Userverwaltung",
+            "main_url": f"{base_url}/general/auth/user-list/",
+            "icon_name": "user",
+            "module_name": "auth",
+            "description": "Hier kannst du User verwalten.",
+            "inspi_img": "inspi_teacher.webp",
+            "domain": "https://gruppenstunde.de/general/auth/user-list/",
+            "icon": "images/logo.png",
+            "is_visible": True,
+        },
+        {
             "display_name_short": "Daten",
             "display_name": "Stammdaten",
             "main_url": f"{base_url}/master-data/basic",

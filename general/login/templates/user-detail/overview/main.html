@@ -1,6 +1,6 @@
 {% extends 'user-detail/_user_detail_base.html' %}
 {% load component_tags %}
-{% block groupdetailcontent %}
+{% block userdetailcontent %}
     <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
         <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
             <h2 class="text-2xl font-bold mb-1">Profil von {{  user.username }}</h2>
@@ -63,4 +63,4 @@
         {% endif %}
     </div>
 </section>
-{% endblock groupdetailcontent %}
+{% endblock %}

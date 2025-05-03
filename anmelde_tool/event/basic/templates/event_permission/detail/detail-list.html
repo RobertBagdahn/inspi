@@ -1,0 +1,49 @@
+<h2 class="text-2xl font-bold my-4">Details zur Berechtigung</h2>
+<div class="col-span-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-4">
+  <!-- Liste -->
+  <dl class="list-inside text-gray-500 dark:text-gray-400">
+    
+    <!-- Event -->
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Veranstaltung</dt>
+      <dd class="sm:text-end">{{ permission.event.name|default:"--" }}</dd>
+    </div>
+    
+    <!-- User -->
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Benutzer</dt>
+      <dd class="sm:text-end">{{ permission.user.get_full_name|default:"--" }}</dd>
+    </div>
+    
+    <!-- Group -->
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Gruppe</dt>
+      <dd class="sm:text-end">{{ permission.group.name|default:"--" }}</dd>
+    </div>
+    
+    <!-- Permission Type -->
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Berechtigungstyp</dt>
+      <dd class="sm:text-end">{{ permission.get_permission_type_display }}</dd>
+    </div>
+    
+    <!-- Include Subgroups -->
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Untergruppen einbeziehen</dt>
+      <dd class="sm:text-end">{{ permission.include_subgroups|yesno:"Ja,Nein" }}</dd>
+    </div>
+    
+    <!-- Created At -->
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Erstellt am</dt>
+      <dd class="sm:text-end">{{ permission.created_at|date:"d.m.Y H:i" }}</dd>
+    </div>
+    
+    <!-- Created By -->
+    <div class="py-4 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Erstellt von</dt>
+      <dd class="sm:text-end">{{ permission.created_by.get_full_name|default:"--" }}</dd>
+    </div>
+   
+  </dl>
+</div>

@@ -290,6 +290,11 @@ def group_detail_news(request, group_slug):
         "news": news,
         "is_admin": is_admin,
         "is_member": is_member,
+        "breadcrumbs": [
+            {"name": "Gruppen", "url": "/group/group-list"},
+            {"name": group.name, "url": f"/group/detail/{group.slug}/overview"},
+            {"name": "News", "active": True},
+        ],
     }
     return render(request, "group/details/news/main.html", context)
 
@@ -373,6 +378,11 @@ def group_detail_overview(request, group_slug):
         "news": news,
         "news_count": news_count,
         "is_member": is_member,
+        "breadcrumbs": [
+            {"name": "Gruppen", "url": "/group/group-list"},
+            {"name": group.name, "url": f"/group/detail/{group.slug}/overview"},
+            {"name": "Übersicht", "active": True},
+        ],
     }
     return render(request, "group/details/overview/main.html", context)
 
@@ -399,6 +409,11 @@ def group_detail_requests(request, group_slug):
         "is_admin": is_admin,
         "is_member": is_member,
         "search_filter_form": search_filter_form,
+        "breadcrumbs": [
+            {"name": "Gruppen", "url": "/group/group-list"},
+            {"name": group.name, "url": f"/group/detail/{group.slug}/overview"},
+            {"name": "Anfragen", "active": True},
+        ],
     }
     return render(request, "group/details/requests/main.html", context)
 
@@ -434,6 +449,11 @@ def group_detail_members(request, group_slug):
         "search_filter_form": search_filter_form,
         "is_admin": is_admin,
         "is_member": is_member,
+        "breadcrumbs": [
+            {"name": "Gruppen", "url": "/group/group-list"},
+            {"name": group.name, "url": f"/group/detail/{group.slug}/overview"},
+            {"name": "Mitglieder", "active": True},
+        ],
     }
     return render(request, "group/details/members/main.html", context)
 
@@ -462,6 +482,11 @@ def group_detail_admins(request, group_slug):
         "group": group,
         "is_admin": is_admin,
         "is_member": is_member,
+        "breadcrumbs": [
+            {"name": "Gruppen", "url": "/group/group-list"},
+            {"name": group.name, "url": f"/group/detail/{group.slug}/overview"},
+            {"name": "Admins", "active": True},
+        ],
     }
     return render(request, "group/details/admins/main.html", context)
 
@@ -476,6 +501,11 @@ def group_detail_manage(request, group_slug):
         "group": group,
         "is_admin": is_admin,
         "is_member": is_member,
+        "breadcrumbs": [
+            {"name": "Gruppen", "url": "/group/group-list"},
+            {"name": group.name, "url": f"/group/detail/{group.slug}/overview"},
+            {"name": "Verwalten", "active": True},
+        ],
     }
     return render(request, "group/details/manage/main.html", context)
 
@@ -499,6 +529,11 @@ def group_detail_child_groups(request, group_slug):
         "is_admin": is_admin,
         "is_member": is_member,
         "form": form_filter_and_form,
+        "breadcrumbs": [
+            {"name": "Gruppen", "url": "/group/group-list"},
+            {"name": group.name, "url": f"/group/detail/{group.slug}/overview"},
+            {"name": "Untergruppen", "active": True},
+        ],
     }
     return render(request, "group/details/child_groups/main.html", context)
 
@@ -522,6 +557,11 @@ def group_detail_parent_groups(request, group_slug):
         "is_admin": is_admin,
         "is_member": is_member,
         "form": form_filter_and_form,
+        "breadcrumbs": [
+            {"name": "Gruppen", "url": "/group/group-list"},
+            {"name": group.name, "url": f"/group/detail/{group.slug}/overview"},
+            {"name": "Elterngruppen", "active": True},
+        ],
     }
     return render(request, "group/details/parent_groups/main.html", context)
 

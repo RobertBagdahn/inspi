@@ -1,17 +1,164 @@
 from django.urls import path
-
 from . import views
 
 urlpatterns = [
     path("basic", views.main_view, name="master-data-main"),
-    path("scout-hierarchy/dashboard", views.masterdata_scout_hierarchy_dashboard, name="master-data-scout-hierarchy-dashboard"),
-    path("scout-hierarchy/list", views.masterdata_scout_hierarchy_list, name="master-data-scout-hierarchy-list"),
-    path("scout-hierarchy/<int:scout_hierarchy_id>/overview", views.masterdata_scout_hierarchy_overview, name="master-data-scout-hierarchy-overview"),
-    path("scout-hierarchy/<int:scout_hierarchy_id>/manage", views.masterdata_scout_hierarchy_manage, name="master-data-scout-hierarchy-manage"),
-    path("scout-hierarchy/<int:scout_hierarchy_id>/download", views.masterdata_scout_hierarchy_download, name="master-data-scout-hierarchy-downloads"),
-    path("scout-hierarchy/<int:scout_hierarchy_id>/download-csv", views.scout_hierarchy_download_csv, name="master-data-scout-hierarchy-download-csv"),
-
-    path("scout-hierarchy/create", views.scout_hierarchy_create, name="master-data-scout-hierarchy-create"),
-    path("scout-hierarchy/<int:scout_hierarchy_id>/update", views.scout_hierarchy_update, name="master-data-scout-hierarchy-update"),
-    path("scout-hierarchy/<int:scout_hierarchy_id>/delete", views.scout_hierarchy_delete, name="master-data-scout-hierarchy-delete"),
+    path(
+        "scout-hierarchy/dashboard",
+        views.masterdata_scout_hierarchy_dashboard,
+        name="master-data-scout-hierarchy-dashboard",
+    ),
+    path(
+        "scout-hierarchy/list",
+        views.masterdata_scout_hierarchy_list,
+        name="master-data-scout-hierarchy-list",
+    ),
+    path(
+        "scout-hierarchy/<int:scout_hierarchy_id>/overview",
+        views.masterdata_scout_hierarchy_overview,
+        name="master-data-scout-hierarchy-overview",
+    ),
+    path(
+        "scout-hierarchy/<int:scout_hierarchy_id>/manage",
+        views.masterdata_scout_hierarchy_manage,
+        name="master-data-scout-hierarchy-manage",
+    ),
+    path(
+        "scout-hierarchy/<int:scout_hierarchy_id>/download",
+        views.masterdata_scout_hierarchy_download,
+        name="master-data-scout-hierarchy-downloads",
+    ),
+    path(
+        "scout-hierarchy/<int:scout_hierarchy_id>/user",
+        views.masterdata_scout_hierarchy_user,
+        name="master-data-scout-hierarchy-user",
+    ),
+    # user
+    path(
+        "scout-hierarchy/<int:scout_hierarchy_id>/download-csv",
+        views.scout_hierarchy_download_csv,
+        name="master-data-scout-hierarchy-download-csv",
+    ),
+    path(
+        "scout-hierarchy/create",
+        views.scout_hierarchy_create,
+        name="master-data-scout-hierarchy-create",
+    ),
+    path(
+        "scout-hierarchy/<int:scout_hierarchy_id>/update",
+        views.scout_hierarchy_update,
+        name="master-data-scout-hierarchy-update",
+    ),
+    path(
+        "scout-hierarchy/<int:scout_hierarchy_id>/delete",
+        views.scout_hierarchy_delete,
+        name="master-data-scout-hierarchy-delete",
+    ),
+    # ZipCode URLs
+    # add dashboard
+    path(
+        "zip-code/dashboard",
+        views.masterdata_zip_code_dashboard,
+        name="master-data-zip-code-dashboard",
+    ),
+    path(
+        "zip-code/list",
+        views.masterdata_zip_code_list,
+        name="master-data-zip-code-list",
+    ),
+    path("zip-code/create", views.zip_code_create, name="master-data-zip-code-create"),
+    path(
+        "zip-code/<int:zip_code_id>/update",
+        views.zip_code_update,
+        name="master-data-zip-code-update",
+    ),
+    path(
+        "zip-code/<int:zip_code_id>/delete",
+        views.zip_code_delete,
+        name="master-data-zip-code-delete",
+    ),
+    path(
+        "zip-code-autocomplete",
+        views.zip_code_autocomplete,
+        name="zip_code_autocomplete",
+    ),
+    path(
+        "zip-code/<int:zip_code_id>/overview",
+        views.masterdata_zip_code_overview,
+        name="master-data-zip-code-overview",
+    ),
+    # manage
+    path(
+        "zip-code/<int:zip_code_id>/manage",
+        views.masterdata_zip_code_manage,
+        name="master-data-zip-code-manage",
+    ),
+    path("nutritional-tags/list", views.nutritional_tag_list, name="nutritional-tag-list"),
+    path(
+        "nutritional-tags/<int:pk>/overview/",
+        views.nutritional_tag_detail_overview,
+        name="nutritional-tag-detail-overview",
+    ),
+    # manage
+    path(
+        "nutritional-tags/<int:pk>/manage/",
+        views.nutritional_tag_detail_manage,
+        name="nutritional-tag-detail-manage",
+    ),
+    path(
+        "nutritional-tags/create/",
+        views.nutritional_tag_create,
+        name="nutritional-tag-create",
+    ),
+    path(
+        "nutritional-tags/<int:pk>/update/",
+        views.nutritional_tag_update,
+        name="nutritional-tag-update",
+    ),
+    path(
+        "nutritional-tags/<int:pk>/delete/",
+        views.nutritional_tag_delete,
+        name="nutritional-tag-delete",
+    ),
+    path(
+        "nutritional-tags/dashboard/",
+        views.nutritional_tag_dashboard,
+        name="nutritional-tag-dashboard",
+    ),
+    # EventLocation URLs
+    path(
+        "event-location/dashboard",
+        views.masterdata_event_location_dashboard,
+        name="master-data-event-location-dashboard",
+    ),
+    path(
+        "event-location/list",
+        views.masterdata_event_location_list,
+        name="master-data-event-location-list",
+    ),
+    path(
+        "event-location/<int:event_location_id>/overview",
+        views.masterdata_event_location_overview,
+        name="master-data-event-location-overview",
+    ),
+    path(
+        "event-location/<int:event_location_id>/manage",
+        views.masterdata_event_location_manage,
+        name="master-data-event-location-manage",
+    ),
+    path(
+        "event-location/create",
+        views.event_location_create,
+        name="master-data-event-location-create",
+    ),
+    path(
+        "event-location/<int:event_location_id>/update",
+        views.event_location_update,
+        name="master-data-event-location-update",
+    ),
+    path(
+        "event-location/<int:event_location_id>/delete",
+        views.event_location_delete,
+        name="master-data-event-location-delete",
+    ),
 ]

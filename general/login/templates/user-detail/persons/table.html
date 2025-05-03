@@ -9,7 +9,9 @@
     <th scope="col"
         class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Gruppe</th>
     <th scope="col"
-        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">User</th>
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Username</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">zur Person</th>
 </tr>
 {% endfill %}
 {% fill 'table_row' %}
@@ -34,6 +36,12 @@
             {% else %}
                 -
             {% endif %}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+            <a href="{% url 'person-detail-overview' item.id %}"
+               class="text-blue-600 hover:text-blue-700 hover:underline">
+                {{ item.display_name }}
+            </a>
         </td>
     </tr>
 {% empty %}

@@ -32,10 +32,6 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 DEBUG = env('DEBUG')
 LOCAL_DB = env('LOCAL_DB')
 
-# Print all items in env object
-print(f"env: {env}")
-for key, value in env.ENVIRON.items():
-    print(f"{key}: {value}")
 env_file = os.path.join(BASE_DIR, ".env")
 
 if os.path.isfile(env_file):
@@ -223,8 +219,6 @@ WSGI_APPLICATION = "inspiapp.wsgi.application"
 # Use django-environ to parse the connection string
 DATABASES = {"default": env.db()}
 
-print(f"LOCAL_DB: {LOCAL_DB}")
-
 if not LOCAL_DB:
     if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
         print("Using Cloud SQL Auth Proxy")
@@ -372,6 +366,10 @@ DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL")
 EMAIL_USE_SSL = env.bool(
     "EMAIL_USE_SSL",
 )
+
+# MJML
+MJML_BACKEND_MODE = 'cmd'
+MJML_EXEC_CMD = 'mjml'
 
 
 # Tracking

@@ -4,7 +4,7 @@
         <nav class="bg-white border-gray-200 block lg:hidden px-4 lg:px-6 py-2.5 dark:bg-gray-900 dark:border-gray-800 order-1 border-b">
             <div class="flex justify-between items-center">
                 <div class="flex flex-shrink-0 justify-start items-center">
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Events</span>
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Veranstaltungen</span>
                 </div>
                 <div class="flex flex-shrink-0 justify-between items-center ml-4 lg:order-2">
                     <div class="z-50 my-4 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
@@ -40,7 +40,7 @@
                         <li>
                             <a href="{% url 'event-list' %}"
                                class="block py-3 px-4 rounded-lg {% if '/list' in request.path %} text-blue-600 hover:text-blue-700 focus:ring-blue-200 {% else %} text-gray-500  hover:bg-gray-50  focus:ring-gray-200 {% endif %}  hover:bg-gray-50 focus:ring-4"
-                               aria-current="page">Alle Events</a>
+                               aria-current="page">Alle Veranstaltungen</a>
                         </li>
                         <li>
                             <a href="{% url 'reg-list' %}"
@@ -67,7 +67,7 @@
                                    id="simple-search"
                                    name="search"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-9 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="Suche in allen Events..."
+                                   placeholder="Suche in allen Veranstaltungen..."
                                    required />
                         </div>
                         <button type="submit"
@@ -92,7 +92,7 @@
                                  viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
                             </svg>
-                            <span class="sr-only">Neues Event</span>
+                            <span class="sr-only">Neue Veranstaltung</span>
                         </a>
                     </form>
                 </div>

@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event_location.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include 'partials/breadcrumbs.html' %}
+    
+    <h1>{{ event_location.name }}</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Details</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Name</dt>
+                        <dd class="col-sm-9">{{ event_location.name }}</dd>
+                        
+                        <dt class="col-sm-3">Beschreibung</dt>
+                        <dd class="col-sm-9">
+                            {{ event_location.description|default:"-" }}
+                        </dd>
+                        
+                        <dt class="col-sm-3">Adresse</dt>
+                        <dd class="col-sm-9">
+                            {{ event_location.address|default:"-" }}
+                            {% if event_location.zip_code %}
+                                <br>{{ event_location.zip_code.zip_code }} {{ event_location.zip_code.city }}
+                            {% endif %}
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Kontaktinformationen</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Kontaktperson</dt>
+                        <dd class="col-sm-9">{{ event_location.contact_name|default:"-" }}</dd>
+                        
+                        <dt class="col-sm-3">E-Mail</dt>
+                        <dd class="col-sm-9">
+                            {% if event_location.contact_email %}
+                                <a href="mailto:{{ event_location.contact_email }}">{{ event_location.contact_email }}</a>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </dd>
+                        
+                        <dt class="col-sm-3">Telefon</dt>
+                        <dd class="col-sm-9">
+                            {{ event_location.contact_phone|default:"-" }}
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Gebühreninformationen</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-6">Gebühr pro Person</dt>
+                        <dd class="col-sm-6">
+                            {% if event_location.per_person_fee %}
+                                {{ event_location.per_person_fee }} €
+                            {% else %}
+                                -
+                            {% endif %}
+                        </dd>
+                        
+                        <dt class="col-sm-6">Fixgebühr</dt>
+                        <dd class="col-sm-6">
+                            {% if event_location.fix_fee %}
+                                {{ event_location.fix_fee }} €
+                            {% else %}
+                                -
+                            {% endif %}
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            
+            {% if event_location.zip_code and event_location.zip_code.lat and event_location.zip_code.lon %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Standort</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div id="locationMap" style="height: 300px;"></div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Aktionen</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'master-data-event-location-manage' event_location.id %}" class="btn btn-primary">
+                            <i class="fas fa-cogs"></i> Verwalten
+                        </a>
+                        <a href="{% url 'master-data-event-location-update' event_location.id %}" class="btn btn-secondary">
+                            <i class="fas fa-edit"></i> Bearbeiten
+                        </a>
+                        <a href="{% url 'master-data-event-location-delete' event_location.id %}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Löschen
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if event_location.zip_code and event_location.zip_code.lat and event_location.zip_code.lon %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var map = L.map('locationMap').setView([{{ event_location.zip_code.lat }}, {{ event_location.zip_code.lon }}], 13);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        
+        L.marker([{{ event_location.zip_code.lat }}, {{ event_location.zip_code.lon }}])
+            .addTo(map)
+            .bindPopup('{{ event_location.name }}')
+            .openPopup();
+    });
+</script>
+{% endif %}
+{% endblock %}

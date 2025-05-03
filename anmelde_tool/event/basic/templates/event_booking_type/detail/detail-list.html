@@ -4,22 +4,49 @@
   <dl class="list-inside text-gray-500 dark:text-gray-400">
     <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
       <dt class="font-semibold text-gray-900 dark:text-white">Name</dt>
-      <dd class="sm:text-end">{{ event.name }}</dd>
+      <dd class="sm:text-end">{{ booking_option.name }}</dd>
     </div>
     <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Technischer Name</dt>
-      <dd class="sm:text-end">{{ event.slug }}</dd>
+      <dt class="font-semibold text-gray-900 dark:text-white">Beschreibung</dt>
+      <dd class="sm:text-end">{{ booking_option.description }}</dd>
     </div>
     <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
-      <dt class="font-semibold text-gray-900 dark:text-white">Kurzbeschreibung</dt>
-      <dd class="sm:text-end">{{ event.short_description }}</dd>
+      <dt class="font-semibold text-gray-900 dark:text-white">Preis</dt>
+      <dd class="sm:text-end">{{ booking_option.price }} €</dd>
     </div>
-    <div class="border-b border-gray-200 py-4 dark:border-gray-700">
-      <dt class="font-semibold text-gray-900 dark:text-white mb-2">Ausführliche Beschreibung</dt>
-      <dd class="mt-2 p-4 rounded-md bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
-        {{ event.long_description|safe }}
-      </dd>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Buchbar von</dt>
+      <dd class="sm:text-end">{{ booking_option.bookable_from|default:"Immer" }}</dd>
     </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Buchbar bis</dt>
+      <dd class="sm:text-end">{{ booking_option.bookable_till|default:"Immer" }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Maximale Teilnehmer</dt>
+      <dd class="sm:text-end">{{ booking_option.max_participants }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Startdatum</dt>
+      <dd class="sm:text-end">{{ booking_option.start_date|default:"Fehler" }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Enddatum</dt>
+      <dd class="sm:text-end">{{ booking_option.end_date|default:"Fehler" }}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Für Teilnehmende sichtbar?</dt>
+      <dd class="sm:text-end">{% if booking_option.is_public %}Ja{% else %}Nein{% endif %}</dd>
+    </div>
+    <div class="border-b border-gray-200 py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Erstellt von</dt>
+      <dd class="sm:text-end">{{ booking_option.created_by|default:"-" }}</dd>
+    </div>
+    <div class="py-4 dark:border-gray-700 sm:flex sm:items-center sm:justify-between">
+      <dt class="font-semibold text-gray-900 dark:text-white">Erstellt am</dt>
+      <dd class="sm:text-end">{{ booking_option.created_at|default:"-" }}</dd>
+    </div>
+    
   </dl>
 </div>
 

@@ -1,0 +1,31 @@
+{% load component_tags %}
+{% component 'table' page_obj=page_obj form=form %}
+{% fill 'table_heads' %}
+<tr>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Name</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Adresse</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Stadt</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Bundesland</th>
+    <th scope="col"
+        class="whitespace-nowrap p-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Kontakt</th>
+</tr>
+{% endfill %}
+{% fill 'table_row' %}
+{% for item in page_obj %}
+    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+            <a href="{% url 'master-data-event-location-overview' item.id %}"
+               class="text-blue-600 hover:text-blue-700">{{ item.name }}</a>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.address|default_if_none:'' }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.zip_code.city|default_if_none:'' }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.zip_code.get_state_display|default_if_none:'' }}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.contact_name }}</td>
+    </tr>
+{% endfor %}
+{% endfill %}
+{% endcomponent %}

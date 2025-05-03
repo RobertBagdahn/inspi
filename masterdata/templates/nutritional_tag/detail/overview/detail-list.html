@@ -1,0 +1,58 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-lg dark:bg-gray-800">
+    <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Ernährungstag Details</h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">Detaillierte Informationen über diesen Ernährungstag.</p>
+    </div>
+    <div class="border-t border-gray-200 dark:border-gray-700">
+        <dl>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-900">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Name</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ nutritional_tag.name }}</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-800">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Umkehrname</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ nutritional_tag.name_opposite }}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-900">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Beschreibung</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ nutritional_tag.description }}</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-800">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Beschreibung (Human)</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ nutritional_tag.description_human }}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-900">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Rang</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ nutritional_tag.rank }}</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-800">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Gefährlich</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">
+                    {% if nutritional_tag.is_dangerous %}
+                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Ja</span>
+                    {% else %}
+                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Nein</span>
+                    {% endif %}
+                </dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-900">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Standard in Events</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">
+                    {% if nutritional_tag.default_in_event %}
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Ja</span>
+                    {% else %}
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">Nein</span>
+                    {% endif %}
+                </dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-800">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Erstellt am</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ nutritional_tag.created_at|date:"d.m.Y H:i" }}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-gray-900">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Aktualisiert am</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-white">{{ nutritional_tag.updated_at|date:"d.m.Y H:i" }}</dd>
+            </div>
+        </dl>
+    </div>
+</div>
