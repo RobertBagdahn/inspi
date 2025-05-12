@@ -33,25 +33,25 @@ class KjrGenerator(AbstractGenerator):
         font_style = Font(size="11", name='Calibri')
         font_style_index = Font(size="11", name='Calibri', bold=True)
 
-        participant: event_models.RegistrationParticipant
+        # participant: event_models.RegistrationParticipant
 
-        for index, participant in enumerate(participants.all()):
-            original[f'C{index + 5}'] = index
-            original[f'C{index + 5}'].font = font_style_index
-            original[f'C{index + 5}'].border = thin_border
-            original[f'C{index + 5}'].alignment = alignment
+        # for index, participant in enumerate(participants.all()):
+        #     original[f'C{index + 5}'] = index
+        #     original[f'C{index + 5}'].font = font_style_index
+        #     original[f'C{index + 5}'].border = thin_border
+        #     original[f'C{index + 5}'].alignment = alignment
 
-            original[f'D{index + 5}'] = helper.get_participant_full_name(participant)
-            original[f'E{index + 5}'] = helper.get_participant_age(event, participant)
-            original[f'F{index + 5}'] = helper.get_participant_adress(participant)
+        #     original[f'D{index + 5}'] = helper.get_participant_full_name(participant)
+        #     original[f'E{index + 5}'] = helper.get_participant_age(event, participant)
+        #     original[f'F{index + 5}'] = helper.get_participant_adress(participant)
 
-            days: int = int(helper.get_participant_days(event, participant))
-            for letter in string.ascii_uppercase[6: 6 + days]:
-                original[f'{letter}{index + 5}'] = '/'
+        #     days: int = int(helper.get_participant_days(event, participant))
+        #     for letter in string.ascii_uppercase[6: 6 + days]:
+        #         original[f'{letter}{index + 5}'] = '/'
 
-            for letter in string.ascii_uppercase[3: 21]:
-                original[f'{letter}{index + 5}'].border = thin_border
-                original[f'{letter}{index + 5}'].alignment = alignment
-                original[f'{letter}{index + 5}'].font = font_style
+        #     for letter in string.ascii_uppercase[3: 21]:
+        #         original[f'{letter}{index + 5}'].border = thin_border
+        #         original[f'{letter}{index + 5}'].alignment = alignment
+        #         original[f'{letter}{index + 5}'].font = font_style
 
         return wb

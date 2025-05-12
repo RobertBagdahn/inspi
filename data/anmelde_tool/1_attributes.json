@@ -73,42 +73,6 @@
   },
   {
     "model": "attributes.attributemodule",
-    "pk": 5,
-    "fields": {
-      "title": "Anreise",
-      "text": "Wann und womit werdet ihr anreisen?",
-      "is_required": false,
-      "min_length": 0,
-      "max_length": 0,
-      "tooltip": null,
-      "default_value": null,
-      "field_type": "TrA",
-      "icon": null,
-      "max_entries": 1,
-      "standard": true,
-      "event_module": 26
-    }
-  },
-  {
-    "model": "attributes.attributemodule",
-    "pk": 6,
-    "fields": {
-      "title": "Abreise",
-      "text": "Wann und womit werdet ihr abreisen?",
-      "is_required": false,
-      "min_length": 0,
-      "max_length": 0,
-      "tooltip": null,
-      "default_value": null,
-      "field_type": "TrA",
-      "icon": null,
-      "max_entries": 1,
-      "standard": true,
-      "event_module": 27
-    }
-  },
-  {
-    "model": "attributes.attributemodule",
     "pk": 7,
     "fields": {
       "title": "Zusätzliche Anmerkungen",

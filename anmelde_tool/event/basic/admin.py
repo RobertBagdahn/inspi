@@ -10,8 +10,6 @@ from anmelde_tool.event.basic.models import (
 )
 
 
-
-
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     list_display = ("name", "location", "start_date", "end_date", "is_public")

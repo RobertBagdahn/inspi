@@ -6,8 +6,8 @@ from .models import (
     EventModule,
     StandardEventTemplate,
 )
-from anmelde_tool.registration.models import Registration, RegistrationParticipant
-from anmelde_tool.attributes.models import AttributeModule, StringAttribute
+from anmelde_tool.registration.models import Registration
+from anmelde_tool.attributes.models import AttributeModule
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -18,7 +18,7 @@ from django.utils.text import slugify
 from django import forms
 from formtools.wizard.views import SessionWizardView, CookieWizardView
 from anmelde_tool.attributes.forms import GeneralAttributeForm
-from anmelde_tool.attributes.models import AttributeModule
+from anmelde_tool.attributes.models import AttributeModule, AttributeChoiceOption
 from masterdata.models import ZipCode, EventLocation
 from django.utils import timezone
 from datetime import datetime
@@ -32,6 +32,8 @@ from .forms import (
     EventListFilter,
     EventPermissionFilter,
     EventRegistrationSearchFilterForm,
+    EventModuleSearchFilterForm,
+    ListAttributeForm,
 )
 
 from .models import StandardEventTemplate
@@ -400,9 +402,7 @@ def event_detail_overview(request, slug):
     # Check if the current user has already registered for this event
     has_already_a_registration = False
     registration = Registration.objects.filter(
-        event=event, 
-        responsible_persons=request.user,
-        deleted_at__isnull=True
+        event=event, responsible_persons=request.user, deleted_at__isnull=True
     ).first()
 
     if registration:
@@ -421,7 +421,7 @@ def event_detail_overview(request, slug):
                 },
                 {
                     "name": "Übersicht",
-                }
+                },
             ],
         },
     )
@@ -1158,6 +1158,7 @@ def event_module_detail(request, pk):
         {
             "module": module,
             "event": event,
+            "form": EventModuleSearchFilterForm,
             "attributes": attributes,
             "breadcrumbs": [
                 {"name": "Veranstaltung", "url": reverse("event-list")},
@@ -1169,7 +1170,7 @@ def event_module_detail(request, pk):
                     "name": "Module",
                     "url": reverse("event-detail-module", args=[event.slug]),
                 },
-                {"name": module.name, "url": "#"},
+                {"name": module.header, "url": "#"},
             ],
         },
     )
@@ -1199,6 +1200,18 @@ def event_module_update(request, pk):
             "form": form,
             "module": module,
             "event": event,
+            "breadcrumbs": [
+                {"name": "Veranstaltung", "url": reverse("event-list")},
+                {
+                    "name": event.name,
+                    "url": reverse("event-detail-overview", args=[event.slug]),
+                },
+                {
+                    "name": "Module",
+                    "url": reverse("event-detail-module", args=[event.slug]),
+                },
+                {"name": module.header, "url": "#"},
+            ],
         },
     )
 
@@ -1268,6 +1281,219 @@ def event_module_attribute_create(request, pk):
                     "url": reverse("event-detail-module", args=[event.slug]),
                 },
                 {"name": module.name, "url": "#"},
+            ],
+        },
+    )
+
+
+@login_required
+def event_module_attribute_select_create(request, pk):
+    """
+    View to create a new attribute for an event module.
+    """
+    module = get_object_or_404(EventModule, pk=pk)
+    event = module.event
+
+    if request.method == "POST":
+        form = ListAttributeForm(request.POST)
+        if form.is_valid():
+
+            # Get the selected option type
+            selected_option = form.cleaned_data.get("attribute")
+
+            # Map the selection to corresponding choices based on type
+            if selected_option == "gender":
+                choices = [
+                    ("male", "Männlich"),
+                    ("female", "Weiblich"),
+                    ("diverse", "Divers"),
+                    ("other", "Sonstiges"),
+                ]
+                field_type = "RaA"
+                title = "Geschlecht"
+                text = "Geschlecht"
+            elif selected_option == "nutritional_tags":
+                choices = [
+                    ("vegetarian", "Vegetarisch"),
+                    ("vegan", "Vegan"),
+                    ("lactose_free", "Laktosefrei"),
+                    ("gluten_free", "Glutenfrei"),
+                ]
+                field_type = "MuA"
+                title = "Ernährungsform"
+                text = "Ernährungsform"
+            elif selected_option == "leader":
+                choices = [
+                    ("stammesleiter", "Stammesleiter"),
+                    ("stammesvorstand", "Stammesvorstand"),
+                    ("gruppenleiter", "Gruppenleiter"),
+                    ("akela", "Akela"),
+                ]
+                field_type = "RaA"
+                title = "Leiter"
+                text = "Leiter"
+            elif selected_option == "scout_level":
+                choices = [
+                    ("woelfling", "Wölfling"),
+                    ("jupfi", "Jungpfadfinder"),
+                    ("pfadfinder", "Pfadfinder"),
+                    ("rover", "Rover"),
+                ]
+                field_type = "RaA"
+                title = "Pfadfinderstufe"
+                text = "Pfadfinderstufe"
+            elif selected_option == "transportation":
+                """"""
+                choices = [
+                    ("car", "Auto"),
+                    ("public_transport", "Öffis"),
+                    ("bus", "Reisebus"),
+                    ("foot", "Zu Fuß"),
+                ]
+                field_type = "RaA"
+                title = "Transportmittel"
+                text = "Transportmittel"
+            else:
+                choices = []
+
+            attribute_module = AttributeModule.objects.create(
+                event_module=module,
+                text=text,
+                field_type=field_type,
+                title=title,
+            )
+
+            # Create choice options for the attribute
+            for value, label in choices:
+                AttributeChoiceOption.objects.create(
+                    attribute_module=attribute_module,
+                    text=label,
+                    ordering=list(choices).index((value, label)) + 1,
+                )
+                print(f"Created attribute: {label} with value: {value}")
+
+        return redirect("event-module-detail", pk=pk)
+    else:
+        form = ListAttributeForm()
+
+    return render(
+        request,
+        "event_module_attribute/create/main.html",
+        {
+            "form": form,
+            "module": module,
+            "event": event,
+            "breadcrumbs": [
+                {"name": "Veranstaltung", "url": reverse("event-list")},
+                {
+                    "name": event.name,
+                    "url": reverse("event-detail-overview", args=[event.slug]),
+                },
+                {
+                    "name": "Module",
+                    "url": reverse("event-detail-module", args=[event.slug]),
+                },
+                {"name": module.name, "url": "#"},
+            ],
+        },
+    )
+
+
+@login_required
+def event_module_attribute_select_create_set(request, pk):
+    """
+    View to create a new attribute module with predefined attribute settings.
+    """
+    module = get_object_or_404(EventModule, pk=pk)
+    event = module.event
+
+    # Define the attribute settings for each preset type
+    ATTRIBUTE_PRESETS = {
+        "basic": [
+            {"title": "Vorname", "text": "Vorname", "field_type": "StA"},
+            {"title": "Nachname", "text": "Nachname", "field_type": "StA"},
+            {"title": "Geburtsdatum", "text": "Geburtsdatum", "field_type": "DaA"},
+        ],
+        "kjp": [
+            {"title": "Vorname", "text": "Vorname", "field_type": "StA"},
+            {"title": "Nachname", "text": "Nachname", "field_type": "StA"},
+            {"title": "Geburtsdatum", "text": "Geburtsdatum", "field_type": "DaA"},
+            {"title": "Straße", "text": "Straße", "field_type": "StA"},
+            {"title": "PLZ", "text": "PLZ", "field_type": "ZiA"},
+            {"title": "Ort", "text": "Ort", "field_type": "StA"},
+            {"title": "Bundesland", "text": "Bundesland", "field_type": "StA"},
+        ],
+        "extended": [
+            {"title": "Vorname", "text": "Vorname", "field_type": "StA"},
+            {"title": "Nachname", "text": "Nachname", "field_type": "StA"},
+            {"title": "Pfadiname", "text": "Pfadiname", "field_type": "StA"},
+            {"title": "Geburtsdatum", "text": "Geburtsdatum", "field_type": "DaA"},
+            {"title": "Straße", "text": "Straße", "field_type": "StA"},
+            {"title": "PLZ", "text": "PLZ", "field_type": "ZiA"},
+            {"title": "Ort", "text": "Ort", "field_type": "StA"},
+            {"title": "Telefon", "text": "Telefon", "field_type": "PhA"},
+            {"title": "Email", "text": "Email", "field_type": "EmA"},
+            {"title": "Notfallkontakt", "text": "Notfallkontakt", "field_type": "StA"},
+        ],
+    }
+
+    class AttributePresetForm(forms.Form):
+        PRESET_CHOICES = [
+            ("", "-- Bitte wählen --"),
+            ("basic", "Basis Attribute"),
+            ("kjp", "KJP Attribute"),
+            ("extended", "Erweiterte Attribute"),
+        ]
+        preset = forms.ChoiceField(
+            choices=PRESET_CHOICES, required=True, label="Attribut-Vorlage"
+        )
+
+    if request.method == "POST":
+        form = AttributePresetForm(request.POST)
+        if form.is_valid():
+            preset_type = form.cleaned_data["preset"]
+
+            # Create attributes based on the selected preset
+            if preset_type in ATTRIBUTE_PRESETS:
+                attributes = ATTRIBUTE_PRESETS[preset_type]
+                for attr in attributes:
+                    AttributeModule.objects.create(
+                        event_module=module,
+                        title=attr["title"],
+                        text=attr["text"],
+                        ordering=attributes.index(attr) + 1,
+                        field_type=attr["field_type"],
+                    )
+
+                messages.success(
+                    request, f"{len(attributes)} Attribute wurden erstellt."
+                )
+                return redirect("event-module-detail", pk=pk)
+    else:
+        form = AttributePresetForm()
+
+    return render(
+        request,
+        "event_module_attribute/create/main.html",
+        {
+            "form": form,
+            "module": module,
+            "event": event,
+            "breadcrumbs": [
+                {"name": "Veranstaltung", "url": reverse("event-list")},
+                {
+                    "name": event.name,
+                    "url": reverse("event-detail-overview", args=[event.slug]),
+                },
+                {
+                    "name": "Module",
+                    "url": reverse("event-detail-module", args=[event.slug]),
+                },
+                {
+                    "name": module.header,
+                    "url": reverse("event-module-detail", args=[pk]),
+                },
+                {"name": "Attribut-Vorlagen", "url": "#"},
             ],
         },
     )

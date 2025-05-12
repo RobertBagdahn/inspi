@@ -1,0 +1,26 @@
+{% extends '_base_bread.html' %}
+{% load crispy_forms_tags %}
+{% block contentbread %}
+  <main class="max-w-3xl mx-auto px-4 py-8">
+    <article class="prose lg:prose-xl">
+      <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">Attribut löschen</h3>
+
+      {% if has_registrations %}
+        <div class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50">
+          <p class="font-medium">{{ error_message }}</p>
+        </div>
+        <p class="mb-4 text-sm text-gray-600">Dieses Attribut kann nicht gelöscht werden, da es bereits Anmeldungen hat.</p>
+        <a href="javascript:history.back()" class="mt-4 inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Zurück</a>
+      {% else %}
+        <p class="mb-4 text-sm text-gray-600">Möchtest du das Attribut "{{ attribute }}" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.</p>
+        <form method="post">
+          {% csrf_token %}
+          <div class="flex items-center">
+            <a href="{% url 'attributes-delete' attribute.id %}" class="mr-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Abbrechen</a>
+            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Löschen</button>
+          </div>
+        </form>
+      {% endif %}
+    </article>
+  </main>
+{% endblock %}

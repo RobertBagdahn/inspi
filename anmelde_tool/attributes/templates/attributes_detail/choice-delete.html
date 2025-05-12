@@ -1,0 +1,34 @@
+{% extends '_base_bread.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block contentbread %}
+  <div class="py-10">
+    <header>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold leading-tight text-gray-900">Option löschen</h1>
+        <p class="mt-1 text-sm text-gray-600">Für Attribut: {{ attribute.title }}</p>
+      </div>
+    </header>
+    <main>
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow rounded-lg mt-6">
+          <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Option löschen</h3>
+            <div class="mt-2 max-w-xl text-sm text-gray-500">
+              <p>Möchtest du die Option "{{ choice.text }}" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.</p>
+            </div>
+            <div class="mt-5">
+              <form method="post">
+                {% csrf_token %}
+                <div class="flex items-center">
+                  <a href="{% url 'event-attribute-detail' attribute.id %}" class="mr-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Abbrechen</a>
+                  <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Löschen</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+{% endblock %}

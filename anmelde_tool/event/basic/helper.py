@@ -7,7 +7,8 @@ from django.contrib.auth import get_user_model
 from django.db.models import QuerySet, Q
 
 # from anmelde_tool.event.api_exceptions import NoUUID
-from anmelde_tool.registration.models import Registration, RegistrationParticipant
+from anmelde_tool.registration.models import Registration
+
 # from basic import models as basic_models
 from anmelde_tool.event import api_exceptions as event_exceptions
 from anmelde_tool.event import models as event_models
@@ -16,13 +17,13 @@ from anmelde_tool.event import permissions as event_permissions
 User = get_user_model()
 
 
-
 def is_valid_uuid(val):
     try:
         uuid.UUID(str(val))
         return True
     except ValueError:
         return False
+
 
 def get_bund_or_ring(ob) -> None:
     # level_id = 3

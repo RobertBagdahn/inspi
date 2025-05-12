@@ -1,5 +1,22 @@
 {% load component_tags %}
-<h2 class="text-2xl font-bold mb-4 mt-4">Attribute</h2>
+<h2 class="text-2xl font-bold mb-4 mt-4">
+  Eigenschaften
+  <a href="{% url 'event-module-attribute-create' module.id %}" class="ml-2 text-sm text-blue-500 hover:underline">
+    <svg class="inline h-8 w-8 pb-2 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+    </svg>
+  </a>
+  <a href="{% url 'event-module-attribute-select-create' module.id %}" class="ml-2 text-sm text-blue-500 hover:underline">
+    <svg class="inline h-8 w-8 pb-2 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 8h10M9 12h10M9 16h10M4.99 8H5m-.02 4h.01m0 4H5" />
+    </svg>
+  </a>
+  <a href="{% url 'event-module-attribute-create-set' module.id %}" class="ml-2 text-sm text-blue-500 hover:underline">
+    <svg class="inline h-8 w-8 pb-2 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 17h6m-3 3v-6M4.857 4h4.286c.473 0 .857.384.857.857v4.286a.857.857 0 0 1-.857.857H4.857A.857.857 0 0 1 4 9.143V4.857C4 4.384 4.384 4 4.857 4Zm10 0h4.286c.473 0 .857.384.857.857v4.286a.857.857 0 0 1-.857.857h-4.286A.857.857 0 0 1 14 9.143V4.857c0-.473.384-.857.857-.857Zm-10 10h4.286c.473 0 .857.384.857.857v4.286a.857.857 0 0 1-.857.857H4.857A.857.857 0 0 1 4 19.143v-4.286c0-.473.384-.857.857-.857Z" />
+    </svg>
+  </a>
+</h2>
 {% component 'table' page_obj=attributes form=form %}
 {% fill 'table_heads' %}
 <tr>
@@ -8,7 +25,7 @@
   <th scope="col" class="px-4 py-3">Pflicht?</th>
   <th scope="col" class="px-4 py-3">Typ</th>
   <th scope="col" class="px-4 py-3">Reihenfolge</th>
-    <th scope="col" class="px-4 py-3">Aktion</th>
+  <th scope="col" class="px-4 py-3">Aktion</th>
 </tr>
 {% endfill %}
 {% fill 'table_row' %}
@@ -16,7 +33,13 @@
   <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 {% if item.is_canceled %}bg-red-600{% endif %}">
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.title }}</td>
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.text|truncatechars:30 }}</td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.is_required }}</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+      {% if item.is_required %}
+        Ja
+      {% else %}
+        Nein
+      {% endif %}
+    </td>
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.get_field_type_display }}</td>
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.ordering }}</td>
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">

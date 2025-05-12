@@ -7,9 +7,15 @@ from django.forms import formset_factory, BaseFormSet
 from django.contrib.auth import get_user_model
 from group.models import InspiGroup
 from general.login.models import CustomUser
-from .models import EventPermissionType, BookingOption, EventModule, EventRegistrationType
+from .models import (
+    EventPermissionType,
+    BookingOption,
+    EventModule,
+    EventRegistrationType,
+)
 from masterdata.models import ZipCode, EventLocation
 from masterdata.widgets import HtmxAutocompleteWidget
+from ckeditor.widgets import CKEditorWidget
 
 
 class EventListFilter(forms.Form):
@@ -18,7 +24,7 @@ class EventListFilter(forms.Form):
     """
 
     name = forms.CharField(
-        label='Suche',
+        label="Suche",
         required=False,
         widget=forms.TextInput(attrs={"placeholder": _("Nach Namen suchen")}),
     )
@@ -196,7 +202,7 @@ class EventBasicInfoForm(forms.Form):
         label=_("Ausführliche Beschreibung"),
         max_length=10000,
         required=False,
-        widget=forms.Textarea(attrs={"class": "tailwind-input", "rows": 5}),
+        widget=CKEditorWidget(attrs={"class": "col-span-2"}),
         help_text=_("Gib eine detaillierte Beschreibung der Veranstaltung ein"),
     )
 
@@ -270,7 +276,7 @@ class EventLocationCreationForm(forms.Form):
         widget=HtmxAutocompleteWidget(
             url="/master-data/zip-code-autocomplete",
             min_chars=2,
-            attrs={"class": "tailwind-input", "placeholder": _("PLZ eingeben")}
+            attrs={"class": "tailwind-input", "placeholder": _("PLZ eingeben")},
         ),
     )
 
@@ -554,7 +560,9 @@ class BookingOptionForm(forms.Form):
             attrs={"type": "datetime-local", "class": "tailwind-input"},
             format="%Y-%m-%dT%H:%M",
         ),
-        help_text=_("Die Veranstaltung beginnt für Personen mit dieser Option zu diesem Zeitpunkt"),
+        help_text=_(
+            "Die Veranstaltung beginnt für Personen mit dieser Option zu diesem Zeitpunkt"
+        ),
     )
 
     end_date = forms.DateTimeField(
@@ -573,7 +581,6 @@ class BookingOptionForm(forms.Form):
         widget=forms.CheckboxInput(attrs={"class": "tailwind-checkbox"}),
         help_text=_("Aktivieren, um die Buchungsoption öffentlich sichtbar zu machen"),
     )
-
 
 
 class EventFormModelForm(forms.ModelForm):
@@ -623,7 +630,9 @@ class EventModuleForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(
             attrs={"class": "tailwind-checkbox"},
         ),
-        help_text=_("Wählen Sie die Module aus, die für diese Veranstaltung verwendet werden sollen"),
+        help_text=_(
+            "Wählen Sie die Module aus, die für diese Veranstaltung verwendet werden sollen"
+        ),
     )
 
 
@@ -689,16 +698,22 @@ class EventPermissionForm(forms.ModelForm):
 
 class EventPermissionFilter(forms.Form):
     """Filter form for event permissions."""
+
     search = forms.CharField(
         label=_("Suche"),
         max_length=100,
         required=False,
-        widget=forms.TextInput(attrs={"class": "tailwind-input", "placeholder": _("Benutzer oder Gruppe suchen")}),
+        widget=forms.TextInput(
+            attrs={
+                "class": "tailwind-input",
+                "placeholder": _("Benutzer oder Gruppe suchen"),
+            }
+        ),
         help_text=_("Gib den Namen des Benutzers oder der Gruppe ein"),
     )
     permission_type = forms.ChoiceField(
-        choices=[('', '---------')] + list(EventPermissionType.choices),
-        initial='',
+        choices=[("", "---------")] + list(EventPermissionType.choices),
+        initial="",
         widget=forms.Select(attrs={"class": "tailwind-input"}),
         label="Berechtigungstyp",
         help_text=_("Wählen Sie den Berechtigungstyp aus"),
@@ -708,6 +723,7 @@ class EventPermissionFilter(forms.Form):
 
 class EventRegistrationTypeForm(forms.Form):
     """Form for selecting the event registration type."""
+
     event_registration_type = forms.ModelChoiceField(
         queryset=EventRegistrationType.objects.all(),
         required=False,
@@ -719,6 +735,7 @@ class EventRegistrationTypeForm(forms.Form):
 
 class EventRegistrationSearchFilterForm(forms.Form):
     """Filter form for searching events."""
+
     name = forms.CharField(
         label=_("Veranstaltungsname"),
         max_length=100,
@@ -739,5 +756,38 @@ class EventRegistrationSearchFilterForm(forms.Form):
         required=False,
         initial=False,
         widget=forms.CheckboxInput(attrs={"class": "tailwind-checkbox"}),
-        help_text=_("Nur Veranstaltungen anzeigen, bei denen du noch nicht angemeldet bist"),
+        help_text=_(
+            "Nur Veranstaltungen anzeigen, bei denen du noch nicht angemeldet bist"
+        ),
+    )
+
+
+class EventModuleSearchFilterForm(forms.Form):
+    """Filter form for searching event modules."""
+
+    name = forms.CharField(
+        label="",
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(
+            attrs={"class": "tailwind-input", "placeholder": _("Nach Modulname suchen")}
+        ),
+    )
+
+
+class ListAttributeForm(forms.Form):
+    """Form for listing attributes."""
+
+    attribute = forms.ChoiceField(
+        label=_("Liste der Attribute"),
+        required=True,
+        choices=[
+            ("gender", "Geschlecht"),
+            ("nutritional_tags", "Essensgewohnheiten"),
+            ("leader", "Führungsamt"),
+            ("scout_level", "Pfadfinderstufe"),
+            ("transportation", "Transportmittel"),
+        ],
+        widget=forms.Select(attrs={"class": "tailwind-input"}),
+        help_text=_("Wähle aus wenn du alle Attribute hinzufügen möchtest"),
     )

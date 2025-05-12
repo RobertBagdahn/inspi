@@ -28,10 +28,10 @@ urlpatterns = [
     path('registration-final/<uuid:reg_id>/', views.registration_final, name='registration-final'),
     
     # Participant management URLs
-    path('participant/<uuid:reg_id>/create/', views.participant_create, name='participant-create'),
-    path('participant/<uuid:reg_id>/<int:participant_id>/', views.participant_detail, name='participant-detail'),
-    path('participant/<uuid:reg_id>/<int:participant_id>/update/', views.participant_update, name='participant-update'),
-    path('participant/<uuid:reg_id>/<int:participant_id>/delete/', views.participant_delete, name='participant-delete'),
+    # path('participant/<uuid:reg_id>/create/', views.participant_create, name='participant-create'),
+    # path('participant/<uuid:reg_id>/<int:participant_id>/', views.participant_detail, name='participant-detail'),
+    # path('participant/<uuid:reg_id>/<int:participant_id>/update/', views.participant_update, name='participant-update'),
+    # path('participant/<uuid:reg_id>/<int:participant_id>/delete/', views.participant_delete, name='participant-delete'),
     
     # Responsible person management
     path('registration/<uuid:reg_id>/remove-responsible-person/<int:person_id>/', views.remove_responsible_person, name='remove-responsible-person'),

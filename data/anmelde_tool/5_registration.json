@@ -11,27 +11,5 @@
         1
       ]
     }
-  },
-  {
-    "model": "registration.registrationparticipant",
-    "pk": 1,
-    "fields": {
-      "created_at": "2023-05-05T06:20:09.605Z",
-      "updated_at": "2023-05-05T06:20:09.605Z",
-      "scout_name": "Robsi",
-      "first_name": "Robert",
-      "last_name": "Baggi",
-      "zip_code": 7829,
-      "scout_group": null,
-      "phone_number": "",
-      "email": null,
-      "birthday": null,
-      "registration":  1,
-      "booking_option": 28,
-      "gender": "D",
-      "generated": false,
-      "leader": "N",
-      "scout_level": "N"
-    }
   }
 ]

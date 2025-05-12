@@ -1,10 +1,12 @@
-{% extends '_base.html' %}
-{% load component_tags %}
-{% block content %}
+{% extends '_base_bread.html' %}
+{% load crispy_forms_tags %}
+{% block contentbread %}
   <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-8">
     <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
       {% include './action.html' %}
       {% include './detail-list.html' %}
+      <!-- Include the choice list for radio and multiselect attribute types -->
+      {% include 'attributes_detail/choice-list.html' %}
     </div>
   </section>
-{% endblock content %}
+{% endblock %}

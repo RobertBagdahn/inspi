@@ -9,7 +9,7 @@ from anmelde_tool.event.file_generator.generators import helper
 from anmelde_tool.event.file_generator.generators.abstract_generator import AbstractGenerator
 from anmelde_tool.event.file_generator.models import FileTemplate
 from anmelde_tool.event.basic.models import Event
-from anmelde_tool.registration.models import Registration, RegistrationParticipant
+from anmelde_tool.registration.models import Registration
 
 
 class KjpGeneratorV2(AbstractGenerator):
@@ -65,18 +65,6 @@ class KjpGeneratorV2(AbstractGenerator):
                 sheet['M1'] = current_year
                 sheet['F8'] = bund_name
 
-
-                participant: RegistrationParticipant
-                for participant_index, participant in enumerate(registration_chunk):
-                    cell = participant_index * 2 + 19
-                    participants_count += 1
-                    sheet[f'A{cell}'] = participants_count
-                    sheet[f'C{cell}'] = f'{helper.get_participant_full_name(participant)}' \
-                                        f'\n{helper.get_participant_adress(participant)}'
-                    sheet[f'P{cell}'] = helper.get_participant_gender(participant)
-                    sheet[f'R{cell}'] = helper.get_participant_state(participant)
-                    sheet[f'U{cell}'] = helper.get_participant_below_27(event, participant)
-                    sheet[f'AQ{cell}'] = helper.get_participant_days(event, participant)
 
         if len(wb.worksheets) > 1:
             wb.remove(original)

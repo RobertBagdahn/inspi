@@ -20,7 +20,6 @@ class TimeStampMixin(models.Model):
         abstract = True
 
 
-
 class EventPermissionType(models.TextChoices):
     VIEW = "invite", "Veranstaltungseinladung"
     VIEW_NON_PRIVACY = "view_non_privacy", "Daten (nur nicht Datenschutzrelvante)"
@@ -125,10 +124,7 @@ class Event(TimeStampMixin):
         """
         Returns the total number of participants for the event.
         """
-        return sum(
-            registration.participants.count()
-            for registration in self.registrations.all()
-        )
+        return 1
 
     @property
     def status(self):
@@ -160,7 +156,7 @@ class Event(TimeStampMixin):
             return "Ersteller"
         else:
             return "Eingeladene"
-        
+
     @property
     def days_until_event(self):
         """
@@ -169,11 +165,11 @@ class Event(TimeStampMixin):
         """
         if not self.start_date:
             return 0
-        
+
         now = timezone.now()
         if self.start_date <= now:
             return 0
-        
+
         delta = self.start_date - now
         return delta.days
 
@@ -187,7 +183,6 @@ class Event(TimeStampMixin):
         verbose_name = "Veranstaltung"
         verbose_name_plural = "Veranstaltungen"
         ordering = ["start_date"]
-
 
 
 class EventPermission(TimeStampMixin):

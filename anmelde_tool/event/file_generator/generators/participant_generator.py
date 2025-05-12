@@ -32,22 +32,22 @@ class ParticipantGenerator(AbstractGenerator):
         alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
         font_style = Font(size="10", name='Calibri')
 
-        participant: event_models.RegistrationParticipant
-        for index, participant in enumerate(participants.all()):
-            original[f'A{index + 4}'] = helper.get_participant_first_name(participant)
-            original[f'B{index + 4}'] = helper.get_participant_last_name(participant)
-            original[f'C{index + 4}'] = helper.get_participant_scout_name(participant)
-            original[f'D{index + 4}'] = helper.get_participant_age(event, participant)
-            original[f'E{index + 4}'] = helper.get_participant_gender(participant)
-            original[f'F{index + 4}'] = helper.get_participant_mobile_numer(participant)
-            original[f'G{index + 4}'] = helper.get_participant_email(participant)
-            original[f'H{index + 4}'] = helper.get_participant_registration_scout_organisation_name(participant)
-            original[f'I{index + 4}'] = helper.get_participant_address(participant)
-            original[f'J{index + 4}'] = helper.get_participant_zip_city(participant)
+        # participant: event_models.RegistrationParticipant
+        # for index, participant in enumerate(participants.all()):
+        #     original[f'A{index + 4}'] = helper.get_participant_first_name(participant)
+        #     original[f'B{index + 4}'] = helper.get_participant_last_name(participant)
+        #     original[f'C{index + 4}'] = helper.get_participant_scout_name(participant)
+        #     original[f'D{index + 4}'] = helper.get_participant_age(event, participant)
+        #     original[f'E{index + 4}'] = helper.get_participant_gender(participant)
+        #     original[f'F{index + 4}'] = helper.get_participant_mobile_numer(participant)
+        #     original[f'G{index + 4}'] = helper.get_participant_email(participant)
+        #     original[f'H{index + 4}'] = helper.get_participant_registration_scout_organisation_name(participant)
+        #     original[f'I{index + 4}'] = helper.get_participant_address(participant)
+        #     original[f'J{index + 4}'] = helper.get_participant_zip_city(participant)
 
-            original.row_dimensions[index + 4].height = 25
-            for letter in string.ascii_uppercase[:10]:
-                original[f'{letter}{index + 4}'].alignment = alignment
-                original[f'{letter}{index + 4}'].font = font_style
+        #     original.row_dimensions[index + 4].height = 25
+        #     for letter in string.ascii_uppercase[:10]:
+        #         original[f'{letter}{index + 4}'].alignment = alignment
+        #         original[f'{letter}{index + 4}'].font = font_style
 
         return wb

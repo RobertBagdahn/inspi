@@ -7,6 +7,7 @@ from django.contrib import messages
 from allauth.socialaccount.signals import pre_social_login
 from .service import update_person_user_from_keycloak, update_groups_from_keycloak
 
+
 @receiver(post_save, sender=Person)
 def update_auth_level(sender, instance, created, **kwargs):
     """
@@ -41,18 +42,21 @@ def link_social_account_to_person(sender, request, sociallogin, **kwargs):
     user = sociallogin.user
 
     logging.info(f"Linking social account to person for user: {user.username}")
-    
+
     if not user.id:  # New user, not saved yet
         # We'll handle this in the post_save signal once the user is created
         logging.info("New user detected, skipping person update.")
         return
-        
+
     # For existing users, update their person information from social data
-    if hasattr(sociallogin, 'account'):
+    if hasattr(sociallogin, "account"):
         instance = user
         logging.info(f"Updating person_user for user: {instance.username}")
-        
+
+        logging.info(
+            f"Found social account: {sociallogin.account.provider} for user {instance.username}"
+        )
+
         # Get or update the person linked to this user
         update_person_user_from_keycloak(instance)
         update_groups_from_keycloak(instance)
-
