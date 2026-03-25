@@ -1,6 +1,5 @@
 <!-- templates/_base.html -->
 {% load static %}
-{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -51,7 +50,7 @@
         <meta property="og:image"
               content="{% static 'images/favicon/favicon.ico' %}">
         <meta property="og:type" content="blog">
-        {% tailwind_css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/dist/styles.css' %}">
         <script src="{% static 'js/jquery3.7.1.js' %}"></script>
         <script src="{% static 'js/htmx.min.js' %}"></script>
     </head>

@@ -44,7 +44,6 @@ urlpatterns = [
     path("master-data/", include("masterdata.urls")),
     path("apps", index, name="index"),
     path("accounts/", include("allauth.urls")),
-    path("__reload__/", include("django_browser_reload.urls")),
     path("search", search, name="global-search"),
     path("autocomplete", autocompleteModel, name="autocomplete"),
     path(
@@ -61,3 +60,8 @@ urlpatterns = [
     
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += [
+        path("__reload__/", include("django_browser_reload.urls")),
+    ]

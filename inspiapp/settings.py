@@ -367,6 +367,6 @@ TRACK_IGNORE_URLS = [r'/admin/', r'tracking.*', r'__reload__.*', r'sitemap.xml',
 
 
 if not DEBUG:
-    INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'django_browser_reload']
+    INSTALLED_APPS = [app for app in INSTALLED_APPS if app not in ('django_browser_reload', 'tailwind')]
     MIDDLEWARE = [m for m in MIDDLEWARE if m != 'django_browser_reload.middleware.BrowserReloadMiddleware']
 
