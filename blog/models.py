@@ -69,6 +69,7 @@ class Comment(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     content = RichTextField(max_length=8000, default="")
     date_posted = models.DateTimeField(auto_now_add=True)
+    is_published = models.BooleanField(default=False)
     parent = models.ForeignKey(
         "self", null=True, blank=True, on_delete=models.CASCADE, related_name="replies"
     )
@@ -81,7 +82,7 @@ class Comment(models.Model):
 
     @property
     def children(self):
-        return Comment.objects.filter(parent=self).reverse()
+        return Comment.objects.filter(parent=self, is_published=True).reverse()
 
     @property
     def is_parent(self):

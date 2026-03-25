@@ -1,7 +1,7 @@
-import os
-import instructor
-import google.generativeai as genai
-from pydantic import BaseModel, Field
+from google import genai
+from google.genai import types
+
+client = genai.Client(vertexai=True, project="inspi-441320", location="europe-west1")
 
 
 def get_ai_suggestion(prompt: str, model: str, OutputModel):
@@ -9,19 +9,16 @@ def get_ai_suggestion(prompt: str, model: str, OutputModel):
     local = False
 
     if not local:
-        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-        client = instructor.from_gemini(
-            client=genai.GenerativeModel(
-                model_name=model,
+        response = client.models.generate_content(
+            model=model,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json",
+                response_schema=OutputModel,
             ),
-            mode=instructor.Mode.GEMINI_JSON,
         )
 
-        resp = client.chat.completions.create(
-            messages=[{"role": "user", "content": prompt + " "}],
-            response_model=OutputModel,
-            max_retries=5,
-        )
+        resp = OutputModel.model_validate_json(response.text)
     else:
         resp = OutputModel(summary="This is a test summary")
 

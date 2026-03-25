@@ -41,10 +41,12 @@ def post(request, slug):
     post.update_views()
     comment_form = CommentForm()
     related_posts = Post.objects.all().order_by("?")[:3]
+    published_comments = post.comment_set.filter(is_published=True)
     context = {
         "post": post,
         "comment_form": comment_form,
         "related_posts": related_posts,
+        "comments": published_comments,
     }
     return render(request, "post.html", context)
 

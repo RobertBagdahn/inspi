@@ -56,7 +56,7 @@ def get_basic_info_suggestions(ingredient):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -90,7 +90,7 @@ def get_physical_properties_suggestions(ingredient):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -116,7 +116,7 @@ def get_nutritional_tags_suggestions(ingredient):
             Berücksichtige folgende bekannte Allergene/Unverträglichkeiten: {', '.join(tag_names)}
             Antworte nur mit relevanten Allergenen aus dieser Liste.
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -166,7 +166,7 @@ def get_scores_suggestions(ingredient):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -192,7 +192,7 @@ def get_recipe_info_suggestions(ingredient):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -235,7 +235,7 @@ def get_nutrition_suggestions(ingredient):
             Gebe mir passende Nährwerte für die Rezepzutat. Falls nicht bekannt, dann schätze die Werte.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 

@@ -32,7 +32,7 @@ def get_basic_info_suggestions(ingredient_name):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient_name}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=BasicInfoModel,
     )
 
@@ -77,7 +77,7 @@ def get_physical_properties_suggestions(ingredient_name):
             Gebe mir passende physikalische Eigenschaften für die Zutat: {ingredient_name}
             Sei präzise und technisch korrekt. Berücksichtige Standardbedingungen für Lagerung und Haltbarkeit.
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=PhysicalPropertiesModel,
     )
     
@@ -101,7 +101,7 @@ def get_nutritional_tags_suggestions(ingredient_name):
             Berücksichtige folgende bekannte Allergene/Unverträglichkeiten: {', '.join(tag_names)}
             Antworte nur mit relevanten Allergenen aus dieser Liste.
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=NutritionalTagsModel,
     )
     
@@ -150,7 +150,7 @@ def get_scores_suggestions(ingredient_name):
             3. NOVA-Score für Verarbeitungsgrad (1-4)
             4. Umwelteinfluss (1-5)
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=ScoresModel,
     )
     
@@ -174,7 +174,7 @@ def get_recipe_info_suggestions(ingredient_name):
             1. Ob sie ohne Zubereitung direkt verzehrt werden kann
             2. Das typische Gewicht in Gramm, das in einem Standardrezept verwendet wird
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=RecipeInfoModel,
     )
     
@@ -225,7 +225,7 @@ def get_nutrition_suggestions(ingredient_name):
             Gebe mir passende Nährwerte für 100g der Zutat: {ingredient_name}
             Sei präzise und technisch korrekt.
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=NutritionModel,
     )
     

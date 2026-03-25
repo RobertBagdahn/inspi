@@ -60,10 +60,13 @@
             <header class="bg-blue-500 border-gray-200">
                 {% include "main_header.html" %}
             </header>
-            <main class="flex-auto">
+            <main class="flex-auto relative">
                 {% include "messages.html" with messages=messages %}
                 {% block content %}
                 {% endblock content %}
+                <img src="{% static 'images/' %}{{ current_app.inspi_img }}"
+                     class="fixed bottom-0 right-0 h-96 opacity-10 pointer-events-none z-0"
+                     alt="Inspi Maskottchen" />
             </main>
             <footer>
                 {% include "footer.html" %}

@@ -1167,7 +1167,7 @@ def admin_ai(request):
             return render(request, "activity/admin/ai/suggestion.html", context)
     form = AiForm(
         initial={
-            "model": "models/gemini-2.0-flash-exp"
+            "model": "gemini-3-flash-preview"
         }
     )
     context = {

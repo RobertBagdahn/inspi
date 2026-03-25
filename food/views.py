@@ -2241,7 +2241,7 @@ def ingredient_suggestions_basic(request, slug):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -2287,7 +2287,7 @@ def ingredient_suggestions_attribute(request, slug):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -2344,7 +2344,7 @@ def ingredient_suggestions_score(request, slug):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -2377,7 +2377,7 @@ def ingredient_suggestions_recipe(request, slug):
             Entferne alle Mengenangaben und Einheiten. Ohne Markennamen.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -2410,7 +2410,7 @@ def ingredient_suggestions_nutritional_tags(request, slug):
             Berücksichtige folgende bekannte Allergene/Unverträglichkeiten: {', '.join(tag_names)}
             Antworte nur mit relevanten Allergenen aus dieser Liste.
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 
@@ -2463,7 +2463,7 @@ def ingredient_suggestions_nutrition(request, slug):
             Gebe mir passende Nährwerte für die Rezepzutat. Falls nicht bekannt, dann schätze die Werte.
             {ingredient.name} {ingredient.description}
         """,
-        model="models/gemini-2.0-flash-exp",
+        model="gemini-3-flash-preview",
         OutputModel=OutputModel,
     )
 

@@ -49,7 +49,7 @@
             <p class="lead mb-6">{{ post.overview }}</p>
             {{ post.content|safe }}
         </article>
-        {% include 'post/comment.html' with comments=post.comment_set.all comment_form=comment_form %}
+        {% include 'post/comment.html' with comments=comments comment_form=comment_form %}
         {% include 'post/related-posts.html' with related_posts=related_posts %}
     {% endblock content %}
 </main>

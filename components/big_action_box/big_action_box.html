@@ -1,28 +1,35 @@
 {% load component_tags %}
-<div class="col-span-2 items-center gap-6 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:col-span-2 md:p-6 lg:flex">
+<div class="col-span-2 rounded-xl border border-gray-100 bg-white p-5 shadow-md hover:shadow-lg transition-shadow duration-300 dark:border-gray-700 dark:bg-gray-800 md:col-span-2 md:p-6 lg:flex lg:items-center lg:gap-6">
+    <div class="mb-4 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-{{ color }}-50 ring-2 ring-{{ color }}-100 lg:mb-0">
+        <svg class="h-7 w-7 text-{{ color }}-600"
+             aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg"
+             width="24"
+             height="24"
+             fill="none"
+             viewBox="0 0 24 24">
+            {% component "icon" icon=icon %} {% endcomponent %}
+        </svg>
+    </div>
     <div class="w-full">
-        <h4 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ header }}</h4>
-        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{{ description }}</p>
+        <h4 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">{{ header }}</h4>
+        <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">{{ description }}</p>
         {% if url %}
-            <div>
-                <a href="{{ url }}"
-                   class="bg-{{ color }}-600 hover:bg-{{ color }}-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
-                    {% component "icon" icon=icon %} {% endcomponent %}
-                    {{ button_text }}
-                </a>
-            </div>
+            <a href="{{ url }}"
+               class="inline-flex items-center gap-2 bg-{{ color }}-600 hover:bg-{{ color }}-700 text-white font-semibold py-2.5 px-5 rounded-lg shadow-sm hover:shadow transition-all duration-200 text-sm">
+                {% component "icon" icon=icon %} {% endcomponent %}
+                {{ button_text }}
+            </a>
         {% endif %}
         {% if post_url %}
-            <div>
-                <form action="{{ post_url }}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit"
-                            class="bg-{{ color }}-600 hover:bg-{{ color }}-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
-                        {% component "icon" icon=icon %} {% endcomponent %}
-                        {{ button_text }}
-                    </button>
-                </form>
-            </div>
+            <form action="{{ post_url }}" method="POST" class="inline">
+                {% csrf_token %}
+                <button type="submit"
+                        class="inline-flex items-center gap-2 bg-{{ color }}-600 hover:bg-{{ color }}-700 text-white font-semibold py-2.5 px-5 rounded-lg shadow-sm hover:shadow transition-all duration-200 text-sm">
+                    {% component "icon" icon=icon %} {% endcomponent %}
+                    {{ button_text }}
+                </button>
+            </form>
         {% endif %}
     </div>
 </div>

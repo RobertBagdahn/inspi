@@ -32,10 +32,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 DEBUG = env('DEBUG')
 LOCAL_DB = env('LOCAL_DB')
 
-# Print all items in env object
-print(f"env: {env}")
-for key, value in env.ENVIRON.items():
-    print(f"{key}: {value}")
+
 env_file = os.path.join(BASE_DIR, ".env")
 
 if os.path.isfile(env_file):
@@ -154,7 +151,6 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     "inspiapp.middleware.middleware.HtmxMessageMiddleware",
     'tracking.middleware.VisitorTrackingMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
 ROOT_URLCONF = "inspiapp.urls"
@@ -207,8 +203,6 @@ WSGI_APPLICATION = "inspiapp.wsgi.application"
 # Use django-environ to parse the connection string
 DATABASES = {"default": env.db()}
 
-print(f"LOCAL_DB: {LOCAL_DB}")
-
 if not LOCAL_DB:
     if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
         print("Using Cloud SQL Auth Proxy")
@@ -228,7 +222,7 @@ if LOCAL_DB:
             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
-print(f"Database: {DATABASES['default']}")
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -266,6 +260,13 @@ USE_TZ = True
 STATIC_ROOT = "static"
 STATIC_URL = "/static/"
 STATICFILES_DIRS = []
+
+# Cache
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -346,15 +347,15 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 
-EMAIL_BACKEND = env.str("EMAIL_BACKEND")
-EMAIL_HOST = env.str("EMAIL_HOST")
-EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = env.int("EMAIL_PORT")
-EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
-DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL")
+EMAIL_BACKEND = env.str("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
+EMAIL_HOST = env.str("EMAIL_HOST", default="")
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
+EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL", default="noreply@example.com")
 EMAIL_USE_SSL = env.bool(
-    "EMAIL_USE_SSL",
+    "EMAIL_USE_SSL", default=False,
 )
 
 
