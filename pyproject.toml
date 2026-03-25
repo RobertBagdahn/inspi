@@ -32,6 +32,7 @@ dependencies = [
     "django-tracking2>=0.5.1",
     "django-components>=0.123",
     "django-htmx-autocomplete>=0.8",
+    "tailwind>=3.1.5b0",
 ]
 
 [dependency-groups]
