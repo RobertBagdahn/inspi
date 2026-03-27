@@ -1,6 +1,6 @@
 version = 1
 revision = 3
-requires-python = ">=3.12"
+requires-python = ">=3.12, <4.0"
 resolution-markers = [
     "python_full_version >= '3.14'",
     "python_full_version == '3.13.*'",
@@ -962,6 +962,7 @@ dependencies = [
     { name = "django-imagekit" },
     { name = "django-mathfilters" },
     { name = "django-pictures" },
+    { name = "django-tailwind" },
     { name = "django-tracking2" },
     { name = "django-widget-tweaks" },
     { name = "easy-thumbnails" },
@@ -972,13 +973,11 @@ dependencies = [
     { name = "psycopg2-binary" },
     { name = "pydantic" },
     { name = "python-dotenv" },
-    { name = "tailwind" },
 ]
 
 [package.dev-dependencies]
 dev = [
     { name = "django-browser-reload" },
-    { name = "django-tailwind" },
     { name = "djlint" },
 ]
 
@@ -1001,6 +1000,7 @@ requires-dist = [
     { name = "django-imagekit", specifier = ">=5.0.0" },
     { name = "django-mathfilters", specifier = ">=1.0.0" },
     { name = "django-pictures", specifier = ">=1.3.1" },
+    { name = "django-tailwind", specifier = ">=3.8.0" },
     { name = "django-tracking2", specifier = ">=0.5.1" },
     { name = "django-widget-tweaks", specifier = ">=1.5.0" },
     { name = "easy-thumbnails", specifier = ">=2.10" },
@@ -1011,13 +1011,11 @@ requires-dist = [
     { name = "psycopg2-binary", specifier = ">=2.9.10" },
     { name = "pydantic", specifier = ">=2.10.3" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
-    { name = "tailwind", specifier = ">=3.1.5b0" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "django-browser-reload", specifier = ">=1.13.0" },
-    { name = "django-tailwind", specifier = ">=3.8.0" },
     { name = "djlint", specifier = ">=1.36.3" },
 ]
 
@@ -1603,18 +1601,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/90/76/437d71068094df0726366574cf3432a4ed754217b436eb7429415cf2d480/sqlparse-0.5.5.tar.gz", hash = "sha256:e20d4a9b0b8585fdf63b10d30066c7c94c5d7a7ec47c889a2d83a3caa93ff28e", size = 120815, upload-time = "2025-12-19T07:17:45.073Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/49/4b/359f28a903c13438ef59ebeee215fb25da53066db67b305c125f1c6d2a25/sqlparse-0.5.5-py3-none-any.whl", hash = "sha256:12a08b3bf3eec877c519589833aed092e2444e68240a3577e8e26148acc7b1ba", size = 46138, upload-time = "2025-12-19T07:17:46.573Z" },
-]
-
-[[package]]
-name = "tailwind"
-version = "3.1.5b0"
-source = { registry = "https://pypi.org/simple" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b1/c6/a265bf8cea8d8c17e4e721abe3d99cece6b515f0c8d8320b1af2ead8d347/tailwind-3.1.5b0-py3-none-macosx_10_9_x86_64.whl", hash = "sha256:6baf950e4487794df56db3c2f749d2d35c91e9ac54cacd82220d91a199b19c40", size = 19496122, upload-time = "2022-07-09T16:00:05.894Z" },
-    { url = "https://files.pythonhosted.org/packages/d8/73/b27d2bfddb40f24df0e4db6aa81eeeb480b0b41d034129b50d62d1fe527f/tailwind-3.1.5b0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:0934b76c6afb45e0601a4acc4ef7d57701249978c53d6ccff4ea0c85263369cf", size = 17805712, upload-time = "2022-07-09T16:00:09.928Z" },
-    { url = "https://files.pythonhosted.org/packages/39/55/0891c7e8374fac43b59431b2635987b7742ed24f20d7eadf879b44d058f6/tailwind-3.1.5b0-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl", hash = "sha256:97974629edd0ce595794fdb40d3318c259e7992d67461949cb5687d1ab9faf48", size = 16196897, upload-time = "2022-07-09T16:00:13.536Z" },
-    { url = "https://files.pythonhosted.org/packages/46/15/e17a4b708d615ce6e6c36783a698f5e75c92edb73c75453a1dadc81ecddb/tailwind-3.1.5b0-py3-none-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:f61e4a1dd2d43076af818fa8281f2624a34c3d4d8aed2045538f03cfdfde438a", size = 17622295, upload-time = "2022-07-09T16:00:16.887Z" },
-    { url = "https://files.pythonhosted.org/packages/58/da/70fa56d15df78bd07905c9e48dad7c27aba9c07a177e1c92a39d1fd53361/tailwind-3.1.5b0-py3-none-win_amd64.whl", hash = "sha256:96fcb172730926c48c5a6e35d614259b00e35c89805932e0b671239504d13acb", size = 15922905, upload-time = "2022-07-09T16:00:20.381Z" },
 ]
 
 [[package]]

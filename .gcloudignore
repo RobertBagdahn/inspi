@@ -20,12 +20,16 @@ __pycache__/
 # virtualenv
 venv/
 .venv/
+.venv*/
 
 data/
 node_modules/
+**/node_modules/
+inspitheme/static_src/
 
 db.sqlite3
 .cloud-sql-proxy
+cloud-sql-proxy
 
 # ignore vscode settings
 .vscode/

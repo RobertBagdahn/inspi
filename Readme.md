@@ -57,8 +57,15 @@ the file need to look like the example.env file in that folder
 `export USE_CLOUD_SQL_AUTH_PROXY=true`
 `poetry run python manage.py migrate`
 
+# build css into the static directory served by App Engine
+`poetry run python manage.py tailwind build`
+
 # deploy
 `gcloud app deploy`
+
+# cost controls
+- App Engine is capped at a single `F1` instance in `app.yaml` to avoid scale-out cost. Raise `max_instances` again if latency under burst traffic becomes a problem.
+- Visitor tracking is off by default in production. Re-enable it only if you need those analytics by setting `ENABLE_VISITOR_TRACKING=true`. Anonymous tracking stays off unless `TRACK_ANONYMOUS_USERS=true` is also set.
 
 
 # formater for template files

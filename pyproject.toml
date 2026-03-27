@@ -3,7 +3,7 @@ name = "inspiapp"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<4.0"
 dependencies = [
     "django>=5.0.6",
     "django-filter>=24.2",
@@ -32,13 +32,12 @@ dependencies = [
     "django-tracking2>=0.5.1",
     "django-components>=0.123",
     "django-htmx-autocomplete>=0.8",
-    "tailwind>=3.1.5b0",
+    "django-tailwind>=3.8.0",
 ]
 
 [dependency-groups]
 dev = [
     "djlint>=1.36.3",
-    "django-tailwind>=3.8.0",
     "django-browser-reload>=1.13.0",
 ]
 

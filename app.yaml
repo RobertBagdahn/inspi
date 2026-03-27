@@ -22,7 +22,7 @@ entrypoint: gunicorn -b :$PORT --timeout 300 --workers 2 inspiapp.wsgi
 
 automatic_scaling:
   min_instances: 0
-  max_instances: 2
+  max_instances: 1
   target_cpu_utilization: 0.75
 
 env_variables:

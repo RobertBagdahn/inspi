@@ -11,6 +11,7 @@ from django.core.validators import (
     MaxLengthValidator,
 )
 from django.db import models
+from django.templatetags.static import static
 from pictures.models import PictureField
 from colorfield.fields import ColorField
 from ckeditor.fields import RichTextField
@@ -275,6 +276,22 @@ class Activity(TimeStampMixin):
     activity_types_string = property(_get_art_string)
     location_string = property(_get_location_string)
     time_string = property(_get_time_string)
+
+    def _get_resolved_image_url(self):
+        if not self.image:
+            return ""
+
+        image_name = str(self.image.name).replace("\\", "/")
+        if image_name.startswith("/static/"):
+            return image_name
+        if image_name.startswith("static/"):
+            return static(image_name.removeprefix("static/"))
+        if image_name.startswith("activity/"):
+            return static(image_name)
+
+        return self.image.url
+
+    resolved_image_url = property(_get_resolved_image_url)
 
     def is_allowed_to_edit(self, user):
         # user in authors

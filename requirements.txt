@@ -52,6 +52,7 @@ django==6.0.3
     #   django-htmx-autocomplete
     #   django-js-asset
     #   django-pictures
+    #   django-tailwind
     #   django-tracking2
     #   django-widget-tweaks
     #   easy-thumbnails
@@ -90,6 +91,8 @@ django-js-asset==3.1.2
 django-mathfilters==1.0.0
     # via inspiapp
 django-pictures==1.7.3
+    # via inspiapp
+django-tailwind==4.4.2
     # via inspiapp
 django-tracking2==0.5.1
     # via inspiapp
@@ -178,6 +181,8 @@ pydantic==2.12.5
     #   inspiapp
 pydantic-core==2.41.5
     # via pydantic
+pytailwindcss==0.3.0
+    # via django-tailwind
 python-dotenv==1.2.2
     # via inspiapp
 rcssmin==1.2.2
@@ -193,8 +198,6 @@ sniffio==1.3.1
     # via google-genai
 sqlparse==0.5.5
     # via django
-tailwind==3.1.5b0
-    # via inspiapp
 tenacity==9.1.4
     # via google-genai
 tinycss2==1.5.1

@@ -9,16 +9,70 @@ from masterdata.models import ScoutHierarchy, ZipCode
 from event.basic import choices as event_basic_choices
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Div, HTML
-from autocomplete import ModelAutocomplete, AutocompleteWidget
+from django.db.models import Q
+
+try:
+    from autocomplete import ModelAutocomplete, AutocompleteWidget
+
+    LEGACY_AUTOCOMPLETE_API = True
+except ImportError:
+    from autocomplete import HTMXAutoComplete
+    from autocomplete.widgets import Autocomplete as AutocompleteWidget
+
+    LEGACY_AUTOCOMPLETE_API = False
 
 
-class ZipCodeAutocomplete(ModelAutocomplete):
-    model = ZipCode
-    search_attrs = ['zip_code', 'city']
-    route_name = 'zipcode-autocomplete'
-    
-    def get_label(self, instance):
-        return f"{instance.zip_code} {instance.city}"
+if LEGACY_AUTOCOMPLETE_API:
+    class ZipCodeAutocomplete(ModelAutocomplete):
+        model = ZipCode
+        search_attrs = ["zip_code", "city"]
+        route_name = "zipcode-autocomplete"
+
+        @classmethod
+        def get_label_for_record(cls, record):
+            return f"{record.zip_code} {record.city}"
+
+
+    zipcode_widget = AutocompleteWidget(
+        ac_class=ZipCodeAutocomplete,
+        options={"placeholder": "Suche nach PLZ oder Ort..."},
+    )
+else:
+    class ZipCodeAutocomplete(HTMXAutoComplete):
+        name = "zipcode-autocomplete"
+
+        class Meta:
+            model = ZipCode
+            item_value = "id"
+            item_label = "zip_code"
+
+        def get_items(self, search=None, values=None):
+            if search is not None:
+                return ZipCode.objects.filter(
+                    Q(zip_code__icontains=search) | Q(city__icontains=search)
+                ).values("id", "zip_code", "city")
+
+            if values is not None:
+                return ZipCode.objects.filter(id__in=values).values("id", "zip_code", "city")
+
+            return []
+
+        def map_items(self, items, selected=None):
+            selected_values = set(selected or [])
+            return [
+                {
+                    "label": f"{item['zip_code']} {item['city']}",
+                    "value": str(item["id"]),
+                    "selected": str(item["id"]) in selected_values,
+                }
+                for item in items
+            ]
+
+
+    zipcode_widget = AutocompleteWidget(
+        use_ac=ZipCodeAutocomplete,
+        options={"placeholder": "Suche nach PLZ oder Ort..."},
+    )
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -159,10 +213,7 @@ class PersonWizardContactForm(forms.Form):
         label="Postleitzahl",
         required=False,
         help_text="Deine Postleitzahl",
-        widget=AutocompleteWidget(
-            ac_class=ZipCodeAutocomplete,
-            options={"placeholder": "Suche nach PLZ oder Ort..."}
-        )
+        widget=zipcode_widget
     )
     city = forms.CharField(
         max_length=100, 

@@ -40,6 +40,9 @@ env/
 build/
 develop-eggs/
 dist/
+!static/css/
+!static/css/dist/
+!static/css/dist/styles.css
 downloads/
 eggs/
 .eggs/

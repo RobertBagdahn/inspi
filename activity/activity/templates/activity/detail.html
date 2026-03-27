@@ -36,7 +36,7 @@
       src="{% cropped_thumbnail activity "cropping" %}"
       alt="image description"> {% endcomment %}
                         <img class="w-full object-cover"
-                             src="{{ activity.image.url }}"
+                             src="{{ activity.resolved_image_url }}"
                              alt="image description">
                     {% else %}
                         <img class="w-48 h-48 mx-auto"

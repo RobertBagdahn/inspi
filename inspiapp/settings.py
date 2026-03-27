@@ -11,11 +11,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import io
+import importlib.util
 import os
+import sys
 import environ
 from urllib.parse import urlparse
 from easy_thumbnails.conf import Settings as thumbnail_settings
-from google.cloud import secretmanager
 
 
 
@@ -27,13 +28,15 @@ env = environ.Env(
 )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
-DEBUG = env('DEBUG')
-LOCAL_DB = env('LOCAL_DB')
-
-
 env_file = os.path.join(BASE_DIR, ".env")
+management_command = sys.argv[1] if len(sys.argv) > 1 else ""
+is_tailwind_command = management_command == "tailwind"
+allow_local_command_fallback = management_command in {
+    "tailwind",
+    "collectstatic",
+    "findstatic",
+}
+has_browser_reload = importlib.util.find_spec("django_browser_reload") is not None
 
 if os.path.isfile(env_file):
     # Use a local secret file, if provided
@@ -51,6 +54,8 @@ elif os.getenv("TRAMPOLINE_CI", None):
 # [END_EXCLUDE]
 elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
     # Pull secrets from Secret Manager
+    from google.cloud import secretmanager
+
     project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
 
     client = secretmanager.SecretManagerServiceClient()
@@ -59,9 +64,20 @@ elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
     payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
 
     env.read_env(io.StringIO(payload))
+elif allow_local_command_fallback:
+    placeholder = (
+        "SECRET_KEY=local-dev-secret\n"
+        f"DATABASE_URL=sqlite://{os.path.join(BASE_DIR, 'db.sqlite3')}\n"
+        "DEBUG=True\n"
+        "LOCAL_DB=True\n"
+    )
+    env.read_env(io.StringIO(placeholder))
 else:
     raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
 # [END gaestd_py_django_secret_config]
+
+DEBUG = env("DEBUG", default=False)
+LOCAL_DB = env("LOCAL_DB", default=False)
 
 
 # Quick-start development settings - unsuitable for production
@@ -360,13 +376,24 @@ EMAIL_USE_SSL = env.bool(
 
 
 # Tracking
+ENABLE_VISITOR_TRACKING = env.bool("ENABLE_VISITOR_TRACKING", default=DEBUG)
 TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
-TRACK_PAGEVIEWS = True
-TRACK_ANONYMOUS_USERS = True
+TRACK_PAGEVIEWS = env.bool("TRACK_PAGEVIEWS", default=ENABLE_VISITOR_TRACKING)
+TRACK_ANONYMOUS_USERS = env.bool("TRACK_ANONYMOUS_USERS", default=False)
 TRACK_IGNORE_URLS = [r'/admin/', r'tracking.*', r'__reload__.*', r'sitemap.xml', r'robots.txt', r'/favicon.ico', r'/static/.*', r'/media/.*']
+
+if not ENABLE_VISITOR_TRACKING:
+    MIDDLEWARE = [m for m in MIDDLEWARE if m != 'tracking.middleware.VisitorTrackingMiddleware']
 
 
 if not DEBUG:
-    INSTALLED_APPS = [app for app in INSTALLED_APPS if app not in ('django_browser_reload', 'tailwind')]
+    removable_apps = {"django_browser_reload"}
+    if not is_tailwind_command:
+        removable_apps.add("tailwind")
+    INSTALLED_APPS = [app for app in INSTALLED_APPS if app not in removable_apps]
+    MIDDLEWARE = [m for m in MIDDLEWARE if m != 'django_browser_reload.middleware.BrowserReloadMiddleware']
+
+if allow_local_command_fallback or not has_browser_reload:
+    INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'django_browser_reload']
     MIDDLEWARE = [m for m in MIDDLEWARE if m != 'django_browser_reload.middleware.BrowserReloadMiddleware']
 
