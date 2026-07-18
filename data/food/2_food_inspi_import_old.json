@@ -19,6 +19,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -2,
@@ -42,7 +43,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -65,6 +66,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 7,
@@ -88,7 +90,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -111,6 +113,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 2.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": 0,
@@ -134,7 +137,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -157,6 +160,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -180,7 +184,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -203,6 +207,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -226,7 +231,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -249,6 +254,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -4,
@@ -272,7 +278,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -295,6 +301,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 20,
@@ -318,7 +325,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -341,6 +348,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -364,7 +372,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -387,6 +395,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 13,
@@ -410,7 +419,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -433,6 +442,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 8,
@@ -456,7 +466,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -479,6 +489,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": -4,
@@ -502,7 +513,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -525,6 +536,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -548,7 +560,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -571,6 +583,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 2.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -3,
@@ -594,7 +607,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -617,6 +630,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 10,
@@ -640,7 +654,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -663,6 +677,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 19,
@@ -686,7 +701,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -709,6 +724,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 2.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 16,
@@ -732,7 +748,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -755,6 +771,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -4,
@@ -778,7 +795,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -801,6 +818,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 6.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 11,
@@ -824,7 +842,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -847,6 +865,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 4.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 1,
@@ -870,7 +889,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -893,6 +912,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 2.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 8.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": 10,
@@ -916,7 +936,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -939,6 +959,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 9.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": 8,
@@ -962,7 +983,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -985,6 +1006,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -1008,7 +1030,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1031,6 +1053,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -1054,7 +1077,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1077,6 +1100,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 16,
@@ -1100,7 +1124,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1123,6 +1147,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 7.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": 6,
@@ -1146,7 +1171,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1169,6 +1194,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 2.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -1,
@@ -1192,7 +1218,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1215,6 +1241,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 7.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 20,
@@ -1238,7 +1265,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1261,6 +1288,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -2,
@@ -1284,7 +1312,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1307,6 +1335,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 2.0,
+            "nutri_points_salt_g": 3.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": 14,
@@ -1330,7 +1359,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1353,6 +1382,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -1376,7 +1406,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1399,6 +1429,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 5.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 3,
@@ -1422,7 +1453,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1445,6 +1476,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -5,
@@ -1468,7 +1500,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1491,6 +1523,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 6.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 12,
@@ -1514,7 +1547,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1537,6 +1570,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 18,
@@ -1560,7 +1594,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1583,6 +1617,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 6.0,
             "nutri_points_sodium_mg": 6.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 15,
@@ -1606,7 +1641,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1629,6 +1664,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 9.0,
             "nutri_points_sodium_mg": 9.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 17,
@@ -1652,7 +1688,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1675,6 +1711,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 18,
@@ -1698,7 +1735,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1721,6 +1758,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 9.0,
             "nutri_points_sodium_mg": 9.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 18,
@@ -1744,7 +1782,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1767,6 +1805,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -1790,7 +1829,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1813,6 +1852,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 3.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -1836,7 +1876,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1859,6 +1899,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 2.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 1,
@@ -1882,7 +1923,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1905,6 +1946,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -1928,7 +1970,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1951,6 +1993,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 20,
@@ -1974,7 +2017,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -1997,6 +2040,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 9.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 15,
@@ -2020,7 +2064,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2043,6 +2087,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 5.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 18,
@@ -2066,7 +2111,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2089,6 +2134,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 22,
@@ -2112,7 +2158,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2135,6 +2181,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 1,
@@ -2158,7 +2205,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2181,6 +2228,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 8.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 10,
@@ -2204,7 +2252,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2227,6 +2275,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 7.0,
             "nutri_points_sodium_mg": 7.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 25,
@@ -2250,7 +2299,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2273,6 +2322,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 3.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 9.0,
             "nutri_points_sodium_mg": 9.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 14,
@@ -2296,7 +2346,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2319,6 +2369,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -2342,7 +2393,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2365,6 +2416,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -1,
@@ -2388,7 +2440,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2411,6 +2463,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 5.0,
             "nutri_points_sodium_mg": 5.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 15,
@@ -2434,7 +2487,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2457,6 +2510,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 7.0,
             "nutri_points_sodium_mg": 7.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 16,
@@ -2480,7 +2534,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2503,6 +2557,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -1,
@@ -2526,7 +2581,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2549,6 +2604,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -2,
@@ -2572,7 +2628,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2595,6 +2651,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 3.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 1.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -2618,7 +2675,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2641,6 +2698,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": 4,
@@ -2664,7 +2722,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2687,6 +2745,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 6.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 6,
@@ -2710,7 +2769,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2733,6 +2792,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -2,
@@ -2756,7 +2816,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2779,6 +2839,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 7,
@@ -2802,7 +2863,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2825,6 +2886,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 0,
@@ -2848,7 +2910,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2871,6 +2933,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 14,
@@ -2894,7 +2957,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2917,6 +2980,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 0,
@@ -2940,7 +3004,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -2963,6 +3027,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 5,
@@ -2986,7 +3051,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3009,6 +3074,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 30,
@@ -3032,7 +3098,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3055,6 +3121,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -3078,7 +3145,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3101,6 +3168,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -3124,7 +3192,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3147,6 +3215,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 8.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 20,
@@ -3170,7 +3239,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3193,6 +3262,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -4,
@@ -3216,7 +3286,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3239,6 +3309,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -3262,7 +3333,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3285,6 +3356,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": -3,
@@ -3308,7 +3380,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3331,6 +3403,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -3354,7 +3427,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3377,6 +3450,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 4.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 13,
@@ -3400,7 +3474,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3423,6 +3497,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -2,
@@ -3446,7 +3521,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3469,6 +3544,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -3492,7 +3568,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3515,6 +3591,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": -3,
@@ -3538,7 +3615,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3561,6 +3638,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -3584,7 +3662,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3607,6 +3685,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -3630,7 +3709,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3653,6 +3732,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -3676,7 +3756,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3699,6 +3779,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -3722,7 +3803,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3745,6 +3826,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -3768,7 +3850,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3791,6 +3873,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": -5,
@@ -3814,7 +3897,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3837,6 +3920,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -3860,7 +3944,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3883,6 +3967,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -2,
@@ -3906,7 +3991,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3929,6 +4014,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 6.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 4,
@@ -3952,7 +4038,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -3975,6 +4061,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 1,
@@ -3998,7 +4085,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4021,6 +4108,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -4044,7 +4132,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4067,6 +4155,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 8.0,
             "nutri_points_sugar_g": 6.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 11,
@@ -4090,7 +4179,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4113,6 +4202,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 1,
@@ -4136,7 +4226,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4159,6 +4249,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": -3,
@@ -4182,7 +4273,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4205,6 +4296,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -3,
@@ -4228,7 +4320,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4251,6 +4343,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 3.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 3,
@@ -4274,7 +4367,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4297,6 +4390,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 21,
@@ -4320,7 +4414,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4343,6 +4437,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 2.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": 9,
@@ -4366,7 +4461,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4389,6 +4484,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -1,
@@ -4412,7 +4508,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4435,6 +4531,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -4458,7 +4555,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4481,6 +4578,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -4504,7 +4602,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4527,6 +4625,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 1.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -4550,7 +4649,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4573,6 +4672,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 2.0,
             "nutri_points_sodium_mg": 2.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 2,
@@ -4596,7 +4696,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4619,6 +4719,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 8.0,
             "nutri_points_sodium_mg": 8.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 7,
@@ -4642,7 +4743,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4665,6 +4766,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 11,
@@ -4688,7 +4790,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4711,6 +4813,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 4.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 1,
@@ -4734,7 +4837,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4757,6 +4860,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 3.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -1,
@@ -4780,7 +4884,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4803,6 +4907,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": -4,
@@ -4826,7 +4931,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4849,6 +4954,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -4872,7 +4978,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4895,6 +5001,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 3.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -2,
@@ -4918,7 +5025,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4941,6 +5048,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -3,
@@ -4964,7 +5072,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -4987,6 +5095,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 2,
@@ -5010,7 +5119,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5033,6 +5142,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 8.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": 20,
@@ -5056,7 +5166,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5079,6 +5189,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 2.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 2,
@@ -5102,7 +5213,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5125,6 +5236,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 5.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 5.0,
             "nutri_points_sodium_mg": 5.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 7,
@@ -5148,7 +5260,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5171,6 +5283,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 4.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 2.0,
             "nutri_points_sodium_mg": 2.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 3,
@@ -5194,7 +5307,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5217,6 +5330,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 2.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -2,
@@ -5240,7 +5354,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5263,6 +5377,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 2,
@@ -5286,7 +5401,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5309,6 +5424,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 2.0,
             "nutri_points_sodium_mg": 2.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -3,
@@ -5332,7 +5448,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5355,6 +5471,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 2.0,
             "nutri_points_sodium_mg": 2.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -2,
@@ -5378,7 +5495,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5401,6 +5518,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 8.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 2.0,
             "nutri_points_sodium_mg": 2.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 7,
@@ -5424,7 +5542,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5447,6 +5565,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -5470,7 +5589,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5493,6 +5612,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 4.0,
             "nutri_points_sodium_mg": 4.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -3,
@@ -5516,7 +5636,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5539,6 +5659,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 5.0,
             "nutri_points_sodium_mg": 5.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": 1,
@@ -5562,7 +5683,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5585,6 +5706,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 4,
@@ -5608,7 +5730,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5631,6 +5753,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": -9,
@@ -5654,7 +5777,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5677,6 +5800,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": -9,
@@ -5700,7 +5824,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5723,6 +5847,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -2,
@@ -5746,7 +5871,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5769,6 +5894,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 2.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 2,
@@ -5792,7 +5918,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5815,6 +5941,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 14,
@@ -5838,7 +5965,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5861,6 +5988,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 9.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 19,
@@ -5884,7 +6012,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5907,6 +6035,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -5930,7 +6059,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5953,6 +6082,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 6.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 17,
@@ -5976,7 +6106,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -5999,6 +6129,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 7.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 6,
@@ -6022,7 +6153,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6045,6 +6176,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 2.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 4.0,
             "nutri_points_sodium_mg": 4.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -1,
@@ -6068,7 +6200,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6091,6 +6223,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 8.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 8,
@@ -6114,7 +6247,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6137,6 +6270,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -2,
@@ -6160,7 +6294,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6183,6 +6317,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": -3,
@@ -6206,7 +6341,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6229,6 +6364,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 1.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 1,
@@ -6252,7 +6388,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6275,6 +6411,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 9.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 18,
@@ -6298,7 +6435,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6321,6 +6458,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -6344,7 +6482,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6367,6 +6505,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -6390,7 +6529,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6413,6 +6552,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 1,
@@ -6436,7 +6576,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6459,6 +6599,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -6482,7 +6623,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6505,6 +6646,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -6528,7 +6670,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6551,6 +6693,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -3,
@@ -6574,7 +6717,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6597,6 +6740,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 8.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 6,
@@ -6620,7 +6764,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6643,6 +6787,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -6666,7 +6811,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6689,6 +6834,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 8.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 20,
@@ -6712,7 +6858,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6735,6 +6881,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 14,
@@ -6758,7 +6905,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6781,6 +6928,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -2,
@@ -6804,7 +6952,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6827,6 +6975,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 10,
@@ -6850,7 +6999,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6873,6 +7022,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -6896,7 +7046,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6919,6 +7069,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 3.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 9.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 17,
@@ -6942,7 +7093,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -6965,6 +7116,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -6988,7 +7140,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7011,6 +7163,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -2,
@@ -7034,7 +7187,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7057,6 +7210,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 5.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 13,
@@ -7080,7 +7234,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7103,6 +7257,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -7126,7 +7281,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7149,6 +7304,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 3.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 2,
@@ -7172,7 +7328,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7195,6 +7351,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": -3,
@@ -7218,7 +7375,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7241,6 +7398,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 5,
@@ -7264,7 +7422,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7287,6 +7445,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 8.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": 4,
@@ -7310,7 +7469,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7333,6 +7492,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 3.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 4,
@@ -7356,7 +7516,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7379,6 +7539,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 3.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -3,
@@ -7402,7 +7563,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7425,6 +7586,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 3.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 1,
@@ -7448,7 +7610,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7471,6 +7633,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 7.0,
             "nutri_points_sodium_mg": 7.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 15,
@@ -7494,7 +7657,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7517,6 +7680,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 2.0,
             "nutri_points_sodium_mg": 2.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 11,
@@ -7540,7 +7704,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7563,6 +7727,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 23,
@@ -7586,7 +7751,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7609,6 +7774,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 3.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 2,
@@ -7632,7 +7798,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7655,6 +7821,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 7.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 7.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 17,
@@ -7678,7 +7845,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7701,6 +7868,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 2.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": -3,
@@ -7724,7 +7892,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7747,6 +7915,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 1,
@@ -7770,7 +7939,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7793,6 +7962,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 18,
@@ -7816,7 +7986,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7839,6 +8009,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 3.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 2,
@@ -7862,7 +8033,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7885,6 +8056,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 3.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 3,
@@ -7908,7 +8080,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7931,6 +8103,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 13,
@@ -7954,7 +8127,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -7977,6 +8150,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 19,
@@ -8000,7 +8174,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8023,6 +8197,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -3,
@@ -8046,7 +8221,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8069,6 +8244,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -1,
@@ -8092,7 +8268,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8115,6 +8291,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -8138,7 +8315,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8161,6 +8338,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -3,
@@ -8184,7 +8362,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8207,6 +8385,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 13,
@@ -8230,7 +8409,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8253,6 +8432,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 2.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 5,
@@ -8276,7 +8456,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8299,6 +8479,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -1,
@@ -8322,7 +8503,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8345,6 +8526,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 1.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -8368,7 +8550,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8391,6 +8573,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 4.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": 4,
@@ -8414,7 +8597,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8437,6 +8620,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 11,
@@ -8460,7 +8644,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8483,6 +8667,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 1.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": 21,
@@ -8506,7 +8691,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8529,6 +8714,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 24,
@@ -8552,7 +8738,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8575,6 +8761,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 6,
@@ -8598,7 +8785,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8621,6 +8808,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 9.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 18,
@@ -8644,7 +8832,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8667,6 +8855,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 0,
@@ -8690,7 +8879,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8713,6 +8902,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 8.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 16,
@@ -8736,7 +8926,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8759,6 +8949,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 20,
@@ -8782,7 +8973,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8805,6 +8996,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 19,
@@ -8828,7 +9020,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8851,6 +9043,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 6.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 10.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 13,
@@ -8874,7 +9067,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8897,6 +9090,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 7.0,
             "nutri_points_sodium_mg": 7.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 4,
@@ -8920,7 +9114,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8943,6 +9137,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 9.0,
             "nutri_points_sodium_mg": 9.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 22,
@@ -8966,7 +9161,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -8989,6 +9184,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 9.0,
             "nutri_points_sodium_mg": 9.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 18,
@@ -9012,7 +9208,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9035,6 +9231,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 2,
@@ -9058,7 +9255,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9081,6 +9278,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 5.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 13,
@@ -9104,7 +9302,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9127,6 +9325,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 5.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 13,
@@ -9150,7 +9349,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9173,6 +9372,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -2,
@@ -9196,7 +9396,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9219,6 +9419,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 3.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 4,
@@ -9242,7 +9443,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9265,6 +9466,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": -6,
@@ -9288,7 +9490,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9311,6 +9513,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": -1,
@@ -9334,7 +9537,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9357,6 +9560,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 7.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 21,
@@ -9380,7 +9584,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9403,6 +9607,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 3.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 10.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 13,
@@ -9426,7 +9631,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9449,6 +9654,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 10.0,
             "nutri_points_sugar_g": 5.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 8.0,
             "nutri_points_fibre_g": -4.0,
             "nutri_points": 19,
@@ -9472,7 +9678,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9495,6 +9701,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 2.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 6,
@@ -9518,7 +9725,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9541,6 +9748,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 8,
@@ -9564,7 +9772,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9587,6 +9795,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 7.0,
             "nutri_points_sugar_g": 8.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 3.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 24,
@@ -9610,7 +9819,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9633,6 +9842,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": 13,
@@ -9656,7 +9866,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9679,6 +9889,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 3.0,
             "nutri_points_sugar_g": 1.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 4.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 9,
@@ -9702,7 +9913,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9725,6 +9936,7 @@
             "nutri_points_protein_g": -3.0,
             "nutri_points_fat_sat_g": 8.0,
             "nutri_points_sugar_g": 7.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": 16,
@@ -9748,7 +9960,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9771,6 +9983,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 12,
@@ -9794,7 +10007,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9817,6 +10030,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": -2,
@@ -9840,7 +10054,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9863,6 +10077,7 @@
             "nutri_points_protein_g": -1.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -3,
@@ -9886,7 +10101,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9909,6 +10124,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": -1,
@@ -9932,7 +10148,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -9955,6 +10171,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -2.0,
             "nutri_points": -4,
@@ -9978,7 +10195,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -10001,6 +10218,7 @@
             "nutri_points_protein_g": 0.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 0.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": 0.0,
             "nutri_points": 1,
@@ -10024,7 +10242,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -10047,6 +10265,7 @@
             "nutri_points_protein_g": -2.0,
             "nutri_points_fat_sat_g": 0.0,
             "nutri_points_sugar_g": 10.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -1.0,
             "nutri_points": 10,
@@ -10070,7 +10289,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -10093,6 +10312,7 @@
             "nutri_points_protein_g": -5.0,
             "nutri_points_fat_sat_g": 4.0,
             "nutri_points_sugar_g": 3.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 0.0,
             "nutri_points_fibre_g": -5.0,
             "nutri_points": 2,
@@ -10116,7 +10336,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
@@ -10139,6 +10359,7 @@
             "nutri_points_protein_g": -4.0,
             "nutri_points_fat_sat_g": 8.0,
             "nutri_points_sugar_g": 5.0,
+            "nutri_points_salt_g": 0.0,
             "nutri_points_sodium_mg": 1.0,
             "nutri_points_fibre_g": -3.0,
             "nutri_points": 12,
@@ -10162,7 +10383,7 @@
             "child_frendly_score": 1,
             "scout_frendly_score": 1,
             "created_by": 5,
-            "nutritional_tags": []
+            "intolerances": []
         }
     },
     {
